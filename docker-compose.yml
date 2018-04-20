@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+
+  mosstech-nginx-svc:
+    build:
+      context: ./
+      dockerfile: Dockerfile.nginx
+    container_name: mosstech-nginx
+    working_dir: /app
+    ports:
+      - "33080:80"
+    volumes:
+      - ./app:/app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

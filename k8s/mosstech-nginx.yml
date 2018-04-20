@@ -1,0 +1,44 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}-nginx
+  labels:
+    name: ${APP_NAME}-nginx
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        name: ${APP_NAME}-nginx
+        version: v1
+    spec:
+      containers:
+      - name: ${APP_NAME}-nginx
+        image: ${NGINX_BUILD_IMAGE}:${IMAGE_VERSION}
+        ports:
+        - containerPort: 80
+        workingDir: /app
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}-nginx-svc
+  namespace: ${NAMESPACE}
+  labels:
+    name: ${APP_NAME}-nginx-svc
+spec:
+  type: NodePort
+  selector:
+    name: ${APP_NAME}-nginx
+  ports:
+  - port: 80
+    name: http
+---
