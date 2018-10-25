@@ -10,3 +10,4 @@ GCP_REGION=europe-west2
 
 # Kubernetes
 NAMESPACE=mosstech
+HOSTNAME=www.mosstech.io
