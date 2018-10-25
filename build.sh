@@ -35,4 +35,4 @@ find . -name '*.DS_Store' -exec rm {} \;
 docker build -t ${NGINX_BUILD_IMAGE} -f ./Dockerfile.nginx .
 
 # push to GCR - assumes command line already authenticated
-docker -- push ${NGINX_BUILD_IMAGE}
+docker push ${NGINX_BUILD_IMAGE}
