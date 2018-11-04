@@ -42,3 +42,13 @@ spec:
   - port: 80
     name: http
 ---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: ${APP_NAME}-nginx-pdb
+  namespace: ${NAMESPACE}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      name: ${APP_NAME}-nginx
