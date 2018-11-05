@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${APP_NAME}-svc
+  name: ${APP_NAME}
   namespace: ${NAMESPACE}
   labels:
-    name: ${APP_NAME}-svc
+    app: ${APP_NAME}
 spec:
   type: NodePort
   selector:
-    name: ${APP_NAME}-nginx
+    app: ${APP_NAME}
   ports:
   - port: 80
     name: http

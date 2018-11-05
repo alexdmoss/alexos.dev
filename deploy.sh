@@ -13,9 +13,9 @@ if [[ -z ${NAMESPACE} ]];  then echo "[ERROR] NAMESPACE not set, and required wh
 if [[ -z ${HOSTNAME} ]];  then echo "[ERROR] HOSTNAME not set, and required when installing. Aborting.";  exit 1; fi
 
 
-BUILD_IMAGE=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}-nginx
+BUILD_IMAGE=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
 
-# get latest build info pushed to GCR (assumes NGINX & PHP version are linked)
+# get latest build info pushed to GCR
 LATEST_TAG=$(gcloud container images list-tags ${BUILD_IMAGE} --sort-by="~timestamp" --limit=1 --format='value(tags)')
 if [[ $(echo $LATEST_TAG | grep -c ",") -gt 0 ]]; then LATEST_TAG=$(echo $LATEST_TAG | awk -F, '{print $2}'); fi
 
@@ -33,7 +33,7 @@ echo
 
 cat ./k8s/00-namespace.yml | sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | kubectl apply -f -
 
-cat ./k8s/${APP_NAME}-nginx.yml | \
+cat ./k8s/${APP_NAME}-v2.yml | \
     sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
     sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
     sed 's#${BUILD_IMAGE}#'${BUILD_IMAGE}'#g' | \

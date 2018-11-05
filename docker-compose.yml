@@ -2,11 +2,11 @@ version: "3.1"
 
 services:
 
-  mosstech-nginx-svc:
+  mosstech:
     build:
       context: ./
-      dockerfile: Dockerfile.nginx
-    container_name: mosstech-nginx
+      dockerfile: Dockerfile
+    container_name: mosstech
     working_dir: /app
     ports:
       - "33080:80"

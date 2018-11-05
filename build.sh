@@ -10,10 +10,10 @@
 . ./config/vars.sh
 
 if [[ -z ${GCP_PROJECT_NAME} ]];  then echo "[ERROR] GCP_PROJECT_NAME not set, aborting."; exit 1; fi
-if [[ -z ${APP_NAME} ]];  then echo "[ERROR] NGINX_IMAGE_NAME not set, aborting."; exit 1; fi
+if [[ -z ${APP_NAME} ]];  then echo "[ERROR] APP_NAME not set, aborting."; exit 1; fi
 
-# get latest build info pushed to GCR (assumes NGINX & PHP version are linked)
-LATEST_TAG=$(gcloud container images list-tags eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}-nginx --sort-by="~timestamp" --limit=1 --format='value(tags)')
+# get latest build info pushed to GCR
+LATEST_TAG=$(gcloud container images list-tags eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME} --sort-by="~timestamp" --limit=1 --format='value(tags)')
 if [[ $(echo $LATEST_TAG | grep -c ",") -gt 0 ]]; then
   LATEST_TAG=$(echo $LATEST_TAG | awk -F, '{print $2}');
 fi
@@ -27,12 +27,12 @@ fi
 
 set -x
 
-NGINX_BUILD_IMAGE=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}-nginx:${NEW_TAG}
+BUILD_IMAGE=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}:${NEW_TAG}
 
 find . -name '*.DS_Store' -exec rm {} \;
 
-# build NGINX image
-docker build -t ${NGINX_BUILD_IMAGE} -f ./Dockerfile.nginx .
+# build image
+docker build -t ${BUILD_IMAGE} -f ./Dockerfile .
 
 # push to GCR - assumes command line already authenticated
-docker push ${NGINX_BUILD_IMAGE}
+docker push ${BUILD_IMAGE}

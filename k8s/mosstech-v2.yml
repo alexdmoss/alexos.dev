@@ -2,9 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ${APP_NAME}-nginx
-  labels:
-    name: ${APP_NAME}-nginx
+  name: ${APP_NAME}-v2
   namespace: ${NAMESPACE}
 spec:
   replicas: 2
@@ -16,11 +14,11 @@ spec:
   template:
     metadata:
       labels:
-        name: ${APP_NAME}-nginx
-        version: v1
+        app: ${APP_NAME}
+        version: v2
     spec:
       containers:
-      - name: ${APP_NAME}-nginx
+      - name: ${APP_NAME}
         image: ${BUILD_IMAGE}:${IMAGE_VERSION}
         ports:
         - containerPort: 80
