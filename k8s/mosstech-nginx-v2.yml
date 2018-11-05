@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ${APP_NAME}-nginx
+  name: ${APP_NAME}-nginx-v2
   labels:
     name: ${APP_NAME}-nginx
   namespace: ${NAMESPACE}
@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         name: ${APP_NAME}-nginx
-        version: v1
+        version: v2
     spec:
       containers:
       - name: ${APP_NAME}-nginx
