@@ -55,8 +55,8 @@ cat ./k8s/istio.yml | \
     sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
     kubectl apply -f -
 
-cat ./k8s/ingress.yml | \
-    sed 's#${HOSTNAME}#'${HOSTNAME}'#g' | \
-    sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-    sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
-    kubectl apply -f -
+# cat ./k8s/ingress.yml | \
+#     sed 's#${HOSTNAME}#'${HOSTNAME}'#g' | \
+#     sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+#     sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
+#     kubectl apply -f -

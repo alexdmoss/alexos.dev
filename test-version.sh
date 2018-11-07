@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# hostname="http://35.187.52.146"
-hostname="https://www.mosstech.io"
+hostname="http://35.187.52.146"
+# hostname="https://www.mosstech.io"
 
 i=1
 one=0
