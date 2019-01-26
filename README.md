@@ -47,3 +47,14 @@ RSS
 2. CDN
 3. Redis
 4. Istio
+
+---
+
+## Hugo Themes
+
+Future Imperfect - clean, nice icons - https://themes.gohugo.io/future-imperfect/
+Tranquilpeak - very nice soft theme, left menu - https://themes.gohugo.io/hugo-tranquilpeak-theme/
+Arabica - nice font - https://themes.gohugo.io//theme/arabica/
+Meghna - very professional, dark grey with animations - https://themes.gohugo.io/meghna-hugo/
+m10c - quite nice colours - https://themes.gohugo.io/hugo-theme-m10c/
+Massively - the way Contacts is done is clever - https://themes.gohugo.io/hugo-theme-massively/
