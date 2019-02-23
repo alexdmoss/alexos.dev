@@ -1,17 +1,12 @@
-*.retry
 
-# swap
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
+.terraform
+*.tfplan
+*.tfstate
+*.tfstate.backup
 
-# session
-Session.vim
+*.iml
+*.DS_Store
+*.swp
 
-# auto-generated tag files
-tags
-
-# Mac indexer
-.DS_Store
-
-# secrets
-.secret/*
+**/public/**
+**/www/**

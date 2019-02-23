@@ -1,0 +1,18 @@
+name = "mosstech"
+license = "MIT"
+licenselink = "https://github.com/alexdmoss/mosstech/blob/master/LICENSE"
+description = ""
+homepage = "http://mosstech.io"
+tags = []
+features = []
+min_version = "0.41"
+
+[author]
+  name = ""
+  homepage = ""
+
+# If porting an existing theme
+[original]
+  name = ""
+  homepage = ""
+  repo = ""

@@ -1,56 +1,59 @@
-
 # mosstech.io
 
-Goal - build a blogging website composed of microservices - so that I can use it to: a) post interesting stuff, b) play with funky tech.
+Building a new blog theme using Hugo.
 
 ---
 
-## Features
+## To Do
 
-Home
-Tags - grouping - panels
-About
-Contact 
-Search
-RSS
-
-## Components
-
-### Frontend 
-
-1. User Frontend
-2. Admin Frontend
-3. Cache
-
-### Services 
-
-1. Posts
-2. Search
-3. Email Notifications
-4. Captcha
-5. Images
-6. Comments
-7. RSS
-
-### Data
-
-1. Content - copy, links        - NoSQL
-2. Posts                        - SQL
-3. Users                        - SQL
-4. Comments                     - SQL
+- [x] Image parameters / featherlight
+- [ ] Pick base theme components
+- [ ] Separate theme repo
+- [ ] Logo
+- [ ] Favicon
+- [ ] Google Analytics
+- [ ] alexmoss.co.uk redirect
+- [ ] Credits for theme
+- [ ] 404 page testing
+- [ ] Pagination for list of posts & probably home page
 
 ---
 
-## Tech
+## Basic Building Blocks 
 
-1. Kubernetes
-2. CDN
-3. Redis
-4. Istio
+- Posts
+- About
+- Contact
+- Tagging
+- Search
+- Archives page for whole taxonomy (TranquilPeak)
+- Comments 
+- RSS/Atom
+- Social links - github, twitter, stackoverflow?
+
+## Nice-to-Have Features
+
+- Add open graph protocol - meta property="og:title" - see Future Imperfect
+- Add twitter cards integration - meta name="twitter:card" - see Future Imperfect
+- Captcha
+- Highlighting for comments, like Medium
+- Related Posts popping up from the bottom
+
+## Tech 
+
+- GCP Load Balancing
+- CDN
+- NGINX in Kubernetes
+- Stackdriver Dashboards
+- Stackdriver Alerts
 
 ---
 
-## Hugo Themes
+## Look n Feel
+
+- TranquilPeak way of arranging posts on home page is really nice 
+- 
+### Hugo Themes
 
 Future Imperfect - clean, nice icons - https://themes.gohugo.io/future-imperfect/
 Tranquilpeak - very nice soft theme, left menu - https://themes.gohugo.io/hugo-tranquilpeak-theme/

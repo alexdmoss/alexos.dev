@@ -1,0 +1,78 @@
+baseURL: "https://mosstech.io"
+title: "mosstech.io"
+theme: "mosstech"
+publishDir: "../www"
+contentDir: "../content"
+languageCode: "en-gb"
+
+params:
+  author: "@alexdmoss"
+  description: "My blog about technology - and in particular cloud platforms"
+
+
+menu:
+  main:
+    - name: "Home"
+      description: "Home Page"
+      url: "/"
+      weight: 1
+    - name: "About"
+      description: "About Me"
+      url: "/about/"
+      weight: 2
+    - name: "Posts"
+      description: "Blog Posts"
+      url: "/posts/"
+      weight: 3
+    - name: "Portfolio"
+      description: "Some of my other sites, past and present"
+      url: "/portfolio/"
+      weight: 4
+    - name: "Contact"
+      description: "Ways to contact me, including through this website"
+      url: "/contact/"
+      weight: 5
+
+  # enableEmoji: true 
+# enableGitInfo: true
+
+# googleanalytics: ""
+# disqusShortname: ""
+
+# # config enables search
+# outputs:
+#   home:
+#   - "HTML"
+#   - "RSS"
+#   - "JSON"
+
+# theme: "hugo-theme-massively"
+
+# See: https://learn.netlify.com/en/basics/configuration/
+# params:
+#   editURL: "https://gitlab.com/mosstech/mosstech.io/tree/master/content/"
+#   commitURL: "https://gitlab.com/mosstech/mosstech.io/commit/"
+#   author: "@alexdmoss"
+#   description: "mosstech.io"
+#   showVisitedLinks: true
+#   disableSearch: false
+#   # Javascript and CSS cache are automatically busted when new version of site is generated. 
+#   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
+#   disableAssetsBusting: false
+#   # Order sections in menu by "weight" or "title". Default to "weight"
+#   ordersectionsby: "weight"
+
+# menu:
+#   shortcuts:
+#   - name: "<i class='fas fa-book-open'></i> Markdown Examples"
+#     url: "/markdown/"
+#     weight: 10
+#   - name: "<i class='fab fa-gitlab'></i> Git Repo"
+#     url: "https://gitlab.com/mosstech/mosstech.io/"
+#     weight: 20
+
+# params:
+#   posts:
+#     folderName: "post"
+#     pagesize: 6
+#     featuredpost: true

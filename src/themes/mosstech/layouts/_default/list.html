@@ -1,0 +1,21 @@
+{{ define "main" }}
+	<div id="main">
+
+        <header class="main-header">
+            <h1>{{ .Title }}</h1>
+            <p>{{ .Content }}</p>
+        </header>
+        
+        <section class="post-listing">
+
+            {{ range first 5 .Data.Pages }}
+            <article class="post-summary">
+                <h3><a href="{{ .URL | relLangURL | safeURL }}">{{ .Title }}</a></h3>
+                <p>{{ .Description }}</p>
+            </article>
+            {{ end }}
+    
+        </section>
+
+	</div>
+{{ end }}

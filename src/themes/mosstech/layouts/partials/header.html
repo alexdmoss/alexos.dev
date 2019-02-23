@@ -1,0 +1,23 @@
+<div id="wrapper">
+
+	<header id="header">
+
+		<h1>{{ .Site.Title }}</h1>
+
+		<nav id="links">
+			{{ $currentPage := . }}
+			{{ range .Site.Menus.main }}
+				<a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
+			{{ end }}
+		</nav>
+
+		<nav id="search">
+			Search Box | Share Box
+		</nav>
+
+	</header>
+
+
+
+
+

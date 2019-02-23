@@ -1,0 +1,32 @@
+
+# stages:
+# - build
+# - deploy
+
+# variables:
+#   SITE: 
+#   GOOGLE_CREDENTIALS:
+#   GCP_PROJECT_NAME: 
+#   DOMAIN: 
+
+# build:
+#   stage: build
+#   image: 
+#   only:
+#   - master
+#   script: 
+#   - ./go build
+#   artifacts:
+#     paths:
+#     - "app/www/**"
+
+# deploy:
+#   stage: deploy
+#   allow_failure: false
+#   dependencies:
+#   - build
+#   image:
+#   only:
+#   - master
+#   script:
+#   - ./go deploy
