@@ -15,8 +15,6 @@
 
 .post {
     padding: 3em 3em 1em 3em ;
-    background: #ffffff;
-    border: solid 1px rgba(160, 160, 160, 0.3);
     margin: 0 0 2em 0;
     position: relative;
 }
@@ -97,13 +95,20 @@
     white-space: nowrap;
 }
 
-.post-content p img {
+.post-content h2 {
+    text-align: center;
+}
+.post-content img {
     display: block;
     margin: 0 auto;
 }
-.post-content p img.border {
+.post-content img.border {
     border: 2px solid #555 !important;
 }
-.post-content p img.shadow {
+.post-content img.shadow {
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.6);
+}
+.post-content figcaption {
+    padding-top: 15px;
+    text-align: center;
 }

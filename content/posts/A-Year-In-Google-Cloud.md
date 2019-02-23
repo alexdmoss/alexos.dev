@@ -11,13 +11,16 @@ tags: google gcp migration kubernetes gke platforms devops
 
 *Hi! My name is Alex Moss, and I’m a Platform Architect working within one of the Digital Platform Teams within E-Commerce at John Lewis & Partners.*
 
-This time last year, our newly-formed Platforms Team in John Lewis Online were putting the finishing touches to a brand new Kubernetes platform designed to run the frontend of johnlewis.com in Google Cloud. Twelve months later, we’ve passed through Black Friday without a hitch and built a raft of new capabilities along the way. What follows is a post reflecting on the journey so far — if that sounds interesting, then read on!
+This time last year, our newly-formed Platforms Team in John Lewis Online were putting the finishing touches to a brand new **Kubernetes** platform designed to run the frontend of johnlewis.com in Google Cloud. Twelve months later, we’ve passed through Black Friday without a hitch and built a raft of new capabilities along the way. What follows is a post reflecting on the journey so far — if that sounds boring interesting, then read on!
+
+---
 
 ## Doing That Strategic Thing
 
-![Doing That Strategic Thing](/images/strategic-thing.jpg?width=600px&classes=shadow)
 
-Photo by rawpixel on Unsplash
+{{< figure src="/images/strategic-thing.jpg?width=600px&classes=shadow" title="Photo by rawpixel on Unsplash" >}}
+
+
 
 The frontend of johnlewis.com — what we call ‘Browse’ — wasn’t the first thing we built in Google Cloud. There were a couple of teams deliberately given the freedom to experiment in GCP, and they built a number of smaller apps that could quickly get into Production. This helped cultivate the idea that this was good technology to be working with, and we should start using it for bigger things. That, plus the fact that our engineers were chomping at the bit to get their hands on it, really helped generate the initial push it needed. Adopting the cloud for johnlewis.com really felt like an engineer-led venture — more so than any other piece of work I’ve been involved with in my time at JLP.
 

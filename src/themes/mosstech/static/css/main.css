@@ -92,7 +92,7 @@ body.is-loading *:after {
         line-height: inherit;
         padding: 0 0 0 1.5em;
         white-space: nowrap;
-        min-width: 12.4em;
+        min-width: 14em;
     }
 
         #header h1 a {
@@ -137,7 +137,7 @@ body.is-loading *:after {
 
         #header #links ul li {
             line-height: 1;
-            margin-left: 1em;
+            margin-left: 2em;
             padding-left: 1em;
         }
 

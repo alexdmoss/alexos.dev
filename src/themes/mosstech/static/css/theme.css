@@ -1,13 +1,16 @@
 body {
-    background: #fff;
+    background: #e6e6e6;
 }
 
 blockquote {
     background: #888;
 }
 
+hr {
+    border-bottom: 1px solid #ccc;
+}
 #header {
-    background-color: #ffffff;
+    background-color: #fff;
     border-bottom: solid 1px rgba(160, 160, 160, 0.3);
 }
 
@@ -33,6 +36,7 @@ blockquote {
         }            
 
 #sidebar {
+    background: #fff;
     border-right: solid 1px rgba(160, 160, 160, 0.3);
 }
 
@@ -44,6 +48,11 @@ blockquote {
     #sidebar {
         border-top: solid 1px rgba(160, 160, 160, 0.3);
     }
+}
+
+.post {
+    background: #fff;
+    border: solid 1px rgba(160, 160, 160, 0.3);
 }
 
 .post-title h1 a {
