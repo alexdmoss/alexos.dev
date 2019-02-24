@@ -52,7 +52,23 @@ Building a new blog theme using Hugo.
 ## Look n Feel
 
 - TranquilPeak way of arranging posts on home page is really nice 
-- 
+
+### Icons 
+
+
+<i class="fas fa-code-branch"></i>
+<i class="far fa-comments"></i>
+<i class="far fa-copy"></i>
+
+<i class="fab fa-gitlab"></i>
+
+<i class="fas fa-home"></i>
+<i class="fas fa-layer-group"></i>
+<i class="fab fa-pinterest"></i>
+<i class="fab fa-reddit"></i>
+
+<i class="fas fa-tags"></i>
+
 ### Hugo Themes
 
 Future Imperfect - clean, nice icons - https://themes.gohugo.io/future-imperfect/

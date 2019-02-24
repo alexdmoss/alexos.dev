@@ -6,8 +6,8 @@
 					<div class="post-title">
 						<h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
 						{{ with .Description }}
-            <p>{{ . }}</p>
-        		{{ end }}
+            			<p>{{ . }}</p>
+        				{{ end }}
 					</div>
 					<div class="post-data">
 						{{ $.Scratch.Set "dateType" .Date }}

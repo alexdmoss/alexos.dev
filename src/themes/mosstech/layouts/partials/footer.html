@@ -9,8 +9,10 @@
 -->
 
   <!-- custom js -->
-  <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-  <script src="{{"js/mosstech.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+  <script src="{{"js/jquery-3.2.1.min.js" | relURL}}"></script>
+  <script src="{{"js/skel.min.js" | relURL}}"></script>
+  <script src="{{"js/featherlight.min.js" | relURL}}"></script>
 
+  <script src="{{"js/mosstech.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
 
 </div>

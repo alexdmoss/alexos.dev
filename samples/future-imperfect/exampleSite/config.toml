@@ -1,7 +1,7 @@
 baseurl = "/"
 languageCode = "en-us"
 title = "Hugo Future Imperfect"
-theme = "../../../hugo-future-imperfect"
+theme = "../../../future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
 disqusShortname = "shortname"

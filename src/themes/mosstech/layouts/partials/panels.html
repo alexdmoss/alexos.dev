@@ -1,0 +1,19 @@
+<section class="panel-section">
+  <div class="container">
+    <div class="row">
+      {{ range first 6 (where .Pages "Type" "posts") }}
+      <div class="panel-container">
+          <a href="{{ .URL | relLangURL | safeURL }}" class="panel-link">
+              {{ with .Param "banner" }}
+              <img class="panel-image" src="{{ . | safeURL }}" />
+              {{ else }}
+              <img class="panel-image" src="/images/question-mark.png" />
+              {{ end }}
+              <h3 class="panel-title">{{ safeHTML .Title }}</h3>
+              <p class="panel-description">{{ safeHTML .Description | truncate 175 }}</p>
+          </a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

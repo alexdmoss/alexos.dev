@@ -5,6 +5,7 @@ draft: true
 author: "@alexdmoss"
 description: "An overview of our journey from migrating our first enterprise-scale application to Google Cloud, through to multi-tenant Kubernetes"
 tags: google gcp migration kubernetes gke platforms devops
+banner: "/images/platforms.jpg"
 ---
 
 > Originally posted on Medium for my employer: https://medium.com/john-lewis-software-engineering/a-year-in-google-cloud-4586a117f352

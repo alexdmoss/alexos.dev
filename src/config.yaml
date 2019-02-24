@@ -7,29 +7,34 @@ languageCode: "en-gb"
 
 params:
   author: "@alexdmoss"
-  description: "My blog about technology - and in particular cloud platforms"
+  description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
 
 
 menu:
   main:
     - name: "Home"
-      description: "Home Page"
+      pre: "<i class='fas fa-home'></i>"
+      title: "Home Page"
       url: "/"
       weight: 1
     - name: "About"
-      description: "About Me"
+      pre: "<i class='far fa-id-card'></i>"
+      title: "About Me"
       url: "/about/"
       weight: 2
     - name: "Posts"
-      description: "Blog Posts"
+      pre: "<i class='far fa-newspaper'></i>"
+      title: "Blog Posts"
       url: "/posts/"
       weight: 3
-    - name: "Portfolio"
-      description: "Some of my other sites, past and present"
+    - name: "Sites"
+      pre: "<i class='far fa-object-group'></i>"
+      title: "Some of my other sites, past and present"
       url: "/portfolio/"
       weight: 4
     - name: "Contact"
-      description: "Ways to contact me, including through this website"
+      pre: "<i class='far fa-envelope'></i>"
+      title: "Ways to contact me, including through this website"
       url: "/contact/"
       weight: 5
 
