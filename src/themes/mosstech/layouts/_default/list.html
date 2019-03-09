@@ -1,21 +1,8 @@
-{{ define "main" }}
-    <div class="main" id="body-inner">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
 
-        <header class="main-header">
-            <h1>{{ .Title }}</h1>
-            <p>{{ .Content }}</p>
-        </header>
-        
-        <section class="post-listing">
+<h1>{{ .Title }}</h1>>
+<p>{{ .Content }}</p>
 
-            {{ range first 5 .Data.Pages }}
-            <article class="post-summary">
-                <h3><a href="{{ .URL | relLangURL | safeURL }}">{{ .Title }}</a></h3>
-                <p>{{ .Description }}</p>
-            </article>
-            {{ end }}
-    
-        </section>
-
-	</div>
-{{ end }}
+{{ partial "sidebar.html" . }}
+{{ partial "foot.html" . }}

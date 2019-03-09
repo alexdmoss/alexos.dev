@@ -1,11 +1,24 @@
-#header h1 {
-    margin: 0;
-}
-
 .light {
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
     filter: alpha(opacity=60);
     opacity: 0.6;
+}
+
+
+/* Back To Top */
+
+#back-to-top {
+    bottom: 5px;
+    display: none;
+    position: fixed;
+    right: 5px;
+}
+#back-to-top.btt-fade-out {
+    /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+    -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+    -moz-transition: opacity .3s 0s, visibility 0s 0s;
+    transition: opacity .3s 0s, visibility 0s 0s;
+    opacity: .5;
 }
 
 /*** Intro ***/
@@ -126,6 +139,229 @@
 }
 
 /*** Post Listing ***/
+
+.post-summary {
+    padding: 3em 3em 1em 3em ;
+    margin: 0 0 2em 0;
+    position: relative;
+}
+
+.post-listing {
+    overflow: auto;
+
+}
+
+
+.listing-container {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem !important; 
+}
+
+.listing-box {
+    padding-top: 2rem !important;
+    padding-left: 20px; 
+    padding-right: 20px;
+    background-color: #f4f4f4 !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    display: block !important;
+    text-decoration: none;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.listing-image {
+    display: block !important;
+    float: right;
+    margin: 0 auto;
+    width: 250px;
+    height: 125px;
+    border: 1px solid #ccc;
+}
+.listing-title {
+    margin-top: 5px !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.listing-description {
+    line-height: 1.5em;
+    font-size: 0.9em;
+    margin-bottom: 0; 
+    margin-right: 270px;
+    padding-bottom: 12px;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+.listing-summary {
+    padding-top: 12px;
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+/* Pagination */
+
+ul.actions {
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+    ul.actions li {
+        display: inline-block;
+        padding: 0 1em 0 0;
+        vertical-align: middle;
+    }
+
+    
+    ul.actions li:last-child {
+        padding-right: 0;
+    }
+
+        ul.actions.pagination .button {
+            line-height: 2.5em;
+            height: auto;
+            white-space: normal;
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        ul.actions.pagination .next {
+            text-decoration: none;
+        }
+
+            ul.actions.pagination .next:after {
+                content: "";
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                text-transform: none !important;
+            }
+
+            ul.actions.pagination .next:after {
+                content: '\f054';
+            }
+
+        ul.actions.pagination .previous {
+            text-decoration: none;
+        }
+
+            ul.actions.pagination .previous:before {
+                content: "";
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                text-transform: none !important;
+            }
+
+            ul.actions.pagination .previous:before {
+                content: '\f053';
+            }
+
+        /* @media screen and (max-width: 980px) {
+
+            ul.actions.pagination {
+                text-align: center;
+            }
+
+                ul.actions.pagination .next, ul.actions.pagination .previous {
+                    min-width: 20em;
+                }
+
+        } */
+
+        /* @media screen and (max-width: 736px) {
+
+            ul.actions.pagination .next, ul.actions.pagination .previous {
+                min-width: 18em;
+            }
+
+        } */
+
+        /* @media screen and (max-width: 480px) {
+
+            ul.actions {
+                margin: 0 0 2em 0;
+            }
+
+                ul.actions li {
+                    padding: 1em 0 0 0;
+                    display: block;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                    ul.actions li:first-child {
+                        padding-top: 0;
+                    }
+
+                    ul.actions li > * {
+                        width: 100%;
+                        margin: 0 !important;
+                    }
+
+                ul.actions.small li {
+                    padding: 0.5em 0 0 0;
+                }
+
+                    ul.actions.small li:first-child {
+                        padding-top: 0;
+                    }
+
+        } */
+
+
+
+/* Button */
+
+input[type="submit"], input[type="reset"], input[type="button"], .button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: 800;
+    height: 4.8125em;
+    letter-spacing: 0.25em;
+    line-height: 4.8125em;
+    padding: 0 3em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+input[type="submit"]:before, input[type="submit"]:after, input[type="reset"]:before, input[type="reset"]:after, input[type="button"]:before, input[type="button"]:after, .button:before, .button:after {
+    position: relative;
+}
+input[type="submit"]:before, input[type="reset"]:before, input[type="button"]:before, .button:before {
+    left: -1em;
+    padding: 0 0 0 0.75em;
+}
+input[type="submit"]:after, input[type="reset"]:after, input[type="button"]:after, .button:after {
+    left: 1em;
+    padding: 0 0.75em 0 0;
+}
+input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"].disabled, input[type="reset"]:disabled, input[type="button"].disabled, input[type="button"]:disabled, .button.disabled, .button:disabled {
+    -moz-pointer-events: none;
+    -webkit-pointer-events: none;
+    -ms-pointer-events: none;
+    pointer-events: none;
+}
+
 
 /*** Posts ***/
 

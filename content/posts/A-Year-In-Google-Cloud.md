@@ -8,9 +8,7 @@ tags: google gcp migration kubernetes gke platforms devops
 banner: "/images/platforms.jpg"
 ---
 
-> Originally posted on Medium for my employer: https://medium.com/john-lewis-software-engineering/a-year-in-google-cloud-4586a117f352
-
-*Hi! My name is Alex Moss, and I’m a Platform Architect working within one of the Digital Platform Teams within E-Commerce at John Lewis & Partners.*
+> This blog entry was originally [posted on Medium](https://medium.com/john-lewis-software-engineering/a-year-in-google-cloud-4586a117f352) for my employer.
 
 This time last year, our newly-formed Platforms Team in John Lewis Online were putting the finishing touches to a brand new **Kubernetes** platform designed to run the frontend of johnlewis.com in Google Cloud. Twelve months later, we’ve passed through Black Friday without a hitch and built a raft of new capabilities along the way. What follows is a post reflecting on the journey so far — if that sounds boring interesting, then read on!
 

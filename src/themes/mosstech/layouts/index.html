@@ -1,4 +1,8 @@
-{{ define "main" }}
+{{ $.Scratch.Set "shareNav" true }}
+
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
 <div class="main" id="body-inner">
 
 	<article class="home">
@@ -12,11 +16,11 @@
 
 		{{ partial "panels.html" . }}
 
-		<section class="post-content">
-			{{ .Content }}
-		</section>
-
 	</article>
 
+	{{ partial "footer.html" . }}
+
 </div>
-{{ end }}
+
+{{ partial "sidebar.html" . }}
+{{ partial "foot.html" . }}

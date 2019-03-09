@@ -4,6 +4,7 @@ theme: "mosstech"
 publishDir: "../www"
 contentDir: "../content"
 languageCode: "en-gb"
+paginate: 10
 
 params:
   author: "@alexdmoss"

@@ -6,47 +6,60 @@ Building a new blog theme using Hugo.
 
 ## To Do
 
-- [ ] Pinch animations from https://www.demisto.com/community/
-- [ ] Enable footer 
-- [ ] Main heading in corner not quite centered vertically 
-- [ ] posts/ section page does not have background / formatting is bad
-- [ ] Make search work
-- [ ] Add Share icon that appears when scrolling
-- [ ] Slight zoom-in effect on panels / image banners
-- [ ] Code highlighting for GHM not working - needs styles
-- [ ] Copy-to-clipboard
-- [ ] Tranquil Peak - hide sidebar when reading a post is nice
-- [ ] Next/Previous posts link (pagination)
-- [ ] Tranquil Peak - animation load of the about page
-- [ ] Photo pic link through to Bio
-- [ ] Share menu
-- [ ] About page content
+### Appearance 
+
+- [x] Border under header bar
+- [x] Enable footer 
+- [x] Main heading in corner not quite centered vertically 
+- [x] Photo pic link through to Bio
+- [x] Image parameters / featherlight
+- [x] Pick base theme components
+- [x] Logo
+- [x] Favicon
+- [x] posts/ section page does not have background / formatting is bad
+- [ ] Back to top button
+- [x] Add Share icon that appears when scrolling
 - [ ] Sidebar recent posts formatting
 - [ ] Sidebar recent posts vanish when in a post 
-- [ ] Sidebar social links to go somewhere
-- [ ] Tag cloud on sidebar
+- [ ] Sidebar social links to go somewhere / hover colour
+- [ ] Tags appearance cloud on sidebar
 - [ ] Contacts page formatting
-- [ ] Contacts page processing
+- [ ] About page content
 - [ ] Portfolio page (inc where host?)
-- [ ] Post links to include date in URL / permalinking
+- [ ] Colours from m10c?
+
+### Functions 
+
+- [x] robots.txt
+- [ ] Contacts page processing
+- [ ] Tranquil Peak - hide sidebar when reading a post is nice
 - [ ] Links to subheading in posts possible
-- [ ] Back to top button
-- [ ] meghna has some cool animations - especially social buttons at bottom
-- [ ] meghna contact form at bottom?
+- [ ] Post links to include date in URL / permalinking
+- [ ] Tags build up
 - [ ] Comments
 - [ ] Archives page for whole taxonomy (Tranquil Peak)
 - [ ] RSS/Atom feed testing
-- [x] Image parameters / featherlight
-- [x] Pick base theme components
+- [x] Pagination for list of posts
+- [x] Prev/Next Post buttons
+- [ ] Share menu
+- [ ] Code highlighting for GHM not working - needs styles
+- [ ] Copy-to-clipboard
+- [ ] Make search work
 - [ ] Separate theme repo
-- [x] Logo
-- [ ] Favicon
+- [ ] 404 page testing
+- [ ] Mobile appearance
+- [ ] Various Browser tests?
 - [ ] Google Analytics
 - [ ] alexmoss.co.uk redirect
 - [ ] Credits for theme
-- [ ] 404 page testing
-- [ ] Pagination for list of posts & probably home page
-- [ ] Colours from m10c?
+
+### Fancier Formatting 
+
+- [ ] Tranquil Peak - animation load of the about page
+- [ ] Slight zoom-in effect on panels / image banners
+- [ ] meghna has some cool animations - especially social buttons at bottom
+- [ ] meghna contact form at bottom?
+- [ ] Pinch animations from https://www.demisto.com/community/
 
 ---
 
@@ -67,10 +80,6 @@ Building a new blog theme using Hugo.
 - Stackdriver Alerts
 
 ---
-
-## Look n Feel
-
-- TranquilPeak way of arranging posts on home page is really nice 
 
 ### Icons 
 

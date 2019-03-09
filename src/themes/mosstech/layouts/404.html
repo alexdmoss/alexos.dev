@@ -1,7 +1,11 @@
-{{ define "main" }}
-	<div class="main" id="body-inner">
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
 
-	  <p>Oh no, 404!</p>>
+<div class="main" id="body-inner">
 
-	</div>
-{{ end }}
+  <p>Oh no, 404!</p>>
+
+</div>
+
+{{ partial "sidebar.html" . }}
+{{ partial "foot.html" . }}

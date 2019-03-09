@@ -1,18 +1,8 @@
-<!--
-  <footer id="footer">
+<article id="footer">
 
-    <section class="copyright">&copy; {{ now.Format "2006" }} {{ .Site.Title }}</section>
-
-    <section class="poweredby">Using a custom theme created for this site, inspired by others. Want to use it? Feel free - just leave credit! Published with <a href="https://gohugo.io">Hugo</a>.</section>
-
-  </footer>
--->
-
-  <!-- custom js -->
-  <script src="{{"js/jquery-3.2.1.min.js" | relURL}}"></script>
-  <script src="{{"js/skel.min.js" | relURL}}"></script>
-  <script src="{{"js/featherlight.min.js" | relURL}}"></script>
-
-  <script src="{{"js/mosstech.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-
-</div>
+    <section id="copyright">&copy; {{ now.Format "2006" }} {{ .Site.Title }}</section>
+    
+    <section id="powered">
+        This site is generated using <a href="https://gohugo.io">Hugo</a> with a custom theme created for this blog, heavily based on <a href="https://themes.gohugo.io/future-imperfect/">Future Imperfect</a>, with inspiration from several others. 
+        It is hosted in Kubernetes on Google Cloud because it is awesome!</section>    
+</article>

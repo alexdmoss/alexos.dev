@@ -3,7 +3,7 @@
 	<header id="header">
 
 		<h1>{{ .Site.Title }}</h1>
-
+		
 		<nav class="links">
 			{{ $currentPage := . }}
 			{{ range .Site.Menus.main }}
@@ -11,19 +11,23 @@
 			{{ end }}
 		</nav>
 
-		<nav class="search">
+		<nav class="interact">
 
-				<!-- <li id="share-nav" class="share-menu" style="display:none;">
-					<a class="fa-share-alt" href="#share-menu">Share</a>
-				</li> -->
 				
-				<li>
+				<li class="search-menu">
 					<a class="fas fa-search icon" href="#search"></a>
 					<form id="search" method="get" action="//google.com/search">
 						<input id="searchbox" type="text" name="q" placeholder="Search" />
 						<input type="hidden" name="as_sitesearch" value="//localhost:1313/">
 					</form>
 				</li>
+
+				{{ if $.Scratch.Get "shareNav" }}
+				<li id="share-nav" class="share-menu">
+					<a class="fas fa-share-alt icon" href="#share-menu"></a>
+				</li>
+				{{ end }}
+
 
 				<!-- <li class="menu">
 					<a class="fa-bars" href="#menu">Menu</a>

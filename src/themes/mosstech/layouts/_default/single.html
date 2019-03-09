@@ -1,26 +1,32 @@
-{{ define "main" }}
-	<div class="main" id="body-inner">
+{{ $.Scratch.Set "shareNav" true }}
 
-		<article class="post">
-				<header class="main-header">
-					<div class="post-title">
-						<h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
-						{{ with .Description }}
-            			<p>{{ . }}</p>
-        				{{ end }}
-					</div>
-					<div class="post-data">
-						{{ $.Scratch.Set "dateType" .Date }}
-						<h3>{{ ($.Scratch.Get "dateType").Format "2 January, 2006" }}</h3>
-						<h4>{{ .Params.Author }}</h4>
-						<h5>{{ .ReadingTime }} minute read</h5>
-					</div>
-				</header>
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
 
-				<section class="post-content">
-					{{ .Content }}
-				</section>
-		</article>
+<div class="main" id="body-inner">
 
-	</div>
-{{ end }}
+	<article class="post">
+
+		<header class="main-header">
+
+			<div class="post-title">
+				<h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+				{{ with .Description }}
+				<p>{{ . }}</p>
+				{{ end }}
+			</div>
+			
+		</header>
+
+		<section class="post-content">
+			{{ .Content }}
+		</section>
+
+	</article>
+
+	{{ partial "footer.html" . }}
+	
+</div>
+
+{{ partial "sidebar.html" . }}
+{{ partial "foot.html" . }}
