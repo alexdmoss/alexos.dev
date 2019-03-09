@@ -6,30 +6,49 @@ Building a new blog theme using Hugo.
 
 ## To Do
 
+- [ ] Pinch animations from https://www.demisto.com/community/
+- [ ] Enable footer 
+- [ ] Main heading in corner not quite centered vertically 
+- [ ] posts/ section page does not have background / formatting is bad
+- [ ] Make search work
+- [ ] Add Share icon that appears when scrolling
+- [ ] Slight zoom-in effect on panels / image banners
+- [ ] Code highlighting for GHM not working - needs styles
+- [ ] Copy-to-clipboard
+- [ ] Tranquil Peak - hide sidebar when reading a post is nice
+- [ ] Next/Previous posts link (pagination)
+- [ ] Tranquil Peak - animation load of the about page
+- [ ] Photo pic link through to Bio
+- [ ] Share menu
+- [ ] About page content
+- [ ] Sidebar recent posts formatting
+- [ ] Sidebar recent posts vanish when in a post 
+- [ ] Sidebar social links to go somewhere
+- [ ] Tag cloud on sidebar
+- [ ] Contacts page formatting
+- [ ] Contacts page processing
+- [ ] Portfolio page (inc where host?)
+- [ ] Post links to include date in URL / permalinking
+- [ ] Links to subheading in posts possible
+- [ ] Back to top button
+- [ ] meghna has some cool animations - especially social buttons at bottom
+- [ ] meghna contact form at bottom?
+- [ ] Comments
+- [ ] Archives page for whole taxonomy (Tranquil Peak)
+- [ ] RSS/Atom feed testing
 - [x] Image parameters / featherlight
-- [ ] Pick base theme components
+- [x] Pick base theme components
 - [ ] Separate theme repo
-- [ ] Logo
+- [x] Logo
 - [ ] Favicon
 - [ ] Google Analytics
 - [ ] alexmoss.co.uk redirect
 - [ ] Credits for theme
 - [ ] 404 page testing
 - [ ] Pagination for list of posts & probably home page
+- [ ] Colours from m10c?
 
 ---
-
-## Basic Building Blocks 
-
-- Posts
-- About
-- Contact
-- Tagging
-- Search
-- Archives page for whole taxonomy (TranquilPeak)
-- Comments 
-- RSS/Atom
-- Social links - github, twitter, stackoverflow?
 
 ## Nice-to-Have Features
 
