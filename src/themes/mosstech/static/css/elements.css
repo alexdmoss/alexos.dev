@@ -93,6 +93,9 @@
 #intro .social a {
     text-decoration: none;
 }
+#intro .social a:hover {
+    color: #000;
+}
 
 /*** Recent posts ***/
 

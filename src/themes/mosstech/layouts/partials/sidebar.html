@@ -1,15 +1,26 @@
 <div id="sidebar">
 
+
+
+  {{ range .AlternativeOutputFormats -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+
+  {{ with .OutputFormats.Get "rss" -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+
     <section id="intro">
         <a class="logo" href="/about/"><img src="/images/logo.jpg" /></a>
         <p>{{ .Site.Params.description | safeHTML }}</p>
         <div class="social">
-            <a href="#"><i class="fas fa-rss"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-facebook-square"></i></a>
-            <a href="#"><i class="far fa-envelope"></i></a>
+            {{ if .Site.RSSLink -}}
+            <a href="{{ .Site.RSSLink }}"type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"><i class="fas fa-rss"></i></a>
+            {{ end -}}
+            <a href="https://github.com/alexdmoss"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/alexdmoss"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/alexdmoss/"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:alex@mosstech.io"><i class="far fa-envelope"></i></a>
         </div>
     </section>
 
@@ -23,7 +34,7 @@
 
         <h2>Recent Posts</h2>
 
-        {{ range first 5 .Data.Pages }}
+        {{ range first 5 .Site.Pages }}
         <article class="recent">
             <h3><a href="{{ .URL | relLangURL | safeURL }}">{{ .Title }}</a></h3>
             <p>{{ .Description }}</p>

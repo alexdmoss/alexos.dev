@@ -17,11 +17,11 @@ Building a new blog theme using Hugo.
 - [x] Logo
 - [x] Favicon
 - [x] posts/ section page does not have background / formatting is bad
-- [ ] Back to top button
+- [x] Back to top button
 - [x] Add Share icon that appears when scrolling
 - [ ] Sidebar recent posts formatting
-- [ ] Sidebar recent posts vanish when in a post 
-- [ ] Sidebar social links to go somewhere / hover colour
+- [x] Sidebar recent posts vanish when in a post 
+- [x] Sidebar social links to go somewhere / hover colour
 - [ ] Tags appearance cloud on sidebar
 - [ ] Contacts page formatting
 - [ ] About page content
@@ -30,6 +30,7 @@ Building a new blog theme using Hugo.
 
 ### Functions 
 
+- [x] RSS Feed
 - [x] robots.txt
 - [ ] Contacts page processing
 - [ ] Tranquil Peak - hide sidebar when reading a post is nice
@@ -60,6 +61,16 @@ Building a new blog theme using Hugo.
 - [ ] meghna has some cool animations - especially social buttons at bottom
 - [ ] meghna contact form at bottom?
 - [ ] Pinch animations from https://www.demisto.com/community/
+
+### Testing 
+
+- [ ] Safari
+- [ ] Firefox
+- [ ] Edge
+- [ ] Mobile
+- [ ] Analytics
+- [ ] RSS / Atom 
+
 
 ---
 

@@ -46,11 +46,11 @@ menu:
 # disqusShortname: ""
 
 # # config enables search
-# outputs:
-#   home:
-#   - "HTML"
-#   - "RSS"
-#   - "JSON"
+outputs:
+  home:
+  - "HTML"
+  - "RSS"
+  # - "JSON"
 
 # theme: "hugo-theme-massively"
 
