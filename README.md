@@ -27,6 +27,7 @@ Building a new blog theme using Hugo.
 - [ ] About page content
 - [ ] Portfolio page (inc where host?)
 - [ ] Colours from m10c?
+- [ ] Sticky footer - https://codepen.io/BretCameron/pen/oVNYKR
 
 ### Functions 
 
@@ -56,6 +57,7 @@ Building a new blog theme using Hugo.
 
 ### Fancier Formatting 
 
+- [ ] Gradient backgrounds: https://gradienthunt.com/gradient/1955
 - [ ] Tranquil Peak - animation load of the about page
 - [ ] Slight zoom-in effect on panels / image banners
 - [ ] meghna has some cool animations - especially social buttons at bottom
