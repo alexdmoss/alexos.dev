@@ -1,6 +1,6 @@
 ---
 title: "Contact"
+contact: true
 ---
 
-This is the Contact Page
-
+Use this page to, err, send me a message ...? I promise to respond within an amount of time.

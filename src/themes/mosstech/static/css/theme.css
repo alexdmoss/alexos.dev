@@ -83,9 +83,17 @@ article {
     color: #555;
 }
 
+.recent h3 a {
+    color: #555;
+}
+.recent {
+    color: #555;
+}
+
 .panel-link {
     color: #555;
 }
+
 .listing-box {
     color: #555;
 }

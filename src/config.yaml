@@ -6,9 +6,11 @@ contentDir: "../content"
 languageCode: "en-gb"
 paginate: 10
 
+
 params:
   author: "@alexdmoss"
   description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
+  contactAPI: "http://localhost:8000/api/email/alchemyst.co.uk"
 
 
 menu:
@@ -28,16 +30,11 @@ menu:
       title: "Blog Posts"
       url: "/posts/"
       weight: 3
-    - name: "Sites"
-      pre: "<i class='far fa-object-group'></i>"
-      title: "Some of my other sites, past and present"
-      url: "/portfolio/"
-      weight: 4
     - name: "Contact"
       pre: "<i class='far fa-envelope'></i>"
       title: "Ways to contact me, including through this website"
       url: "/contact/"
-      weight: 5
+      weight: 4
 
   # enableEmoji: true 
 # enableGitInfo: true
