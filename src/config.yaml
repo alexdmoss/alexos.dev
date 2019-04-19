@@ -5,6 +5,7 @@ publishDir: "../www"
 contentDir: "../content"
 languageCode: "en-gb"
 paginate: 10
+enableEmoji: true 
 
 
 params:
@@ -36,7 +37,7 @@ menu:
       url: "/contact/"
       weight: 4
 
-  # enableEmoji: true 
+  
 # enableGitInfo: true
 
 # googleanalytics: ""
