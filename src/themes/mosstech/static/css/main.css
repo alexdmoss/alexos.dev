@@ -322,6 +322,80 @@ input:focus {
     box-shadow: 0 0 5px rgba(160, 160, 160, 0.7);
 }
 
+.contact-form {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid rgba(160, 160, 160, 0.7);
+}
+
+#contacts p.form-rule {
+    width: 100%;
+    display: block;
+    float: left;
+    font-size: 1px;
+    clear: both;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid rgba(160, 160, 160, 0.7);
+}
+
+#contacts p.form-label {
+    font-weight: bold;
+    width: 15%;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin: 0;
+    line-height: 30px;
+}
+
+#contacts p.form-field {
+    width: 35%;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin: 0;
+}
+
+#contacts p.form-area {
+    width: 85%;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin: 0;
+}
+
+#contacts p.form-submit {
+    width: 85%;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin: 0;
+    margin-left: 15%;
+}
+
+#contacts input {
+    border: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+}
+
+
+#contacts textarea {
+    font-family: 'Exo 2', 'Arial', 'sans-serif';
+    height: 200px;
+    width: 100%;
+    line-height: 30px;
+    border: 0;
+}
+
+#contacts input[type="submit"] {
+    width: 200px;
+    border: 1px solid rgba(160, 160, 160, 0.7);
+}
+
 /* Header Search */
 
 /* 

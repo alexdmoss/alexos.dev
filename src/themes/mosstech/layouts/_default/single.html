@@ -23,52 +23,57 @@
 		</section>
 
 		{{ if .Params.contact }}
+		<section class="contact-form">
 			<form name="contacts" id="contacts" action="#" method="post">
-				<p>Your Name: <input type="text" name="name" placeholder="What is your name?" required data-validation-required-message="Please fill in your name" /></p>
-				<p>Your Email: <input type="text" name="email_address" placeholder="What is your email address?"  required data-validation-required-message="Please fill in your email address" /></p>
-				<p>Your Message:</p>
-				<p><textarea name="message" rows="10" cols="60" placeholder="Your message goes here" required></textarea></p>
-				<p><input type="submit" name="submit" value="Send Message" /></p>
-				(+ some sort of captcha)
+				<p class="form-label">Your Name:</p>
+				<p class="form-field"><input type="text" name="name" placeholder="What is your name?" required data-validation-required-message="Please fill in your name" /></p>
+				<p class="form-label">Your Email:</p>
+				<p class="form-field"><input type="text" name="email_address" placeholder="What is your email address?"  required data-validation-required-message="Please fill in your email address" /></p>
+				<p class="form-rule">&nbsp;</p>
+				<p class="form-label">Your Message:</p>
+				<p class="form-area"><textarea name="message" rows="10" cols="60" placeholder="Your message goes here" required></textarea></p>
+				<p class="form-rule">&nbsp;</p>
+				<p class="form-submit"><input type="submit" name="submit" value="Send Message" /></p>
 			</form>
-			<script type="text/javascript">
-				jQuery(document).ready(function (e) {
-				  /* Contacts Form */
-				  $(function () {
-					$('#contacts').find('input,select,textarea').jqBootstrapValidation({
-					  preventSubmit: true,
-					  submitError: function ($form, event, errors) {
-					  },
-					  submitSuccess: function ($form, e) {
-						e.preventDefault()
-						var submitButton = $('input[type=submit]', $form)
-						$.ajax({
-						  type: 'POST',
-						  url: '{{ .Site.Params.contactAPI }}',
-						  data: $form.serialize(),
-						  beforeSend: function (xhr, opts) {
-							if ($('#_email', $form).val()) {
-							  xhr.abort()
-							} else {
-							  submitButton.prop('value', 'Please Wait...')
-							  submitButton.prop('disabled', 'disabled')
-							}
-						  }
-						}).done(function (data) {
-						  submitButton.prop('value', 'Thanks for your message!')
-						  submitButton.prop('disabled', true)
-						})
-					  },
-					  filter: function () {
-						return $(this).is(':visible')
-					  }
+		</section>
+		<script type="text/javascript">
+			jQuery(document).ready(function (e) {
+				/* Contacts Form */
+				$(function () {
+				$('#contacts').find('input,select,textarea').jqBootstrapValidation({
+					preventSubmit: true,
+					submitError: function ($form, event, errors) {
+					},
+					submitSuccess: function ($form, e) {
+					e.preventDefault()
+					var submitButton = $('input[type=submit]', $form)
+					$.ajax({
+						type: 'POST',
+						url: '{{ .Site.Params.contactAPI }}',
+						data: $form.serialize(),
+						beforeSend: function (xhr, opts) {
+						if ($('#_email', $form).val()) {
+							xhr.abort()
+						} else {
+							submitButton.prop('value', 'Please Wait...')
+							submitButton.prop('disabled', 'disabled')
+						}
+						}
+					}).done(function (data) {
+						submitButton.prop('value', 'Thanks for your message!')
+						submitButton.prop('disabled', true)
 					})
-				  })
+					},
+					filter: function () {
+					return $(this).is(':visible')
+					}
 				})
-				$('#name').focus(function () {
-				  $('#success').html('')
 				})
-			  </script>
+			})
+			$('#name').focus(function () {
+				$('#success').html('')
+			})
+			</script>
 		{{ end }}
 
 	</article>

@@ -8,15 +8,13 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
+- [ ] Panel links - make obvious its a link
 - [x] Sidebar recent posts formatting
-- [ ] Contacts page formatting
-- [ ] About page content
+- [x] Contacts page formatting
+- [x] About page content
 - [ ] Colours from m10c / make it look a bit different
-- [ ] Sticky footer - https://codepen.io/BretCameron/pen/oVNYKR
 - [ ] Contacts page processing
-- [ ] Tranquil Peak - hide sidebar when reading a post is nice
 - [ ] Post links to include date in URL / permalinking
-- [ ] Comments
 - [ ] Share menu
 - [ ] Code highlighting for GHM not working - needs styles
 - [ ] Copy-to-clipboard
@@ -29,6 +27,10 @@ Building a new blog theme using Hugo.
 
 ### Version 2
 
+- [ ] Tranquil Peak - hide sidebar when reading a post is nice
+- [ ] Captcha on the Contacts form
+- [ ] Comments
+- [ ] Sticky footer - https://codepen.io/BretCameron/pen/oVNYKR
 - [ ] Links to subheading in posts possible
 - [ ] Tags cloud
 - [ ] Portfolio page (inc where host?)
@@ -56,6 +58,7 @@ Building a new blog theme using Hugo.
 
 ## Nice-to-Have Features
 
+- Nicer emoji
 - Add open graph protocol - meta property="og:title" - see Future Imperfect
 - Add twitter cards integration - meta name="twitter:card" - see Future Imperfect
 - Captcha
@@ -75,6 +78,8 @@ Building a new blog theme using Hugo.
 ---
 
 ### Icons
+
+https://www.webfx.com/tools/emoji-cheat-sheet/
 
 ```html
 <i class="fas fa-code-branch"></i>
