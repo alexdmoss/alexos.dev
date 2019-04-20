@@ -8,22 +8,27 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
-- [ ] Panel links - make obvious its a link
+- [x] Restructure CSS
+- [x] Panel links - make obvious its a link
+- [x] Extra links appearing in sidebar
 - [x] Sidebar recent posts formatting
 - [x] Contacts page formatting
 - [x] About page content
+- [x] Links to subheading in posts possible
 - [ ] Colours from m10c / make it look a bit different
 - [ ] Contacts page processing
-- [ ] Post links to include date in URL / permalinking
+- [x] Post links to include date in URL / permalinking
 - [ ] Share menu
 - [ ] Code highlighting for GHM not working - needs styles
 - [ ] Copy-to-clipboard
 - [ ] Make search work
-- [ ] 404 page
+- [x] 404 page - content
 - [ ] Mobile appearance
+- [x] Credits for theme
+- [ ] 404 page - nginx config
+- [ ] CI/CD
 - [ ] Google Analytics
 - [ ] alexmoss.co.uk redirect
-- [ ] Credits for theme
 
 ### Version 2
 
@@ -31,13 +36,13 @@ Building a new blog theme using Hugo.
 - [ ] Captcha on the Contacts form
 - [ ] Comments
 - [ ] Sticky footer - https://codepen.io/BretCameron/pen/oVNYKR
-- [ ] Links to subheading in posts possible
 - [ ] Tags cloud
 - [ ] Portfolio page (inc where host?)
 - [ ] Archives page for whole taxonomy (Tranquil Peak)
 
 ### Fancier Formatting
 
+- [ ] Deep link to header should scroll up a little to allow for top-menu
 - [ ] Gradient backgrounds: https://gradienthunt.com/gradient/1955
 - [ ] Tranquil Peak - animation load of the about page
 - [ ] Slight zoom-in effect on panels / image banners

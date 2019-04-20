@@ -15,12 +15,12 @@
         <p>{{ .Site.Params.description | safeHTML }}</p>
         <div class="social">
             {{ if .Site.RSSLink -}}
-            <a href="{{ .Site.RSSLink }}"type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"><i class="fas fa-rss"></i></a>
+            <a class="social-icon" href="{{ .Site.RSSLink }}" type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"><i class="fas fa-rss"></i></a>
             {{ end -}}
-            <a href="https://github.com/alexdmoss"><i class="fab fa-github"></i></a>
-            <a href="https://twitter.com/alexdmoss"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/alexdmoss/"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:alex@mosstech.io"><i class="far fa-envelope"></i></a>
+            <a class="social-icon" href="https://github.com/alexdmoss"><i class="fab fa-github"></i></a>
+            <a class="social-icon" href="https://twitter.com/alexdmoss"><i class="fab fa-twitter"></i></a>
+            <a class="social-icon" href="https://www.linkedin.com/in/alexdmoss/"><i class="fab fa-linkedin"></i></a>
+            <a class="social-icon" href="mailto:alex@mosstech.io"><i class="far fa-envelope"></i></a>
         </div>
     </section>
 
@@ -34,11 +34,13 @@
 
         <h2>Recent Posts</h2>
 
-        {{ range first 5 .Site.Pages }}
-        <article class="recent">
-            <h3><a href="{{ .URL | relLangURL | safeURL }}">{{ .Title }}</a></h3>
-            <p>{{ .Description }}</p>
-        </article>
+        {{ range first 5 (where .Pages "Type" "posts") }}
+        <a href="{{ .URL | relLangURL | safeURL }}">
+            <article class="recent">
+                <h3>{{ .Title }}</h3>
+                <p>{{ .Description }}</p>
+            </article>
+        </a>
         {{ end }}
 
     </section>

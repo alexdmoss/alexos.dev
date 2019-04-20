@@ -7,6 +7,8 @@ languageCode: "en-gb"
 paginate: 10
 enableEmoji: true 
 
+permalinks:
+  posts: /:year/:month/:day/:title/
 
 params:
   author: "@alexdmoss"
