@@ -154,6 +154,9 @@ strong {
     font-weight: bold;
 }
 
+pre {
+    position: relative;
+}
 article {
     background: var(--article-bg-color);
     border: solid 1px var(--border-color);
@@ -173,11 +176,14 @@ code {
     font-size: 0.8em;
     padding-left: 5px;
     padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     background: var(--code-bg-color);
     color: var(--code-color);
 }
 
 pre code {
+    position: relative;
     display: block;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -185,6 +191,7 @@ pre code {
     padding: 10px;
     line-height: 1.5em;
 }
+
 
 /* Table */
 
@@ -1198,6 +1205,60 @@ ul.actions.pagination .previous:before {
 
 ul.actions.pagination .previous:before {
     content: '\f053';
+}
+
+
+/* Copy to Clipboard */
+
+
+.copy-to-clipboard:before {
+    content: "\f0c5";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+
+ }
+.copy-to-clipboard {
+    border: 0;
+    font-size: inherit !important;
+    color: var(--code-color);
+    background-color: var(--code-bg-color);
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* background-position: 50% 50%;
+    background-size: 16px 16px;
+    background-repeat: no-repeat; */
+    /* width: 27px;
+    height: 1.45rem;
+    top: -1px; */
+    /* display: inline-block; */
+    /* vertical-align: middle; */
+    /* position: relative; */
+    /* margin-left: -.2rem; */
+    cursor: pointer;
+    /* border-radius: 0 2px 2px 0;
+    margin-bottom: 1px; */
+    /* border: 1px solid red; */
+}
+.copy-to-clipboard:hover {
+    color: var(--button-hover-color);
+}
+pre .copy-to-clipboard {
+    position: absolute;
+    right: 18px;
+    top: 1px;
+    margin: 0;
+    padding: 5px;
+}
+pre .copy-to-clipboard:hover {
+    background-color: var(--code-color);
+    color: var(--code-bg-color);
 }
 
 /* Elements */

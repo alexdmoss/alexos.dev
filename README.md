@@ -20,11 +20,12 @@ Building a new blog theme using Hugo.
 - [x] Post links to include date in URL / permalinking
 - [ ] Share menu
 - [ ] Code highlighting for GHM not working - needs styles
-- [ ] Copy-to-clipboard
+- [x] Copy-to-clipboard
 - [ ] Make search work
 - [x] 404 page - content
 - [ ] Mobile appearance
 - [x] Credits for theme
+- [x] Deep link to header should scroll up a little to allow for top-menu
 - [ ] 404 page - nginx config
 - [ ] CI/CD
 - [ ] Google Analytics
@@ -42,7 +43,7 @@ Building a new blog theme using Hugo.
 
 ### Fancier Formatting
 
-- [ ] Deep link to header should scroll up a little to allow for top-menu
+- [ ] Keys to navigate left and right
 - [ ] Gradient backgrounds: https://gradienthunt.com/gradient/1955
 - [ ] Tranquil Peak - animation load of the about page
 - [ ] Slight zoom-in effect on panels / image banners
