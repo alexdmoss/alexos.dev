@@ -38,7 +38,7 @@ Here's a second paragraph. This one is a lot less ~~boring~~ interesting but at 
 
 ## Code
 
-This is some `inline code`, and then a code paragraph:
+This is some `inline code that is long enough to have a copy button`, and then a code paragraph:
 
 ```sh
 ~:> this is a shell

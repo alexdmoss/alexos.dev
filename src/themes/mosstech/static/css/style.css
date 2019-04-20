@@ -91,7 +91,7 @@ body {
     -ms-overflow-style: scrollbar;
     font-family: 'Exo 2', 'Arial', 'sans-serif';
     padding-top: 3.5em;
-    background: var(--main-bg-color);
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(69,86,102,1) 0%, rgba(34,34,34,1) 90% );
 }
 
 @media screen and (max-width: 480px) {
@@ -1210,12 +1210,11 @@ ul.actions.pagination .previous:before {
 
 /* Copy to Clipboard */
 
-
 .copy-to-clipboard:before {
-    content: "\f0c5";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    content: "\f0c5";
     font-family: FontAwesome;
-
  }
+
 .copy-to-clipboard {
     border: 0;
     font-size: inherit !important;
@@ -1231,28 +1230,15 @@ ul.actions.pagination .previous:before {
     padding-bottom: 4px;
     padding-left: 5px;
     padding-right: 5px;
-    /* background-position: 50% 50%;
-    background-size: 16px 16px;
-    background-repeat: no-repeat; */
-    /* width: 27px;
-    height: 1.45rem;
-    top: -1px; */
-    /* display: inline-block; */
-    /* vertical-align: middle; */
-    /* position: relative; */
-    /* margin-left: -.2rem; */
     cursor: pointer;
-    /* border-radius: 0 2px 2px 0;
-    margin-bottom: 1px; */
-    /* border: 1px solid red; */
 }
 .copy-to-clipboard:hover {
     color: var(--button-hover-color);
 }
 pre .copy-to-clipboard {
     position: absolute;
-    right: 18px;
-    top: 1px;
+    right: 25px;
+    top: 8px;
     margin: 0;
     padding: 5px;
 }

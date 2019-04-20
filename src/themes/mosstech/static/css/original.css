@@ -1,0 +1,26 @@
+:root {
+    --main-bg-color: #e6e6e6;
+    --main-font-color: #333;
+    --panel-bg-color: #f4f4f4;
+    --header-bg-color: #fff;
+    --article-bg-color: #fff;
+    --border-color: rgba(160, 160, 160, 0.7);
+    --sidebar-border-color: rgba(160, 160, 160, 0.3);
+    --button-border-color: rgba(160, 160, 160, 0.3);
+    --button-hover-color: #2ebaae;
+    --button-color: #333;
+    --code-bg-color: #222;
+    --code-color: #e6e6e6;
+    --box-color: #555;
+    --header-link-color: #999;
+    --header-link-hover-color: #000;
+    --post-title-color: #000;
+    --back-to-top-color: #333;
+    --table-shadow-1:rgba(0, 0, 0, 0.12);
+    --table-shadow-2: rgba(0, 0, 0, 0.24);
+    --table-head-bg-color: #888;
+    --table-body-bg-color: #e0e0e0;
+    --table-alt-row-color: #f4f4f4;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --deep-shadow-color: rgba(0, 0, 0, 0.6);
+}
