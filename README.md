@@ -23,6 +23,7 @@ Building a new blog theme using Hugo.
 - [x] Copy-to-clipboard
 - [ ] Make search work
 - [x] 404 page - content
+- [ ] Recent Posts only works on homepage
 - [ ] Mobile appearance
 - [x] Credits for theme
 - [x] Deep link to header should scroll up a little to allow for top-menu

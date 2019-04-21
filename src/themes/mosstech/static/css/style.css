@@ -1,6 +1,6 @@
 /* Theme Colours */
 
-:root {
+/* :root {
     --main-bg-color: #e6e6e6;
     --main-font-color: #333;
     --panel-bg-color: #f4f4f4;
@@ -25,6 +25,44 @@
     --table-alt-row-color: #f4f4f4;
     --shadow-color: rgba(0, 0, 0, 0.15);
     --deep-shadow-color: rgba(0, 0, 0, 0.6);
+} */
+
+:root {
+    --main-bg-color: var(--bg-color);
+
+    --main-font-color: var(--font-color);
+    --post-title-color: #var(--font-color);
+    --header-link-color: var(--font-color);
+
+    --panel-bg-color: var(--shade-color);
+    --button-color: var(--shade-color);
+    --box-color: var(--shade-color);
+
+    --header-bg-color: var(--post-color);
+    --article-bg-color: var(--post-color);
+
+    --border-color: var(--line-color);
+    --sidebar-border-color: var(--line-color);
+    --button-border-color: var(--line-color);
+
+    --header-shadow-color: var(--highlight-color);
+    --button-hover-color: var(--highlight-color);
+    --header-link-hover-color: var(--highlight-color);
+    --link-hover-color: var(--highlight-color);
+    --article-shadow-color:  var(--highlight-color);
+
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --deep-shadow-color: rgba(0, 0, 0, 0.6);
+
+    --code-bg-color: #222;
+    --code-color: #e6e6e6;
+    --back-to-top-color: #333;
+
+    --table-shadow-1:rgba(0, 0, 0, 0.12);
+    --table-shadow-2: rgba(0, 0, 0, 0.24);
+    --table-head-bg-color: #888;
+    --table-body-bg-color: #e0e0e0;
+    --table-alt-row-color: #f4f4f4;
 }
 
 /* Fonts */
@@ -91,7 +129,7 @@ body {
     -ms-overflow-style: scrollbar;
     font-family: 'Exo 2', 'Arial', 'sans-serif';
     padding-top: 3.5em;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(69,86,102,1) 0%, rgba(34,34,34,1) 90% );
+    background: var(--main-bg-color);
 }
 
 @media screen and (max-width: 480px) {
@@ -122,8 +160,16 @@ body.is-loading *:after {
 p {
     line-height: 1.5em;
     margin-bottom: 20px;
+    color: var(--main-font-color);
 }
 
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
 hr {
     border: 0;
     padding-top: 20px;
@@ -135,7 +181,9 @@ hr {
 h1, h2, h3, h4, h5 {
     margin-top: 40px;
     margin-bottom: 20px;
+    color: var(--main-font-color);
 }
+
 h1 {
     font-weight: bold;
     font-size: 1.5em;
@@ -160,7 +208,7 @@ pre {
 article {
     background: var(--article-bg-color);
     border: solid 1px var(--border-color);
-    box-shadow: 5px 5px 10px 0px var(--border-color);
+    box-shadow: 1px 1px 3px 0 var(--article-shadow-color);
 }
 
 blockquote {
@@ -320,7 +368,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     z-index: 10000;
     background-color: var(--header-bg-color);
     border-bottom: solid 1px var(--border-color);
-    box-shadow: 0 0 5px var(--border-color);
+    box-shadow: 0 0 5px var(--header-shadow-color);
 }
 
 #header a {
@@ -704,7 +752,7 @@ body.is-menu-visible #wrapper {
     text-decoration: none;
 }
 #intro .social a:hover {
-    color: #000;
+    color: var(--button-hover-color);
 }
 
 
@@ -1111,7 +1159,7 @@ body.is-menu-visible #wrapper {
 .panel-link {
     padding-top: 2rem !important;
     padding-left: 5px; padding-right: 5px;
-    background-color: #f4f4f4 !important;
+    background-color: var(--panel-bg-color) !important;
     box-shadow: 0 0.5rem 1rem var(--shadow-color) !important;
     display: block !important;
     text-align: center !important;
@@ -1127,7 +1175,7 @@ body.is-menu-visible #wrapper {
     margin: 0 auto;
     width: 200px;
     height: 100px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
 }
 
 .panel-title {
