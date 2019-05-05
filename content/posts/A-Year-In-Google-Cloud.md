@@ -16,10 +16,7 @@ This time last year, our newly-formed Platforms Team in John Lewis Online were p
 
 ## Doing That Strategic Thing
 
-
 {{< figure src="/images/strategic-thing.jpg?width=600px&classes=shadow" title="Photo by rawpixel on Unsplash" >}}
-
-
 
 The frontend of johnlewis.com — what we call ‘Browse’ — wasn’t the first thing we built in Google Cloud. There were a couple of teams deliberately given the freedom to experiment in GCP, and they built a number of smaller apps that could quickly get into Production. This helped cultivate the idea that this was good technology to be working with, and we should start using it for bigger things. That, plus the fact that our engineers were chomping at the bit to get their hands on it, really helped generate the initial push it needed. Adopting the cloud for johnlewis.com really felt like an engineer-led venture — more so than any other piece of work I’ve been involved with in my time at JLP.
 

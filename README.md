@@ -8,6 +8,31 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
+- [x] Recent Posts only works on homepage
+- [x] Recent Posts shadows for panels
+- [x] Recent posts hover is weird
+- [x] Anchor link colour too bright
+- [x] List text colour
+- [x] Link hover colour
+- [x] Cursor pointer lost
+- [x] Home page shadows & colour (also Posts)
+- [x] Search button colour
+- [x] Search box colour
+- [x] Contact Form colour
+- [x] Footer colour
+- [x] My photo needs a border
+- [x] Nav button press & text colour
+- [x] Back to Top button colour
+- [x] On a post - colour / background readability
+- [x] Tables background colours
+- [x] Background colour for code snippets
+- [x] Photo shadows / border / no longer centered
+- [ ] Convert px to rem/em
+- [ ] Experiment with fonts
+- [ ] Share menu
+- [ ] Mobile appearance
+- [ ] Make search work
+- [ ] Contacts page processing
 - [x] Restructure CSS
 - [x] Panel links - make obvious its a link
 - [x] Extra links appearing in sidebar
@@ -15,22 +40,18 @@ Building a new blog theme using Hugo.
 - [x] Contacts page formatting
 - [x] About page content
 - [x] Links to subheading in posts possible
-- [ ] New colour theme
-- [ ] Contacts page processing
+- [x] New colour theme
 - [x] Post links to include date in URL / permalinking
-- [ ] Share menu
 - [x] Code highlighting for GHM not working - needs styles
 - [x] Copy-to-clipboard
-- [ ] Make search work
 - [x] 404 page - content
-- [ ] Recent Posts only works on homepage
-- [ ] Mobile appearance
 - [x] Credits for theme
 - [x] Deep link to header should scroll up a little to allow for top-menu
 - [ ] 404 page - nginx config
 - [ ] CI/CD
 - [ ] Google Analytics
 - [ ] alexmoss.co.uk redirect
+- [ ] Other domains?
 
 ### Version 2
 

@@ -16,12 +16,12 @@ $(function(){
             $shareNav.fadeIn();
         } else {
             $backToTop.fadeOut();
-            $backToTop.removeClass('btt-fade-out');
+            $backToTop.removeClass('button-fade-out');
             $shareNav.fadeOut();
         }
 
         if($(this).scrollTop() > offset_opacity) {
-			$backToTop.addClass('btt-fade-out');
+			$backToTop.addClass('button-fade-out');
 		}
     });
 
