@@ -25,6 +25,26 @@
 				<li id="share-nav" class="share-menu" style="display: none;">
 					<a class="fas fa-share-alt icon" href="#share-menu"></a>
 				</li>
+				<div id="share">
+					<a class="fas fa-search icon" href="#close-share"></a>
+					<ul>
+						<li><a target="_blank" href="//twitter.com/share?url={{ .Permalink }}&amp;text={{ .Title }}&amp;via={{ .Site.Social.twitter }}"><i class="fab fa-twitter"></i> Twitter</a></li>
+						<li><a target="_blank" href="//www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&amp;title={{ .Title }}"><i class="fab fa-facebook-square"></i> Facebook</a></li>
+						<li><a target="_blank" href="//www.linkedin.com/shareArticle?url={{ .Permalink }}&amp;title={{ .Title }}"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+						<li><a target="_blank" href="//reddit.com/submit?url={{ .Permalink }}&amp;title={{ .Title }}"><i class="fab fa-reddit"></i> Reddit</a></li>
+						<li><a target="_blank" href="//getpocket.com/save?url={{ .Permalink }}&amp;&title={{ .Title }}"><i class="fab fa-get-pocket"></i> Pocket</a></li>
+						<li><a target="_blank" href="//www.pinterest.com/pin/create/button/?url={{ .Permalink }}&amp;description={{ .Title }}"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+						<li><a target="_blank" href="fb-messenger://share/?link={{ .Permalink }}"><i class="fab fa-facebook-messenger"></i> Messenger</a></li>
+						<li><a target="_blank" href=""><i class="fab fa-google"></i> Gmail</a></li>
+						<li><a target="_blank" href="mailto:?subject=Emailing you a link to a blog post from {{ .Site.Title }}&amp;body={{ .Permalink }}"><i class="far fa-envelope"></i> Email</a></li>
+						<li><a target="_blank" href=""><i class="fas fa-print"></i> Print</a></li>
+					</ul>
+					<!--
+					<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+					<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+					pocket:{label:"Pocket",logo:"fa fa-get-pocket",shareUrl:"https://getpocket.com/save?url={url}&title={title}",countUrl:"",shareIn:"blank"}
+						-->
+				</div>
 				{{ end }}
 
 		</nav>

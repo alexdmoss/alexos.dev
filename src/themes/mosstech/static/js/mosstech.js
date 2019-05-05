@@ -129,10 +129,6 @@ $('code').each(function() {
 		// 		);
 		// 	});
 
-		// // IE<=9: Reverse order of main and sidebar.
-		// 	if (skel.vars.IEVersion <= 9)
-		// 		$main.insertAfter($sidebar);
-
 		// $menu.appendTo($body);
 		// $shareMenu.appendTo($body);
 
@@ -164,30 +160,64 @@ $('code').each(function() {
 
 		// Search (header).
 		var $search = $('#search'),
-			$search_input = $search.find('input');
-		$body
-			.on('click', '[href="#search"]', function (event) {
-				event.preventDefault();
-				// Not visible?
-				if (!$search.hasClass('visible')) {
-					// Reset form.
-					$search[0].reset();
-					// Show.
-					$search.addClass('visible');
-					// Focus input.
-					$search_input.focus();
-				}
-			});
+		$search_input = $search.find('input');
+		$body.on('click', '[href="#search"]', function (event) {
+			event.preventDefault();
+			// Not visible?
+			if (!$search.hasClass('visible')) {
+				// Reset form.
+				$search[0].reset();
+				// Show.
+				$search.addClass('visible');
+				// Focus input.
+				$search_input.focus();
+			}
+		});
 		$search_input
-			.on('keydown', function (event) {
-				if (event.keyCode == 27)
-					$search_input.blur();
-			})
-			.on('blur', function () {
+		.on('keydown', function (event) {
+			if (event.keyCode == 27)
+				$search_input.blur();
+		})
+		.on('blur', function () {
+			window.setTimeout(function () {
+				$search.removeClass('visible');
+			}, 100);
+		});
+
+		// Share Menu (header).
+		var $share = $('#share');
+		$body
+		.on('click', '[href="#share-menu"]', function (event) {
+			event.preventDefault();
+			if (!$share.hasClass('visible')) {
+				console.log('boo');
+				$share.addClass('visible');
+			}
+		})
+		.on('keydown', function (event) {
+			if (event.keyCode == 27)
 				window.setTimeout(function () {
-					$search.removeClass('visible');
+					$share.removeClass('visible');
 				}, 100);
-			});
+		})
+		.on('click', '[href="#close-share"]', function (event) {
+			event.preventDefault();
+			window.setTimeout(function () {
+				$share.removeClass('visible');
+			}, 100);
+		});
+
+
+		// $search_input
+		// .on('keydown', function (event) {
+		// 	if (event.keyCode == 27)
+		// 		$search_input.blur();
+		// })
+		// .on('blur', function () {
+		// 	window.setTimeout(function () {
+		// 		$search.removeClass('visible');
+		// 	}, 100);
+		// });
 
 	});
 
@@ -230,29 +260,19 @@ jQuery(document).ready(function () {
             ANCHOR_REGEX: /^#[^ ]+$/,
             OFFSET_HEIGHT_PX: 80,
 
-            /**
-             * Establish events, and fix initial scroll position if a hash is provided.
-             */
+            // Establish events, and fix initial scroll position if a hash is provided.
             init: function () {
                 this.scrollToCurrent();
                 $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
                 $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
             },
 
-            /**
-             * Return the offset amount to deduct from the normal scroll position.
-             * Modify as appropriate to allow for dynamic calculations
-             */
+            // Return the offset amount to deduct from the normal scroll position. Modify as appropriate to allow for dynamic calculations
             getFixedOffset: function () {
                 return this.OFFSET_HEIGHT_PX;
             },
 
-            /**
-             * If the provided href is an anchor which resolves to an element on the
-             * page, scroll to it.
-             * @param  {String} href
-             * @return {Boolean} - Was the href an anchor.
-             */
+            // If the provided href is an anchor which resolves to an element on the page, scroll to it
             scrollIfAnchor: function (href, pushToHistory) {
                 var match, anchorOffset;
 
@@ -274,19 +294,13 @@ jQuery(document).ready(function () {
 
                 return !!match;
             },
-
-            /**
-             * Attempt to scroll to the current location's hash.
-             */
+            // Attempt to scroll to the current location's hash.
             scrollToCurrent: function (e) {
                 if (this.scrollIfAnchor(window.location.hash) && e) {
                     e.preventDefault();
                 }
             },
-
-            /**
-             * If the click event's target was an anchor, fix the scroll position.
-             */
+            // If the click event's target was an anchor, fix the scroll position.
             delegateAnchors: function (e) {
                 var elem = e.target;
 
