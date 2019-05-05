@@ -1,55 +1,41 @@
 /* Theme Colours */
 
-/* :root {
-    --main-bg-color: #e6e6e6;
-    --main-font-color: #333;
-    --panel-bg-color: #f4f4f4;
-    --header-bg-color: #fff;
-    --article-bg-color: #fff;
-    --border-color: rgba(160, 160, 160, 0.7);
-    --sidebar-border-color: rgba(160, 160, 160, 0.3);
-    --button-border-color: rgba(160, 160, 160, 0.3);
-    --button-hover-color: #2ebaae;
-    --button-color: #333;
-    --code-bg-color: #222;
-    --code-color: #e6e6e6;
-    --box-color: #555;
-    --header-link-color: #999;
-    --header-link-hover-color: #000;
-    --post-title-color: #000;
-    --back-to-top-color: #333;
-    --table-shadow-1:rgba(0, 0, 0, 0.12);
-    --table-shadow-2: rgba(0, 0, 0, 0.24);
-    --table-head-bg-color: #888;
-    --table-body-bg-color: #e0e0e0;
-    --table-alt-row-color: #f4f4f4;
-    --shadow-color: rgba(0, 0, 0, 0.15);
-    --deep-shadow-color: rgba(0, 0, 0, 0.6);
-} */
-
 :root {
-    --main-bg-color: var(--bg-color);
 
+    --post-color: #080708;
+    --bg-color: #1D1E22;
+    --font-color: #D0E1F9;
+    --shade-color: #283655;
+    --highlight-color: #FF5A09;
+
+    --main-bg-color: var(--bg-color);
     --main-font-color: var(--font-color);
-    --post-title-color: #var(--font-color);
-    --header-link-color: var(--font-color);
+
+    --post-title-color: var(--font-color);
+    --post-border-color: var(--border-color);
+    --post-bg-color: var(--post-color);
+    --post-shadow-color:  var(--highlight-color);
 
     --panel-bg-color: var(--shade-color);
-    --button-color: var(--shade-color);
     --box-color: var(--shade-color);
-
+    --recent-bg-color: var(--post-bg-color);
+    
     --header-bg-color: var(--post-color);
-    --article-bg-color: var(--post-color);
-
-    --border-color: var(--line-color);
-    --sidebar-border-color: var(--line-color);
-    --button-border-color: var(--line-color);
-
-    --header-shadow-color: var(--highlight-color);
-    --button-hover-color: var(--highlight-color);
+    --header-border-color: var(--border-color);
+    --header-link-color: var(--font-color);
     --header-link-hover-color: var(--highlight-color);
+    --header-shadow-color: var(--highlight-color);
+
+    --border-color: var(--highlight-color);
+
+    --button-color: var(--shade-color);
+    --button-bg-color: var(--bg-color);
+    --button-border-color: var(--highlight-color);
+    --button-hover-color: var(--highlight-color);
+
+    --link-color: var(--highlight-color);
     --link-hover-color: var(--highlight-color);
-    --article-shadow-color:  var(--highlight-color);
+
 
     --shadow-color: rgba(0, 0, 0, 0.15);
     --deep-shadow-color: rgba(0, 0, 0, 0.6);
@@ -170,6 +156,7 @@ a {
 a:hover {
     color: var(--link-hover-color);
 }
+
 hr {
     border: 0;
     padding-top: 20px;
@@ -206,9 +193,9 @@ pre {
     position: relative;
 }
 article {
-    background: var(--article-bg-color);
-    border: solid 1px var(--border-color);
-    box-shadow: 1px 1px 3px 0 var(--article-shadow-color);
+    background: var(--post-bg-color);
+    border: solid 1px var(--post-border-color);
+    box-shadow: 1px 1px 3px 0 var(--post-shadow-color);
 }
 
 blockquote {
@@ -246,7 +233,7 @@ pre code {
 table {
     width: 90%;
     margin: 1em auto;
-    background-color: var(--article-bg-color);
+    background-color: var(--post-bg-color);
     -webkit-box-shadow: 0 1px 3px 0 var(--table-shadow-1), 0 1px 2px 0 var(--table-shadow-2);
     -moz-box-shadow: 0 1px 3px 0 var(--table-shadow-1), 0 1px 2px 0 var(--table-shadow-2);
     box-shadow: 0 1px 3px 0 var(--table-shadow-1), 0 1px 2px 0 var(--table-shadow-2);
@@ -367,7 +354,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     width: 100%;
     z-index: 10000;
     background-color: var(--header-bg-color);
-    border-bottom: solid 1px var(--border-color);
+    border-bottom: solid 1px var(--header-border-color);
     box-shadow: 0 0 5px var(--header-shadow-color);
 }
 
@@ -439,7 +426,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     height: 2em;
     width: 9em;
     color: var(--header-link-color);
-    border-left: 1px solid var(--main-bg-color);
+    border-left: 1px solid var(--header-link-color);
 }
 
 #header .links a:hover {
@@ -451,13 +438,6 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     font-size: 1.1em;
 }
 
-#header #links {
-    border-left: solid 1px var(--sidebar-border-color);
-}
-
-#header #links ul li {
-    border-left: solid 1px var(--sidebar-border-color);
-}
 
 /* Footer */
 
@@ -498,14 +478,14 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
         min-width: 0;
         padding: 3em 0 0 0;
         width: 100%;
-        border-top: solid 1px var(--sidebar-border-color);
+        border-top: solid 1px var(--border-color);
     }
 }
 
 #sidebar > * {
     margin: 3em 0 0 0;
     padding: 3em 0 0 0;
-    border-top: solid 1px var(--sidebar-border-color);
+    border-top: solid 1px var(--border-color);
 }
 
 #sidebar > :first-child {
@@ -523,7 +503,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
 .share-menu {
     float: right;
     padding: 3px 20px 3px 10px;
-    border-right: 1px solid var(--sidebar-border-color);
+    border-right: 1px solid var(--border-color);
 }
 
 #header #search {
@@ -660,7 +640,7 @@ body.is-menu-visible #wrapper {
 .recent {
     padding-left: 20px; padding-right: 20px;
     padding-top: 0px; padding-bottom: 0px;
-    background-color: var(--panel-bg-color) !important;
+    background-color: var(--recent-bg-color) !important;
     box-shadow: 0 0.5rem 1rem var(--shadow-color) !important;
     display: block !important;
     margin-bottom: 10px; margin-top: 0px;
@@ -752,7 +732,7 @@ body.is-menu-visible #wrapper {
     text-decoration: none;
 }
 #intro .social a:hover {
-    color: var(--button-hover-color);
+    color: var(--link-hover-color);
 }
 
 
@@ -861,7 +841,7 @@ body.is-menu-visible #wrapper {
     padding-bottom: 12px;
     font-style: italic;
     letter-spacing: 0.1em;
-    border-bottom: solid 1px var(--sidebar-border-color);
+    border-bottom: solid 1px var(--border-color);
 }
 
 .listing-summary {
