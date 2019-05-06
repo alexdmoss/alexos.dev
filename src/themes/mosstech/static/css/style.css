@@ -169,7 +169,6 @@ a:hover {
     color: var(--link-color);
 }
 
-
 hr {
     border: 0;
     padding-top: 1.5rem;
@@ -543,6 +542,46 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     border-right: 1px solid var(--border-color);
 }
 
+.share-links {
+    padding-bottom: 2rem;
+}
+.share-close {
+    display: block; 
+    color: var(--main-font-color);
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+.share-close:hover {
+    color: var(--link-color);
+}
+
+.share-link {
+    padding-left: 1.5rem; padding-right: 1.5rem;
+    padding-top: 0.5rem; padding-bottom: 0.5rem;
+    display: block !important;
+    margin-bottom: 0.7rem; margin-top: 0px;
+    border: 0;
+    box-sizing: border-box;
+    box-shadow: inset 0 -1px 0 var(--border-color);
+    position: relative;
+    color: var(--main-font-color);
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    letter-spacing: 0.2rem;
+    line-height: 1.5rem;
+}
+.share-link:before, .share-link:after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.share-link i {
+    margin-right: 0.3rem;
+    font-size: 1.1rem;
+}
+
 #share {
     position: absolute;
     top: 0px;
@@ -559,38 +598,15 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     padding-right: 1rem;
     white-space: nowrap;
     z-index: 1001;
-    width: 20rem;
-    height: auto;
     background-color: var(--panel-bg-color);
     border: 1px solid var(--border-color);
-
-    opacity: 1;
-    max-width: 20rem;
+    width: 20rem;
+    max-width: 0;
+    opacity: 0;
 }
 #share.visible {
     max-width: 20rem;
     opacity: 1;
-    padding: 0 0.5rem 0 0;
-
-}
-#share li {
-    display: block;
-    float: left;
-    position: relative;
-    line-height: 2rem;
-    height: 2.5rem;
-    width: 100%;
-}
-#share li a {
-    font-size: 0.9rem;
-    text-transform: capitalize;
-    letter-spacing: 0.2rem;
-}
-#share li a > i {
-    font-size: 1.5rem;
-}
-#share li a:hover {
-    color: var(--header-link-hover-color);
 }
 
 #header #search {
@@ -1115,6 +1131,36 @@ body.is-menu-visible #wrapper {
     width: 100%;
 }
 
+/*** Social Buttons ***/
+
+.post-social {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0.1rem;
+    border: 1px solid var(--border-color);
+}
+
+.social-button {
+    padding: 1rem;
+    background-color: var(--recent-bg-color) !important;
+    display: block !important;
+    float: left;
+    border: 0;
+    box-sizing: border-box;
+    color: var(--main-font-color);
+    position: relative;
+    margin: 0.1rem;
+}
+.social-button:before, .social-button:after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+}
+.social-button:hover {
+    color: var(--link-hover-color);
+}
+
 /*** Contacts Form ***/
 
 .contact-form {
@@ -1415,14 +1461,15 @@ pre .copy-to-clipboard:hover {
 }
 
 .draw:hover {
-    color: var(--highlight-color);
+    color: var(--line-color);
+    border-bottom: 0;
 }
 
 .draw:hover::before {
     width: 100%;
     height: 100%; 
-    border-top-color: var(--highlight-color);
-    border-right-color: var(--highlight-color);
+    border-top-color: var(--line-color);
+    border-right-color: var(--line-color);
     transition:
       width 0.25s ease-out,
       height 0.25s ease-out 0.25s;
@@ -1431,8 +1478,8 @@ pre .copy-to-clipboard:hover {
 .draw:hover::after {
     width: 100%;
     height: 100%;  
-    border-bottom-color: var(--highlight-color);
-    border-left-color: var(--highlight-color);
+    border-bottom-color: var(--line-color);
+    border-left-color: var(--line-color);
     transition:
       border-color 0s ease-out 0.5s,
       width 0.25s ease-out 0.5s,
@@ -1440,7 +1487,7 @@ pre .copy-to-clipboard:hover {
 }
 
 .meet:hover {
-    color: var(--highlight-color);
+    color: var(--link-color);
 }
 .meet:after {
     top: 0;

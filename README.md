@@ -9,7 +9,8 @@ Building a new blog theme using Hugo.
 ### Version 1
 
 - [x] Convert px to rem/em
-- [ ] Share menu
+- [x] Share menu
+- [x] Social share links not working - because localhost?
 - [ ] Mobile appearance
 - [ ] Make search work
 - [ ] Contacts page processing
@@ -26,6 +27,7 @@ Building a new blog theme using Hugo.
 - [ ] Recent posts to use thumbnail rather than description (see Future Imperfect)
 - [ ] Tranquil Peak - hide sidebar when reading a post is nice
 - [ ] Captcha on the Contacts form
+- [ ] Printable version - colours especially need inverting
 - [ ] Comments
 - [ ] Sticky footer - https://codepen.io/BretCameron/pen/oVNYKR
 - [ ] Tags cloud
@@ -44,6 +46,7 @@ Building a new blog theme using Hugo.
 
 ### Testing
 
+- [ ] Social share links
 - [ ] Safari
 - [ ] Firefox
 - [ ] Edge
