@@ -4,13 +4,20 @@ date: 2019-02-23T15:28:51Z
 draft: true
 author: "@alexdmoss"
 description: "An overview of our journey from migrating our first enterprise-scale application to Google Cloud, through to multi-tenant Kubernetes"
-tags: google gcp migration kubernetes gke platforms devops
 banner: "/images/platforms.jpg"
+tags:
+- gcp
+- google
+- kubernetes
+- devops
+- migration
+- platforms
+- gke
 ---
 
 > This blog entry was originally [posted on Medium](https://medium.com/john-lewis-software-engineering/a-year-in-google-cloud-4586a117f352) for my employer.
 
-This time last year, our newly-formed Platforms Team in John Lewis Online were putting the finishing touches to a brand new **Kubernetes** platform designed to run the frontend of johnlewis.com in Google Cloud. Twelve months later, we’ve passed through Black Friday without a hitch and built a raft of new capabilities along the way. What follows is a post reflecting on the journey so far — if that sounds boring interesting, then read on!
+This time last year, our newly-formed Platforms Team in John Lewis Online were putting the finishing touches to a brand new **Kubernetes** platform designed to run the frontend of johnlewis.com in Google Cloud. Twelve months later, we’ve passed through Black Friday without a hitch and built a raft of new capabilities along the way. What follows is a post reflecting on the journey so far — if that sounds interesting, then read on!
 
 ---
 

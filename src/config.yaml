@@ -50,7 +50,7 @@ outputs:
   home:
   - "HTML"
   - "RSS"
-  # - "JSON"
+  - "JSON"
 
 # theme: "hugo-theme-massively"
 

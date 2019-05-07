@@ -61,30 +61,30 @@ images.each(function (index) {
 
 // clipboard
 var clipInit = false;
-$('code').each(function() {
+$('code').each(function () {
 	var code = $(this),
 		text = code.text();
 
 	if (text.length > 15) {
 		if (!clipInit) {
 			var text, clip = new Clipboard('.copy-to-clipboard', {
-				text: function(trigger) {
+				text: function (trigger) {
 					text = $(trigger).prev('code').text();
 					return text.replace(/^\$\s/gm, '');
 				}
 			});
 
 			var inPre;
-			clip.on('success', function(e) {
+			clip.on('success', function (e) {
 				e.clearSelection();
 				inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
 				$(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
 			});
 
-			clip.on('error', function(e) {
+			clip.on('error', function (e) {
 				inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
 				$(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-				$(document).one('copy', function(){
+				$(document).one('copy', function () {
 					$(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
 				});
 			});
@@ -160,7 +160,9 @@ $('code').each(function() {
 
 		// Search (header).
 		var $search = $('#search'),
-		$search_input = $search.find('input');
+			$search_input = $search.find('input');
+		$search_results = $('#search-results');
+
 		$body.on('click', '[href="#search"]', function (event) {
 			event.preventDefault();
 			// Not visible?
@@ -174,50 +176,42 @@ $('code').each(function() {
 			}
 		});
 		$search_input
-		.on('keydown', function (event) {
-			if (event.keyCode == 27)
-				$search_input.blur();
-		})
-		.on('blur', function () {
-			window.setTimeout(function () {
-				$search.removeClass('visible');
-			}, 100);
-		});
+			.on('keydown', function (event) {
+				if (event.keyCode == 27) {
+					$search_input.blur();
+					window.setTimeout(function () {
+						$search_results.removeClass('visible');
+					}, 100);
+				}
+			})
+			.on('blur', function () {
+				window.setTimeout(function () {
+					$search.removeClass('visible');
+				}, 100);
+			});
 
 		// Share Menu (header).
 		var $share = $('#share');
 		$body
-		.on('click', '[href="#share-menu"]', function (event) {
-			event.preventDefault();
-			if (!$share.hasClass('visible')) {
-				console.log('boo');
-				$share.addClass('visible');
-			}
-		})
-		.on('keydown', function (event) {
-			if (event.keyCode == 27)
+			.on('click', '[href="#share-menu"]', function (event) {
+				event.preventDefault();
+				if (!$share.hasClass('visible')) {
+					console.log('boo');
+					$share.addClass('visible');
+				}
+			})
+			.on('keydown', function (event) {
+				if (event.keyCode == 27)
+					window.setTimeout(function () {
+						$share.removeClass('visible');
+					}, 100);
+			})
+			.on('click', '[href="#close-share"]', function (event) {
+				event.preventDefault();
 				window.setTimeout(function () {
 					$share.removeClass('visible');
 				}, 100);
-		})
-		.on('click', '[href="#close-share"]', function (event) {
-			event.preventDefault();
-			window.setTimeout(function () {
-				$share.removeClass('visible');
-			}, 100);
-		});
-
-
-		// $search_input
-		// .on('keydown', function (event) {
-		// 	if (event.keyCode == 27)
-		// 		$search_input.blur();
-		// })
-		// .on('blur', function () {
-		// 	window.setTimeout(function () {
-		// 		$search.removeClass('visible');
-		// 	}, 100);
-		// });
+			});
 
 	});
 
@@ -253,64 +247,64 @@ jQuery(document).ready(function () {
     * Fix anchor scrolling that hides behind top nav bar
     * Courtesy of https://stackoverflow.com/a/13067009/28106
     **/
-    (function (document, history, location) {
-        var HISTORY_SUPPORT = !!(history && history.pushState);
+	(function (document, history, location) {
+		var HISTORY_SUPPORT = !!(history && history.pushState);
 
-        var anchorScrolls = {
-            ANCHOR_REGEX: /^#[^ ]+$/,
-            OFFSET_HEIGHT_PX: 80,
+		var anchorScrolls = {
+			ANCHOR_REGEX: /^#[^ ]+$/,
+			OFFSET_HEIGHT_PX: 80,
 
-            // Establish events, and fix initial scroll position if a hash is provided.
-            init: function () {
-                this.scrollToCurrent();
-                $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
-                $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
-            },
+			// Establish events, and fix initial scroll position if a hash is provided.
+			init: function () {
+				this.scrollToCurrent();
+				$(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
+				$('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
+			},
 
-            // Return the offset amount to deduct from the normal scroll position. Modify as appropriate to allow for dynamic calculations
-            getFixedOffset: function () {
-                return this.OFFSET_HEIGHT_PX;
-            },
+			// Return the offset amount to deduct from the normal scroll position. Modify as appropriate to allow for dynamic calculations
+			getFixedOffset: function () {
+				return this.OFFSET_HEIGHT_PX;
+			},
 
-            // If the provided href is an anchor which resolves to an element on the page, scroll to it
-            scrollIfAnchor: function (href, pushToHistory) {
-                var match, anchorOffset;
+			// If the provided href is an anchor which resolves to an element on the page, scroll to it
+			scrollIfAnchor: function (href, pushToHistory) {
+				var match, anchorOffset;
 
-                if (!this.ANCHOR_REGEX.test(href)) {
-                    return false;
-                }
+				if (!this.ANCHOR_REGEX.test(href)) {
+					return false;
+				}
 
-                match = document.getElementById(href.slice(1));
+				match = document.getElementById(href.slice(1));
 
-                if (match) {
-                    anchorOffset = $(match).offset().top - this.getFixedOffset();
-                    $('html, body').animate({ scrollTop: anchorOffset });
+				if (match) {
+					anchorOffset = $(match).offset().top - this.getFixedOffset();
+					$('html, body').animate({ scrollTop: anchorOffset });
 
-                    // Add the state to history as-per normal anchor links
-                    if (HISTORY_SUPPORT && pushToHistory) {
-                        history.pushState({}, document.title, location.pathname + href);
-                    }
-                }
+					// Add the state to history as-per normal anchor links
+					if (HISTORY_SUPPORT && pushToHistory) {
+						history.pushState({}, document.title, location.pathname + href);
+					}
+				}
 
-                return !!match;
-            },
-            // Attempt to scroll to the current location's hash.
-            scrollToCurrent: function (e) {
-                if (this.scrollIfAnchor(window.location.hash) && e) {
-                    e.preventDefault();
-                }
-            },
-            // If the click event's target was an anchor, fix the scroll position.
-            delegateAnchors: function (e) {
-                var elem = e.target;
+				return !!match;
+			},
+			// Attempt to scroll to the current location's hash.
+			scrollToCurrent: function (e) {
+				if (this.scrollIfAnchor(window.location.hash) && e) {
+					e.preventDefault();
+				}
+			},
+			// If the click event's target was an anchor, fix the scroll position.
+			delegateAnchors: function (e) {
+				var elem = e.target;
 
-                if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
-                    e.preventDefault();
-                }
-            }
-        };
+				if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
+					e.preventDefault();
+				}
+			}
+		};
 
-        $(document).ready($.proxy(anchorScrolls, 'init'));
-    })(window.document, window.history, window.location);
-    
+		$(document).ready($.proxy(anchorScrolls, 'init'));
+	})(window.document, window.history, window.location);
+
 });

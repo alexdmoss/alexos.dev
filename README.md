@@ -11,8 +11,9 @@ Building a new blog theme using Hugo.
 - [x] Convert px to rem/em
 - [x] Share menu
 - [x] Social share links not working - because localhost?
+- [x] Make search work
+- [ ] Search wants 'tags' pages
 - [ ] Mobile appearance
-- [ ] Make search work
 - [ ] Contacts page processing
 - [ ] Experiment with fonts
 - [ ] 404 page - nginx config

@@ -3,6 +3,11 @@ title: "About Me"
 date: 2019-02-23T15:28:51Z
 author: "@alexdmoss"
 description: "A little bit of info about me, and this website"
+tags:
+- About
+- mosstech
+- Alex
+- Moss
 ---
 
 Welcome to the page about me. If you've arrived here, I'm going to go ahead and assume that you are interested in at least one of the following things!
