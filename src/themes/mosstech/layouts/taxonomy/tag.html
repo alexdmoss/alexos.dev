@@ -3,33 +3,32 @@
 
 <div class="main" id="body-inner">
     
-        <article class="post-summary">
-            
-            <header class="main-header">
-                <div class="post-title">
-                    <h1>{{ .Title }}</h1>
-                    <p>{{ .Content }}</p>
-                </div>
-            </header>
-    
-            <section class="post-listing">
-            {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
-    
-                <div class="container">
-                    <div class="row">
-                    {{ range $paginator.Pages }}
-                    {{ .Render "content-list" }}
-                    {{ end }}
-                    </div>
-                </div>
-            
-                {{ partial "pagination" . }}
-                
-            </section>
-            
-        </article>
-            
-    </div>
+    <article class="post-summary">
+        
+        <header class="main-header">
+            <div class="post-title">
+                <h1>{{ .Title }}</h1>
+                <p>{{ .Content }}</p>
+            </div>
+        </header>
 
+        <section class="post-listing">
+        {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+
+            <div class="container">
+                <div class="row">
+                {{ range $paginator.Pages }}
+                {{ .Render "content-list" }}
+                {{ end }}
+                </div>
+            </div>
+        
+            {{ partial "pagination" . }}
+            
+        </section>
+        
+    </article>
+            
+</div>
 {{ partial "sidebar.html" . }}
 {{ partial "foot.html" . }}
