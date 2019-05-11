@@ -17,9 +17,9 @@ Building a new blog theme using Hugo.
 - [x] Share menu links are active even when menu not showing
 - [x] Blog Posts index is showing up in recents
 - [x] Bring in images and markup from Google blog post
-- [ ] Sweep out any comments
-- [ ] 404 page - nginx config
+- [x] Sweep out any comments
 - [ ] CI/CD
+- [ ] 404 page - nginx config
 - [ ] Contacts page processing
 - [ ] Google Analytics
 - [ ] alexmoss.co.uk redirect
@@ -27,6 +27,12 @@ Building a new blog theme using Hugo.
 
 ### Version 2
 
+- [ ] JS - auto-complete.js
+- [ ] JS - html5shiv-printshiv.min.js
+- [ ] JS - jquery.sticky.js
+- [ ] JS - modernizr.custom.71422.js
+- [ ] JS - perfect-scrollbar.jquery.min.js + perfect-scrollbar.min.js
+- [ ] Harden nginx build
 - [ ] Move to Github so there's some proper stuff there
 - [ ] Link to splash photos directly
 - [ ] Not sure about placement of social links on blog post - make a bit more subtle?

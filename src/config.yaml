@@ -16,7 +16,6 @@ params:
   contactAPI: "http://localhost:8000/api/email/alchemyst.co.uk"
   categoriesByCount: true
 
-
 menu:
   main:
     - name: "Home"

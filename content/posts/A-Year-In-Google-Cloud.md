@@ -1,7 +1,6 @@
 ---
 title: "A Year in Google Cloud"
 date: 2019-02-23T15:28:51Z
-draft: true
 author: "@alexdmoss"
 description: "An overview of our journey from migrating our first enterprise-scale application to Google Cloud, through to multi-tenant Kubernetes"
 banner: "/images/platforms.jpg"

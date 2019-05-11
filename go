@@ -1,51 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-GCP_PROJECT_NAME=jl-digital-docs 
-TFSTATE_BUCKET_NAME=${GCP_PROJECT_NAME}-tfstate
-DOMAIN=docs.jl-digital.net 
-REGION=europe-west2
-
-source functions.sh 
-
 function help() {
   echo -e "Usage: go <command>"
   echo -e
   echo -e "    help                     Print this help"
   echo -e "    run                      Runs site locally on for fast-feedback / exploratory testing"
-  echo -e "    page <chapter/page.md>   Add a new page called <chapter>/<page.md>"
-  echo -e "    chapter <chapter>        Add a new chapter called <chapter>/"
   echo -e "    build                    Builds the site (creates static HTML) - either locally or as part of CI"
   echo -e "    deploy                   Deploys site into Google AppEngine. Assumes pre-requisites are done"
-  echo -e "    test                     Runs local tests to ensure build created required files"
   echo -e 
   exit 0
 }
 
 function run() {
     pushd $(dirname $BASH_SOURCE[0]) >/dev/null
-    run_hugo server -p 1314 -wDs src/
-    popd >/dev/null
-}
-
-function page() {
-    if [[ ! ${1:-} ]]; then console_msg "You must specify the new page name - <chapter>/<page.md>" ERROR; exit 1; fi
-    pushd "src/" >/dev/null
-    run_hugo new ${1}
-    popd >/dev/null
-}
-
-function chapter() {
-    if [[ ! ${1:-} ]]; then console_msg "You must specify the new chapter name" ERROR; exit 1; fi
-    pushd "src/" >/dev/null
-    run_hugo new -k chapter ${1}/_index.md
+    _run_hugo server -p 1314 -wDs src/
     popd >/dev/null
 }
 
 function build() {
 
-    console_msg "Building site ..."
+    _console_msg "Building site locally ..."
 
+    _assert_variables_set GCP_PROJECT_NAME GCP_REGION NAMESPACE APP_NAME
     mkdir -p "www/"
 
     pushd "www/" > /dev/null
@@ -53,85 +30,179 @@ function build() {
     popd >/dev/null 
     
     pushd "src/" >/dev/null
-    run_hugo -s .
+    _run_hugo --source .
     popd >/dev/null
 
-    test
+    _build-test
 
-    console_msg "Build complete" INFO true 
+    pushd $(dirname $BASH_SOURCE[0]) >/dev/null
+
+    _console_msg "Baking docker image ..."
+
+    # get latest build info pushed to GCR
+    LATEST_TAG=$(gcloud container images list-tags eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME} --sort-by="~timestamp" --limit=1 --format='value(tags)')
+    if [[ $(echo ${LATEST_TAG} | grep -c ",") -gt 0 ]]; then
+    LATEST_TAG=$(echo ${LATEST_TAG} | awk -F, '{print $2}');
+    fi
+
+    # might be first build
+    if [[ -z ${LATEST_TAG} ]];then
+        NEW_TAG=0.1
+    else
+        NEW_TAG=$(echo ${LATEST_TAG} | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
+    fi
+
+    docker build -t ${APP_NAME}:${NEW_TAG} .
+
+    _local-test ${NEW_TAG}
+
+    _console_msg "Pushing docker image to registry ..."
+
+    # docker tag ${APP_NAME}:${NEW_TAG} eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}:${NEW_TAG}
+    # docker push ${BUILD_IMAGE}
+
+    _console_msg "Build complete" INFO true 
 
 }
 
 function deploy() {
 
-    assert_variables_set GCP_PROJECT_NAME SITE DOMAIN
+    _assert_variables_set GCP_PROJECT_NAME SITE DOMAIN
 
     pushd "app/" >/dev/null
 
     echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
     trap "gcloud auth revoke" EXIT
 
-    console_msg "Deploying docs site ..." INFO true
+    _console_msg "Deploying docs site ..." INFO true
 
     cat app-template.yaml | sed 's/${SITE}/'${SITE}'/g' > app.yaml
     gcloud app deploy --project ${GCP_PROJECT_NAME} --quiet
 
-    console_msg "Deployment complete" INFO true
+    _console_msg "Deployment complete" INFO true
 
     popd >/dev/null
 
+    _console_msg "Checking HTTP status code for https://${SITE}.${DOMAIN}/ ..."
+
     # Very basic test that site returns a sensible http-code
-
-    console_msg "Checking HTTP status code for https://${SITE}.${DOMAIN}/ ..."
-
     response_code=$(curl -k -L -o /dev/null -w "%{http_code}" https://${SITE}.${DOMAIN}/)
 
     if [[ ${response_code:0:1} == "4" ]] || [[ ${response_code:0:1} == "5" ]]; then
-        console_msg "Test FAILED - HTTP response code was ${response_code}" ERROR
+        _console_msg "Test FAILED - HTTP response code was ${response_code}" ERROR
         exit 1
     else 
-        console_msg "Test PASSED - HTTP response code was ${response_code}"
+        _console_msg "Test PASSED - HTTP response code was ${response_code}"
     fi
 
 }
 
-function test() {
+function _build-test() {
 
     local error=0
 
-    console_msg "Running unit tests ..."
+    _console_msg "Running local build tests ..."
 
     markdown_files=$(find content -type f -name '*.md')
 
     for md_file in ${markdown_files}; do
+    
+        html_file="index.html"
         html_path=$(dirname ${md_file} | sed 's#^content#www#')
 
         if [[ $(basename ${md_file}) == "_index.md" ]]; then
             html_file="index.html"
+        elif [[ $(echo ${md_file} | grep -c '/posts/') -gt 0 ]]; then
+            if [[ $(grep -c 'draft: true' ${md_file}) -gt 0 ]]; then
+                _console_msg "${md_file} in draft - SKIPPING"
+            else
+                # permalinks mean we need to extract the date to know its destination
+                publish_date=$(grep 'date: ' ${md_file})
+                publish_year=$(echo ${publish_date} | awk -F- '{print $1}' | awk -F': ' '{print $2}')
+                publish_month=$(echo ${publish_date} | awk -F- '{print $2}')
+                publish_day=$(echo ${publish_date} | awk -F- '{print $3}' | awk -FT '{print $1}')
+                html_file=${publish_year}/${publish_month}/${publish_day}/$(basename ${md_file} | sed 's#\.md$#/index.html#')
+            fi
         else
             html_file=$(basename ${md_file} | sed 's#\.md$#/index.html#')
         fi
 
-        test_file=$(echo ${html_path}/${html_file} | awk '{print tolower($0)}')
+        test_file=$(echo ${html_path}/${html_file} | sed 's#/posts##' | awk '{print tolower($0)}')
         if [[ ! -f "${test_file}" ]]; then
             error=1
-            console_msg "Expected HTML file was missing. Markdown: ${md_file} should be assembled into: ${test_file}"
+            _console_msg "Expected HTML file was missing. Markdown: ${md_file} should be assembled into: ${test_file}"
         fi
 
     done
 
-    if [[ "${error}" != "0" ]]; then
-        console_msg "Tests FAILED - see messages above for for detail" ERROR true
+    if [[ ! -f "www/tags/index.html" ]]; then
+        error=1
+        _console_msg "Tags index is missing"
+    fi
+    if [[ ! -f "www/categories/index.html" ]]; then
+        error=1
+        _console_msg "Categories index is missing"
+    fi
+    if [[ ! -f "www/index.json" ]]; then
+        error=1
+        _console_msg "index.json (for Search) is missing"
+    fi
+    if [[ ! -f "www/sitemap.xml" ]]; then
+        error=1
+        _console_msg "sitemap.xml missing"
+    fi
+    if [[ ! -f "www/robots.txt" ]]; then
+        error=1
+        _console_msg "robots.txt missing"
+    fi
+    if [[ ! -f "www/404.html" ]]; then
+        error=1
+        _console_msg "404.html file missing"
+    fi
+
+    if [[ "${error:-}" != "0" ]]; then
+        _console_msg "Tests FAILED - see messages above for for detail" ERROR
         exit 1
     else
-        console_msg "All tests passed!"
+        _console_msg "All build tests passed!"
     fi
 
 }
 
-# We assume on a JLP laptop where we can't set path, it is installed in C:/hugo/ as per instructions. Otherwise, we assume its in the user's path
-function run_hugo() {
+function _local-test() {
 
+    local error=0
+    local tag=${1:-}
+
+    _console_msg "Running local docker image tests ..."
+
+    _assert_variables_set APP_NAME
+
+    docker run -d --name ${APP_NAME} -p 80:80 ${APP_NAME}:${tag}
+
+    (curl -s http://localhost/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
+    (curl -s http://localhost/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
+    (curl -s http://localhost/contact/ | grep -q "Send Message") || _fail_message "Contact Page missing send button"
+    (curl -s http://localhost/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
+    (curl -s http://localhost/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
+    (curl -s http://localhost/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
+    (curl -s http://localhost/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year, our newly-formed Platforms Team") || _fail_message "A Year In Google Cloud Post missing intro sentence"
+
+    docker rm -f ${APP_NAME} >/dev/null 2>&1 || true
+
+    if [[ "${error:-}" != "0" ]]; then
+        _console_msg "Tests FAILED - see messages above for for detail" ERROR
+        exit 1
+    else
+        _console_msg "All local tests passed!"
+        
+    fi
+
+    
+
+}
+
+function _run_hugo() {
     case "$OSTYPE" in
         # darwin*)  HUGO_BIN='hugo';;
         # linux*)   HUGO_BIN='hugo';;
@@ -143,6 +214,41 @@ function run_hugo() {
     (${HUGO_BIN} "$@") 
 }
 
+function _assert_variables_set() {
+  local error=0
+  local varname
+  for varname in "$@"; do
+    if [[ -z "${!varname-}" ]]; then
+      echo "${varname} must be set" >&2
+      error=1
+    fi
+  done
+  if [[ ${error} = 1 ]]; then
+    exit 1
+  fi
+}
+
+function _fail_message() {
+  _console_msg "$1" ERROR
+  error=1
+}
+
+function _console_msg() {
+  local msg=${1}
+  local level=${2:-}
+  local ts=${3:-}
+  if [[ -z ${level} ]]; then level=INFO; fi
+  if [[ -n ${ts} ]]; then ts=" [$(date +"%Y-%m-%d %H:%M")]"; fi
+
+  echo ""
+  if [[ ${level} == "ERROR" ]] || [[ ${level} == "CRIT" ]] || [[ ${level} == "FATAL" ]]; then
+    (echo 2>&1)
+    (echo >&2 "-> [${level}]${ts} ${msg}")
+  else 
+    (echo "-> [${level}]${ts} ${msg}")
+  fi
+}
+
 function ctrl_c() {
     if [ ! -z ${PID:-} ]; then
         kill ${PID}
@@ -152,7 +258,7 @@ function ctrl_c() {
 
 trap ctrl_c INT
 
-if [[ ${1:-} =~ ^(help|run|page|chapter|build|deploy|test)$ ]]; then
+if [[ ${1:-} =~ ^(help|run|build|deploy|test)$ ]]; then
   COMMAND=${1}
   shift
   $COMMAND "$@"

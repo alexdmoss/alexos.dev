@@ -1,24 +1,27 @@
 
-# stages:
-# - build
+stages:
+- build
 # - deploy
 
-# variables:
-#   SITE: 
-#   GOOGLE_CREDENTIALS:
-#   GCP_PROJECT_NAME: 
-#   DOMAIN: 
+variables:
+  GCP_PROJECT_NAME: moss-work
+  GCP_REGION: europe-west1
+  NAMESPACE: mosstech
+  APP_NAME: mosstech
+  HOSTNAME: mosstech.io
 
-# build:
-#   stage: build
-#   image: 
-#   only:
-#   - master
-#   script: 
-#   - ./go build
-#   artifacts:
-#     paths:
-#     - "app/www/**"
+build:
+  stage: build
+  image: registry.gitlab.com/mosstech/mw-platform/mw-builder
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+  services:
+  - docker:dind
+  only:
+  - master
+  script: 
+  - ./go build
 
 # deploy:
 #   stage: deploy
