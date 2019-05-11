@@ -1,38 +1,50 @@
 {{ partial "head.html" . }}
 {{ partial "header.html" . }}
 
-    <!-- Main -->
-    <div id="main">
-        {{ if .Site.Params.categoriesByCount }}
-            {{ $.Scratch.Set "categories" .Data.Terms.ByCount }}
-        {{ else }}
-            {{ $.Scratch.Set "categories" .Data.Terms.Alphabetical }}
-        {{ end }}
+<div class="main" id="body-inner">
 
-        <ul class="posts">
-            <header>
+    {{ if .Site.Params.categoriesByCount }}
+        {{ $.Scratch.Set "categories" .Data.Terms.ByCount }}
+    {{ else }}
+        {{ $.Scratch.Set "categories" .Data.Terms.Alphabetical }}
+    {{ end }}
+
+    <article class="post-summary">
+        
+        <header class="main-header">
+            <div class="post-title">
                 <h1>{{ .Data.Plural }}</h1>
-            </header>
-            {{ $data := .Data }}
-            {{ range $key, $value := $.Scratch.Get "categories" }}
-                <li>
-                    <article>
-                        <header>
-                            {{ if ne $value.Name "" }}
-                                <a href="{{"/" | relURL}}{{ $data.Plural }}/{{ $value.Name | urlize }}">{{ $value.Name }}</a>
-                                <span style="float:right;">{{ $value.Count }}</span>
-                            {{ else }}
-                                Uncategorized
-                                <span style="float:right;">{{ $value.Count }}</span>
-                            {{ end }}
-                        </header>
-                    </article>
-                </li>
-            {{ end }}
-        </ul>
-    </div>
+            </div>
+        </header>
 
-    {{ $.Scratch.Set "showCategories" false }}
+        <section class="tag-listing">
+
+            {{ $data := .Data }}
+            <ul>
+
+                {{ range $key, $value := $.Scratch.Get "categories" }}
+                <li>
+                {{ if ne $value.Name "" }}
+                    <i class="fas fa-box-open link-icon"></i>
+                    <a href="{{ printf "/%s/%s" $data.Plural $value.Name | urlize | relLangURL }}" class="tag-link">
+                        {{ $value.Name }}
+                    </a>
+                    - {{ $value.Count }}
+                {{ else }}
+                    Uncategorised - {{ $value.Count }}
+                {{ end }}
+                </li>
+                {{ end }}
+        
+            </ul>
+
+        </section>
+        
+    </article>
+                
+</div>
+
+{{ $.Scratch.Set "showCategories" false }}
 
 {{ partial "sidebar.html" . }}
 {{ partial "foot.html" . }}

@@ -3,10 +3,6 @@ title: "The Second Post"
 description: "This is the 2nd post description, and this is my attempt to make it much longer and more annoying for the reader - in an attempt to see if it breaks the layout of the site. Will it?"
 date: 2018-12-21T15:28:51Z
 banner: ""
-tags:
-- Second
-- Lorem
-- Ipsum
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel nisi pharetra, volutpat est id, aliquet diam. Morbi ac nulla lacinia, vestibulum tellus quis, cursus velit. Duis luctus lorem in felis suscipit maximus. Sed sem ipsum, lacinia vitae eleifend vitae, sagittis vitae justo. Fusce fringilla lacus sit amet sapien convallis, id facilisis erat pulvinar. Cras semper scelerisque suscipit. Aenean placerat odio eu erat malesuada finibus. Maecenas id ligula erat. Cras sed diam nisl. Nullam mollis nibh sit amet justo vestibulum, id eleifend diam consectetur. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin fermentum iaculis ullamcorper. Cras vitae tincidunt elit. Nunc dolor massa, luctus at commodo nec, pharetra sit amet elit.

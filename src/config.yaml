@@ -14,6 +14,7 @@ params:
   author: "@alexdmoss"
   description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
   contactAPI: "http://localhost:8000/api/email/alchemyst.co.uk"
+  categoriesByCount: true
 
 
 menu:

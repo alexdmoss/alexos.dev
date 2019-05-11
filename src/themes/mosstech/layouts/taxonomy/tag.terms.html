@@ -17,30 +17,27 @@
             </div>
         </header>
 
-        <section class="post-listing">
+        <section class="tag-listing">
 
             {{ $data := .Data }}
+            <ul>
 
-            <div class="container">
-                <div class="row">
+                {{ range $key, $value := $.Scratch.Get "tags" }}
+                <li>
+                {{ if ne $value.Name "" }}
+                    <i class="fas fa-tag link-icon"></i> 
+                    <a href="{{ printf "/%s/%s" $data.Plural $value.Name | urlize | relLangURL }}" class="tag-link">
+                        {{ $value.Name }}
+                    </a>
+                    - {{ $value.Count }}
+                {{ else }}
+                    Uncategorised - {{ $value.Count }}
+                {{ end }}
+                </li>
+                {{ end }}
+        
+            </ul>
 
-                    {{ range $key, $value := $.Scratch.Get "tags" }}
-
-                    <div class="listing-container">
-                        {{ if ne $value.Name "" }}
-                            <a href="{{ printf "/%s/%s" $data.Plural $value.Name | urlize | relLangURL }}" class="listing-box draw meet">
-                            {{ $value.Name }} - {{ $value.Count }}
-                        </a>
-                        {{ else }}
-                            Uncategorised - {{ $value.Count }}
-                        {{ end }}
-                    </div>
-
-                    {{ end }}
-            
-                </div>
-            </div>
-       
         </section>
         
     </article>

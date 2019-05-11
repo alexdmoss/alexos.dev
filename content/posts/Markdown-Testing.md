@@ -6,6 +6,8 @@ author: "@alexdmoss"
 banner: ""
 tags:
 - Markdown
+categories:
+- Testing
 ---
 
 ## Heading 2
