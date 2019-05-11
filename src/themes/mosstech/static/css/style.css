@@ -166,7 +166,7 @@ a {
     cursor: pointer;
 }
 
-a:hover {
+a:hover, a:focus, a:active {
     color: var(--link-color);
 }
 
@@ -200,6 +200,10 @@ em {
 
 strong {
     font-weight: bold;
+}
+
+figure {
+    margin-bottom: 1rem;
 }
 
 pre {
@@ -336,7 +340,9 @@ input[type="submit"], input[type="reset"], input[type="button"], .button {
     color: var(--button-border-color);
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .button:hover {
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .button:hover
+input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus, .button:focus
+input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active, .button:active {
     background-color: var(--button-hover-bg-color);
     border: 1px solid var(--button-hover-color)  !important;
     color: var(--button-hover-color) !important;
@@ -431,6 +437,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     overflow: hidden;
     padding-left: 1.5rem;
 }
+
 #header .links a {
     display: block;
     float: left;
@@ -447,7 +454,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     border-left: 1px solid var(--header-link-color);
 }
 
-#header .links a:hover {
+#header .links a:hover, #header .links a:focus, #header .links a:active {
     color: var(--header-link-hover-color);
     border-left: 1px solid var(--header-link-hover-color);
 }
@@ -511,37 +518,6 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
 
 /*** Footer ***/
 
-/* #footer {
-    padding: 1rem;
-    margin-left: 10rem;
-    display: block;
-    overflow: hidden;
-    color: var(--main-font-color);
-    font-size: 0.9rem;
-}
-#footer #copyright {
-    display: block;
-    float: left;
-    width: 9rem;
-    margin-left: -9rem;
-}
-#footer #powered {
-    display: block;
-    float: left;
-    width: 100%;
-    padding: 0 0 0 1rem;
-    border-left: solid 1px var(--border-color);
-} */
-/* @media screen and (max-width: 768px) {
-    #footer #powered {
-        width: 28rem;
-    }
-}
-@media screen and (max-width: 1100px) {
-    #footer #powered {
-        width: 32rem;
-    }
-} */
 #footer {
     background: var(--post-bg-color);
     border: solid 1px var(--post-border-color);
@@ -568,7 +544,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     clear: both;
 }
 
-#footer a, #footer a:hover, #footer a:focus {
+#footer a, #footer a:hover, #footer a:focus, #footer a:active {
     text-decoration: none;
     outline: none;
     outline: 0;
@@ -587,7 +563,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     -ms-transition: width 0.5s ease;
     transition: width 0.5s ease;
 }
-#footer a:hover:after, #footer a:focus:after {
+#footer a:hover:after, #footer a:focus:after, #footer a:active:after {
     width: 100%;
 }
 
@@ -647,14 +623,14 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
 }
-.share-close:hover {
+.share-close:hover, .share-close:focus, .share-close:active {
     color: var(--link-color);
 }
 
 .share-link {
     padding-left: 1.5rem; padding-right: 1.5rem;
     padding-top: 0.5rem; padding-bottom: 0.5rem;
-    display: block !important;
+    display: block;
     margin-bottom: 0.7rem; margin-top: 0px;
     border: 0;
     box-sizing: border-box;
@@ -681,13 +657,13 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
 #share {
     position: absolute;
     top: 0px;
-    right: 0px;
+    right: -1000px;
     margin-top: 5rem;
     margin-right: 1rem;
-    -moz-transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
     overflow: hidden;
     padding-bottom: 1rem;
     padding-left: 1rem;
@@ -703,6 +679,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
 #share.visible {
     max-width: 20rem;
     opacity: 1;
+    right: 0px;
 }
 
 #header #search {
@@ -982,7 +959,7 @@ body.is-menu-visible #wrapper {
 #intro .social a {
     text-decoration: none;
 }
-#intro .social a:hover, #intro .social a:active {
+#intro .social a:hover, #intro .social a:focus, #intro .social a:active {
     color: var(--link-color);
 }
 

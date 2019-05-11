@@ -40,11 +40,7 @@ menu:
       url: "/contact/"
       weight: 4
 
-  
-# enableGitInfo: true
-
 # googleanalytics: ""
-# disqusShortname: ""
 
 # # config enables search
 outputs:
@@ -52,34 +48,3 @@ outputs:
   - "HTML"
   - "RSS"
   - "JSON"
-
-# theme: "hugo-theme-massively"
-
-# See: https://learn.netlify.com/en/basics/configuration/
-# params:
-#   editURL: "https://gitlab.com/mosstech/mosstech.io/tree/master/content/"
-#   commitURL: "https://gitlab.com/mosstech/mosstech.io/commit/"
-#   author: "@alexdmoss"
-#   description: "mosstech.io"
-#   showVisitedLinks: true
-#   disableSearch: false
-#   # Javascript and CSS cache are automatically busted when new version of site is generated. 
-#   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
-#   disableAssetsBusting: false
-#   # Order sections in menu by "weight" or "title". Default to "weight"
-#   ordersectionsby: "weight"
-
-# menu:
-#   shortcuts:
-#   - name: "<i class='fas fa-book-open'></i> Markdown Examples"
-#     url: "/markdown/"
-#     weight: 10
-#   - name: "<i class='fab fa-gitlab'></i> Git Repo"
-#     url: "https://gitlab.com/mosstech/mosstech.io/"
-#     weight: 20
-
-# params:
-#   posts:
-#     folderName: "post"
-#     pagesize: 6
-#     featuredpost: true

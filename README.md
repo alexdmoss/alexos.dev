@@ -14,16 +14,24 @@ Building a new blog theme using Hugo.
 - [x] Make search work
 - [x] Search wants 'tags' pages
 - [x] Mobile appearance
-- [ ] Share menu links are active even when menu not showing
-- [ ] Contacts page processing
+- [x] Share menu links are active even when menu not showing
+- [x] Blog Posts index is showing up in recents
+- [x] Bring in images and markup from Google blog post
+- [ ] Sweep out any comments
 - [ ] 404 page - nginx config
 - [ ] CI/CD
+- [ ] Contacts page processing
 - [ ] Google Analytics
 - [ ] alexmoss.co.uk redirect
 - [ ] Other domains?
 
 ### Version 2
 
+- [ ] Move to Github so there's some proper stuff there
+- [ ] Link to splash photos directly
+- [ ] Not sure about placement of social links on blog post - make a bit more subtle?
+- [ ] Print the tags/categories somewhere on posts
+- [ ] How about some tests?
 - [ ] Reclick on share button hides it
 - [ ] Experiment with fonts
 - [ ] Hover effects equivalent for thumbs?

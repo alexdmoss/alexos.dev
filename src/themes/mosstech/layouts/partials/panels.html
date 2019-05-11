@@ -3,7 +3,7 @@
     <div class="row">
       {{ range first 6 (where .Pages "Type" "posts") }}
       <div class="panel-container">
-          <a href="{{ .URL | relLangURL | safeURL }}" class="panel-link draw meet">
+          <a href="{{ .Permalink | relLangURL | safeURL }}" class="panel-link draw meet">
               {{ with .Param "banner" }}
               <img class="panel-image" src="{{ . | safeURL }}" />
               {{ else }}

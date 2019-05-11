@@ -26,7 +26,7 @@
                 
                     <div class="listing-container">
                         
-                        <a href="{{ .URL | relLangURL | safeURL }}" class="listing-box draw meet">
+                        <a href="{{ .Permalink | relLangURL | safeURL }}" class="listing-box draw meet">
                             {{ with .Param "banner" }}
                             <img class="listing-image" src="{{ . | safeURL }}" />
                             {{ else }}

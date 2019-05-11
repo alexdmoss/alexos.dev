@@ -119,67 +119,18 @@ $('code').each(function () {
 
 	$(function () {
 
-		var $window = $(window),
-			$body = $('body'),
-			$menu = $('#menu'),
-			$shareMenu = $('#share-menu'),
-			$sidebar = $('#sidebar'),
-			$main = $('#main');
-
-		// // Fix: Placeholder polyfill.
-		// 	$('form').placeholder();
-
-		// // Prioritize "important" elements on medium.
-		// 	skel.on('+medium -medium', function() {
-		// 		$.prioritize(
-		// 			'.important\\28 medium\\29',
-		// 			skel.breakpoint('medium').active
-		// 		);
-		// 	});
-
-		// $menu.appendTo($body);
-		// $shareMenu.appendTo($body);
-
-		// $menu.panel({
-		// 	delay: 500,
-		// 	hideOnClick: true,
-		// 	hideOnEscape: true,
-		// 	hideOnSwipe: true,
-		// 	resetScroll: true,
-		// 	resetForms: true,
-		// 	side: 'right',
-		// 	target: $body,
-		// 	visibleClass: 'is-menu-visible'
-		// });
-
-		// $shareMenu.panel({
-		// 	delay: 500,
-		// 	hideOnClick: true,
-		// 	hideOnEscape: true,
-		// 	hideOnSwipe: true,
-		// 	resetScroll: true,
-		// 	resetForms: true,
-		// 	side: 'right',
-		// 	target: $body,
-		// 	visibleClass: 'is-share-visible'
-		// });
-
-
+		var $body = $('body');
 
 		// Search (header).
-		var $search = $('#search'),
-			$search_input = $search.find('input');
-		$search_results = $('#search-results');
+		var $search = $('#search');
+		var $search_input = $search.find('input');
+		var $search_results = $('#search-results');
 
 		$body.on('click', '[href="#search"]', function (event) {
 			event.preventDefault();
-			// Not visible?
 			if (!$search.hasClass('visible')) {
-				// Reset form.
 				$search[0].reset();
-				// Show.
 				$search.addClass('visible');
-				// Focus input.
 				$search_input.focus();
 			}
 		});
@@ -204,7 +155,6 @@ $('code').each(function () {
 			.on('click', '[href="#share-menu"]', function (event) {
 				event.preventDefault();
 				if (!$share.hasClass('visible')) {
-					console.log('boo');
 					$share.addClass('visible');
 				}
 			})

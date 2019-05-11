@@ -1,7 +1,5 @@
 <div id="sidebar">
 
-
-
   {{ range .AlternativeOutputFormats -}}
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
@@ -11,31 +9,30 @@
   {{ end -}}
 
     <section id="intro">
+
         <a class="logo" href="/about/"><img src="/images/logo.jpg" /></a>
+
         <p>{{ .Site.Params.description | safeHTML }}</p>
+
         <div class="social">
-            {{ if .Site.RSSLink -}}
+
             <a class="social-icon" href="{{ .Site.RSSLink }}" type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"><i class="fas fa-rss"></i></a>
-            {{ end -}}
             <a class="social-icon" href="https://github.com/alexdmoss"><i class="fab fa-github"></i></a>
             <a class="social-icon" href="https://twitter.com/alexdmoss"><i class="fab fa-twitter"></i></a>
             <a class="social-icon" href="https://www.linkedin.com/in/alexdmoss/"><i class="fab fa-linkedin"></i></a>
             <a class="social-icon" href="mailto:alex@mosstech.io"><i class="far fa-envelope"></i></a>
+
         </div>
+
     </section>
 
-    <!--
-    <section id="tags">
-        <p>Tag 1 | Tag 2 | Tag 3 | Tag 4</p>        
-    </section>
-    -->
-    
     <section class="recent-posts">
 
         <h2>Recent Posts</h2>
 
-        {{ range first 5 (where .Site.Pages "Type" "posts") }}
-        <a href="{{ .URL | relLangURL | safeURL }}">
+        {{ range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections).ByPublishDate.Reverse }}
+
+        <a href="{{ .Permalink | relLangURL | safeURL }}">
             <article class="recent draw meet">
                 <h3>{{ .Title }}</h3>
                 <p>{{ .Description }}</p>

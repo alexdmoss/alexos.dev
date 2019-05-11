@@ -80,8 +80,7 @@ function deploy() {
 
     popd >/dev/null
 
-    # [AM] This test is not going to be so great for brand new sites - seems to take about 10-15 mins for new SSL certs to be issued and usable
-    # If that's the case, maybe query deploy status with `gcloud app` instead - version check perhaps?
+    # Very basic test that site returns a sensible http-code
 
     console_msg "Checking HTTP status code for https://${SITE}.${DOMAIN}/ ..."
 
