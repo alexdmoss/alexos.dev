@@ -12,10 +12,10 @@ Building a new blog theme using Hugo.
 - [x] Share menu
 - [x] Social share links not working - because localhost?
 - [x] Make search work
-- [ ] Search wants 'tags' pages
-- [ ] Mobile appearance
+- [x] Search wants 'tags' pages
+- [x] Mobile appearance
+- [ ] Share menu links are active even when menu not showing
 - [ ] Contacts page processing
-- [ ] Experiment with fonts
 - [ ] 404 page - nginx config
 - [ ] CI/CD
 - [ ] Google Analytics
@@ -24,6 +24,11 @@ Building a new blog theme using Hugo.
 
 ### Version 2
 
+- [ ] Reclick on share button hides it
+- [ ] Experiment with fonts
+- [ ] Hover effects equivalent for thumbs?
+- [ ] Auto-minify css/js
+- [ ] Accessibility testing
 - [ ] Contacts form maybe does not need the labels at all with the placeholders?
 - [ ] Recent posts to use thumbnail rather than description (see Future Imperfect)
 - [ ] Tranquil Peak - hide sidebar when reading a post is nice

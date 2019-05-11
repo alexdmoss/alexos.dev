@@ -16,6 +16,14 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 	}
 };
 
+function mobileMenu() {
+	var x = document.getElementById("header-menu");
+	if (x.className === "links") {
+	  x.className += " responsive";
+	} else {
+	  x.className = "links";
+	}
+  }
 
 // Execute actions on images generated from Markdown pages
 var images = $("div#body-inner img").not(".inline");

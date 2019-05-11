@@ -4,30 +4,36 @@
 
 		<h1>{{ .Site.Title }}</h1>
 		
-		<nav class="links">
+		<nav class="links" id="header-menu">
 			{{ $currentPage := . }}
 			{{ range .Site.Menus.main }}
 				<a href="{{ .URL | relLangURL | safeURL }}" alt="{{ .Title | safeHTML }}" title="{{ .Title | safeHTML }}">{{ .Pre | safeHTML }} {{ .Name | safeHTML }}</a>
 			{{ end }}
+
 		</nav>
 
 		<nav class="interact">
 
-				<li class="search-menu">
-					<a class="fas fa-search icon" href="#search"></a>
-					<form id="search">
-						<input id="searchbox" type="text" name="q" placeholder="Search for ..." />
-					</form>
-				</li>
+			
+			<li class="search-menu">
+				<a class="fas fa-search icon" href="#search"></a>
+				<form id="search">
+					<input id="searchbox" type="text" name="q" placeholder="Search for ..." />
+				</form>
+			</li>
+
+			<li class="mobile-menu">
+				<a class="fa fa-bars icon" href="javascript:void(0);" onclick="mobileMenu()"></a>
+			</li>
 				
-				{{ if $.Scratch.Get "shareNav" }}
-				<li id="share-nav" class="share-menu" style="display: none;">
-					<a class="fas fa-share-alt icon" href="#share-menu"></a>
-				</li>
+			{{ if $.Scratch.Get "shareNav" }}
+			<li id="share-nav" class="share-menu" style="display: none;">
+				<a class="fas fa-share-alt icon" href="#share-menu"></a>
+			</li>
 
-				{{ partial "share-menu.html" . }}
+			{{ partial "share-menu.html" . }}
 
-				{{ end }}
+			{{ end }}
 
 		</nav>
 
