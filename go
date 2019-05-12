@@ -51,13 +51,15 @@ function build() {
 
     gcloud auth configure-docker --quiet
     docker pull ${IMAGE_NAME}:latest || true
-    docker build --cache-from ${IMAGE_NAME}:latest --tag ${IMAGE_NAME}:${CI_COMMIT_SHA} .
+    docker build --cache-from ${IMAGE_NAME}:latest --tag ${APP_NAME}:latest .
 
-    _local-test ${IMAGE_NAME}:${CI_COMMIT_SHA}
+    _local-test ${APP_NAME}:latest
 
-    _console_msg "Pushing docker image to registry ..."
+    _console_msg "Pushing image to registry ..."
 
-    docker tag ${IMAGE_NAME}:${CI_COMMIT_SHA} ${IMAGE_NAME}:latest
+    docker tag ${APP_NAME}:latest ${IMAGE_NAME}:${CI_COMMIT_SHA}
+    docker tag ${APP_NAME}:latest ${IMAGE_NAME}:latest
+
     docker push ${IMAGE_NAME}:${CI_COMMIT_SHA}
     docker push ${IMAGE_NAME}:latest
 
