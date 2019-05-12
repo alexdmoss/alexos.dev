@@ -197,6 +197,12 @@ function _local-test() {
     local error=0
     local image=${1:-}
 
+    if [[ ${CI_SERVER:-} == "yes" ]]; then
+        local_hostname=docker
+    else
+        local_hostname=localhost
+    fi
+
     _console_msg "Running local docker image tests ..."
 
     _assert_variables_set APP_NAME
@@ -204,17 +210,13 @@ function _local-test() {
     docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
     trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
 
-    # debug why all tests are failing
-    docker ps
-    curl http://docker:32080/index.html
-
-    (curl -s http://docker:32080/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
-    (curl -s http://docker:32080/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
-    (curl -s http://docker:32080/contact/ | grep -q "Send Message") || _fail_message "Contact Page missing send button"
-    (curl -s http://docker:32080/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
-    (curl -s http://docker:32080/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
-    (curl -s http://docker:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
-    (curl -s http://docker:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year, our newly-formed Platforms Team") || _fail_message "A Year In Google Cloud Post missing intro sentence"
+    (curl -s http://${local_hostname}:32080/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
+    (curl -s http://${local_hostname}:32080/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
+    (curl -s http://${local_hostname}:32080/contact/ | grep -q "Send Message") || _fail_message "Contact Page missing send button"
+    (curl -s http://${local_hostname}:32080/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
+    (curl -s http://${local_hostname}:32080/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
+    (curl -s http://${local_hostname}:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
+    (curl -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year, our newly-formed Platforms Team") || _fail_message "A Year In Google Cloud Post missing intro sentence"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
