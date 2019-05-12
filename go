@@ -205,7 +205,6 @@ function _local-test() {
         exit 1
     else
         _console_msg "All local tests passed!"
-        
     fi
 
 }

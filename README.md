@@ -21,7 +21,7 @@ Building a new blog theme using Hugo.
 - [x] CI/CD
 - [x] 404 page - nginx config
 - [x] www subdomain
-- [ ] Google Analytics
+- [x] Google Analytics
 - [ ] Contacts page processing
 - [ ] alexmoss.co.uk redirect
 - [x] Other domains

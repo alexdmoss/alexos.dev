@@ -11,8 +11,12 @@ spec:
       domains:
       - ${DOMAIN}
       - www.${DOMAIN}
-      - ${ALT_DOMAIN}
-      - www.${ALT_DOMAIN}
+      - alexos.io
+      - www.alexos.io
+      - www.alexmoss.co.uk
+      - www.mosses.info
+      - www.alexos.dev
+      - www.alexos.info
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-prod
@@ -21,6 +25,10 @@ spec:
   dnsNames:
   - ${DOMAIN}
   - www.${DOMAIN}
-  - ${ALT_DOMAIN}
-  - www.${ALT_DOMAIN}
+  - alexos.io
+  - www.alexos.io
+  - www.alexmoss.co.uk
+  - www.mosses.info
+  - www.alexos.dev
+  - www.alexos.info
 ---
