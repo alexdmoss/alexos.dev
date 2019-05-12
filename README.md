@@ -19,11 +19,12 @@ Building a new blog theme using Hugo.
 - [x] Bring in images and markup from Google blog post
 - [x] Sweep out any comments
 - [x] CI/CD
-- [ ] 404 page - nginx config
-- [ ] Contacts page processing
+- [x] 404 page - nginx config
+- [ ] www subdomain
 - [ ] Google Analytics
+- [ ] Contacts page processing
 - [ ] alexmoss.co.uk redirect
-- [ ] Other domains?
+- [ ] Other domains
 
 ### Version 2
 

@@ -11,6 +11,7 @@ variables:
   NAMESPACE: mosstech
   APP_NAME: mosstech
   DOMAIN: mosstech.io
+  ALT_DOMAIN: alexos.io
 
 build:
   stage: build

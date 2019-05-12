@@ -26,4 +26,18 @@ spec:
         backend:
           serviceName: ${APP_NAME}-svc
           servicePort: 32080
+  - host: www.${ALT_DOMAIN}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${APP_NAME}-svc
+          servicePort: 32080
+  - host: www.${ALT_DOMAIN}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${APP_NAME}-svc
+          servicePort: 32080
 ---

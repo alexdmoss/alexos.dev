@@ -11,6 +11,8 @@ spec:
       domains:
       - ${DOMAIN}
       - www.${DOMAIN}
+      - ${ALT_DOMAIN}
+      - www.${ALT_DOMAIN}
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-prod
@@ -19,4 +21,6 @@ spec:
   dnsNames:
   - ${DOMAIN}
   - www.${DOMAIN}
+  - ${ALT_DOMAIN}
+  - www.${ALT_DOMAIN}
 ---
