@@ -154,7 +154,7 @@ resource "google_container_cluster" "cluster_1" {
 
 ---
 
-## Bullets 
+## Bullets
 
 Unordered bullets look like this:
 
@@ -171,6 +171,12 @@ Whereas ordered ones look like this:
 2. B
 3. C
 4. 4
+
+---
+
+## Icons
+
+https://www.webfx.com/tools/emoji-cheat-sheet/
 
 ---
 
