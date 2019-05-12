@@ -216,9 +216,7 @@ function _local-test() {
     (curl -s http://${local_hostname}:32080/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
     (curl -s http://${local_hostname}:32080/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
     (curl -s http://${local_hostname}:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
-    (curl -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year, our newly-formed Platforms Team") || _fail_message "A Year In Google Cloud Post missing intro sentence"
-
-    curl http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/
+    (curl -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep "This time last year") || _fail_message "A Year In Google Cloud Post missing intro sentence"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
