@@ -26,7 +26,7 @@ spec:
         backend:
           serviceName: ${APP_NAME}-svc
           servicePort: 32080
-  - host: www.${ALT_DOMAIN}
+  - host: ${ALT_DOMAIN}
     http:
       paths:
       - path: /
@@ -34,6 +34,35 @@ spec:
           serviceName: ${APP_NAME}-svc
           servicePort: 32080
   - host: www.${ALT_DOMAIN}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${APP_NAME}-svc
+          servicePort: 32080
+# some hard-coded entries I've chosen to send here also
+  - host: www.alexmoss.co.uk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${APP_NAME}-svc
+          servicePort: 32080
+  - host: www.mosses.info
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${APP_NAME}-svc
+          servicePort: 32080
+  - host: www.alexos.dev
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${APP_NAME}-svc
+          servicePort: 32080
+  - host: www.alexos.info
     http:
       paths:
       - path: /

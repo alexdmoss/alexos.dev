@@ -20,14 +20,21 @@ Building a new blog theme using Hugo.
 - [x] Sweep out any comments
 - [x] CI/CD
 - [x] 404 page - nginx config
-- [ ] www subdomain
+- [x] www subdomain
 - [ ] Google Analytics
 - [ ] Contacts page processing
 - [ ] alexmoss.co.uk redirect
-- [ ] Other domains
+- [x] Other domains
+- [ ] DNS - www.mosses.info
+- [ ] DNS - alexos.io
+- [x] DNS - www.alexos.io
+- [ ] DNS - www.alexos.dev
+- [ ] DNS - www.alexos.info
 
 ### Version 2
 
+- [ ] More efficient way to list domains in ingress?
+- [ ] Email for new domains
 - [ ] Kustomize
 - [ ] Footer line spacing
 - [ ] Restore failing local-test
