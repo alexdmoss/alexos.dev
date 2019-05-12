@@ -19,7 +19,7 @@ spec:
         backend:
           serviceName: ${APP_NAME}-svc
           servicePort: 32080
-  - host: www.{DOMAIN}
+  - host: www.${DOMAIN}
     http:
       paths:
       - path: /
