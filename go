@@ -67,9 +67,9 @@ function build() {
 
 function deploy() {
 
-    _assert_variables_set GCP_PROJECT_NAME APP_NAME DOMAIN NAMESPACE CI_COMMIT_SHA
+    _assert_variables_set GCP_PROJECT_NAME GCP_REGION CLUSTER_NAME APP_NAME DOMAIN NAMESPACE CI_COMMIT_SHA
 
-    _console_msg "Deploying site ..." INFO true
+    _console_msg "Deploying app ..." INFO true
 
     IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
 
@@ -78,39 +78,12 @@ function deploy() {
     echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
     trap "gcloud auth revoke --verbosity=error" EXIT
 
+    gcloud config set project ${GCP_PROJECT_NAME}
+    gcloud config set compute/region ${GCP_REGION}
+    gcloud config set container/cluster ${CLUSTER_NAME}
+    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${GCP_REGION} --project ${GCP_PROJECT_NAME}
 
-    cat ./00-namespace.yml | \
-        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-        kubectl apply -f -
-
-    cat ./01-deployment.yml | \
-        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
-        sed 's#${IMAGE_NAME}#'${IMAGE_NAME}'#g' | \
-        sed 's#${CI_COMMIT_SHA}#'${CI_COMMIT_SHA}'#g' | \
-        kubectl apply -f -
-
-    cat ./02-service.yml | \
-        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
-        kubectl apply -f -
-
-    cat ./03-ingress.yml | \
-        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
-        sed 's#${DOMAIN}#'${DOMAIN}'#g' | \
-        kubectl apply -f -
-
-    cat ./04-certificate.yml | \
-        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
-        sed 's#${DOMAIN}#'${DOMAIN}'#g' | \
-        kubectl apply -f -
-
-    cat ./05-pdb.yml | \
-        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
-        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
-        kubectl apply -f -
+    cat *.yml | envsubst | kubectl apply -n ${NAMESPACE} -f -
 
     _console_msg "Deployment complete" INFO true
 
@@ -216,7 +189,7 @@ function _local-test() {
     (curl -s http://${local_hostname}:32080/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
     (curl -s http://${local_hostname}:32080/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
     (curl -s http://${local_hostname}:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
-    (curl -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep "This time last year") || _fail_message "A Year In Google Cloud Post missing intro sentence"
+    (curl -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year") || _fail_message "A Year In Google Cloud Post missing intro sentence"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR

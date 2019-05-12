@@ -6,6 +6,7 @@ stages:
 variables:
   GCP_PROJECT_NAME: moss-work
   GCP_REGION: europe-west1
+  CLUSTER_NAME: mw-prod
   GOOGLE_CREDENTIALS: $BUILD_KEY
   NAMESPACE: mosstech
   APP_NAME: mosstech
