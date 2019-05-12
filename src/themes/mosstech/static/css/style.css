@@ -323,7 +323,6 @@ input[type="submit"], input[type="reset"], input[type="button"], .button {
     font-size: 0.7rem;
     font-weight: 800;
     height: 4rem;
-    width: 16rem;
     letter-spacing: 0.25rem;
     line-height: 4rem;
     padding: 0 3rem;
@@ -1674,6 +1673,7 @@ ul.actions.pagination .button {
 
 ul.actions.pagination .next {
     text-decoration: none;
+    width: 16rem;
 }
 
 ul.actions.pagination .next:after {
@@ -1689,6 +1689,7 @@ ul.actions.pagination .next:after {
 
 ul.actions.pagination .previous {
     text-decoration: none;
+    width: 16rem;
 }
 
 ul.actions.pagination .previous:before {

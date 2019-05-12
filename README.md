@@ -8,7 +8,7 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
-- [ ] Contacts page processing
+- [x] Contacts page processing
 - [ ] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
 
 ### Testing
