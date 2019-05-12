@@ -28,6 +28,7 @@ Building a new blog theme using Hugo.
 ### Version 2
 
 - [ ] Kustomize
+- [ ] Restore failing local-test
 - [ ] JS - auto-complete.js
 - [ ] JS - html5shiv-printshiv.min.js
 - [ ] JS - jquery.sticky.js
