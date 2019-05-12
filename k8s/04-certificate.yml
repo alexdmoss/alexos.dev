@@ -11,6 +11,7 @@ spec:
         provider: prod-dns
       domains:
       - ${DOMAIN}
+      - www.${DOMAIN}
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-prod
@@ -18,3 +19,4 @@ spec:
   commonName: ${DOMAIN}
   dnsNames:
   - ${DOMAIN}
+  - www.${DOMAIN}

@@ -18,7 +18,7 @@ Building a new blog theme using Hugo.
 - [x] Blog Posts index is showing up in recents
 - [x] Bring in images and markup from Google blog post
 - [x] Sweep out any comments
-- [ ] CI/CD
+- [x] CI/CD
 - [ ] 404 page - nginx config
 - [ ] Contacts page processing
 - [ ] Google Analytics
@@ -28,6 +28,7 @@ Building a new blog theme using Hugo.
 ### Version 2
 
 - [ ] Kustomize
+- [ ] Footer line spacing
 - [ ] Restore failing local-test
 - [ ] JS - auto-complete.js
 - [ ] JS - html5shiv-printshiv.min.js

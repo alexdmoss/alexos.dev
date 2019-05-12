@@ -26,9 +26,11 @@ function build() {
 
     pushd $(dirname $BASH_SOURCE[0]) > /dev/null
 
-    echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-    trap "gcloud auth revoke --verbosity=error" EXIT
-
+    if [[ ${CI_SERVER:-} == "yes" ]]; then
+        echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
+        trap "gcloud auth revoke --verbosity=error" EXIT
+    fi
+    
     mkdir -p "www/"
 
     pushd "www/" > /dev/null
@@ -71,17 +73,21 @@ function deploy() {
 
     _console_msg "Deploying app ..." INFO true
 
-    IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
+    export IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
 
     pushd "k8s/" >/dev/null
 
-    echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-    trap "gcloud auth revoke --verbosity=error" EXIT
+    if [[ ${CI_SERVER:-} == "yes" ]]; then
 
-    gcloud config set project ${GCP_PROJECT_NAME}
-    gcloud config set compute/region ${GCP_REGION}
-    gcloud config set container/cluster ${CLUSTER_NAME}
-    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${GCP_REGION} --project ${GCP_PROJECT_NAME}
+        echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
+        trap "gcloud auth revoke --verbosity=error" EXIT
+
+        gcloud config set project ${GCP_PROJECT_NAME}
+        gcloud config set compute/region ${GCP_REGION}
+        gcloud config set container/cluster ${CLUSTER_NAME}
+        gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${GCP_REGION} --project ${GCP_PROJECT_NAME}
+
+    fi
 
     cat *.yml | envsubst | kubectl apply -n ${NAMESPACE} -f -
 
@@ -182,8 +188,6 @@ function _local-test() {
 
     docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
     trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
-
-    sleep 5
 
     (curl -s http://${local_hostname}:32080/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
     (curl -s http://${local_hostname}:32080/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
