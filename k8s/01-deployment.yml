@@ -25,7 +25,7 @@ spec:
       - name: ${APP_NAME}
         image: ${IMAGE_NAME}:${CI_COMMIT_SHA}
         ports:
-        - containerPort: 80
+        - containerPort: 32080
         workingDir: /app
       restartPolicy: Always
       affinity:

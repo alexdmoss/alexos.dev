@@ -19,4 +19,4 @@ spec:
       - path: /
         backend:
           serviceName: ${APP_NAME}-svc
-          servicePort: 80
+          servicePort: 32080

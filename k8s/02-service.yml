@@ -11,5 +11,5 @@ spec:
   selector:
     app: ${APP_NAME}
   ports:
-  - port: 80
+  - port: 32080
     name: http
