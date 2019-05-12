@@ -22,7 +22,13 @@ function build() {
 
     _console_msg "Building site locally ..."
 
-    _assert_variables_set GCP_PROJECT_NAME GCP_REGION NAMESPACE APP_NAME
+    _assert_variables_set GCP_PROJECT_NAME GCP_REGION NAMESPACE APP_NAME CI_COMMIT_SHA GOOGLE_CREDENTIALS
+
+    pushd $(dirname $BASH_SOURCE[0]) > /dev/null
+
+    echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
+    trap "gcloud auth revoke --verbosity=error" EXIT
+
     mkdir -p "www/"
 
     pushd "www/" > /dev/null
@@ -39,28 +45,21 @@ function build() {
 
     _console_msg "Baking docker image ..."
 
-    # get latest build info pushed to GCR
-    LATEST_TAG=$(gcloud container images list-tags eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME} --sort-by="~timestamp" --limit=1 --format='value(tags)')
-    if [[ $(echo ${LATEST_TAG} | grep -c ",") -gt 0 ]]; then
-    LATEST_TAG=$(echo ${LATEST_TAG} | awk -F, '{print $2}');
-    fi
+    IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
 
-    # might be first build
-    if [[ -z ${LATEST_TAG} ]];then
-        NEW_TAG=0.1
-    else
-        NEW_TAG=$(echo ${LATEST_TAG} | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
-    fi
+    gcloud auth configure-docker 
+    docker pull ${IMAGE_NAME}:latest || true
+    docker build --cache-from ${IMAGE_NAME}:latest --tag ${IMAGE_NAME}:${CI_COMMIT_SHA} .
 
-    docker build -t ${APP_NAME}:${NEW_TAG} .
-
-    _local-test ${NEW_TAG}
+    _local-test ${IMAGE_NAME}:${CI_COMMIT_SHA}
 
     _console_msg "Pushing docker image to registry ..."
 
-    # docker tag ${APP_NAME}:${NEW_TAG} eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}:${NEW_TAG}
-    # docker push ${BUILD_IMAGE}
+    docker tag ${IMAGE_NAME}:${CI_COMMIT_SHA} ${IMAGE_NAME}:latest
+    docker push ${IMAGE_NAME}:${CI_COMMIT_SHA}
 
+    popd >/dev/null 
+    
     _console_msg "Build complete" INFO true 
 
 }
@@ -172,13 +171,13 @@ function _build-test() {
 function _local-test() {
 
     local error=0
-    local tag=${1:-}
+    local image=${1:-}
 
     _console_msg "Running local docker image tests ..."
 
     _assert_variables_set APP_NAME
 
-    docker run -d --name ${APP_NAME} -p 80:80 ${APP_NAME}:${tag}
+    docker run -d --name ${APP_NAME} -p 80:80 ${image}
 
     (curl -s http://localhost/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
     (curl -s http://localhost/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
