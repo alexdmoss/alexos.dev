@@ -8,12 +8,12 @@ jQuery(document).ready(function (e) {
             submitSuccess: function ($form, e) {
                 e.preventDefault()
                 var submitButton = $('input[type=submit]', $form)
+                // if you're copying this code, the API below still won't work even though you have the URL + API Key ;)
                 $.ajax({
                     type: 'POST',
-                    url: '{{ .Site.Params.contactAPI }}',
+                    url: 'https://contact.alexos.dev/api/email/mosstech.io',
                     headers: {
-                        'Origin': '{{ .Site.Title }}',
-                        'API-Key': '{{ .Site.Params.contactKey }}'
+                        'API-Key': 'H3mWAM.ouZZHVtDKPj9iD3pVSjmTlabq70lcJmv'
                     },
                     data: $form.serialize(),
                     beforeSend: function (xhr, opts) {

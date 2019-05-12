@@ -14,8 +14,6 @@ permalinks:
 params:
   author: "@alexdmoss"
   description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
-  contactAPI: "https://contact.alexos.dev/api/email/mosstech.io"
-  contactKey: "H3mWAM.ouZZHVtDKPj9iD3pVSjmTlabq70lcJmv"
   categoriesByCount: true
 
 menu:
