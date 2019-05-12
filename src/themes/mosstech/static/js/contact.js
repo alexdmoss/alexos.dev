@@ -11,6 +11,7 @@ jQuery(document).ready(function (e) {
                 // if you're copying this code, the API below still won't work even though you have the URL + API Key ;)
                 $.ajax({
                     type: 'POST',
+                    crossDomain: true,
                     url: 'https://contact.alexos.dev/api/email/mosstech.io',
                     headers: {
                         'API-Key': 'H3mWAM.ouZZHVtDKPj9iD3pVSjmTlabq70lcJmv'
