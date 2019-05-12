@@ -12,6 +12,8 @@
   <script src="{{ "js/search.js" | relURL }}"></script>
   <script src="{{"js/mosstech.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
 
+  {{ template "_internal/google_analytics.html" . }}
+
 </div>
 </body>
 </html>
