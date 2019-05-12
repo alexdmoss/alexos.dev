@@ -205,6 +205,7 @@ function _local-test() {
     trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
 
     # debug why all tests are failing
+    docker ps
     curl http://localhost:32080/index.html
 
     (curl -s http://localhost:32080/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
