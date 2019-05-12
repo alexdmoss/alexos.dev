@@ -14,7 +14,8 @@ permalinks:
 params:
   author: "@alexdmoss"
   description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
-  contactAPI: "http://localhost:8000/api/email/alchemyst.co.uk"
+  contactAPI: "https://contact.alexos.dev/api/email/mosstech.io"
+  contactKey: "H3mWAM.ouZZHVtDKPj9iD3pVSjmTlabq70lcJmv"
   categoriesByCount: true
 
 menu:
@@ -40,9 +41,6 @@ menu:
       url: "/contact/"
       weight: 4
 
-# googleanalytics: ""
-
-# # config enables search
 outputs:
   home:
   - "HTML"
