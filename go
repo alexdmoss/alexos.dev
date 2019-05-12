@@ -66,33 +66,56 @@ function build() {
 
 function deploy() {
 
-    _assert_variables_set GCP_PROJECT_NAME SITE DOMAIN
+    _assert_variables_set GCP_PROJECT_NAME APP_NAME DOMAIN NAMESPACE CI_COMMIT_SHA
 
-    pushd "app/" >/dev/null
+    _console_msg "Deploying site ..." INFO true
+
+    IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
+
+    pushd "k8s/" >/dev/null
 
     echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-    trap "gcloud auth revoke" EXIT
+    trap "gcloud auth revoke --verbosity=error" EXIT
 
-    _console_msg "Deploying docs site ..." INFO true
 
-    cat app-template.yaml | sed 's/${SITE}/'${SITE}'/g' > app.yaml
-    gcloud app deploy --project ${GCP_PROJECT_NAME} --quiet
+    cat ./00-namespace.yml | \
+        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+        kubectl apply -f -
+
+    cat ./01-deployment.yml | \
+        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
+        sed 's#${IMAGE_NAME}#'${IMAGE_NAME}'#g' | \
+        sed 's#${CI_COMMIT_SHA}#'${CI_COMMIT_SHA}'#g' | \
+        kubectl apply -f -
+
+    cat ./02-service.yml | \
+        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
+        kubectl apply -f -
+
+    cat ./03-ingress.yml | \
+        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
+        sed 's#${DOMAIN}#'${DOMAIN}'#g' | \
+        kubectl apply -f -
+
+    cat ./04-certificate.yml | \
+        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
+        sed 's#${DOMAIN}#'${DOMAIN}'#g' | \
+        kubectl apply -f -
+
+    cat ./05-pdb.yml | \
+        sed 's#${NAMESPACE}#'${NAMESPACE}'#g' | \
+        sed 's#${APP_NAME}#'${APP_NAME}'#g' | \
+        kubectl apply -f -
 
     _console_msg "Deployment complete" INFO true
 
     popd >/dev/null
 
-    _console_msg "Checking HTTP status code for https://${SITE}.${DOMAIN}/ ..."
-
-    # Very basic test that site returns a sensible http-code
-    response_code=$(curl -k -L -o /dev/null -w "%{http_code}" https://${SITE}.${DOMAIN}/)
-
-    if [[ ${response_code:0:1} == "4" ]] || [[ ${response_code:0:1} == "5" ]]; then
-        _console_msg "Test FAILED - HTTP response code was ${response_code}" ERROR
-        exit 1
-    else 
-        _console_msg "Test PASSED - HTTP response code was ${response_code}"
-    fi
+    _smoke-test
 
 }
 
@@ -197,7 +220,23 @@ function _local-test() {
         
     fi
 
-    
+}
+
+function _smoke-test() {
+
+    _assert_variables_set DOMAIN
+
+    _console_msg "Checking HTTP status code for https://${DOMAIN}/ ..."
+
+    # Very basic test that site returns a sensible http-code
+    response_code=$(curl -k -L -o /dev/null -w "%{http_code}" https://${DOMAIN}/)
+
+    if [[ ${response_code:0:1} == "4" ]] || [[ ${response_code:0:1} == "5" ]]; then
+        _console_msg "Test FAILED - HTTP response code was ${response_code}" ERROR
+        exit 1
+    else 
+        _console_msg "Test PASSED - HTTP response code was ${response_code}"
+    fi
 
 }
 

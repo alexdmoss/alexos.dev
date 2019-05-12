@@ -1,7 +1,7 @@
 
 stages:
 - build
-# - deploy
+- deploy
 
 variables:
   GCP_PROJECT_NAME: moss-work
@@ -9,7 +9,7 @@ variables:
   GOOGLE_CREDENTIALS: $BUILD_KEY
   NAMESPACE: mosstech
   APP_NAME: mosstech
-  HOSTNAME: mosstech.io
+  DOMAIN: mosstech.io
 
 build:
   stage: build
@@ -24,13 +24,12 @@ build:
   script: 
   - ./go build
 
-# deploy:
-#   stage: deploy
-#   allow_failure: false
-#   dependencies:
-#   - build
-#   image:
-#   only:
-#   - master
-#   script:
-#   - ./go deploy
+deploy:
+  stage: deploy
+  image: registry.gitlab.com/mosstech/mw-platform/mw-builder
+  dependencies:
+  - build
+  only:
+  - master
+  script:
+  - ./go deploy
