@@ -218,6 +218,8 @@ function _local-test() {
     (curl -s http://${local_hostname}:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
     (curl -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year, our newly-formed Platforms Team") || _fail_message "A Year In Google Cloud Post missing intro sentence"
 
+    curl http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/
+
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
         exit 1
