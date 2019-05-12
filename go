@@ -47,7 +47,7 @@ function build() {
 
     IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
 
-    gcloud auth configure-docker 
+    gcloud auth configure-docker --quiet
     docker pull ${IMAGE_NAME}:latest || true
     docker build --cache-from ${IMAGE_NAME}:latest --tag ${IMAGE_NAME}:${CI_COMMIT_SHA} .
 
@@ -201,6 +201,9 @@ function _local-test() {
     _assert_variables_set APP_NAME
 
     docker run -d --name ${APP_NAME} -p 80:80 ${image}
+
+    # debug why all tests are failing
+    curl http://localhost/index.html
 
     (curl -s http://localhost/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
     (curl -s http://localhost/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
