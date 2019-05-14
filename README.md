@@ -10,15 +10,19 @@ Building a new blog theme using Hugo.
 
 - [x] Contacts page processing
 - [ ] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
+- [ ] Safari: Previous Page button on Posts
+- [ ] Safari: Border bottom showing on post panel (sometimes?)
 
 ### Testing
 
 - [ ] Social share links
 - [ ] Contacts Form
-- [ ] Safari
-- [ ] Firefox
+- [x] Safari
+- [x] Firefox
 - [ ] Edge
-- [ ] Mobile
+- [ ] IE?
+- [ ] Android Mobile
+- [ ] iOS Mobile
 - [x] Analytics
 - [ ] RSS / Atom
 
