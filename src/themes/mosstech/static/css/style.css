@@ -566,6 +566,11 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     width: 100%;
 }
 
+#footer p {
+    margin: 0; padding: 0;
+    margin-bottom: 0.4rem;
+}
+
 /*** Sidebar ***/
 
 #sidebar {

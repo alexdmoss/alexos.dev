@@ -30,7 +30,7 @@
 
         <h2>Recent Posts</h2>
 
-        {{ range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections).ByPublishDate.Reverse }}
+        {{ range first 5 (where .Site.RegularPages "Type" "in" .Site.Params.mainSections).ByPublishDate.Reverse }}
 
         <a href="{{ .Permalink | relLangURL | safeURL }}">
             <article class="recent draw meet">
