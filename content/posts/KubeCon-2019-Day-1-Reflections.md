@@ -1,6 +1,6 @@
 ---
 title: "KubeCon 2019 - Day 1 Reflections"
-date: 2019-05-21T09:00:00-01:00
+date: 2019-05-21T18:00:00-01:00
 author: "@alexdmoss"
 description: "My reflections on a busy first day of KubeCon"
 banner: "/images/barcelona-1.jpg"
