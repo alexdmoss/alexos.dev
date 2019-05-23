@@ -3,14 +3,14 @@ title: "KubeCon 2019 - Day 1 Reflections"
 date: 2019-05-21T18:00:00-01:00
 author: "@alexdmoss"
 description: "My reflections on a busy first day of KubeCon"
-banner: "/images/barcelona-1.jpg"
+banner: "/images/barcelona-main.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
 categories: [ "Conference", "Kubernetes", "CNCF" ]
 ---
 
-{{< figure src="/images/barcelona-1.jpg?width=600px&classes=shadow" title="Photo by Enes on Unplash" >}}
+{{< figure src="/images/barcelona-main.jpg?width=600px&classes=shadow" >}}
 
-<!-- https://unsplash.com/photos/f-DvU93UhTs -->
+---
 
 > Wow - first day of KubeCon and quite an information overload! Don't know how my brain is going to cope with two more days of this - we will see!
 
@@ -40,7 +40,7 @@ This turned out to be a great advert for Google - we see them bursting up to 180
 
 To recreate it in an authentic fashion, they use the data from the experiment itself, and the software used back then (2010 - go-go-gadget Docker) - despite this they're returning a successful result in just a couple of minutes.
 
-![Go-Go-Gadget](/images/gadget.png)
+{{< figure src="/images/gadget.png?width=600px&classes=shadow" >}}
 
 > Apparently anyone can do this as the data & source code is public - I wouldn't fancy paying the GCP bill though :wink:
 
@@ -81,6 +81,8 @@ Janet Kuo did a very nice segment on the Kubernetes project in CNCF itself. I li
 - Today - one of the highest velocity open source projects. It is number 2 on Pull Requests on Github (behind ... Linux), #4 on issues/authors (out of 10's of millions)
 
 Now it is v1.14 and the most stable and mature ever. And hell you can even run it on Windows nodes. Now *that's* crazy.
+
+{{< figure src="/images/k8s-birthday.jpg?width=600px&classes=shadow" >}}
 
 ---
 

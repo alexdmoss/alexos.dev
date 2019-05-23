@@ -3,9 +3,13 @@ title: "KubeCon 2019 - Opening Keynote"
 date: 2019-05-21T09:00:00-01:00
 author: "@alexdmoss"
 description: "My comments on the opening Keynote from KubeCon 2019 in Barcelona"
-banner: "/images/kubecon-2019-keynote-1.jpg"
+banner: "/images/opening-keynote.jpg"
 tags: [ "KubeCon", "CNCF" ]
 categories: [ "Conference", "Kubernetes", "CNCF" ]
+---
+
+{{< figure src="/images/opening-keynote.jpg?width=600px&classes=shadow" >}}
+
 ---
 
 ## Intro by the CNCF Director
@@ -50,7 +54,7 @@ With that in mind, we have ...
 
 A service mesh that isn't Istio. I hear someone joking later in the conference that Istio is the most common open source software to be talked about at a CNCF conference that isn't actually a CNCF project. It does make you wonder why - one to look into later ...
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Data point: Istio still hasn&#39;t been submitted to the CNCF and knative relies on Istio. Pretty clear that Google is playing OSS closer to the vest these days.</p>&mdash; Joe Beda (@jbeda) <a href="https://twitter.com/jbeda/status/1021793060420632576?ref_src=twsrc%5Etfw">July 24, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" align="center"><p lang="en" dir="ltr">Data point: Istio still hasn&#39;t been submitted to the CNCF and knative relies on Istio. Pretty clear that Google is playing OSS closer to the vest these days.</p>&mdash; Joe Beda (@jbeda) <a href="https://twitter.com/jbeda/status/1021793060420632576?ref_src=twsrc%5Etfw">July 24, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 In any event, Linkerd is getting more popular, and now has some much-asked for features (that Istio already has, /cough), like zero-config mTLS and traffic shifting. I feel like I may go to a Linkerd talk later in the week just to see how it looks, or maybe swing by the booth. It has a reputation for being *much* easier to get up and running, and I've certainly found Istio to be painful in a Kubernetes cluster with good security :wink:
 
@@ -85,3 +89,7 @@ This will deliver a single set of APIs for frameworks, libraries, etc to bind to
 ---
 
 The opening keynote rounds out with some conversation about graduated projects (which are up to 6 now, and an extended session on Fluentd). I chose to step out at this point to nose around the exhibition area for a bit before the Sessions started - you know, meet some vendors, ~~find solutions to our business problems~~ blag some T-shirts and stickers, etc.
+
+{{< figure src="/images/kubecon-vendors.jpg?width=600px&classes=shadow" >}}
+
+---
