@@ -1339,6 +1339,10 @@ body.is-menu-visible #wrapper {
     box-shadow: 4px 4px 10px var(--image-shadow-color);
 }
 
+.post-content img.white {
+    background: #fff;
+}
+
 .post-content figcaption h4 {
     padding-top: 1rem;
     text-align: center;
