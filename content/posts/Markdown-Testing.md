@@ -27,6 +27,8 @@ Here's a second paragraph. This one is a lot less ~~boring~~ interesting but at 
 
 > Oh, and here is a blockquote. It should be emphatically emphatic
 
+And finally, [a link](/posts/).
+
 ---
 
 ## Tables
