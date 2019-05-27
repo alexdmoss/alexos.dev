@@ -5,8 +5,10 @@ author: "@alexdmoss"
 description: "Because without observability, well, you really just can't see what's going on"
 banner: "/images/monitoring.jpg"
 tags: [ "KubeCon", "CNCF", "Prometheus", "Grafana", "Cortex", "Loki", "M3", "Logs", "Metrics" ]
-categories: [ "Conference", "Kubernetes", "CNCF", "Telemetry", "Observability" ]
+categories: [ "Conference", "Kubernetes", "CNCF", "Telemetry", "Observability", "Kubecon" ]
 ---
+
+{{< figure src="/images/monitoring.jpg?width=600px&classes=shadow" >}}
 
 One of the (many) topics I was keen to get into while at KubeCon was **observability**. This is something that is just so totally and utterly crucial when running this whole "distributed microservice" thing that you really need good solutions to this stuff to make a success of it.
 

@@ -1,11 +1,12 @@
 ---
-title: "KubeCon 2019 - Opening Keynote"
-date: 2019-05-21T09:00:00-01:00
+title: "KubeCon 2019 - The Keynotes"
+date: 2019-05-23T09:00:00-01:00
 author: "@alexdmoss"
-description: "My comments on the opening Keynote from KubeCon 2019 in Barcelona"
+description: "My summary & thoughts from some of the keynote presentations whilst over at KubeCon 2019 in Barcelona"
 banner: "/images/opening-keynote.jpg"
 tags: [ "KubeCon", "CNCF" ]
-categories: [ "Conference", "Kubernetes", "CNCF" ]
+categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
+aliases: /2019/05/21/kubecon-2019-opening-keynote/
 ---
 
 {{< figure src="/images/opening-keynote.jpg?width=600px&classes=shadow" >}}
@@ -92,4 +93,41 @@ The opening keynote rounds out with some conversation about graduated projects (
 
 {{< figure src="/images/kubecon-vendors.jpg?width=600px&classes=shadow" >}}
 
+See below for some further highlights from the keynotes from the remaining days too!
+
 ---
+
+## Spotify's Culture of Failure
+
+> I'm kidding with the title - I :heart: Spotify :wink:
+
+You really just to have to stand up and clap for folks who are willing to jump up on a stage in front of thousands of people and talk about the mistakes they've made. In this case I'm referring to Spotify ([David Xia](https://twitter.com/davidxia_?lang=en)), who had an extended segment on how they deleted their Kubernetes clusters by accident and why that's a good thing.
+
+Basically, it's a conversation about learning:
+
+- Learning that having multiple tabs in your browesr - some Prod, some Non-Prod -  is dangerous. We've all been there man
+- Learning that your restore processes when you make a boo-boo might not actually be that great, and you probably should've practiced it before
+- Learning that when you're changing things that are big, migrating users gradually so you have a backout plan or continuous availability is super-useful
+- Learning that switching to new tooling (hi Terraform!) pays off in the end, but there's a learning curve that sometimes causes even more boo-boo's
+- Learning that Terraform's state file and declarative nature can just sometimes be a real a%$!
+- Learning that having a great team and culture that supports you when you're bricking it is probably the most important thing of all
+
+---
+
+## Other Customers Are Doing What We Are
+
+There were two other customer talks at the keynotes that resonated with me - one because of the similarities and one due to fresh perspectives.
+
+The first of these was ABN-AMRO - a large bank. They have a similar-ish narrative to ourselves - trying to transform to get ahead in a competitive industry and using containers to help them do that. I pulled out a couple of interesting observations from this talk:
+
+- Firstly, they are starting to see software vendors supply their software in containers. This is something we've talked about internally but not seen come to pass (that I know of, at least). It was one of the things that was cited as a trigger for "we'll have to containers on-premise eventually".
+- They find [the amount of choices out there](https://l.cncf.io) a challenge. My personal opinion is that I like choice, and find myself wrestling on what feels like a daily basis with "we'll pick this technology and make it work for you" versus giving development teams the freedom to choose. I think constantly challenging ourselves on that question is probably a healthy thing - which is why I like [the paved road analogy](https://medium.com/netflix-techblog/how-we-build-code-at-netflix-c5d9bd727f15) so much (because you can go off it!).
+- They've built a dedicated platforms team, like us. They called theirs Stratus. We called ours Nimbus. They have the advantage of a poetic definition - *"low-level clouds characterised by horizontal layering with a uniform base"* - whereas I just think Nimbus sounds cooler :grin:
+- They use - or possibly plan to use - [OPA](https://www.openpolicyagent.org/) for "compliance-as-code", and bringing the same arguments for infra-as-code (pairing, code reviews, etc) to that work. I like this idea. They have a good example of how this can provide early feedback to engineers, with policy that prevents them from creating a public load balancer. In the response the developer gets there's a clear message indicating why, and a place to go for more information and suggested alternatives. Clever stuff.
+- Despite the analogies to my own world, they do however trigger me a little bit with their comments about **software components** being building blocks. This takes this too far in my opinion - this is beyond the platform boundary for me -  engineers need some freedom to innovate! I have some sympathy though that a bank might have some security challenges to face into (they mention "compliant by default"), but I do hope it's not forced ... just paved. And I wish them all the luck in the world in their potential for dependency hell :wink:
+
+The second company I wanted to mention featured [Katie Gamanji](https://twitter.com/k_gamanji?lang=en) from Conde Nast International - a company I confess to never having heard of, despite working in retail - they do digital publishing stuff and are pretty enormous.
+
+I really liked this talk - they have some interesting regional challenges (wanting to run in Russia & China), a historic complexity of running decentralised IT in their local markets (that they wanted to unify in a good way), and they were very open about their tech stack and how they made their choices. Even though most of their choices are different to my own team's, it's really interesting to hear folks talking about *why* they made the choices they did.
+
+For example - they're running 9 clusters globally now across 100 instances of AWS. This is their current choice, but they've self-hosted their k8s control plane using [Tectonic](https://coreos.com/tectonic/) to give them freedom to port their nodes to other providers in the future if there's good reasons why. Pretty clever stuff.

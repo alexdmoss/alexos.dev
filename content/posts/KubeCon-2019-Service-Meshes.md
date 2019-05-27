@@ -5,14 +5,12 @@ author: "@alexdmoss"
 description: "Service Meshes - a solution to deal with your service mess of microservices"
 banner: "/images/sailboat.jpg"
 tags: [ "KubeCon", "CNCF", "service mesh", "Istio", "Linkerd", "Google" ]
-categories: [ "Conference", "Kubernetes", "CNCF", "Service Mesh" ]
+categories: [ "Conference", "Kubernetes", "CNCF", "Service Mesh", "Kubecon" ]
 ---
 
-So, why service meshes?
+{{< figure src="/images/sailboat.jpg?width=600px&classes=shadow" >}}
 
-~~Because I am architect, and architects are born to love service meshes~~
-
-Because actually I can totally see the value of a service mesh, I just can't quite seem to convince anyone that they're worth biting the bullet on yet.
+So, why service meshes? ~~Because I am architect, and architects are born to love service meshes.~~ Because actually I can totally see the value of a service mesh, I just can't quite seem to convince anyone that they're worth biting the bullet on yet.
 
 It's a design pattern I'm totally sold on and just need to find the killer need for so we can start reaping some of those sweet, sweet benefits. Or crying at the complexity and brittle overlay we've subjected ourselves too. Maybe.
 
@@ -22,7 +20,22 @@ So ... will these talks help me out I wonder?
 
 ---
 
-The first talk I went to was a deep-ish dive on Istio multi-cluster gateway networking - it had a demo involving running Istio's BookInfo sample app across three "cloud" providers - some of its services were spread onto GKE, some in AKS, and some on a bit of bare metal in the guy's house!
+Firstly, I'd like to talk about the keynote of [SMI](https://smi-spec.io/) (Service Mesh Interface). This is hopefully going to prove to be highly relevant, as we aren't running a service mesh in my team currently but I'm convinced we will be in not too long, so taking some of the pressure off making the right decision is helpful.
+
+The goal with SMI is ([I'm paraphrasing massively](https://cloudblogs.microsoft.com/opensource/2019/05/21/service-mesh-interface-smi-release/)):
+
+- common portable APIs across different service mesh technologies - works with the three bigger players (Istio, Linkerd, Consul)
+- apps, tools, the wider ecosystem will all be able to integrate through these standardised APIs
+
+It is being done to help folks get started quickly - i.e. choice is believed to be a barrier, simpler is better, tapping into the ecosystem is good
+
+> My personal opinion on this is focused more around the "simpler is better" comment. I think the barrier for us when it comes to meshes is the complexity it introduces - we would be able to make a choice, and we would trust the wider ecosystem to adapt, but we (and in particular our wider developer community) are ourselves still only just getting our heads round Kubernetes itself, if we're being honest about it
+
+It was a brief segment in the end-of-day keynote, so I would imagine a "watch this space" situation. The video demo was snazzy though if you want to check it out.
+
+---
+
+The first deeper-dive talk I went to covered Istio multi-cluster gateway networking - it had a demo involving running Istio's BookInfo sample app across three "cloud" providers - some of its services were spread onto GKE, some in AKS, and some on a bit of bare metal in the guy's house!
 
 The demo was great, and my takeaway from this talk was more-or-less that you can quite easily join up Istio with its Gateways, but you need to create lots of `ServiceEntry` resources for your services to do this which sucks ... so they're going to do some work to generate this automatically for you. Thanks!
 
@@ -86,7 +99,7 @@ I have a gut feeling that Istio is going to be the eventual answer though.
 
 And on that note ... I did get a chance to chat with some folks from Google on the Istio roadmap and some of my ~~misery~~ experiences with Istio lately.
 
-In summary, I was left with the distinct impression that the GKE Addon was not the way to go. Why? Because it sounds like Istio 1.2 is going to bring with it a lovely Operator. Operators are the best. Banzai Cloud even have an [early working version of it](https://github.com/banzaicloud/istio-operator).
+In summary, I was left with the distinct impression that the GKE Addon was not the way to go. Why? Because it sounds like Istio 1.2 is going to bring with it a [lovely](https://github.com/istio/istio/issues/9333) [Operator](https://discuss.istio.io/t/istio-operator-plans-for-1-2/2227). Operators are the best. Banzai Cloud even have an [early working version of it](https://github.com/banzaicloud/istio-operator).
 
 The operator should make deployments altogether more flexible, composable, and all-round easier. You'll be able to run two of them to help you manage upgrades - or indeed use Google Traffic Director as a managed implementation of this control plane. It also sounds like things are getting simplified with the removal of Mixer and such. The GKE Addon is very much *not* configurable in any way, which makes it feel really hard to interact with or manage when it goes wrong.
 

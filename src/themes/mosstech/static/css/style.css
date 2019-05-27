@@ -203,7 +203,8 @@ strong {
 }
 
 figure {
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 pre {
@@ -1353,7 +1354,12 @@ body.is-menu-visible #wrapper {
     white-space: nowrap;
 }
 
-.post-content ul, ol {
+.post-content ol {
+    margin-left: 2rem;
+    margin-top: 0.8rem;
+}
+
+.post-content ul {
     margin-left: 2rem;
     margin-top: 0.8rem;
     list-style-type: circle;
