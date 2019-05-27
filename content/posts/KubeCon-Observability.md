@@ -1,5 +1,5 @@
 ---
-title: "KubeCon 2019 - Observability"
+title: "KubeCon - Observability"
 date: 2019-05-23T18:00:00-01:00
 author: "@alexdmoss"
 description: "Because without observability, well, you really just can't see what's going on"
@@ -131,3 +131,5 @@ I'm going to list out some of the things I learnt about Loki though that make it
 The downside though, Loki really doesn't look like it's ready yet :cry: ... and we probably need to do something in this space soonish. Loki is still in alpha and they expect it to be in Beta in June. As the speaker puts it: *"When can I use it in Production? Well Grafana use it - it occasionally lost some data, but now it's really stable"* ...
 
 ... cue chuckles from the audience ...
+
+---

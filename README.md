@@ -8,20 +8,20 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
-- [ ] Font size of lists
-- [ ] Padding after final list item
-- [ ] Home: Panel padding when 3x2
+- [x] Font size of lists
+- [x] Padding after final list item
+- [x] Home: Panel padding when 3x2
 - [ ] Links to videos
 - [ ] Check speakers linked to
-- [ ] Alert on blog up
-- [ ] list padding in keynote
-- [ ] Post: vertical centering of metadata
-- [ ] Buttons to highlight like links
-- [ ] Unsplash links
+- [x] Alert on blog up
+- [x] list padding in keynote
+- [x] Post: vertical centering of metadata
+- [x] Buttons colour highlighting broken
 - [x] button sizing
-- [ ] favicon
 - [x] Contacts page processing
+- [ ] Unsplash links
 - [ ] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
+- [ ] favicon
 - [ ] Safari: Previous Page button on Posts
 - [ ] Safari: Border bottom showing on post panel (sometimes?)
 
@@ -40,6 +40,10 @@ Building a new blog theme using Hugo.
 
 ### Version 2
 
+- [ ] Broken link finder
+- [ ] Small image in the Recent Posts
+- [ ] Image optimizer
+- [ ] Minify in build
 - [ ] Probes
 - [ ] More efficient way to list domains in ingress?
 - [ ] Email for new domains

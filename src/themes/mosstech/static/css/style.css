@@ -324,9 +324,9 @@ input[type="submit"], input[type="reset"], input[type="button"], .button {
     font-size: 0.7rem;
     font-weight: 800;
     height: 4rem;
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.2rem;
     line-height: 4rem;
-    padding: 0 3rem;
+    padding: 0 2rem;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -340,8 +340,8 @@ input[type="submit"], input[type="reset"], input[type="button"], .button {
     color: var(--button-border-color);
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .button:hover
-input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus, .button:focus
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .button:hover,
+input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus, .button:focus,
 input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active, .button:active {
     background-color: var(--button-hover-bg-color);
     border: 1px solid var(--button-hover-color)  !important;
@@ -1068,6 +1068,7 @@ body.is-menu-visible #wrapper {
     display: block;
     float: right;
     margin: 0 auto;
+    margin-left: 1rem;
     width: 15rem;
     height: 8rem;
     border: 1px solid var(--post-color);
@@ -1186,7 +1187,9 @@ body.is-menu-visible #wrapper {
 }
 
 .post-title {
-    padding: 1.75rem 3rem 1rem 3rem;
+    display: table;
+    height: 12rem;
+    padding-left: 2rem;
     -moz-flex-grow: 1;
     -webkit-flex-grow: 1;
     -ms-flex-grow: 1;
@@ -1194,13 +1197,18 @@ body.is-menu-visible #wrapper {
     -ms-flex: 1;
     flex: 1;
 }
+@media screen and (max-width: 1350px) {
+    .post-title {
+        height: 16rem;
+    }
+}
 @media screen and (max-width: 768px) {
     .post-title {
         width: 100%;
+        height: auto;
         padding: 0.75rem 1rem 1rem 1.5rem;
     }
 }
-
 
 .post-title > :last-child {
     margin-bottom: 0;
@@ -1209,7 +1217,6 @@ body.is-menu-visible #wrapper {
 .post-title h1 {
     transition: color 0.2s ease, border-bottom-color 0.2s ease;
     text-transform: uppercase;
-    margin-bottom: 0;
     letter-spacing: 0.25rem;
     font-size: 1.5rem;
     line-height: 2.5;
@@ -1237,46 +1244,59 @@ body.is-menu-visible #wrapper {
     }
 }
 
-
-.post-data {
-    display: inline-block;
-    padding: 3.75rem 3rem 1.75rem 3rem;
+.post-metadata {
+    display: table;
+    padding-right: 3rem;
     border-left: solid 1px var(--border-color);
-    min-width: 17rem;
-    width: 17rem;
+    min-width: 16rem;
+    width: 16rem;
+    height: 12rem;
     text-align: right;
+    vertical-align: middle;
+}
+@media screen and (max-width: 1350px) {
+    .post-metadata {
+        height: 16rem;
+    }
 }
 @media screen and (max-width: 768px) {
-    .post-data {
+    .post-metadata {
          width: 100%;
+         height: auto;
          border: none;
          text-align: left;
          padding: 0rem 1rem 1.75rem 1.5rem;
     }
 }
 
-.post-data > * {
+.post-header-box {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.post-metadata > * {
     margin: 0 0 1rem 0;
 }
 
-.post-data > :last-child {
+.post-metadata > :last-child {
     margin-bottom: 0;
 }
 
-.post-data h3 {
+.post-metadata h3 {
     font-weight: 800;
 }
 
-.post-data h3, .post-data h4, .post-data h5 {
-    display: block;
+.post-metadata h3, .post-metadata h4, .post-metadata h5 {
     font-size: 0.7rem;
     letter-spacing: 0.25rem;
-    margin-top: 0.5rem;
     text-transform: uppercase;
     white-space: nowrap;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 @media screen and (max-width: 768px) {
-    .post-data h3, .post-data h4, .post-data h5 {
+    .post-metadata h3, .post-metadata h4, .post-metadata h5 {
         letter-spacing: 0.15rem;
     }
 }
@@ -1362,10 +1382,12 @@ body.is-menu-visible #wrapper {
 .post-content ul {
     margin-left: 2rem;
     margin-top: 0.8rem;
+    margin-bottom: 2rem;
     list-style-type: circle;
 }
 
 .post-content li {
+    font-size: 1rem;
     margin-bottom: 0.8rem;
 }
 
@@ -1647,9 +1669,10 @@ body.is-menu-visible #wrapper {
 
 .panel-title {
     margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.6rem !important;
     font-size: 1.2rem;
     font-weight: bold;
+    line-height: 1.8rem;
 }
 
 .panel-description {
@@ -1666,6 +1689,7 @@ body.is-menu-visible #wrapper {
 /*** Pagination ***/
 
 ul.actions {
+    margin-top: 2rem;
     cursor: default;
     list-style: none;
     padding-left: 0;
@@ -1684,6 +1708,7 @@ ul.actions li:last-child {
 }
 
 ul.actions.pagination .button {
+    width: 21rem;
     line-height: 2rem;
     height: auto;
     white-space: normal;
@@ -1693,7 +1718,6 @@ ul.actions.pagination .button {
 
 ul.actions.pagination .next {
     text-decoration: none;
-    width: 20rem;
 }
 
 ul.actions.pagination .next:after {
@@ -1709,7 +1733,6 @@ ul.actions.pagination .next:after {
 
 ul.actions.pagination .previous {
     text-decoration: none;
-    width: 20rem;
 }
 
 ul.actions.pagination .previous:before {

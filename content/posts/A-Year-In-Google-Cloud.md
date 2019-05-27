@@ -91,4 +91,6 @@ What does that mean in practice? Well, we are working on things like:
 - Introducing new cross-cutting capabilities such as API management, service meshes and distributed caching, because we’re going to need them and — let’s be honest — they’re cool!
 - Beyond that, who knows? As we design more event-based architectures, I can see things like serverless technologies (perhaps through the emerging [Knative](https://cloud.google.com/knative/)) playing a big role.
 
-Let’s just say, it’ll be really interesting to see what a similar post at the end of 2019 has to say about things …
+Let’s just say, it’ll be really interesting to see what a similar post at the end of 2019 has to say about things ...
+
+---

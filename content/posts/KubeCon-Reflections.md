@@ -1,8 +1,8 @@
 ---
-title: "KubeCon 2019 - Reflections"
+title: "KubeCon - Reflections"
 date: 2019-05-24T09:00:00-01:00
 author: "@alexdmoss"
-description: "KubeCon 2019 - My reflections on the conference as a whole"
+description: "KubeCon 2019, Barcelona - my reflections on the conference as a whole"
 banner: "/images/barcelona-main.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
@@ -112,7 +112,7 @@ First there was the introduction of [SMI](https://smi-spec.io/) (Service Mesh In
 
 I also listened to 1&1 talk about some of the challenges they'd experienced with Istio which mimicked my own, and took in a talk on an alternative mesh technology, [Linkerd](https://linkerd.io), which I liked the sound of and am tempted to try as an alternative. That said, my suspicion is that, in the end, we'll still end up on Istio due to the richer features and fast-moving development resolving some of these challenges before we get round to needing it.
 
-If you're interested in an elaboration on these points, [check out my other post here](/2019/05/23/kubecon-2019-service-meshes/).
+If you're interested in an elaboration on these points, [check out my other post here](/2019/05/23/kubecon-service-meshes/).
 
 ---
 
@@ -122,7 +122,7 @@ If you're interested in an elaboration on these points, [check out my other post
 
 <!-- https://unsplash.com/photos/p6gQCmySSO4 -->
 
-I also deliberately took in a number of talks on observability tools - in large part because it's an area of focus for my team at the moment. Over here, you can read [my more detailed thoughts on this topic](/2019/05/23/kubecon-2019-observability/).
+I also deliberately took in a number of talks on observability tools - in large part because it's an area of focus for my team at the moment. Over here, you can read [my more detailed thoughts on this topic](/2019/05/23/kubecon-observability/).
 
 We actually have three different angles on this:
 
@@ -152,7 +152,7 @@ I hope I'll have an excuse to write more about this topic soon once I've got han
 
 ## Wrap Up
 
-And that wasn't all either - I went to some other really interesting specialist tracks, including a couple of sessions on [Open Policy Agent](https://www.openpolicyagent.org/) & [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) (which I think we should use!), Multi-Cluster Ingress, dynamic pod autoscaling, a Custom Deployment Controller, plus some weird and wonderful Kubernetes failure scenarios. For more details on these, [see my Other Cool Things post](/2019/05/23/kubecon-2019-other-cool-things/).
+And that wasn't all either - I went to some other really interesting specialist tracks, including a couple of sessions on [Open Policy Agent](https://www.openpolicyagent.org/) & [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) (which I think we should use!), Multi-Cluster Ingress, dynamic pod autoscaling, a Custom Deployment Controller, plus some weird and wonderful Kubernetes failure scenarios. For more details on these, [see my Other Cool Things post](/2019/05/23/kubecon-other-cool-things/).
 
 All-in-all, it was a really fantastic conference with loads and loads of technical depth on an incredibly diverse platform ecosystem which is supported by an active and enthusiastic community.
 
@@ -163,3 +163,5 @@ All-in-all, it was a really fantastic conference with loads and loads of technic
 ## All The Sessions I Went To
 
 If you're curious what sessions I went to, here's a full list, with video links:
+
+Every Session Video: https://www.youtube.com/playlist?list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3

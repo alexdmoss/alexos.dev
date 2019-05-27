@@ -1,5 +1,5 @@
 ---
-title: "KubeCon 2019 - The Keynotes"
+title: "KubeCon - The Keynotes"
 date: 2019-05-23T09:00:00-01:00
 author: "@alexdmoss"
 description: "My summary & thoughts from some of the keynote presentations whilst over at KubeCon 2019 in Barcelona"
@@ -131,3 +131,5 @@ The second company I wanted to mention featured [Katie Gamanji](https://twitter.
 I really liked this talk - they have some interesting regional challenges (wanting to run in Russia & China), a historic complexity of running decentralised IT in their local markets (that they wanted to unify in a good way), and they were very open about their tech stack and how they made their choices. Even though most of their choices are different to my own team's, it's really interesting to hear folks talking about *why* they made the choices they did.
 
 For example - they're running 9 clusters globally now across 100 instances of AWS. This is their current choice, but they've self-hosted their k8s control plane using [Tectonic](https://coreos.com/tectonic/) to give them freedom to port their nodes to other providers in the future if there's good reasons why. Pretty clever stuff.
+
+---

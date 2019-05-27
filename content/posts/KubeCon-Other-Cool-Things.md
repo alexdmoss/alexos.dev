@@ -1,8 +1,8 @@
 ---
-title: "KubeCon 2019 - Other Cool Things"
+title: "KubeCon - Other Cool Things"
 date: 2019-05-23T23:00:00-01:00
 author: "@alexdmoss"
-description: "This entry goes through some of the other tool things I learnt at KubeCon that don't fit neatly into my other posts!"
+description: "Some of the other tool things I learnt at KubeCon that don't fit neatly into other posts!"
 banner: "/images/kube-donuts.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
@@ -10,7 +10,7 @@ categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
 
 {{< figure src="/images/kube-donuts.jpg?width=600px&classes=shadow" title="Yes, this was a wall of donuts to celebrate Kubernetes 5th birthday!" >}}
 
-I'm going to use this blog post to talk about a couple of other things I learnt about while at KubeCon 2019. These don't slow neatly into [my](/2019/05/23/kubecon-2019-the-keynotes/) [other](/2019/05/23/kubecon-2019-service-meshes/) [posts](/2019/05/23/kubecon-2019-observability/) from my time at the conference, but I still felt they were interesting enough to call out separately.
+I'm going to use this blog post to talk about a couple of other things I learnt about while at KubeCon 2019. These don't slow neatly into [my](/2019/05/23/kubecon-the-keynotes/) [other](/2019/05/23/kubecon-service-meshes/) [posts](/2019/05/23/kubecon-observability/) from my time at the conference, but I still felt they were interesting enough to call out separately.
 
 ---
 

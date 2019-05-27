@@ -1,8 +1,8 @@
 ---
-title: "KubeCon 2019 - Service Meshes"
+title: "KubeCon - Service Meshes"
 date: 2019-05-23T20:00:00-01:00
 author: "@alexdmoss"
-description: "Service Meshes - a solution to deal with your service mess of microservices"
+description: "A potential solution for dealing with your lovingly crafted and delightfully distributed service mess"
 banner: "/images/sailboat.jpg"
 tags: [ "KubeCon", "CNCF", "service mesh", "Istio", "Linkerd", "Google" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Service Mesh", "Kubecon" ]
@@ -104,3 +104,5 @@ In summary, I was left with the distinct impression that the GKE Addon was not t
 The operator should make deployments altogether more flexible, composable, and all-round easier. You'll be able to run two of them to help you manage upgrades - or indeed use Google Traffic Director as a managed implementation of this control plane. It also sounds like things are getting simplified with the removal of Mixer and such. The GKE Addon is very much *not* configurable in any way, which makes it feel really hard to interact with or manage when it goes wrong.
 
 This is pretty fab if it does come to pass. I feel reassured that we can wait a little longer - Istio is currently on a quarterly cadence and 1.1 is out already. So, fingers crossed!
+
+---
