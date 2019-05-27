@@ -6,6 +6,8 @@ description: "Some of the other tool things I learnt at KubeCon that don't fit n
 banner: "/images/kube-donuts.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
+aliases:
+- /2019/05/23/kubecon-2019-other-cool-things/
 ---
 
 {{< figure src="/images/kube-donuts.jpg?width=600px&classes=shadow" title="Yes, this was a wall of donuts to celebrate Kubernetes 5th birthday!" >}}

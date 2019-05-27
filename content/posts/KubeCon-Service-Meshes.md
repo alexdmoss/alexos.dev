@@ -6,6 +6,8 @@ description: "A potential solution for dealing with your lovingly crafted and de
 banner: "/images/sailboat.jpg"
 tags: [ "KubeCon", "CNCF", "service mesh", "Istio", "Linkerd", "Google" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Service Mesh", "Kubecon" ]
+aliases:
+- /2019/05/23/kubecon-2019-service-meshes/
 ---
 
 {{< figure src="/images/sailboat.jpg?width=600px&classes=shadow" >}}

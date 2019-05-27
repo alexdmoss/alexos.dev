@@ -6,6 +6,8 @@ description: "Because without observability, well, you really just can't see wha
 banner: "/images/monitoring.jpg"
 tags: [ "KubeCon", "CNCF", "Prometheus", "Grafana", "Cortex", "Loki", "M3", "Logs", "Metrics" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Telemetry", "Observability", "Kubecon" ]
+aliases:
+- /2019/05/23/kubecon-2019-observability/
 ---
 
 {{< figure src="/images/monitoring.jpg?width=600px&classes=shadow" >}}

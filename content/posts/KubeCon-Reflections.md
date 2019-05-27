@@ -6,7 +6,10 @@ description: "KubeCon 2019, Barcelona - my reflections on the conference as a wh
 banner: "/images/barcelona-main.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
-aliases: /2019/05/21/kubecon-2019-day-1-reflections/
+aliases:
+- /2019/05/21/kubecon-2019-day-1-reflections/
+- /2019/05/22/kubecon-2019-day-2-reflections/
+- /2019/05/24/kubecon-2019-reflections/
 ---
 
 {{< figure src="/images/barcelona-main.jpg?width=600px&classes=shadow" title="Barcelona night skyline - taken from Riot Games' website" >}}

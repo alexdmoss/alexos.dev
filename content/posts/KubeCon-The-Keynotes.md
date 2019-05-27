@@ -6,7 +6,9 @@ description: "My summary & thoughts from some of the keynote presentations whils
 banner: "/images/opening-keynote.jpg"
 tags: [ "KubeCon", "CNCF" ]
 categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
-aliases: /2019/05/21/kubecon-2019-opening-keynote/
+aliases: 
+- /2019/05/21/kubecon-2019-opening-keynote/
+- /2019/05/21/kubecon-2019-keynote-1/
 ---
 
 {{< figure src="/images/opening-keynote.jpg?width=600px&classes=shadow" >}}
