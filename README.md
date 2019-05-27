@@ -8,7 +8,15 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
+- [ ] Font size of lists
+- [ ] Padding after final list item
+- [ ] Home: Panel padding when 3x2
+- [ ] Links to videos
+- [ ] Check speakers linked to
+- [ ] Alert on blog up
 - [ ] list padding in keynote
+- [ ] Post: vertical centering of metadata
+- [ ] Buttons to highlight like links
 - [ ] Unsplash links
 - [x] button sizing
 - [ ] favicon
