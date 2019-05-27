@@ -22,7 +22,7 @@ I went to a couple of talks focusing on some proposals for improving Kubernetes 
 
 ### M-M-M-M-Multi-Cluster Ingress
 
-The first of these was about ingresses from a couple of Googlers - Rohit Ramkumar & Bowei Du. I do enjoy a good load balancer talk, I do. Topics included:
+The [first of these](https://www.youtube.com/watch?v=Ne9UJL6irXY) was about ingresses from a couple of Googlers - Rohit Ramkumar & Bowei Du. I do enjoy a good load balancer talk, I do. Topics included:
 
 - Should we even have ingresses at all?
 - Assuming yes, how portable, extensible, featured should it be? The current one has been dumbed down to ensure it's portable - at what cost? They actually got divisive responses from users when they surveyed on this topic too
@@ -40,7 +40,7 @@ At the moment, Kubernetes is limited. No way! Well, about this specific thing it
 
 > So, this talk was about, well, umm, changing it to be mutable instead. Sounds simple enough, right?
 
-Well apparently doing that sort of thing ain't so simple - there's loads of code in the Kubernetes Core (in particular, the Scheduler and Kubelet) that assume it is.
+Well [apparently doing that sort of thing ain't so simple](https://www.youtube.com/watch?v=58uRFofXUyw) - there's loads of code in the Kubernetes Core (in particular, the Scheduler and Kubelet) that assume it is.
 
 At the moment, the Vertical Pod Autoscaler will both recommend and (if you enable it) recreate your pods based on its sizing recommendations. This change would allow it to do this without restarting them. For certain kinds of pods (not Java, /sigh). Still, we have other stuff too that could benefit from this. And I'm sure at some point we'll rewrite everything in Golang when Google's completely taken over the world. Or if they don't, then maybe Rust?
 
@@ -50,7 +50,7 @@ At the moment, the Vertical Pod Autoscaler will both recommend and (if you enabl
 
 ## Intuit, Argo & The Custom Deployment Controller
 
-I really want to give a special mention to Intuit (of finance/accounting software fame). They had a couple of their engineers (Danny & Alex) on stage talking about a customer controller they've created and open sourced *(to a big round of applause - lovely!)*.
+I really want to give a special mention to Intuit (of finance/accounting software fame). They had a couple of [their engineers (Danny & Alex) on stage talking about](https://www.youtube.com/watch?v=yeVkTTO9nOA) a customer controller they've created and open sourced *(to a big round of applause - lovely!)*.
 
 So, why did they write their own controller? Well, they have a pure GitOps philosophy going on, and really wanted their deployments to follow that methodology - even when their development teams were making use of things like [Blue/Green](https://martinfowler.com/bliki/BlueGreenDeployment.html) and [Canary](https://martinfowler.com/bliki/CanaryRelease.html)  deployments. There's no built-in approach in Kubernetes to follow these sort of techniques.
 
@@ -103,9 +103,9 @@ All in all, really impressed with their talk and the things they've achieved her
 
 In some of the specialist tracks I went to, I learnt several other interesting things too.
 
-For example, I started the day learning about some proposals around a Multi Cluster Ingress - Ingress v2 basically *(yes please, looked great!)*, an intro to SPIFFE and SPIRE *(which sounded useful but a bit early-days for folks like us, perhaps)*, some wildly sensible folks from Lyft & Triller talking about permissions options in Kubernetes *(reassuringly, we are doing a lot of things in this space already - I did learn some funky things about Admission Controllers and Open Policy Agent though)*.
+For example, I started the day learning about some proposals around a Multi Cluster Ingress - Ingress v2 basically *(yes please, looked great!)*, an [intro to SPIFFE and SPIRE](https://www.youtube.com/watch?v=Rx6PMptyEtg) *(which sounded useful but a bit early-days for folks like us, perhaps)*, some wildly [sensible folks from Lyft & Triller](https://www.youtube.com/watch?v=TZ73EBP2a9Q) talking about permissions options in Kubernetes *(reassuringly, we are doing a lot of things in this space already - I did learn some funky things about Admission Controllers and Open Policy Agent though)*.
 
-The latter inspired me sufficiently to go to a more thorough talk on [Open Policy Agent Gatekeeper](https://github.com/open-policy-agent/gatekeeper) at the expense of some other interesting stuff - presented by folks from Google & Microsoft. It works through a set of CRDs so feels more config-y than code-y - although there is code buried in the templates you produce. This sounds like something we should get into - it's only in Alpha at the mo. They worked through a demo of four policy enforcement use-cases:
+The latter inspired me sufficiently to go to [a more thorough talk](https://www.youtube.com/watch?v=Yup1FUc2Qn0) on [Open Policy Agent Gatekeeper](https://github.com/open-policy-agent/gatekeeper) at the expense of some other interesting stuff - presented by folks from Google & Microsoft. It works through a set of CRDs so feels more config-y than code-y - although there is code buried in the templates you produce. This sounds like something we should get into - it's only in Alpha at the mo. They worked through a demo of four policy enforcement use-cases:
 
 - All namespaces must have a label that lists a point of contact
 - All pods must have an upper bound for resource usage
@@ -122,7 +122,7 @@ These sort of things sounds highly relevant to me. I know our team have tried it
 
 ## Kubernetes Failure Scenarios
 
-One of the more technically deep sessions I went to was by Datadog (Laurent Bernaille & Robert Boll) of monitoring tools fame. Their talk was on a top 10 of "surprising" Kubernetes failure scenarios.
+One of the more technically deep sessions I went to [was by Datadog](https://www.youtube.com/watch?v=QKI-JRs2RIE) (Laurent Bernaille & Robert Boll) of monitoring tools fame. Their talk was on a top 10 of "surprising" Kubernetes failure scenarios.
 
 {{< figure src="/images/failure.jpg?width=600px&classes=shadow" title="Uh-oh, need coffee. Photo by Nathan Dumlao on Unsplash" >}}
 
@@ -151,3 +151,57 @@ Their key takeaways were:
 4. Containers are not really contained
 
 ---
+
+## All The Sessions I Went To
+
+If you're curious what sessions I went to, here's a full list, with video links:
+
+[Playlist with every single session from KubeCon](https://www.youtube.com/playlist?list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3
+) - see you next year!
+
+### Tuesday
+
+- [Keynote: Stitching Things Together](https://www.youtube.com/watch?v=lmGFgZ889kY&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=19&t=0s) – Dan Kohn, Executive Director, Cloud Native Computing Foundation
+- [Keynote: 2.66 Million](https://www.youtube.com/watch?v=w62T1SN4g6Y&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=20&t=0s) - Cheryl Hung, Director of Ecosystem, Cloud Native Computing Foundation
+- [Keynote: CNCF Project Update](https://www.youtube.com/watch?v=vdxcaR3I2ic&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=21&t=0s) - Bryan Liles, Senior Staff Engineer, VMware
+- [Sponsored Keynote: Network, Please Evolve](https://www.youtube.com/watch?v=KmCfIQFllOM&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=22&t=0s) – Vijoy Pandey, VP/CTO Cloud, Cisco
+- [Ingress V2 and Multicluster Services](https://www.youtube.com/watch?v=Ne9UJL6irXY&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=331&t=0s) - Rohit Ramkumar & Bowei Du
+- [Intro: SPIFFE](https://www.youtube.com/watch?v=Rx6PMptyEtg&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=36&t=0s) - Emiliano Bernbaum & Scott Emmons, Scytale
+- [Fine-Grained Permissions in Kubernetes: What’s Missing, and How to Fix That](https://www.youtube.com/watch?v=TZ73EBP2a9Q&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=329&t=0s) - Vallery Lancey, Lyft & Seth McCombs, Triller
+- [Intro: Open Policy Agent](https://www.youtube.com/watch?v=Yup1FUc2Qn0&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=61&t=0s) - Rita Zhang, Microsoft & Max Smythe, Google
+- [The Multicluster Toolbox](https://www.youtube.com/watch?v=Fv2PKKDgjIQ&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=33&t=0s) - Adrien Trouillaud, Admiralty
+- [Keynote: Welcome Remarks](https://www.youtube.com/watch?v=Npgx6g3Fbds&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=106&t=0s) - Janet Kuo, Software Engineer, Google
+- [Sponsored Keynote: Democratizing Service Mesh on Kubernetes](https://www.youtube.com/watch?v=gDLD8gyd7J8&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=105&t=0s) - Gabe Monroy, Microsoft
+- [Keynote: Kubernetes Project Update](https://www.youtube.com/watch?v=jISu86XmkHE&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=104&t=0s) - Janet Kuo, Software Engineer, Google
+- [Sponsored Keynote: Recursive Kubernetes: Cluster API and Clusters as Cattle](https://www.youtube.com/watch?v=OXSRfl8mYyo&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=103&t=0s) - Joe Beda, Principal Engineer, VMware
+- [Keynote: Reperforming a Nobel Prize Discovery on Kubernetes](https://www.youtube.com/watch?v=CTfp2woVEkA&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=102&t=0s) - Ricardo Rocha, Computing Engineer & Lukas Heinrich, Physicist, CERN
+- [Sponsored Keynote: Expanding the Kubernetes Operator Community](https://www.youtube.com/watch?v=KPOEnFwspiY&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=101&t=0s) - Rob Szumski, Principal Product Manager for OpenShift, Red Hat
+
+### Wednesday
+
+- [Keynote: Opening Remarks](https://www.youtube.com/watch?v=5IvT80d8YVU&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=115&t=0s) - Bryan Liles, Senior Staff Engineer, VMware
+- [Keynote: How Spotify Accidentally Deleted All its Kube Clusters with No User Impact](https://www.youtube.com/watch?v=ix0Tw8uinWs&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=114&t=0s) - David Xia, Infrastructure Engineer, Spotify
+- [Sponsored Keynote: Building a Bigger Tent: Cloud Native, Cultural Change and Complexity](https://www.youtube.com/watch?v=hi5jXcauQE4&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=113&t=0s) - Bob Quillin, VP Developer Relations, Oracle Cloud
+- [Keynote: A Journey to a Centralized, Globally Distributed Platform](https://www.youtube.com/watch?v=D7pbISekc8g&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=112&t=0s) – Katie Gamanji, Cloud Platform Engineer, Condé Nast International
+- [Sponsored Keynote: What I Learned Running 10,000+ Kubernetes Clusters](https://www.youtube.com/watch?v=HXF0QzxUBTw&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=111&t=0s) - Jason McGee, IBM Fellow, IBM
+- [Keynote: Debunking the Myth: Kubernetes Storage is Hard](https://www.youtube.com/watch?v=169w6QlWhmo&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=110&t=0s) - Saad Ali, Senior Software Engineer, Google
+- [Keynote: Closing Remarks](https://www.youtube.com/watch?v=w3wN0PHwgUo&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=109&t=0s) - Bryan Liles, Senior Staff Engineer, VMware
+- [Monitoring at Planet Scale for Everyone](https://www.youtube.com/watch?v=EFutyuIpFXQ&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=200&t=0s) - Rob Skillington, Uber
+- [Resize Your Pods w/o Disruptions aka How to Have a Cake and Eat a Cake](https://www.youtube.com/watch?v=58uRFofXUyw&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=147&t=0s) - Karol Gołąb & Beata Skiba, Google
+- [Benefits of a Service Mesh When Integrating Kubernetes with Legacy Services](https://www.youtube.com/watch?v=vQ2IktsMlgQ&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=176&t=0s) - Stephan Fudeus & David Meder-Marouelli, 1&1 Mail & Media
+- [Reinventing Networking: A Deep Dive into Istio's Multicluster Gateways](https://www.youtube.com/watch?v=-t2BfT59zJA&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=191&t=0s) - Steve Dake, Independent
+- [Deep Dive: Cortex](https://www.youtube.com/watch?v=mYyFT4ChHio&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=162&t=0s) - Tom Wilkie, Grafana Labs & Bryan Boreham, Weaveworks
+- [10 Ways to Shoot Yourself in the Foot with Kubernetes, #9 Will Surprise You](https://www.youtube.com/watch?v=QKI-JRs2RIE&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=195&t=0s)- Laurent Bernaille & Robert Boll, Datadog
+
+### Thursday
+
+- [Keynote: Opening Remarks](https://www.youtube.com/watch?v=VljLVMMtSLk&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=327&t=0s) - Janet Kuo, Software Engineer, Google
+- [Keynote: Kubernetes - Don't Stop Believin'](https://www.youtube.com/watch?v=Rbe0eNXqCoA&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=326&t=0s) – Bryan Liles, Senior Staff Engineer, VMware
+- [Keynote: From COBOL to Kubernetes: A 250 Year Old Bank's Cloud-Native Journey - Laura Rehorst, Product Owner](https://www.youtube.com/watch?v=uRvKGZ_fDPU&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=325&t=0s) - Stratus Platform, ABN AMRO Bank NV & Mike Ryan, DevOps Consultant, backtothelab.io
+- [Keynote: Metrics, Logs & Traces; What Does the Future Hold for Observability?](https://www.youtube.com/watch?v=MkSdvPdS1oA&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=324&t=0s) - Tom Wilkie, VP Product, Grafana Labs & Frederic Branczyk, Software Engineer, Red Hat
+- [Keynote: Closing Remarks](https://www.youtube.com/watch?v=5SToNEA9vgk&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=323&t=0s) - Bryan Liles, Senior Staff Engineer, VMware & Janet Kuo, Software Engineer, Google
+- [DIY Pen-Testing for Your Kubernetes Cluster](https://www.youtube.com/watch?v=fVqCAUJiIn0&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=240&t=0s) - Liz Rice, Aqua Security
+- [Grafana Loki: Like Prometheus, but for Logs](https://www.youtube.com/watch?v=CQiawXlgabQ&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=245&t=0s) - Tom Wilkie, Grafana Labs
+- [Deep Dive: Linkerd](https://www.youtube.com/watch?v=E-zuggDfv0A&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=256&t=0s) - Oliver Gould, Buoyant
+- [How Intuit Does Canary and Blue Green Deployments with a K8s Controller](https://www.youtube.com/watch?v=yeVkTTO9nOA&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=315&t=0s) - Daniel Thomson & Alex Matyushentsev, Intuit
+- [Delivering Serverless Experience on Kubernetes: Beyond Web Applications](https://www.youtube.com/watch?v=VCGlGlBdr-o&list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&index=259&t=0s) - Alex Glikson, Carnegie Mellon University

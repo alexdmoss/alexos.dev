@@ -42,7 +42,7 @@ I'm therefore really interested in solutions to this problem. So today I went to
 
 ---
 
-Starting with M3 - this talk is by [Rob Skillington](https://twitter.com/roskilli?lang=en) from Uber, M3's main creator I think. M3 is a newly open sourced thing that does Prometheus at scale. Great - this is exactly what I want.
+Starting with M3 - [this talk](https://www.youtube.com/watch?v=EFutyuIpFXQ) is by [Rob Skillington](https://twitter.com/roskilli?lang=en) from Uber, M3's main creator I think. M3 is a newly open sourced thing that does Prometheus at scale. Great - this is exactly what I want.
 
 {{< figure src="/images/m3.png?width=400px&classes=shadow,white" title="Cor, look at that logo - strong start!" >}}
 
@@ -77,11 +77,11 @@ Perhaps most intriguingly, Rob also talked about how this has started to be used
 
 ---
 
-I did also take in a session on Cortex, although sadly not the intro one so this one went a bit deeper into how Cortex worked - which without the context was as tricky one for me to follow. But how hard can it be, right?
+I did also take in [a session on Cortex](https://www.youtube.com/watch?v=mYyFT4ChHio), although sadly not the intro one so this one went a bit deeper into how Cortex worked - which without the context was as tricky one for me to follow. But how hard can it be, right?
 
 {{< figure src="/images/cortex.png?width=600px&classes=shadow,white" title="This definitely breaks my 'three box' rule" >}}
 
-This image is taken from their "concepts" readme: https://github.com/cortexproject/cortex/blob/master/docs/architecture.md
+The image above is taken from their ["concepts" readme](https://github.com/cortexproject/cortex/blob/master/docs/architecture.md).
 
 I did pick up a few nuggets about this too:
 
@@ -113,7 +113,7 @@ Bit in the meantime, something mischievious has popped up into the mix ... enter
 
 {{< figure src="/images/loki.jpg?width=300px&classes=shadow" title="Obvious joke, I know" >}}
 
-I went to a talk on this new kid on the block - which is aiming to basically be Prometheus but for logs. The line goes:
+I went to [a talk](https://www.youtube.com/watch?v=CQiawXlgabQ) on this new kid on the block - which is aiming to basically be Prometheus but for logs. The line goes:
 
 > "Horizontally scalable, highly available multi-tenant log aggregation system inspired by Prometheus"
 

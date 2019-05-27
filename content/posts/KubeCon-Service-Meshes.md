@@ -22,7 +22,7 @@ So ... will these talks help me out I wonder?
 
 ---
 
-Firstly, I'd like to talk about the keynote of [SMI](https://smi-spec.io/) (Service Mesh Interface). This is hopefully going to prove to be highly relevant, as we aren't running a service mesh in my team currently but I'm convinced we will be in not too long, so taking some of the pressure off making the right decision is helpful.
+Firstly, I'd like to talk about [the keynote announcement](https://www.youtube.com/watch?v=gDLD8gyd7J8) of [SMI](https://smi-spec.io/) (Service Mesh Interface). This is hopefully going to prove to be highly relevant, as we aren't running a service mesh in my team currently but I'm convinced we will be in not too long, so taking some of the pressure off making the right decision is helpful.
 
 The goal with SMI is ([I'm paraphrasing massively](https://cloudblogs.microsoft.com/opensource/2019/05/21/service-mesh-interface-smi-release/)):
 
@@ -37,7 +37,7 @@ It was a brief segment in the end-of-day keynote, so I would imagine a "watch th
 
 ---
 
-The first deeper-dive talk I went to covered Istio multi-cluster gateway networking - it had a demo involving running Istio's BookInfo sample app across three "cloud" providers - some of its services were spread onto GKE, some in AKS, and some on a bit of bare metal in the guy's house!
+The first [deeper-dive talk](https://www.youtube.com/watch?v=-t2BfT59zJA) I went to covered Istio multi-cluster gateway networking - it had a demo involving running Istio's BookInfo sample app across three "cloud" providers - some of its services were spread onto GKE, some in AKS, and some on a bit of bare metal in the guy's house!
 
 The demo was great, and my takeaway from this talk was more-or-less that you can quite easily join up Istio with its Gateways, but you need to create lots of `ServiceEntry` resources for your services to do this which sucks ... so they're going to do some work to generate this automatically for you. Thanks!
 
@@ -51,7 +51,7 @@ That topic is a blog post in its own right, but the important point for context 
 
 ---
 
-... so a talk from some folks who were also battling with Istio was pretty interesting. These guys (David Meder-Marouelli, Stephan Fudeus) work for 1&1 Mail & Media, a big German ISP / Collab+Productivity tools provider. They have a load of legacy tin scattered around the place as well as a shiny new GKE cluster they like, and they were doing mesh expansion things to join their new Kubernetes workloads with their bare metal legacy. Daunting.
+... so [a talk from some folks](https://www.youtube.com/watch?v=vQ2IktsMlgQ) who were also battling with Istio was pretty interesting. These guys (David Meder-Marouelli, Stephan Fudeus) work for 1&1 Mail & Media, a big German ISP / Collab+Productivity tools provider. They have a load of legacy tin scattered around the place as well as a shiny new GKE cluster they like, and they were doing mesh expansion things to join their new Kubernetes workloads with their bare metal legacy. Daunting.
 
 > This was a super-popular session - the most oversubscribed one I attended - standing room only!
 
@@ -73,7 +73,7 @@ They did note that many of these things are improved in Istio 1.1 apparently, an
 
 Somewhat phased by my Istio conversations, I got a bit rebellious. We may be running on Google Cloud but I thought to myself *"I don't need no Google solution, bring on Linkerd!"*
 
-So I went to a deep-dive talk from their CTO. Who, by the way, seemed like a very nice chap and it was really refreshing to hear from someone clearly so passionate about the product he'd come up with.
+So I went to a [deep-dive talk from their CTO](https://www.youtube.com/watch?v=E-zuggDfv0A). Who, by the way, seemed like a very nice chap and it was really refreshing to hear from someone clearly so passionate about the product he'd come up with.
 
 A little history - Linkerd has been around for a while, relatively speaking. It started in Feb 2016 and had some sort of Mesosphere relationship going on. It joined CNCF in 2017 and went through a product known as Conduit (from the company Buoyant, whom the speaker - [Oliver Gould](https://twitter.com/olix0r?lang=en) - is CTO) before by the sounds of it being reborn as [Linkerd2](https://blog.linkerd.io/2018/09/18/announcing-linkerd-2-0/) - now with even more Kubernetes.
 

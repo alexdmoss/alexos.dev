@@ -11,8 +11,7 @@ Building a new blog theme using Hugo.
 - [x] Font size of lists
 - [x] Padding after final list item
 - [x] Home: Panel padding when 3x2
-- [ ] Links to videos
-- [ ] Check speakers linked to
+- [x] Links to videos
 - [x] Alert on blog up
 - [x] list padding in keynote
 - [x] Post: vertical centering of metadata
@@ -20,7 +19,7 @@ Building a new blog theme using Hugo.
 - [x] button sizing
 - [x] Contacts page processing
 - [ ] Unsplash links
-- [ ] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
+- [x] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
 - [ ] favicon
 - [ ] Safari: Previous Page button on Posts
 - [ ] Safari: Border bottom showing on post panel (sometimes?)
@@ -40,6 +39,7 @@ Building a new blog theme using Hugo.
 
 ### Version 2
 
+- [ ] Consistent emoji
 - [ ] Broken link finder
 - [ ] Small image in the Recent Posts
 - [ ] Image optimizer

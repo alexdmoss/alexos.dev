@@ -50,7 +50,7 @@ And of course, the onus is on us to continue to keep solving the next challenge 
 
 The personal highlight for me was actually - perhaps awkwardly! - nothing to do with helping me in my day-to-day job :grin: I think I just enjoyed it due to how effectively it promoted these technologies as a positive force, combined with the fact that it plucked at the long-ago-sadly-largely-forgotten chords of my time as a scientist.
 
-It was during the keynote at the end of the first day, watching a software engineer + physicist from CERN on stage in front of 7,000 people run a live demo that recreated the analysis used to detect the [Higgs-Boson particle](https://www.bbc.co.uk/news/science-environment-24436781).
+It was during the keynote at the end of the first day, [watching a software engineer + physicist](https://www.youtube.com/watch?v=CTfp2woVEkA) from CERN on stage in front of 7,000 people run a live demo that recreated the analysis used to detect the [Higgs-Boson particle](https://www.bbc.co.uk/news/science-environment-24436781).
 
 {{< figure src="/images/higgs-1.jpg?width=600px&classes=shadow" title="Higgs-Boson CMS Experiment - Kit" >}}
 
@@ -78,7 +78,7 @@ It was really nice to hear so much positivity about Kubernetes, the project that
 
 {{< figure src="/images/k8s-birthday.jpg?width=600px&classes=shadow" >}}
 
-During one of the keynotes, Janet Kuo did a very nice segment on the Kubernetes project in CNCF itself. I liked her timeline narrative:
+During one of the keynotes, [Janet Kuo](https://www.youtube.com/watch?v=w62T1SN4g6Y) did a very nice segment on the Kubernetes project in CNCF itself. I liked her timeline narrative:
 
 {{< figure src="/images/borg.jpg?width=600px&classes=shadow" title="Uh oh, the Borg!" >}}
 
@@ -111,9 +111,9 @@ It was also great to be reminded of the Kubernetes Comic Books *(I picked up a c
 
 Service Meshes have always been an interest for me since I first learnt about the concept in more detail at Google's Next conference last year. Up until now I'd always assumed that Istio would be our answer to that - running on Google Kubernetes Engine after all, and Google are the main contributor to Istio - but I used the opportunity at KubeCon to learn a bit more around the topic.
 
-First there was the introduction of [SMI](https://smi-spec.io/) (Service Mesh Interface). The announcement was brief, but welcome - having these things start to coalesce around a standard can only be a good thing.
+First there was the introduction of [SMI](https://smi-spec.io/) (Service Mesh Interface). The [announcement was brief](https://www.youtube.com/watch?v=gDLD8gyd7J8), but welcome - having these things start to coalesce around a standard can only be a good thing.
 
-I also listened to 1&1 talk about some of the challenges they'd experienced with Istio which mimicked my own, and took in a talk on an alternative mesh technology, [Linkerd](https://linkerd.io), which I liked the sound of and am tempted to try as an alternative. That said, my suspicion is that, in the end, we'll still end up on Istio due to the richer features and fast-moving development resolving some of these challenges before we get round to needing it.
+I also listened to [1&1 talk](https://www.youtube.com/watch?v=vQ2IktsMlgQ) about some of the challenges they'd experienced with Istio which mimicked my own, and took in [a talk](https://www.youtube.com/watch?v=E-zuggDfv0A) on an alternative mesh technology, [Linkerd](https://linkerd.io), which I liked the sound of and am tempted to try as an alternative. That said, my suspicion is that, in the end, we'll still end up on Istio due to the richer features and fast-moving development resolving some of these challenges before we get round to needing it.
 
 If you're interested in an elaboration on these points, [check out my other post here](/2019/05/23/kubecon-service-meshes/).
 
@@ -139,7 +139,7 @@ I therefore was particularly interested to learn more about M3, Cortex and a lit
 
 Logs are useful to debug problems. They're also in my view a trap for metrics to go into. We are doing a really good job lately at avoiding the latter, but that doesn't mean we can continue to get away with providing our engineers with sub-optimal tooling for log analysis.
 
-We already know about the Elastic Stack, but I went to a talk on [Loki](https://grafana.com/loki) just to see what that was about and I liked what I heard - "built for engineers to solve problems" in particular - but it's just too early days I think for us to gamble on it. Probably. Maybe. We will see.
+We already know about the Elastic Stack, but I went to [a talk](https://www.youtube.com/watch?v=CQiawXlgabQ) on [Loki](https://grafana.com/loki) just to see what that was about and I liked what I heard - "built for engineers to solve problems" in particular - but it's just too early days I think for us to gamble on it. Probably. Maybe. We will see.
 
 It was also interesting to observe how crowded the booths for Elastic, Loki, Logz.io and DataDog were. Or maybe folks just wanted the stickers ...
 
@@ -162,9 +162,3 @@ All-in-all, it was a really fantastic conference with loads and loads of technic
 {{< figure src="/images/kubecon-party.jpg?width=600px&classes=shadow" title="Party time at KubeCon!" >}}
 
 ---
-
-## All The Sessions I Went To
-
-If you're curious what sessions I went to, here's a full list, with video links:
-
-Every Session Video: https://www.youtube.com/playlist?list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3

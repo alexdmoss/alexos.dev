@@ -17,7 +17,7 @@ aliases:
 
 ## Intro by the CNCF Director
 
-[Dan Kohn's](https://www.dankohn.com/) talk starts with a screenshot of the game Civ VI - *who doesn't want to see a turn-based strategy game reference in a talk to nearly 8,000 ~~IT professionals~~ geeks* - he is emphasising the idea that in the game you could not train Knights without first discovering Stirrups.
+[Dan Kohn's talk](https://www.youtube.com/watch?v=lmGFgZ889kY) starts with a screenshot of the game Civ VI - *who doesn't want to see a turn-based strategy game reference in a talk to nearly 8,000 ~~IT professionals~~ geeks* - he is emphasising the idea that in the game you could not train Knights without first discovering Stirrups.
 
 {{< figure src="/images/civ.jpg?width=600px&classes=shadow" title="Civ VI Tech Tree" >}}
 
@@ -37,7 +37,7 @@ So why did Kubernetes win?
 
 ## Cheryl Hung - Director of Ecosystem, CNCF
 
-Next up we have Cheryl, whose name I recognise as she runs the [CloudNative London meetup](https://www.meetup.com/Cloud-Native-London/), which I'm a silent member of and am reminded that I really should start going to this one!
+Next up [we have Cheryl](https://www.youtube.com/watch?v=w62T1SN4g6Y), whose name I recognise as she runs the [CloudNative London meetup](https://www.meetup.com/Cloud-Native-London/), which I'm a silent member of and am reminded that I really should start going to this one!
 
 Apparently the CNCF now has 400+ members, with 88 end user community members. The latter are apparently more or less companies that pay to be members (sponsors, you might say?). I suppose it needs to get it's money from somewhere!
 
@@ -47,7 +47,7 @@ According to Github, for the CNCF there are now 2.66 million contributions and 5
 
 ## Brian Liles - Senior Staff Engineer, VMWare
 
-Brian works for VMWare. I'm going to be totally honest, I admit to raising my eyebrows when big vendor folks get up on stage at this sort of conference ... but he totally won me over by singing! He's bringing the energy for sure - his job seems to be to compere some CNCF project updates.
+Brian works for VMWare. I'm going to be totally honest, I admit to raising my eyebrows when big vendor folks get up on stage at this sort of conference ... but he totally won me over by singing! He's bringing the energy for sure - his job seems to be to compere some [CNCF project updates](https://www.youtube.com/watch?v=vdxcaR3I2ic). He would reappear at several points during the Keynotes and I think did a fantastic job both in presenting his own content and stitching together the narrative.
 
 > Maybe I'm being harsh on the big vendors these days - they're trying to change and I've got to be honest - I'm biased.
 
@@ -103,7 +103,7 @@ See below for some further highlights from the keynotes from the remaining days 
 
 > I'm kidding with the title - I :heart: Spotify :wink:
 
-You really just to have to stand up and clap for folks who are willing to jump up on a stage in front of thousands of people and talk about the mistakes they've made. In this case I'm referring to Spotify ([David Xia](https://twitter.com/davidxia_?lang=en)), who had an extended segment on how they deleted their Kubernetes clusters by accident and why that's a good thing.
+You really just to have to stand up and clap for folks who are willing to jump up on a stage in front of thousands of people and talk about the mistakes they've made. In this case I'm referring to Spotify ([David Xia](https://twitter.com/davidxia_?lang=en)), who had [an extended segment](https://www.youtube.com/watch?v=ix0Tw8uinWs) on how they deleted their Kubernetes clusters by accident and why that's a good thing.
 
 Basically, it's a conversation about learning:
 
@@ -120,7 +120,7 @@ Basically, it's a conversation about learning:
 
 There were two other customer talks at the keynotes that resonated with me - one because of the similarities and one due to fresh perspectives.
 
-The first of these was ABN-AMRO - a large bank. They have a similar-ish narrative to ourselves - trying to transform to get ahead in a competitive industry and using containers to help them do that. I pulled out a couple of interesting observations from this talk:
+The [first of these was ABN-AMRO](https://www.youtube.com/watch?v=uRvKGZ_fDPU) - a large bank. They have a similar-ish narrative to ourselves - trying to transform to get ahead in a competitive industry and using containers to help them do that. I pulled out a couple of interesting observations from this talk:
 
 - Firstly, they are starting to see software vendors supply their software in containers. This is something we've talked about internally but not seen come to pass (that I know of, at least). It was one of the things that was cited as a trigger for "we'll have to containers on-premise eventually".
 - They find [the amount of choices out there](https://l.cncf.io) a challenge. My personal opinion is that I like choice, and find myself wrestling on what feels like a daily basis with "we'll pick this technology and make it work for you" versus giving development teams the freedom to choose. I think constantly challenging ourselves on that question is probably a healthy thing - which is why I like [the paved road analogy](https://medium.com/netflix-techblog/how-we-build-code-at-netflix-c5d9bd727f15) so much (because you can go off it!).
@@ -130,7 +130,7 @@ The first of these was ABN-AMRO - a large bank. They have a similar-ish narrativ
 
 The second company I wanted to mention featured [Katie Gamanji](https://twitter.com/k_gamanji?lang=en) from Conde Nast International - a company I confess to never having heard of, despite working in retail - they do digital publishing stuff and are pretty enormous.
 
-I really liked this talk - they have some interesting regional challenges (wanting to run in Russia & China), a historic complexity of running decentralised IT in their local markets (that they wanted to unify in a good way), and they were very open about their tech stack and how they made their choices. Even though most of their choices are different to my own team's, it's really interesting to hear folks talking about *why* they made the choices they did.
+I [really liked this talk](https://www.youtube.com/watch?v=D7pbISekc8g) - they have some interesting regional challenges (wanting to run in Russia & China), a historic complexity of running decentralised IT in their local markets (that they wanted to unify in a good way), and they were very open about their tech stack and how they made their choices. Even though most of their choices are different to my own team's, it's really interesting to hear folks talking about *why* they made the choices they did.
 
 For example - they're running 9 clusters globally now across 100 instances of AWS. This is their current choice, but they've self-hosted their k8s control plane using [Tectonic](https://coreos.com/tectonic/) to give them freedom to port their nodes to other providers in the future if there's good reasons why. Pretty clever stuff.
 
