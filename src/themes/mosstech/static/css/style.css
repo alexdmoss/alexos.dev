@@ -59,6 +59,11 @@
     src: url("../fonts/Exo2-Light.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: 'Exo 2 Bold';
+    font-weight: 300;
+    src: url("../fonts/Exo2-SemiBold.ttf") format("truetype");
+}
 
 @font-face {
     font-family: 'Quicksand';
@@ -179,18 +184,17 @@ hr {
 }
 
 h1, h2, h3, h4, h5 {
+    font-family: 'Quicksand', 'Arial', 'sans-serif';
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
     color: var(--main-font-color);
 }
 
 h1 {
-    font-weight: bold;
     font-size: 1.5rem;
 }
 
 h2 {
-    font-weight: bold;
     font-size: 2rem;
 }
 
@@ -199,7 +203,7 @@ em {
 }
 
 strong {
-    font-weight: bold;
+    font-family: 'Exo 2 Bold', 'Arial', 'sans-serif';
 }
 
 figure {
@@ -270,7 +274,7 @@ table {
 
 table > thead {
     background-color: var(--table-head-bg-color);
-    font-weight: bold;
+    font-family: 'Exo 2 Bold', 'Arial', 'sans-serif';
 }
 
 table > tbody {
@@ -307,6 +311,7 @@ input[type=text], textarea {
     transition: all 0.30s ease-in-out;
     outline: none;
     font-family: 'Exo 2', 'Arial', 'sans-serif';
+    font-size: 0.9rem;
     background-color: transparent;
     color: var(--main-font-color);
 }
@@ -881,7 +886,7 @@ body.is-menu-visible #wrapper {
 }
 
 .recent h3 {
-    font-weight: bold;
+    font-family: 'Exo 2 Bold', 'Arial', 'sans-serif';
 }
 
 .recent p {
@@ -1083,7 +1088,6 @@ body.is-menu-visible #wrapper {
     margin-top: 0.3rem !important;
     margin-bottom: 1rem !important;
     font-size: 1.2rem;
-    font-weight: bold;
 }
 
 .listing-description {
@@ -1323,7 +1327,6 @@ body.is-menu-visible #wrapper {
 
 
 .post-content h2, .post-content h3, .post-content h4, .post-content h5 {
-    font-weight: bold;
     text-transform: none;
     letter-spacing: 0.1rem;
     margin-top: 2.4rem;
@@ -1482,7 +1485,6 @@ body.is-menu-visible #wrapper {
 }
 
 #contacts p.form-label {
-    font-weight: bold;
     width: 15%;
     display: block;
     float: left;
@@ -1677,7 +1679,6 @@ body.is-menu-visible #wrapper {
     margin-top: 1rem !important;
     margin-bottom: 0.6rem !important;
     font-size: 1.2rem;
-    font-weight: bold;
     line-height: 1.8rem;
 }
 
