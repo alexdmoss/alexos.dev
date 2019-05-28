@@ -50,6 +50,7 @@ Building a new blog theme using Hugo.
 - [ ] Kustomize
 - [ ] Footer line spacing
 - [ ] Restore failing local-test
+- [ ] Link to tags/categories
 - [ ] JS - auto-complete.js
 - [ ] JS - html5shiv-printshiv.min.js
 - [ ] JS - jquery.sticky.js
@@ -62,7 +63,7 @@ Building a new blog theme using Hugo.
 - [ ] Print the tags/categories somewhere on posts
 - [ ] How about some tests?
 - [ ] Reclick on share button hides it
-- [ ] Experiment with fonts
+- [x] Experiment with fonts
 - [ ] Hover effects equivalent for thumbs?
 - [ ] Auto-minify css/js
 - [ ] Accessibility testing
