@@ -19,6 +19,8 @@ Building a new blog theme using Hugo.
 - [x] button sizing
 - [x] Contacts page processing
 - [ ] Unsplash links
+- [ ] Image caption wrapping when narrow width
+- [ ] Possibly bugs with categories/tags listing when no trailing slash?
 - [x] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
 - [ ] favicon
 - [ ] Safari: Previous Page button on Posts
