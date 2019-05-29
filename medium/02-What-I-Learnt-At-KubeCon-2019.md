@@ -4,7 +4,7 @@
 
 ---
 
-I was lucky enough to make the trip over to Barcelona last week for [KubeCon + CloudNativeCon 2019](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2019/). We are a big user of Kubernetes here in JL&P, and as we are increasingly pushing the boundaries of the easier out-the-box stuff you can do with it, it was very useful for myself and a colleague to learn more about what others are doing with these sort of technologies and hopefully learn some tricks - or at least share some challenges! - and see what might be coming down the pipeline that might helps us out.
+I was lucky enough to make the trip over to Barcelona last week for [KubeCon + CloudNativeCon 2019](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2019/). We are a big user of Kubernetes here in JL&P, and as we are increasingly pushing the boundaries of the out-the-box stuff you can do with it, it was very useful for myself and a colleague to learn more about what others are doing with these sort of technologies and hopefully learn some tricks - or at least share some challenges! - and see what might be coming down the pipeline that might helps us out.
 
 ---
 
@@ -38,7 +38,7 @@ It was really nice to hear so much positivity about Kubernetes, the project that
 
 During one of the keynotes, [Janet Kuo](https://www.youtube.com/watch?v=w62T1SN4g6Y) did a very nice segment on the Kubernetes project in CNCF itself. I liked her timeline narrative:
 
-- 2003 - Borg was created. No, not in Star Trek, this is Google's collective instead. That was, staggeringly enough, May 1989
+- 2003 - Borg was created. No, not in Star Trek (which was, staggeringly enough, May 1989!), this is Google's collective instead
 - 2006 - Linux cgroups arrived
 - 2008 - Linux adopted the "container" naming convention
 - 2009 - Omega - the next-gen Borg at Google, which heavily influences Kubernetes design
@@ -106,6 +106,8 @@ We are pretty close to needing to provide some sort of distributed tracing tool 
 So the news that the two main open source ways of instrumenting that stuff - OpenTracing & OpenCensus - are joining together in a backwards-compatible way is very pleasing indeed.
 
 I'm hoping we'll have an excuse to write more about this topic soon once we've gotten more hands-on with some of the tooling in this area. It looks very powerful.
+
+<!-- /images/off-and-on-again.jpg -->
 
 ---
 
