@@ -48,7 +48,9 @@ function local_build() {
 
     _local-test ${APP_NAME}:latest
 
-    _console_msg "Built locally - run with: docker run -H "Host: ${DOMAIN}" -p 32080:32080 ${APP_NAME}:latest" INFO true
+    _console_msg "Built locally:
+          - run with:  docker run -p 32080:32080 ${APP_NAME}:latest
+          - test with: curl -H \"Host: ${DOMAIN}\" -s http://localhost:32080/" INFO true
 
     popd >/dev/null 
 
