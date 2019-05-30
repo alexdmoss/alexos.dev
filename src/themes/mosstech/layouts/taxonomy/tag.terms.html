@@ -26,7 +26,7 @@
                 <li>
                 {{ if ne $value.Name "" }}
                     <i class="fas fa-tag link-icon"></i> 
-                    <a href="{{ printf "/%s/%s" $data.Plural $value.Name | urlize | relLangURL }}" class="tag-link">
+                    <a href="{{ printf "/%s/%s" $data.Plural $value.Name | urlize | relLangURL }}/" class="tag-link">
                         {{ $value.Name }}
                     </a>
                     - {{ $value.Count }}
