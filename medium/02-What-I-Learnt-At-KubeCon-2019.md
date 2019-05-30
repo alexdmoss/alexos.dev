@@ -10,11 +10,11 @@ I was lucky enough to make the trip over to Barcelona last week for [KubeCon + C
 
 ## Any Stand-out Themes?
 
-One personal theme I reflect on - in contrast to some of the "big vendor" conferences I've been to in the past - is how nice it is to actually hear from real customers and users of this stuff. Sure, I went to a few talks from the big tech companies, but even then they're presenting very experience-focused content; their speakers are focusing on how they're engaging with the community as a whole, and so on. Not at all sales-pitch-y. This is, I think, pretty brilliant - it meant the conference overall felt more valuable.
+One personal theme I reflect on, in contrast to some of the "big vendor" conferences I've been to in the past, is how nice it is to actually hear from real customers and users of this technology. Sure, I went to a few talks from the big tech companies, but even then they are presenting very experience-focused content; their speakers are focusing on how they're engaging with the community as a whole, and so on. Not at all sales-pitch-y. This is, I think, pretty brilliant - it meant the conference overall felt more valuable.
 
 It's clear that the community around these technologies, with Kubernetes at its foundation, is vibrant. This is fantastic for the future of these sort of services, and it's also pretty clear to me that this is, at least in part, because the people behind it are working very hard on promoting this attitude.
 
-From a technology perspective, people really are actually doing the hybrid & multi-cloud thing. I personally see this as something you should really only do if you absolutely have to (if lock-in scares you, perhaps think about your exit strategy rather than missing out on the benefits of backing just one host?). That said, I get that for some it isn't an option - compliancy for example. So if we *did* have to do this at some point in the future, at least other folks will have trodden down the path a bit.
+From a technology perspective, people really are actually doing the hybrid & multi-cloud thing. I personally see this as something you should really only do if you absolutely have to (if lock-in scares you, perhaps think about your exit strategy rather than missing out on the benefits of backing just one host?). That said, I appreciate that for some it isn't an option - compliancy for example. So if we *did* have to do this at some point in the future, at least other folks will have trodden down the path a bit.
 
 <!-- /images/kubecon-expo-hall.jpg -->
 
@@ -24,7 +24,7 @@ As I work with - and am hopefully seen as someone who helps set the direction fo
 
 > This was definitely a community of platform builders using these tools as the raw blocks to build even better platforms, tailored for their own users (software developers).
 
-Many of these organisations also seem to have started from a place similar to ourselves (*"I need to go faster", "I need to put more powerful tools in the hands of our engineers"*) and they continue to face the same sort of challenges we do (*"how do I choose which option to go with?"*, *"how much do I do / get others to do / leave to product engineers?"*). We are clearly not alone in the questions we're facing.
+Many of these organisations also seem to have started from a place similar to ourselves (*"I need to go faster", "I need to put more powerful tools in the hands of our engineers"*) and they continue to face the same sort of challenges we do (*"how do I choose which option to go with?"*, *"how much do I take on / get others to do / leave to product engineers?"*). We are clearly not alone in the questions we're facing.
 
 And of course, the onus is then on us to continue solving the next challenge, and the challenge after that. We should also be sure to stay on top of the best ways to build platforms, so this doesn't become stale and ineffective - a trap we've fallen into in the past.
 
@@ -32,7 +32,7 @@ And of course, the onus is then on us to continue solving the next challenge, an
 
 ## This Kubernetes Thing Might Catch On
 
-It was really nice to hear so much positivity about Kubernetes - the project that started this whole thing and which turned 5 years old at roughly the date of this conference. There were a few nods to this around the conference centre.
+It was really nice to hear so much positivity about Kubernetes - the project that started this whole thing and which turned 5 years old at roughly this time. There were a few nods to this around the conference centre.
 
 <!-- /images/kubecon-donuts.jpg -->
 
@@ -69,7 +69,7 @@ Service Meshes have been an interest for me since I first learnt about the conce
 
 Firstly, there was the introduction of [SMI](https://smi-spec.io/) (Service Mesh Interface). The [announcement was brief](https://www.youtube.com/watch?v=gDLD8gyd7J8), but welcome - having these things start to coalesce around a standard can only be a good thing.
 
-I also listened to [1&1 talk](https://www.youtube.com/watch?v=vQ2IktsMlgQ) about some of the challenges they'd experienced with Istio which mimicked my own (I've had some real fun and games trying to get the GKE Addon to play nicely with [PodSecurityPolicy](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) - I think I'll [wait for the Operator](https://discuss.istio.io/t/istio-operator-plans-for-1-2/2227)!).
+I also listened to [1&1 talk](https://www.youtube.com/watch?v=vQ2IktsMlgQ) about some of the challenges they'd experienced with Istio which mimicked my own (I've had some real fun and games trying to get the GKE Addon to play nicely with [PodSecurityPolicy](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) - I think we'll [wait for the Operator](https://discuss.istio.io/t/istio-operator-plans-for-1-2/2227)!).
 
 Finally, I took in [a talk](https://www.youtube.com/watch?v=E-zuggDfv0A) on an alternative mesh technology, [Linkerd](https://linkerd.io), which I liked the sound of and am tempted to try as an alternative. That said, my suspicion is that in the end, we'll still end up on Istio, in a large part due to its richer features plus the fact that our concerns will most likely be addressed by the time we get round to implementing it.
 
@@ -87,9 +87,9 @@ We actually have three different angles on this:
 
 ### 1. Prometheus at Scale
 
-We have an emerging scaling problem with Prometheus. At the moment, our Promethei are relatively small but still by far the biggest pods we run and occasionally perturbed by increases in tenant usage. Their standalone nature feels wasteful and limits us to only holding data for (I think) 45 days. Teams want to keep it for longer, which is not unreasonable in my view - we need to do better.
+We have an emerging scaling problem with Prometheus. At the moment, our Promethei are relatively small but still by far the biggest pods we run on our newer version of the platform and are occasionally perturbed by changes in our tenants' usage. Their standalone nature feels wasteful and limits us to only holding data for (I think) 45 days. Teams want to keep it for longer, which is not unreasonable in my view - we need to do better.
 
-I therefore was particularly interested to learn more about [M3](https://eng.uber.com/m3/), [Cortex](https://medium.com/weaveworks/what-is-cortex-2c30bcbd247d) and a little about [Thanos](https://improbable.io/blog/thanos-prometheus-at-scale) as open source solutions to this particular challenge. Whatever we end up picking will probably end up making an interesting blog post in its own right!
+I was therefore particularly interested to learn more about [M3](https://eng.uber.com/m3/), [Cortex](https://medium.com/weaveworks/what-is-cortex-2c30bcbd247d) and a little about [Thanos](https://improbable.io/blog/thanos-prometheus-at-scale) as open source solutions to this particular challenge. Whatever we end up picking will probably end up making an interesting blog post in its own right!
 
 ### 2. The Logging Problem
 
@@ -113,7 +113,7 @@ I'm hoping we'll have an excuse to write more about this topic soon once we've g
 
 ## Wrap Up
 
-And that wasn't all either - I went to some other really interesting specialist tracks, including a couple of sessions on [Open Policy Agent](https://www.openpolicyagent.org/) & [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) (which I think we should use!), Multi-Cluster Ingress, dynamic pod autoscaling, a Custom Deployment Controller, plus some weird and wonderful Kubernetes failure scenarios.
+And that wasn't all either - I went to some other really interesting specialist tracks, including a couple of sessions on [Open Policy Agent](https://www.openpolicyagent.org/) & [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) *(which I think we should use)*, Multi-Cluster Ingress, dynamic pod autoscaling, a Custom Deployment Controller, plus some weird and wonderful Kubernetes failure scenarios.
 
 All-in-all, it was a really fantastic conference with loads and loads of technical depth on an incredibly diverse platform ecosystem, which is supported by an active and enthusiastic community.
 
