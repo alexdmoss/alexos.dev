@@ -19,7 +19,7 @@ aliases:
 
 [Dan Kohn's talk](https://www.youtube.com/watch?v=lmGFgZ889kY) starts with a screenshot of the game Civ VI - *who doesn't want to see a turn-based strategy game reference in a talk to nearly 8,000 ~~IT professionals~~ geeks* - he is emphasising the idea that in the game you could not train Knights without first discovering Stirrups.
 
-{{< figure src="/images/civ.jpg?width=600px&classes=shadow" title="Civ VI Tech Tree" >}}
+{{< figure src="/images/civ.jpg?width=600px&classes=shadow" attr="Civ VI Tech Tree" >}}
 
 He builds on this with further "real" examples of two people independently discovering things - he uses the examples of Facebook *(watch the film the Social Network if you're not sure about this reference!)*, [Natural Evolution](https://www.npr.org/2013/04/30/177781424/he-helped-discover-evolution-and-then-became-extinct?t=1558564125403), [Calculus](https://en.wikipedia.org/wiki/History_of_calculus) - the idea being that simultaneous invention is not an uncommon thing, it is triggered by a spark of creativity and - crucially for his point to land - the pre-requisite things need to be in place (such as computers and the internet, in the case of Facebook).
 

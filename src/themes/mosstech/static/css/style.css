@@ -1373,7 +1373,7 @@ body.is-menu-visible #wrapper {
     background: #fff;
 }
 
-.post-content figcaption h4 {
+.post-content figcaption p {
     text-align: center;
     font-size: 0.7rem;
     letter-spacing: 0.15rem;

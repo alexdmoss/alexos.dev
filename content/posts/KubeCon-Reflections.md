@@ -12,7 +12,7 @@ aliases:
 - /2019/05/24/kubecon-2019-reflections/
 ---
 
-{{< figure src="/images/barcelona-main.jpg?width=600px&classes=shadow" title="Barcelona night skyline - taken from Riot Games' website" >}}
+{{< figure src="/images/barcelona-main.jpg?width=600px&classes=shadow" attr="Barcelona night skyline - taken from Riot Games' website" >}}
 
 ---
 
@@ -24,9 +24,7 @@ This blog post summarises my thoughts on a very entertaining and informative tri
 
 In trying to sum things up, I find myself struggling for any stand-out themes. Thinking about this a little more, I reckon this is probably a fairly natural thing to happen when comparing to "big vendor" conferences where they have large product & marketing teams driving their goals. Here, however, is a community event of largely open source software. Even the larger commercial vendors embrace the spirit of it all. It's actually really refreshing.
 
-{{< figure src="/images/open-shop.jpg?width=600px&classes=shadow" title="Photo by Mike Petrucci on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/c9FQyqIECds -->
+{{< figure src="/images/open-shop.jpg?width=600px&classes=shadow" attr="Photo by Mike Petrucci on Unsplash" attrlink="https://unsplash.com/photos/c9FQyqIECds" >}}
 
 One personal theme I do reflect on is how nice it is to actually hear from real customers and users of this stuff. Sure, I went to a few talks from the big tech companies, but even then they're presenting very experience-focused content; their speakers are focusing on how they're engaging with the community as a whole, and so on. Not at all sales-pitch-y. It's pretty brilliant.
 
@@ -36,9 +34,7 @@ It's clear that the community around these technologies, with Kubernetes at its 
 
 As I work with - and am hopefully seen as someone who helps set the direction for! - a set of "platforms" teams, it was very reassuring to hear from several other end-users of this tech in the enterprise, all approaching things in more or less the same way that we have chosen to. This was definitely a community of platform builders using these tools as the raw blocks to build even better platforms tailored for their own users (software developers).
 
-{{< figure src="/images/lego.jpg?width=600px&classes=shadow" title="Photo by James Pond on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/26vBUtlufFo -->
+{{< figure src="/images/lego.jpg?width=600px&classes=shadow" attr="Photo by James Pond on Unsplash" attrlink="https://unsplash.com/photos/26vBUtlufFo" >}}
 
 Many of these organisations also seem to have started from a place similar to ourselves (*"I need to go faster", "I need to put more powerful tools in the hands of our engineers"*) and they continue to face the same sort of challenges we do (*"how do I choose which option to go with?"*, *"how much do I do / get others to do / leave to engineers?"*). The fact that we're not alone in the problems we're facing is one of those unfortunately reassuring things.
 
@@ -52,11 +48,11 @@ The personal highlight for me was actually - perhaps awkwardly! - nothing to do 
 
 It was during the keynote at the end of the first day, [watching a software engineer + physicist](https://www.youtube.com/watch?v=CTfp2woVEkA) from CERN on stage in front of 7,000 people run a live demo that recreated the analysis used to detect the [Higgs-Boson particle](https://www.bbc.co.uk/news/science-environment-24436781).
 
-{{< figure src="/images/higgs-1.jpg?width=600px&classes=shadow" title="Higgs-Boson CMS Experiment - Kit" >}}
+{{< figure src="/images/higgs-1.jpg?width=600px&classes=shadow" attr="Higgs-Boson CMS Experiment - Kit" >}}
 
 This was pretty sweet stuff. The scale of the physical experiment kit, the need to basically take a photo of a particle that disappears in a billionth of a trillionth of a second (actually, I think they take a photo of the after-effect of this) - it's both staggering and fascinating.
 
-{{< figure src="/images/higgs-2.jpg?width=600px&classes=shadow" title="Higgs-Boson - Decay Model" >}}
+{{< figure src="/images/higgs-2.jpg?width=600px&classes=shadow" attr="Higgs-Boson - Decay Model" >}}
 
 Perhaps more incredibly, the computing is actually more mainstream (for this audience, at least), than I thought. Just a lot of it! They have 70Tb of data across 25,000 files, running across a Kubernetes cluster with 20,000+ cores. They use Ceph, and Redis, and Jupyter - stuff I've heard of and in some cases fiddled around with.
 
@@ -66,7 +62,7 @@ This turned out to be a great advert for Google - we see them bursting up to 180
 
 To recreate it in an authentic fashion, they use the data from the experiment itself, and the software used back then (2010 - go-go-gadget Docker) - despite this they're returning a successful result in just a couple of minutes.
 
-{{< figure src="/images/gadget.png?width=600px&classes=shadow" title="Inspector Gadget. I loved this as a kid!" >}}
+{{< figure src="/images/gadget.png?width=600px&classes=shadow" attr="Inspector Gadget. I loved this as a kid!" >}}
 
 Apparently anyone can do this as the data & source code is public - I wouldn't fancy paying the GCP bill though :wink:
 
@@ -80,7 +76,7 @@ It was really nice to hear so much positivity about Kubernetes, the project that
 
 During one of the keynotes, [Janet Kuo](https://www.youtube.com/watch?v=w62T1SN4g6Y) did a very nice segment on the Kubernetes project in CNCF itself. I liked her timeline narrative:
 
-{{< figure src="/images/borg.jpg?width=600px&classes=shadow" title="Uh oh, the Borg!" >}}
+{{< figure src="/images/borg.jpg?width=600px&classes=shadow" attr="Uh oh, the Borg!" >}}
 
 - 2003 - Borg was created. No, not in Star Trek, this is Google's collective instead. That was, staggeringly enough, May 1989. *Oh man now I feel old*
 - 2006 - cgroups arrived (Linux Control Groups => process containers)
@@ -121,9 +117,7 @@ If you're interested in an elaboration on these points, [check out my other post
 
 ## Observability
 
-{{< figure src="/images/telescope.jpg?width=600px&classes=shadow" title="Photo by Krissana Porto on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/p6gQCmySSO4 -->
+{{< figure src="/images/telescope.jpg?width=600px&classes=shadow" attr="Photo by Krissana Porto on Unsplash" attrlink="https://unsplash.com/photos/p6gQCmySSO4" >}}
 
 I also deliberately took in a number of talks on observability tools - in large part because it's an area of focus for my team at the moment. Over here, you can read [my more detailed thoughts on this topic](/2019/05/23/kubecon-observability/).
 
@@ -159,6 +153,6 @@ And that wasn't all either - I went to some other really interesting specialist 
 
 All-in-all, it was a really fantastic conference with loads and loads of technical depth on an incredibly diverse platform ecosystem which is supported by an active and enthusiastic community.
 
-{{< figure src="/images/kubecon-party.jpg?width=600px&classes=shadow" title="Party time at KubeCon!" >}}
+{{< figure src="/images/kubecon-party.jpg?width=600px&classes=shadow" attr="Party time at KubeCon!" >}}
 
 ---

@@ -16,7 +16,7 @@ So, why service meshes? ~~Because I am architect, and architects are born to lov
 
 It's a design pattern I'm totally sold on and just need to find the killer need for so we can start reaping some of those sweet, sweet benefits. Or crying at the complexity and brittle overlay we've subjected ourselves too. Maybe.
 
-{{< figure src="/images/still-want-to-try.jpg?width=400px" title="This image is also eeriely similar to my old London commute" >}}
+{{< figure src="/images/still-want-to-try.jpg?width=400px" attr="This image is also eeriely similar to my old London commute" >}}
 
 So ... will these talks help me out I wonder?
 

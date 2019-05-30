@@ -192,4 +192,4 @@ Images can be resized, bordered and shadowed:
 
 Shortcode can even be used to caption them:
 
-{{< figure src="https://octodex.github.com/images/dojocat.jpg?width=200px&classes=shadow" title="A cool picture" >}}
+{{< figure src="https://octodex.github.com/images/dojocat.jpg?width=200px&classes=shadow" attr="A cool picture" >}}

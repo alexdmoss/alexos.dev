@@ -16,7 +16,7 @@ This time last year, our newly-formed Platforms Team in John Lewis Online were p
 
 ## Doing That Strategic Thing
 
-{{< figure src="/images/strategic-thing.jpg?width=600px&classes=shadow" title="Photo by rawpixel on Unsplash" >}}
+{{< figure src="/images/strategic-thing.jpg?width=600px&classes=shadow" attr="Photo by rawpixel on Unsplash" >}}
 
 The frontend of johnlewis.com — what we call ‘Browse’ — wasn’t the first thing we built in Google Cloud. There were a couple of teams deliberately given the freedom to experiment in GCP, and they built a number of smaller apps that could quickly get into Production. This helped cultivate the idea that this was good technology to be working with, and we should start using it for bigger things. That, plus the fact that our engineers were chomping at the bit to get their hands on it, really helped generate the initial push it needed. Adopting the cloud for [johnlewis.com](https://www.johnlewis.com/) really felt like an engineer-led venture — more so than any other piece of work I’ve been involved with in my time at JLP.
 
@@ -24,9 +24,7 @@ Choosing to host something business-critical in the cloud still felt like a big 
 
 ## Managed Open Source
 
-{{< figure src="/images/open-source.jpg?width=600px&classes=shadow" title="Photo by Émile Perron on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/xrVDYZRGdw4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText -->
+{{< figure src="/images/open-source.jpg?width=600px&classes=shadow" attr="Photo by Émile Perron on Unsplash" attrlink="https://unsplash.com/photos/xrVDYZRGdw4" >}}
 
 One of the conscious choices we made was not to over-stretch ourselves. We were migrating an application that we knew would be great in cloud — it was built with SpringBoot & Nginx and had no requirement for state (in other words, it was designed for cloud). We also knew from early experimentation that it would fit well into Docker containers, and so Kubernetes to manage it (we’d need to run a lot of them!) was an obvious choice.
 
@@ -38,9 +36,7 @@ In fact, this approach worked so well that we carried this pattern forward as we
 
 ## A Platform for Growth
 
-{{< figure src="/images/platform-growth.jpg?width=600px&classes=shadow" title="Photo by Sven Scheuermeier on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/YhdEgF-qWlI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText -->
+{{< figure src="/images/platform-growth.jpg?width=600px&classes=shadow" attr="Photo by Sven Scheuermeier on Unsplash" attrlink="https://unsplash.com/photos/YhdEgF-qWlI" >}}
 
 So the new johnlewis.com platform went live in February with all our mobile traffic (~40% of the site at the time), and a few months later we flipped all the desktop traffic over too. Thanks to a lot of hard work this went without a hitch, and we were done and dusted by the summer. Great! So, now what?
 
@@ -62,9 +58,7 @@ If you’re familiar with Kubernetes, you’ll recognise that we leaned heavily 
 
 ## A Paved Road, or a Dusty Path?
 
-{{< figure src="/images/paved-road.jpg?width=600px&classes=shadow" title="Photo by Jesse Bowser on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/c0I4ahyGIkA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText -->
+{{< figure src="/images/paved-road.jpg?width=600px&classes=shadow" attr="Photo by Jesse Bowser on Unsplash" attrlink="https://unsplash.com/photos/c0I4ahyGIkA" >}}
 
 Most of the effort with version 2 has revolved around streamlining the on-boarding process for teams, and it is still an area we are continuously improving upon.
 
@@ -76,9 +70,7 @@ That said, we also value contributions from Product Engineers when they’re rea
 
 ## What’s Next?
 
-{{< figure src="/images/whats-next.jpg?width=600px&classes=shadow" title="Photo by Djim Loic on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/ft0-Xu4nTvA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText -->
+{{< figure src="/images/whats-next.jpg?width=600px&classes=shadow" attr="Photo by Djim Loic on Unsplash" attrlink="https://unsplash.com/photos/ft0-Xu4nTvA" >}}
 
 As I’ve alluded to, the use of our new platform is expanding rapidly and the challenge for us is staying on top of all the new features we want to offer to teams as they onboard — as well as making that on-boarding process as slick as possible.
 

@@ -10,7 +10,7 @@ aliases:
 - /2019/05/23/kubecon-2019-other-cool-things/
 ---
 
-{{< figure src="/images/kube-donuts.jpg?width=600px&classes=shadow" title="Yes, this was a wall of donuts to celebrate Kubernetes 5th birthday!" >}}
+{{< figure src="/images/kube-donuts.jpg?width=600px&classes=shadow" attr="Yes, this was a wall of donuts to celebrate Kubernetes 5th birthday!" >}}
 
 I'm going to use this blog post to talk about a couple of other things I learnt about while at KubeCon 2019. These don't slow neatly into [my](/2019/05/23/kubecon-the-keynotes/) [other](/2019/05/23/kubecon-service-meshes/) [posts](/2019/05/23/kubecon-observability/) from my time at the conference, but I still felt they were interesting enough to call out separately.
 
@@ -87,9 +87,7 @@ strategy:
 
 They do a demo, which I have to say looks super-whizzy - they use ArgoCD for their tooling and it has some lovely visualisations. I really liked how it detected and displayed the changes to the Service/Pods in real-time - great for radiator dashboards (rather than `kubectl get pods -w`). There's also a traffic flow visualisation showing the traffic split between blue and green (... in blue or green arrows). Slick.
 
-{{< figure src="/images/argocd-ui.gif?width=600px&classes=shadow" title="Simpler version of the Argo CD UI" >}}
-
-<!-- https://github.com/argoproj/argo-cd -->
+{{< figure src="/images/argocd-ui.gif?width=600px&classes=shadow" attr="Simpler version of the Argo CD UI" attrlink="https://github.com/argoproj/argo-cd" >}}
 
 > As an aside, I popped by the [CodeFresh](https://codefresh.io/) booth while at KubeCon, which also had something similar
 
@@ -116,7 +114,7 @@ These sort of things sounds highly relevant to me. I know our team have tried it
 
 > Most importantly, I learnt that we should be pronouncing it "Oh-pa" not "Oh-Pea-Ay" ... +1 for more pronunciation guides. Now that's a valuable reflection right there.
 
-{{< figure src="/images/opa.png?width=600px&classes=shadow,border" title="OPA Architecture, from their website" >}}
+{{< figure src="/images/opa.png?width=600px&classes=shadow,border" attr="OPA Architecture, from their website" >}}
 
 ---
 
@@ -124,9 +122,7 @@ These sort of things sounds highly relevant to me. I know our team have tried it
 
 One of the more technically deep sessions I went to [was by Datadog](https://www.youtube.com/watch?v=QKI-JRs2RIE) (Laurent Bernaille & Robert Boll) of monitoring tools fame. Their talk was on a top 10 of "surprising" Kubernetes failure scenarios.
 
-{{< figure src="/images/failure.jpg?width=600px&classes=shadow" title="Uh-oh, need coffee. Photo by Nathan Dumlao on Unsplash" >}}
-
-<!-- https://unsplash.com/photos/aZ9X3L1Va2Y -->
+{{< figure src="/images/failure.jpg?width=600px&classes=shadow" attr="Uh-oh, need coffee. Photo by Nathan Dumlao on Unsplash" attrlink="https://unsplash.com/photos/aZ9X3L1Va2Y" >}}
 
 > They run a very large fleet (biggest cluster has 2k nodes, they average 1-1.5k) - for comparison ours are less than 100 ...
 
