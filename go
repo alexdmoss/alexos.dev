@@ -6,8 +6,9 @@ function help() {
   echo -e
   echo -e "    help                     Print this help"
   echo -e "    run                      Runs site locally on for fast-feedback / exploratory testing"
-  echo -e "    build                    Builds the site (creates static HTML) - either locally or as part of CI"
-  echo -e "    deploy                   Deploys site into Google AppEngine. Assumes pre-requisites are done"
+  echo -e "    local_build              Builds the site (HTML + docker image) locally only - no push"
+  echo -e "    build                    Builds the site (HTML + docker image) and pushes to registry"
+  echo -e "    deploy                   Deploys site onto hosts. Assumes pre-requisites are done"
   echo -e 
   exit 0
 }
@@ -18,9 +19,44 @@ function run() {
     popd >/dev/null
 }
 
-function build() {
+
+function local_build() {
 
     _console_msg "Building site locally ..."
+
+    _assert_variables_set GCP_PROJECT_NAME APP_NAME DOMAIN
+
+    mkdir -p "www/"
+
+    pushd "www/" > /dev/null
+    rm -rf ./*
+    popd >/dev/null 
+    
+    pushd "src/" >/dev/null
+    _run_hugo --source .
+    popd >/dev/null
+
+    _build-test
+
+    pushd $(dirname $BASH_SOURCE[0]) >/dev/null
+
+    _console_msg "Baking docker image ..."
+
+    IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
+
+    docker build --tag ${APP_NAME}:latest .
+
+    _local-test ${APP_NAME}:latest
+
+    _console_msg "Built locally - run with: docker run -H "Host: ${DOMAIN}" -p 32080:32080 ${APP_NAME}:latest" INFO true
+
+    popd >/dev/null 
+
+}
+
+function build() {
+
+    _console_msg "Building site ..."
 
     _assert_variables_set GCP_PROJECT_NAME GCP_REGION NAMESPACE APP_NAME CI_COMMIT_SHA GOOGLE_CREDENTIALS
 
@@ -283,7 +319,7 @@ function ctrl_c() {
 
 trap ctrl_c INT
 
-if [[ ${1:-} =~ ^(help|run|build|deploy|test)$ ]]; then
+if [[ ${1:-} =~ ^(help|run|local_build|build|deploy|test)$ ]]; then
   COMMAND=${1}
   shift
   $COMMAND "$@"
