@@ -55,7 +55,6 @@ Building a new blog theme using Hugo.
 - [ ] Kustomize
 - [ ] Footer line spacing
 - [ ] Restore failing local-test
-- [ ] Link to tags/categories
 - [ ] JS - auto-complete.js
 - [ ] JS - html5shiv-printshiv.min.js
 - [ ] JS - jquery.sticky.js
@@ -63,7 +62,6 @@ Building a new blog theme using Hugo.
 - [ ] JS - perfect-scrollbar.jquery.min.js + perfect-scrollbar.min.js
 - [ ] Harden nginx build
 - [ ] Move to Github so there's some proper stuff there
-- [ ] Link to splash photos directly
 - [ ] Not sure about placement of social links on blog post - make a bit more subtle?
 - [ ] Print the tags/categories somewhere on posts
 - [ ] How about some tests?
@@ -90,7 +88,6 @@ Building a new blog theme using Hugo.
 - [ ] Tranquil Peak - animation load of the about page
 - [ ] Slight zoom-in effect on panels / image banners
 - [ ] meghna has some cool animations - especially social buttons at bottom
-- [ ] meghna contact form at bottom?
 - [ ] Pinch animations from https://www.demisto.com/community/
 
 ---

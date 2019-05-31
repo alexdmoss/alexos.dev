@@ -1,16 +1,8 @@
 <div id="sidebar">
 
-  {{ range .AlternativeOutputFormats -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
-
-  {{ with .OutputFormats.Get "rss" -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
-
     <section id="intro">
 
-        <a class="logo" href="/about/"><img src="/images/logo.jpg" /></a>
+        <a class="logo" href="/about/"><img src="/images/logo.jpg" alt="A photo of Me!" /></a>
 
         <p>{{ .Site.Params.description | safeHTML }}</p>
 
