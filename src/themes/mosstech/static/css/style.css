@@ -415,10 +415,6 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     line-height: 1.6rem;
 }
 
-    #header h1 a {
-        font-size: 0.7rem;
-    }
-
 #header h2 {
     padding: 0 0 0 1.5rem;
     white-space: nowrap;
@@ -454,9 +450,11 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     padding-left: 1.2rem;
     line-height: 1.6rem;
     height: 1.6rem;
-    width: 9rem;
     color: var(--header-link-color);
     border-left: 1px solid var(--header-link-color);
+}
+#header .links a:last-child {
+    width: 10rem;
 }
 
 #header .links a:hover, #header .links a:focus, #header .links a:active {
@@ -468,7 +466,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     font-size: 0.9rem;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1120px) {
     #header .links a {
         width: 8rem;
         padding-left: 1rem;

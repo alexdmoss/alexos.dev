@@ -20,11 +20,14 @@ Building a new blog theme using Hugo.
 - [x] Contacts page processing
 - [x] Unsplash links
 - [x] Image caption wrapping when narrow width
-- [ ] Possibly bugs with categories/tags listing when no trailing slash?
+- [x] Bug with links with trailing slash
+- [x] Privacy link has no trailing slash
+- [x] Categories/Tags missing trailing slash
 - [x] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
+- [x] Add tags and categories to menu bar
 - [ ] favicon
 - [ ] Safari: Previous Page button on Posts
-- [ ] Safari: Border bottom showing on post panel (sometimes?)
+- [ ] Safari: Border bottom showing on post panel (first panel only!)
 
 ### Testing
 

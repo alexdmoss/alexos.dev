@@ -18,26 +18,31 @@ params:
 
 menu:
   main:
-    - name: "Home"
-      pre: "<i class='fas fa-home'></i>"
-      title: "Home Page"
-      url: "/"
+    - name: "Posts"
+      pre: "<i class='far fa-newspaper'></i>"
+      title: "Blog Posts"
+      url: "/posts/"
       weight: 1
     - name: "About"
       pre: "<i class='far fa-id-card'></i>"
       title: "About Me"
       url: "/about/"
       weight: 2
-    - name: "Posts"
-      pre: "<i class='far fa-newspaper'></i>"
-      title: "Blog Posts"
-      url: "/posts/"
-      weight: 3
     - name: "Contact"
       pre: "<i class='far fa-envelope'></i>"
       title: "Ways to contact me, including through this website"
       url: "/contact/"
+      weight: 3
+    - name: "Tags"
+      pre: "<i class='fas fa-tag'></i>"
+      title: "Blog posts by tag"
+      url: "/tags/"
       weight: 4
+    - name: "Categories"
+      pre: "<i class='fas fa-box-open'></i>"
+      title: "Blog posts by category"
+      url: "/categories/"
+      weight: 5
 
 outputs:
   home:
