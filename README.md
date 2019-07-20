@@ -25,8 +25,8 @@ Building a new blog theme using Hugo.
 - [x] Categories/Tags missing trailing slash
 - [x] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
 - [x] Add tags and categories to menu bar
+- [x] w3c validator errors
 - [ ] favicon
-- [ ] Safari: Previous Page button on Posts
 - [ ] Safari: Border bottom showing on post panel (first panel only!)
 
 ### Testing
