@@ -10,8 +10,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+      maxSurge: "1"
+      maxUnavailable: "1"
   selector:
     matchLabels:
       app: ${APP_NAME}
@@ -26,6 +26,13 @@ spec:
         ports:
         - containerPort: 32080
         workingDir: /app
+        resources:
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 250Mi
       restartPolicy: Always
       affinity:
         podAntiAffinity:
