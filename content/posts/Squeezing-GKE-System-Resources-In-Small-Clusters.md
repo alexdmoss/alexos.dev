@@ -11,15 +11,13 @@ draft: true
 
 {{< figure src="/images/squeeze-1.jpg?width=600px&classes=shadow" attr="Photo by Davide Ragusa on Unsplash" attrlink="https://unsplash.com/photos/cDwZ40Lj9eo" >}}
 
-**Spoiler Alert!** This blog is really about Vertical Pod Autoscaling. It just might not sound like it at the start :smile
-
-If you're not interested in the process and just want to jump to the good stuff --> I've summarised it at the bottom **LINK**
+**Spoiler Alert!** This blog is *really* about Vertical Pod Autoscaling. It just might not sound like it at the start :smile: If you're not interested in how I got there and just want to jump to the good stuff - I've summarised it at the bottom of the post.
 
 ---
 
-So, this all started because I wanted to try out Elasticsearch. I'm not the biggest fan of Stackdriver Logging, and I wanted to poke around with some alternatives. I have a "personal" GKE cluster that I use to run a few websites, and where I also experiment with these sort of things outside of work. Should be straight-forward I thought to myself. Sure, it's Java - but I don't need it to do that much, I'll just shrink it down enough that it'll start up and I can play around before deciding whether I wanted to do more with it.
+So, this all started because I wanted to try out Elasticsearch. I'm not the biggest fan of GCP's Stackdriver Logging, and I wanted to poke around with some alternatives. I have a "personal" GKE cluster that I use to run a few websites (including this blog!), and where I also experiment with these sort of things outside of work. Should be straight-forward I thought to myself. Sure, it's Java - but I don't need it to do that much, I'll just shrink it down enough that it'll start up ok, play around a bit, and then maybe see if I want to do more with it rather than sign up with some sort of managed logging service instead.
 
-Well, I was dead wrong about that. When I tried it on my personal GKE setup, I quickly realised that there's no way it was going to fit - my nodes were tiny coz I don't want to run up a huge bill every month (3 x g1-small).
+Well, I was dead wrong about that. I quickly realised that there's no way it was going to fit - even with the tiny workloads, too much of the machine resource was gobbled up by things like processes running in `kube-system` and I really didn't want to extend beyond my 3 x g1-small instances if I could possibly help it.
 
 So I could make them temporarily larger while I experiment. But where's the fun in that?! What follows is a look at what's gobbling up all the resource - because let's be honest, the handful of services I run on my GKE aren't going to be doing a huge amount ...
 
@@ -35,6 +33,8 @@ As with all things in life, we start with `bash`:
 kubectl get po $1 \
 -o custom-columns=NAME:.metadata.name,CPU_REQ:.spec.containers[].resources.requests.cpu,CPU_LIMIT:.spec.containers[].resources.limits.cpu,MEMORY_REQ:.spec.containers[].resources.requests.memory,MEMORY_LIMIT:.spec.containers[].resources.limits.memory
 ```
+
+**add note about krew & resource-capacity here**
 
 This ugly-as-hell one-liner produces something that looks a bit nicer than you'd think:
 
@@ -105,7 +105,7 @@ As is standard in our lovely industry, the first thing I did was of course Googl
 
 This sounded perfect! I wouldn't have been writing a blog post if that were true however :sad
 
-There *is* some good advice in here - but a lot of it didn't really apply for me. I wanted to keep Stackdriver Logging/Monitoring switched on in the meantime while I was experimenting - and might need the metric exports anyway later. The Kubernetes Dashboard was already switched off because it has a history of security thingies **LINK** 
+There *is* some good advice in here - but a lot of it didn't really apply for me. I wanted to keep Stackdriver Logging/Monitoring switched on in the meantime while I was experimenting - and might need the metric exports anyway later. The Kubernetes Dashboard was already switched off because it has a history of security thingies **LINK**
 
 Some of the advice is great though - I don't need HPA so could switch that off, I pondered scaling down Kube DNS but in the end decided to leave it. The really interesting one was `ScalingPolicy` for fluentd - I followed this recommendation with a ScalingPolicy as follows and it worked a treat for that component:
 
@@ -262,6 +262,16 @@ Status:
     Last Transition Time:  2019-08-30T17:17:31Z
 ```
 
+## AutoScale ALL THE THINGS
+
+This seemed effective enough that I fancied rolling it out to my actual workloads too (rather than just the stuff in kube-system) - with that in mind I created a lightweight controller (inspired by some of the work my colleagues have done) - code for it is here: https://github.com/alexdmoss/right-sizer. This will skim through Deployments every 10 mins and create VPA Policies for any new workloads it spots. This had rather comedic effects with `updateMode: Auto` :smile
+
+![Uh-oh - BIG cluster!](/images/squeeze-gke-all-auto-vpa.png?width=600px)
+
+As can be seen by the red bars - this happened a few minutes after the VPA policies were created and isn't super-suprising - all those tiny pods of nginx etc were rapidly set with requests of 200-500Mi. For nodes with only 1Gb of spare RAM available, there was no choice but for the Cluster Autoscaler to kick in!
+
+I did this as a bit of an experiment - but it's obvious that we need to be careful with this stuff. The VPA only has limited info to go on, and unless you set `resourcePolicies` to cap it to sensible values (not so practical for a Controller that applies to all Deployments!) it can do some wacky things. For this reason, I switched things back to recommend-only mode for all my workloads, and then used this data to set sensible defaults that I was happy with for my pods.
+
 ## Conclusions
 
 {{< figure src="/images/squeeze-2.jpg?width=600px&classes=shadow" attr="Photo by Josh Appel on Unsplash" attrlink="https://unsplash.com/photos/NeTPASr-bmQ" >}}
@@ -276,11 +286,12 @@ I was sufficiently impressed with VPA that it seemed worth a closer look in a wo
 
 We've recently enabled it in Recommendation mode and started bringing the results into Prometheus and visualising them against current utilisation in Grafana - early days, but looks really cool and I'd like to replicate it in my home setup. Some of the recommendations are pretty quirky though, so it may need a bit more time to bed in ... and letting it auto-resize may not be viable for us given the amount of JVM-based workloads we run (it can't also set -Xmx ...).
 
-## Summary
+## In Summary
 
 1. Get a tool that helps you visualise your resource requests/limits/utilisation. I like `kube-ops-view` as it's simple but effective
 2. In GKE, enable the VerticalPodAutoscaler addon and apply some VPA policies targeting the deployments you are interested in. I started in "Recommend" mode to see what it was going to do first
 3. If you're comfortable with the recommendations and that your workloads can tolerate the restarts - switch on update mode and profit!
+4. If you'd like a controller to set VPAs for all your deployments, have a nose at this for inspiration: https://github.com/alexdmoss/right-sizer
 
 **Add some visualisations here**
 
