@@ -1,5 +1,6 @@
 ---
-title: "KubeCon - My Reflections"
+title: "KubeCon - Reflections"
+panelTitle: "KubeCon - My Reflections"
 date: 2019-05-24T09:00:00-01:00
 author: "@alexdmoss"
 description: "KubeCon 2019, Barcelona - my reflections on the conference as a whole"

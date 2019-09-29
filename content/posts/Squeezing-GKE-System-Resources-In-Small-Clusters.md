@@ -1,5 +1,6 @@
 ---
-title: "Squeezing GKE System Resources"
+title: "Squeezing GKE System Resources In Small Clusters"
+panelTitle: "Squeezing GKE System Resources"
 date: 2019-09-28T18:00:00-01:00
 author: "@alexdmoss"
 description: "Trying to create as much usable Compute in a tiny GKE cluster as possible, by squeezing its system resources"

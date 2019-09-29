@@ -4,6 +4,8 @@
 
 **Spoiler Alert!** This blog is *really* about Vertical Pod Autoscaling and patching of `kube-system` workloads in GKE. It just might not sound like it at the start :smile: If you're not interested in how I got there and just want to jump to the good stuff - I've summarised it at the bottom of the post.
 
+To read about this in a bit more detail, see my personal blog post here: https://mosstech.io/2019/09/28/squeezing-gke-system-resources/
+
 ---
 
 If, like me, you run a small GKE cluster of your own to try out things - perhaps running a handful of small websites on it - then you may find it uncomfortable of your available Compute resources are used up just keeping Google Kubernetes Engine itself running. This is not surprising - Google are going set things up on the assumption you're running things at a reasonable scale, and want to use many of the extra features they've set up for you. But in this case, you don't.

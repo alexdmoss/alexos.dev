@@ -32,6 +32,7 @@ Building a new blog theme using Hugo.
 - [ ] Try a white theme
 - [ ] Link animated underline is too low
 - [ ] Fancy hover box is over-used!
+- [ ] Support for github gists
 - [ ] favicon
 - [ ] Safari: Border bottom showing on post panel (first panel only!)
 

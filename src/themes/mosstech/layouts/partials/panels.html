@@ -10,7 +10,11 @@
               {{ else }}
               <img class="panel-image" src="/images/question-mark.png" alt="{{ $.Scratch.Get "title" }}" />
               {{ end }}
+              {{ with .Param "panelTitle" }}
+              <h3 class="panel-title">{{ safeHTML . }}</h3>
+              {{ else }}
               <h3 class="panel-title">{{ safeHTML .Title }}</h3>
+              {{ end }}
               <p class="panel-description">{{ safeHTML .Description | truncate 175 }}</p>
           </a>
       </div>
