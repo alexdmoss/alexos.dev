@@ -224,7 +224,7 @@ This seemed effective enough that I fancied rolling it out to my actual workload
 
 {{< figure src="/images/squeeze-gke-all-auto-vpa.png?width=800px&classes=shadow,border" attr="Uh-oh - bigger cluster!" >}}
 
-This happened a few minutes after the VPA policies were created and isn't super-suprising when you think about it. All those tiny pods of mostly nginx were getting set with a memory request of 200-500Mi, creating memory pressure on the nodes as can be seen by the red bars. For nodes with only 1Gb of spare RAM available, there was no choice but for the Cluster Autoscaler to kick in! It's a little surprising to me that the VPA was looking at their utilisation and thinking they needed that much memory, but without knowing more about how it makes its calculations it's hard to reason about why.
+This happened a few minutes after the VPA policies were created and isn't super-surprising when you think about it. All those tiny pods of mostly nginx were getting set with a memory request of 200-500Mi, creating memory pressure on the nodes as can be seen by the red bars. For nodes with only 1Gb of spare RAM available, there was no choice but for the Cluster Autoscaler to kick in! It's a little surprising to me that the VPA was looking at their utilisation and thinking they needed that much memory, but without knowing more about how it makes its calculations it's hard to reason about why.
 
 I did this as a bit of an experiment - but it's obvious that we need to be careful with this stuff. The VPA only has limited info to go on, and unless you set `resourcePolicies` to cap it to sensible values (not so practical for a Controller that applies to all Deployments!) it can do some wacky things.
 
