@@ -1,37 +1,29 @@
----
-title: "Squeezing GKE System Resources"
-date: 2019-09-28T18:00:00-01:00
-author: "@alexdmoss"
-description: "Trying to create as much usable Compute in a tiny GKE cluster as possible, by squeezing its system resources"
-banner: "/images/squeeze-1.jpg"
-tags: [ "GKE", "Kubernetes", "GCP", "VPA", "Autoscaling", "Cost" ]
-categories: [ "GKE", "Kubernetes", "Cost" ]
----
+# Squeezing GKE Resources In Small Clusters
 
-{{< figure src="/images/squeeze-1.jpg?width=600px&classes=shadow" attr="Photo by Davide Ragusa on Unsplash" attrlink="https://unsplash.com/photos/cDwZ40Lj9eo" >}}
+<!-- "Photo by Davide Ragusa on Unsplash" https://unsplash.com/photos/cDwZ40Lj9eo -->
 
-**Spoiler Alert!** This blog is *really* about Vertical Pod Autoscaling and patching of `kube-system` workloads in GKE. It just might not sound like it at the start :smile: If you're not interested in how I got there and just want to jump to the good stuff - I've summarised it at the [bottom of the post](#in-summary).
+**Spoiler Alert!** This blog is *really* about Vertical Pod Autoscaling and patching of `kube-system` workloads in GKE. It just might not sound like it at the start :smile: If you're not interested in how I got there and just want to jump to the good stuff - I've summarised it at the bottom of the post.
 
 ---
 
-So, this all started because I wanted to try out Elasticsearch. I'm not the biggest fan of GCP's Stackdriver Logging, and I wanted to poke around with some alternatives. I have a "personal" GKE cluster that I use to run a few websites (including this blog!), and where I also experiment with these sort of things outside of work. Should be straight-forward I thought to myself. Sure, Elastic is Java - but I don't need it to do that much, I'll just shrink it down enough that it'll start up ok, play around a bit, and then maybe see if I want to do more with it or sign up to a managed logging service instead.
+If, like me, you run a small GKE cluster of your own to try out things - perhaps running a handful of small websites on it - then you may find it uncomfortable of your available Compute resources are used up just keeping Google Kubernetes Engine itself running. This is not surprising - Google are going set things up on the assumption you're running things at a reasonable scale, and want to use many of the extra features they've set up for you. But in this case, you don't.
 
-Well, I was dead wrong about that! I quickly realised that there's no way it was going to fit - even with only a collection of tiny workloads, too much of the machine resources were gobbled up by things running in `kube-system` and I really didn't want to extend beyond my 3 x g1-small instances if I could possibly help it.
-
-So, while I could make them temporarily larger while I experiment (yay Cloud), where's the fun in that?! What follows is a look at what's using up those resources and how I can shrink them down to smaller sizes - because let's be honest, the handful of services I run on my GKE cluster aren't going to need them to do a huge amount.
+So, before you run off to AppEngine, there's a few tricks that can be employed to shrink down those resources to make room for more stuff. What follows is my attempts to squeeze a fairly chunky Elasticsearch pod (I wanted to play with EFK) onto a cluster of 3 x g1-small compute instances that cost only a couple of £ a day.
 
 ---
 
-## So, What's Going On?
+## First Things First - What's Going On?
 
-*Visualise the Problem*. No, not some sort of zen meditative technique. What are we actually dealing with here? Surely a dozen or so deployments of tiny web-apps isn't gobbling up 3x1.7Gb? As with all things in life, we start with bash:
+<!-- visualise image -->
+
+Before we start, we need some way of seeing what's going on - what's actually chewing up those resources, and how much?
+
+Now, it's certainly possible to do this with a bit of `kubectl` foo:
 
 ```bash
 kubectl get po $1 \
 -o custom-columns=NAME:.metadata.name,CPU_REQ:.spec.containers[].resources.requests.cpu,CPU_LIMIT:.spec.containers[].resources.limits.cpu,MEMORY_REQ:.spec.containers[].resources.requests.memory,MEMORY_LIMIT:.spec.containers[].resources.limits.memory
 ```
-
-> I later discovered [`kube-capacity`](https://github.com/robscott/kube-capacity) through `krew`, which is a neater way of doing this
 
 This ugly-as-hell one-liner produces something that looks a bit nicer than you'd think:
 
@@ -55,9 +47,11 @@ prometheus-to-sd-smrbm                                      1m        3m        
 stackdriver-metadata-agent-cluster-level-55dfd764dd-8q674   40m       <none>      50Mi         <none>
 ```
 
+> I later discovered [`kube-capacity`](https://github.com/robscott/kube-capacity) through `krew` - `kubectl resource-capacity -p` is a much nicer way of doing this!
+
 Useful, but not sexy. I wanted a view of the packing onto my nodes. For this I dusted down a copy of [kube-ops-view](https://github.com/hjacobs/kube-ops-view/), which is something I'd played around with before. [My deployment](https://github.com/alexdmoss/kube-ops-view) of it is largely based on the sample yaml's with a view tweaks to secure it and make the Redis pod a little happier. This gives something visually more appealing:
 
-{{< figure src="/images/squeeze-gke-elastic-wont-fit.png?width=600px&classes=shadow,border" attr="EFK won't fit!" >}}
+<!-- ![EFK won't fit!](/images/squeeze-gke-elastic-wont-fit.png?width=600px) -->
 
 The red circle shows the unscheduled Elasticsearch pod. The vertical bars - in particular the amber ones, which show memory - tell us that we're not going to be able to fit something this size on here (and Kubernetes won't re-pack the existing workloads as it is honouring their anti-affinity rules). I actually found that even with a third node, it'd struggle because the kube-system workloads expand over time - many of them don't have caps on resource utilisation as we see above from the sexy-bash earlier. This leaves us with pods in a Pending state and FailedScheduling errors due to Insufficient memory.
 
@@ -65,15 +59,9 @@ The red circle shows the unscheduled Elasticsearch pod. The vertical bars - in p
 
 ## Someone Else Has Solved This, Right?
 
-{{< figure src="/images/google-it.jpg?width=400px&classes=shadow,border" >}}
+Naturally, the first thing I did was of course to Google it. Someone else must've had this problem before, right? Turns out Google have produced [a handy document as a starting point](https://cloud.google.com/kubernetes-engine/docs/how-to/small-cluster-tuning). Whilst there is some good advice in here, a lot of it didn't really apply for me. I didn't want to switch off Stackdriver stuff completely, and things like the Kubernetes Dashboard were already switched off.
 
-As is standard in our lovely industry, the first thing I did was of course to Google it. Someone else must've had this problem before, right? Turns out, Google themselves - or rather, they've been asked the question before and produced [a handy document as a starting point](https://cloud.google.com/kubernetes-engine/docs/how-to/small-cluster-tuning).
-
-This sounded perfect! I wouldn't have been writing a blog post if that were true however :disappointed:
-
-There *is* some good advice in here - but a lot of it didn't really apply for me. I wanted to keep Stackdriver Logging/Monitoring switched on in the meantime while I was experimenting - and might need the metric exports anyway later. The Kubernetes Dashboard was already switched off due to [security privileges](https://cloud.google.com/kubernetes-engine/docs/how-to/hardening-your-cluster#disable_kubernetes_dashboard).
-
-One thing from this documentation that I did leap on was the `ScalingPolicy` for fluentd - I followed this recommendation with a policy as follows and it worked a treat:
+One thing from this documentation that did help me was using a `ScalingPolicy` on fluentd - I followed this recommendation with a policy as follows and it worked a treat:
 
 ```yaml
 ---
@@ -98,9 +86,7 @@ spec:
         base: 250Mi
 ```
 
-I was really impressed with this - and thought I'll just do the same thing for other stuff, like `kube-dns`, `kube-proxy`, etc.
-
-Job done right? NOPE! :thumbsdown: Turns out that, by looking a little closer, this relies on an additional component running inside GKE - `fluentd-gcp-scaler` - which is [based on this](https://github.com/justinsb/scaler). I fiddled a little bit with this to see if I could get the same thing running for other stuff in the cluster, before switching my focus ...
+I was really impressed with this - initially thinking I could use the same technique for a bunch of other things in `kube-system` until I realised it worked through the presence of a component installed by GKE called `fluentd-gcp-scaler` - which is [based on this](https://github.com/justinsb/scaler). Whilst it might be possible to juryrig my own implementation of this, I instead switched tack towards something I'd wanted an excuse to try for a while ...
 
 ---
 
@@ -123,8 +109,6 @@ resource "google_container_cluster" "cluster" {
 }
 ```
 
-As part of this I also flipped on Cluster Autoscaling just to see if the behaviours involved here caused my cluster to flex in size (I'd removed my EFK deployment at this point, so we were back at square one).
-
 Getting VPA to do its thing involves applying some straight-forward policy, which looks a bit like this:
 
 ```yaml
@@ -142,7 +126,7 @@ spec:
     updateMode: "Off"
 ```
 
-With this yaml, we create a VPA policy in Recommendation mode - describing the VPA then tells us what it thinks the resource bounds should be. Google's docs are reasonably cagey on how exactly it works things out, but it doesn't seem to take too long to start making recommendations for you.
+With this yaml, we create a VPA policy in Recommendation mode - describing the VPA then tells us what it thinks the resource bounds should be, and it doesn't seem to take too long to start making recommendations for you.
 
 ```sh
 [~ (⎈ |mw-prod:kube-system)]$ kubectl describe vpa metrics-server-v0.3.1
@@ -182,7 +166,7 @@ spec:
 
 I set some VPA definitions up for all the things in `kube-system` and left it for a short while to do its thing. I ended up with the following:
 
-Original:
+Before:
 
 ```sh
 NAME                                                        CPU_REQ   CPU_LIMIT   MEMORY_REQ   MEMORY_LIMIT
@@ -196,7 +180,7 @@ kube-dns-6987857fdb-w8bd4                                   100m      <none>    
 metrics-server-v0.3.1-57c75779f-zmbt6                       43m       43m         55Mi         55Mi
 ```
 
-New:
+After:
 
 ```sh
 NAME                                                        CPU_REQ   CPU_LIMIT   MEMORY_REQ   MEMORY_LIMIT
@@ -211,23 +195,19 @@ kube-dns-6987857fdb-dqtft                                   11m       <none>    
 metrics-server-v0.3.1-57c75779f-mpdvq                       12m       12m         131072k      131072k
 ```
 
-All kinds of wacky units involved! As well as occasionally recommending things at a larger size than I hoped, I also couldn't get it to target certain resources - namely the `kube-proxy` pods which aren't DaemonSets as expected (or Deployments/StatefulSets), but individual pods in the world of GKE (weird, right?). VPA unfortunately only works based on a `targetRef` field (rather than something like a label selector, which it looks like it used to support but now no longer does).
+All kinds of wacky units involved! As well as occasionally recommending things at a larger size than I hoped, I also couldn't get it to target certain resources - namely the `kube-proxy` pods which aren't DaemonSets as expected, but individual pods in the world of GKE (weird, right?). VPA unfortunately only works based on a `targetRef` field (rather than something like a label selector, which it looks like it used to support but now no longer does).
 
 ---
 
 ## AutoScale ALL THE THINGS ... Oops!
 
-{{< figure src="/images/autoscaling-everywhere.jpg?width=400px&classes=shadow,border" >}}
+This seemed effective enough that I fancied rolling it out to my actual workloads too (rather than just the stuff in kube-system) - with that in mind I created a lightweight controller (inspired by the work some colleagues have done) - code for it is here: https://github.com/alexdmoss/right-sizer. This will skim through Deployments every 10 mins and create VPA Policies for any new workloads it spots. This had rather comedic effects with `updateMode: Auto` :smile:, as can be seen by this screenshot from kube-ops-view:
 
-This seemed effective enough that I fancied rolling it out to my actual workloads too (rather than just the stuff in kube-system) - with that in mind I created a lightweight controller (inspired by some of the work my colleagues have done) - code for it is here: https://github.com/alexdmoss/right-sizer. This will skim through Deployments every 10 mins and create VPA Policies for any new workloads it spots. This had rather comedic effects with `updateMode: Auto` :smile:, as can be seen by this screenshot from kube-ops-view:
+<!-- ![Uh-oh - BIG cluster!](/images/squeeze-gke-all-auto-vpa.png?width=800px) -->
 
-{{< figure src="/images/squeeze-gke-all-auto-vpa.png?width=800px&classes=shadow,border" attr="Uh-oh - bigger cluster!" >}}
-
-This happened a few minutes after the VPA policies were created and isn't super-suprising when you think about it. All those tiny pods of mostly nginx were getting set with a memory request of 200-500Mi, creating memory pressure on the nodes as can be seen by the red bars. For nodes with only 1Gb of spare RAM available, there was no choice but for the Cluster Autoscaler to kick in! It's a little surprising to me that the VPA was looking at their utilisation and thinking they needed that much memory, but without knowing more about how it makes its calculations it's hard to reason about why.
+This happened a few minutes after the VPA policies were created and isn't super-suprising when you think about it. All those tiny pods of mostly nginx were getting set with a memory request of 200-500Mi, creating memory pressure on the nodes as can be seen by the red bars. For nodes with only 1Gb of spare RAM available, there was no choice but for the Cluster Autoscaler to kick in.
 
 I did this as a bit of an experiment - but it's obvious that we need to be careful with this stuff. The VPA only has limited info to go on, and unless you set `resourcePolicies` to cap it to sensible values (not so practical for a Controller that applies to all Deployments!) it can do some wacky things.
-
-{{< figure src="/images/fix-that.jpg?width=400px&classes=shadow,border">}}
 
 For obvious reasons, I switched things back to recommend-only mode for all my workloads, and then used this data to set sensible defaults that I was happy with for my pods. I then turned to a slightly more dodgy solution instead ...
 
@@ -239,20 +219,9 @@ I still had a problem. I had some recommendations from VPA, but the beefier work
 
 It's here that things get hacky. I extended my Controller (used earlier to create the VPA policies) to also set some resource requests/limits on the kube-system resources that were on the larger side. [The code for it](https://github.com/alexdmoss/right-sizer/blob/master/main.py#L102) is really quite awful (it was a quick proof-of-concept, honest!) and given it has been ticking away for a few weeks now and seems to be working out ok, I really should clean it up :smile:
 
-It works by periodically (every 10 mins) patching the pods in kube-system with new entries for memory and CPU utilisation. I opted to do this for the following:
+It works by periodically (every 10 mins) patching the pods in kube-system with new entries for memory and CPU utilisation. I opted to do this for kube-dns, heapster and the metrics-server (fluentd was covered by the `ScalingPolicy` mentioned earlier).
 
-```txt
--> [INFO] [2019-09-29 07:08] Patching kube-dns:kubedns with lower resource requests/limits
--> [INFO] [2019-09-29 07:08] Patching kube-dns:dnsmasq with lower resource requests/limits
--> [INFO] [2019-09-29 07:08] Patching heapster with lower resource requests/limits
--> [INFO] [2019-09-29 07:08] Patching heapster-nanny with lower resource requests/limits
--> [INFO] [2019-09-29 07:08] Patching metrics-server with lower resource requests/limits
--> [INFO] [2019-09-29 07:08] Patching metrics-server-nanny with lower resource requests/limits
-```
-
-Fluentd could be skipped because I still had the `ScalingPolicy` from earlier, but that would also be a good candidate.
-
-Fundamentally, the code works like this - not too complicated:
+Fundamentally, the code is not complicated:
 
 ```python
 patch = {
@@ -292,19 +261,17 @@ def patch_deployment(name: str, patch: str):
         logger.error(f"Failed to patch deployment: {name} - error was {e}")
 ```
 
-{{< figure src="/images/dodgy.jpg?width=400px&classes=shadow,border" >}}
-
-As a general approach, I'm not sure how I'd feel about doing this sort of thing in Production for an important system. Google will no doubt be reconciling these things themselves - we're effectively overwriting their chosen settings on a more frequent basis - hence my "hacky" comment. But, for a small cluster used for less important things, this approach does seem to have worked out okay.
+As a general approach, I don't think I'd be comfortable doing this sort of thing in Production for an important system. Google will no doubt be reconciling these things themselves - we're effectively overwriting their chosen settings on a more frequent basis - hence my "hacky" comment. But, for a small cluster used for less important things, this approach does seem to have worked out okay.
 
 ---
 
 ## Conclusions
 
-{{< figure src="/images/squeeze-2.jpg?width=600px&classes=shadow,border" attr="Photo by Josh Appel on Unsplash" attrlink="https://unsplash.com/photos/NeTPASr-bmQ" >}}
+<!-- {{< figure src="/images/squeeze-2.jpg?width=600px&classes=shadow" attr="Photo by Josh Appel on Unsplash" attrlink="https://unsplash.com/photos/NeTPASr-bmQ" >}} -->
 
 So, can I run Elastic now? Yes!
 
-{{< figure src="/images/squeeze-gke-final.png?width=600px&classes=shadow,border" attr="Final Squeeze - Everything Runs" >}}
+![Final Squeeze](/images/squeeze-gke-final.png?width=600px)
 
 As can be seen above, we've just about got it squeezed onto a pair of n1-standard-1's (so slightly bigger machines than when we started, but only two of them - so cost neutral, more or less).
 

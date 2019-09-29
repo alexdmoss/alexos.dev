@@ -73,7 +73,7 @@ $('code').each(function () {
 	var code = $(this),
 		text = code.text();
 
-	if (text.length > 15) {
+	if (text.length > 20) {
 		if (!clipInit) {
 			var text, clip = new Clipboard('.copy-to-clipboard', {
 				text: function (trigger) {
@@ -101,9 +101,9 @@ $('code').each(function () {
 		}
 
 		code.after('<span class="copy-to-clipboard" title="Copy to clipboard" />');
-		// code.next('.copy-to-clipboard').on('mouseleave', function() {
-		// 	$(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
-		// });
+		code.next('.copy-to-clipboard').on('mouseleave', function() {
+			$(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+		});
 	}
 });
 
@@ -175,8 +175,6 @@ $('code').each(function () {
 
 })(jQuery);
 
-
-
 jQuery(document).ready(function () {
 
 	// anchor links for headings
@@ -198,7 +196,7 @@ jQuery(document).ready(function () {
 
 	clip.on('success', function (e) {
 		e.clearSelection();
-		$(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-s');
+		$(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-se');
 	});
 
     /** 

@@ -26,7 +26,12 @@ Building a new blog theme using Hugo.
 - [x] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
 - [x] Add tags and categories to menu bar
 - [x] w3c validator errors
-- [ ] Links to sub-headings are not working
+- [x] Links to sub-headings are not working
+- [ ] Fewer social icons
+- [ ] Issue when very wide on desktop, menu on left starts to show
+- [ ] Try a white theme
+- [ ] Link animated underline is too low
+- [ ] Fancy hover box is over-used!
 - [ ] favicon
 - [ ] Safari: Border bottom showing on post panel (first panel only!)
 
