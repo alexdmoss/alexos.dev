@@ -238,7 +238,7 @@ For obvious reasons, I switched things back to recommend-only mode for all my wo
 
 I still had a problem. I had some recommendations from VPA, but the beefier workloads on my tiny cluster were mostly the ones residing in `kube-system`, for which I don't control the Deployments.
 
-It's here that things get hacky. I extended my Controller (used earlier to create the VPA policies) to also set some resource requests/limits on the kube-system resources that were on the larger side. [The code for it](https://github.com/alexdmoss/right-sizer/blob/master/main.py#L102) is really quite awful (it was a quick proof-of-concept, honest!) and given it has been ticking away for a few weeks now and seems to be working out ok, I really should clean it up :smile:
+It's here that things get hacky. I extended my Controller (used earlier to create the VPA policies) to also set some resource requests/limits on the kube-system resources that were on the larger side. [The code for it](https://github.com/alexdmoss/right-sizer/blob/master/right_sizer/patch.py) could do with some work, but it has been ticking away for a few weeks now and seems to be working out ok :smile:
 
 It works by periodically (every 10 mins) patching the pods in kube-system with new entries for memory and CPU utilisation. I opted to do this for the following:
 
@@ -326,4 +326,4 @@ We've therefore recently enabled it in Recommendation mode and started bringing 
 3. In GKE, enable the [VerticalPodAutoscaler](https://cloud.google.com/kubernetes-engine/docs/concepts/verticalpodautoscaler) addon and apply some VPA policies targeting the deployments you are interested in. I started in "Recommend" mode to see what it was going to do first
 4. If you'd like a custom controller to setup VPA for all your deployments, [have a nose at this for inspiration](https://github.com/alexdmoss/right-sizer)
 5. If you're comfortable with the recommendations and that your workloads can tolerate the restarts - switch on update mode and forget about needing to right-size your workloads (... in theory)
-6. To really squeeze things down, you can update `kube-system` resources with a [custom controller](https://github.com/alexdmoss/right-sizer/blob/master/main.py#L102) which does the equivalent of `kubectl patch` on the resource requests/limits on a regular basis
+6. To really squeeze things down, you can update `kube-system` resources with a [custom controller](https://github.com/alexdmoss/right-sizer/blob/master/right_sizer/patch.py) which does the equivalent of `kubectl patch` on the resource requests/limits on a regular basis
