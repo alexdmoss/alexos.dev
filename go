@@ -129,7 +129,7 @@ function deploy() {
 
     fi
 
-    cat *.yml | envsubst | kubectl apply -n ${NAMESPACE} -f -
+    cat *.yaml | envsubst | kubectl apply -n ${NAMESPACE} -f -
 
     _console_msg "Deployment complete" INFO true
 
