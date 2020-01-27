@@ -21,27 +21,31 @@ spec:
         app: ${APP_NAME}
     spec:
       containers:
-      - name: ${APP_NAME}
-        image: ${IMAGE_NAME}:${CI_COMMIT_SHA}
-        ports:
-        - containerPort: 32080
-        workingDir: /app
-        resources:
-          requests:
-            cpu: 10m
-            memory: 50Mi
-          limits:
-            cpu: 100m
-            memory: 250Mi
+        - name: ${APP_NAME}
+          image: ${IMAGE_NAME}:${CI_COMMIT_SHA}
+          ports:
+            - name: web
+              containerPort: 32080
+            - name: metrics
+              containerPort: 9145
+          workingDir: /app
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+            limits:
+              cpu: 100m
+              memory: 250Mi
       restartPolicy: Always
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - ${APP_NAME}
-            topologyKey: "kubernetes.io/hostname"
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - ${APP_NAME}
+              topologyKey: "kubernetes.io/hostname"
 ---
+
