@@ -8,25 +8,7 @@ Building a new blog theme using Hugo.
 
 ### Version 1
 
-- [x] Font size of lists
-- [x] Padding after final list item
-- [x] Home: Panel padding when 3x2
-- [x] Links to videos
-- [x] Alert on blog up
-- [x] list padding in keynote
-- [x] Post: vertical centering of metadata
-- [x] Buttons colour highlighting broken
-- [x] button sizing
-- [x] Contacts page processing
-- [x] Unsplash links
-- [x] Image caption wrapping when narrow width
-- [x] Bug with links with trailing slash
-- [x] Privacy link has no trailing slash
-- [x] Categories/Tags missing trailing slash
-- [x] Privacy policy - https://support.google.com/analytics/answer/2700409?hl=en&utm_id=ad
-- [x] Add tags and categories to menu bar
-- [x] w3c validator errors
-- [x] Links to sub-headings are not working
+- [x] NGINX instrumentation
 - [ ] Fewer social icons
 - [ ] Issue when very wide on desktop, menu on left starts to show
 - [ ] Try a white theme
