@@ -19,11 +19,11 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 function mobileMenu() {
 	var x = document.getElementById("header-menu");
 	if (x.className === "links") {
-	  x.className += " responsive";
+		x.className += " responsive";
 	} else {
-	  x.className = "links";
+		x.className = "links";
 	}
-  }
+}
 
 // Execute actions on images generated from Markdown pages
 var images = $("div#body-inner img").not(".inline");
@@ -73,7 +73,7 @@ $('code').each(function () {
 	var code = $(this),
 		text = code.text();
 
-	if (text.length > 20) {
+	if (text.length > 24) {
 		if (!clipInit) {
 			var text, clip = new Clipboard('.copy-to-clipboard', {
 				text: function (trigger) {
@@ -101,7 +101,7 @@ $('code').each(function () {
 		}
 
 		code.after('<span class="copy-to-clipboard" title="Copy to clipboard" />');
-		code.next('.copy-to-clipboard').on('mouseleave', function() {
+		code.next('.copy-to-clipboard').on('mouseleave', function () {
 			$(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
 		});
 	}
