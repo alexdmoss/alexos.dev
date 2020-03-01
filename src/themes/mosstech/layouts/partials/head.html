@@ -41,7 +41,8 @@
     {{ end -}}
 
     {{ if .Params.asciinema }}
-    <link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}css/asciinema-player.css" />
+    <link rel="stylesheet" type="text/css"
+        href="{{"css/asciinema-player.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" />
     {{ end }}
 
     <script src="{{"js/jquery-3.2.1.min.js" | relURL}}"></script>

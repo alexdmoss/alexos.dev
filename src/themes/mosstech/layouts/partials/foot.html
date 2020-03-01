@@ -17,7 +17,7 @@
 {{ template "_internal/google_analytics.html" . }}
 
 {{ if .Params.asciinema }}
-<script src="{{ .Site.BaseURL }}js/asciinema-player.js" async=""></script>
+<script src="{{"js/asciinema-player.js" | relURL}}" async=""></script>
 {{ end }}
 
 </div>
