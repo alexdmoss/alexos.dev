@@ -1,64 +1,45 @@
 <div style="text-align: center;">
-    
+
     <section class="post-social">
 
-        <a title="Share on Twitter" target="_blank" href="//twitter.com/share?url={{ .Permalink }}&amp;text={{ .Title }}&amp;via={{ .Site.Social.twitter }}">
+        <a title="Share on Twitter" target="_blank"
+            href="//twitter.com/share?url={{ .Permalink }}&amp;text={{ .Title }}&amp;via={{ .Site.Social.twitter }}">
             <div class="social-button draw meet">
-                <i class="fab fa-twitter share-icon"></i> 
+                <i class="fab fa-twitter share-icon"></i>
             </div>
         </a>
 
-        <a title="Share on Facebook" target="_blank" href="//www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&amp;title={{ .Title }}">
+        <a title="Share on Facebook" target="_blank"
+            href="//www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&amp;title={{ .Title }}">
             <div class="social-button draw meet">
-                <i class="fab fa-facebook-square share-icon"></i> 
+                <i class="fab fa-facebook-square share-icon"></i>
             </div>
         </a>
 
-        <a title="Share on LinkedIn" target="_blank" href="//www.linkedin.com/shareArticle?mini=true&url={{ .Permalink }}&title={{ .Title | htmlEscape  }}&source={{ .Site.Title }}&summary={{ .Description }}">
+        <a title="Share on LinkedIn" target="_blank"
+            href="//www.linkedin.com/shareArticle?mini=true&url={{ .Permalink }}&title={{ .Title | htmlEscape  }}&source={{ .Site.Title }}&summary={{ .Description }}">
             <div class="social-button draw meet">
                 <i class="fab fa-linkedin share-icon"></i>
             </div>
         </a>
 
-        <a title="Post on Reddit" target="_blank" href="//reddit.com/submit?url={{ .Permalink }}&amp;title={{ .Title }}">
+        <a title="Post on Reddit" target="_blank"
+            href="//reddit.com/submit?url={{ .Permalink }}&amp;title={{ .Title }}">
             <div class="social-button draw meet">
-                <i class="fab fa-reddit share-icon"></i> 
+                <i class="fab fa-reddit share-icon"></i>
             </div>
         </a>
 
-        <a title="Save to Pocket" target="_blank" href="//getpocket.com/save?url={{ .Permalink }}&amp;&title={{ .Title }}">
+        <a title="Save to Pocket" target="_blank"
+            href="//getpocket.com/save?url={{ .Permalink }}&amp;&title={{ .Title }}">
             <div class="social-button draw meet">
-                <i class="fab fa-get-pocket share-icon"></i> 
-            </div>
-        </a>
-
-        <a title="Share on Pinterest" target="_blank" href="//www.pinterest.com/pin/create/button/?url={{ .Permalink }}&amp;description={{ .Title }}">
-            <div class="social-button draw meet">
-                <i class="fab fa-pinterest share-icon"></i> 
-            </div>
-        </a>					
-
-        <a title="Share on Facebook Messenger" target="_blank" href="fb-messenger://share/?link={{ .Permalink }}">
-            <div class="social-button draw meet">
-                <i class="fab fa-facebook-messenger share-icon"></i> 
-            </div>
-        </a>
-
-        <a title="Email this link using Gmail" target="_blank" href="//mail.google.com/mail/?view=cm&to=&su={{ .Title }}&amp;body={{ .Permalink }}">
-            <div class="social-button draw meet">
-                <i class="fab fa-google share-icon"></i> 
+                <i class="fab fa-get-pocket share-icon"></i>
             </div>
         </a>
 
         <a title="Email this link" target="_blank" href="mailto:?subject={{ .Title }}&amp;body={{ .Permalink }}">
             <div class="social-button draw meet">
-                <i class="far fa-envelope share-icon"></i> 
-            </div>
-        </a>
-
-        <a title="Print this Page" target="_blank" href="#" onclick="window.print();return false;">
-            <div class="social-button draw meet">
-                <i class="fas fa-print share-icon"></i> 
+                <i class="far fa-envelope share-icon"></i>
             </div>
         </a>
 
