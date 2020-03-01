@@ -213,6 +213,7 @@ figure {
 
 pre {
     position: relative;
+    white-space: pre-wrap;
 }
 article {
     background: var(--post-bg-color);
@@ -1374,20 +1375,28 @@ body.is-menu-visible #wrapper {
     display: block;
     margin: 0 auto;
 }
+
 @media screen and (max-width: 768px) {
     .post-content img {
         max-width: 100%;
     }
 }
 
+.post-content img.pad {
+    padding: 1rem;
+}
+.post-content img.eighty {
+    width: 80% !important;
+}
+.post-content img.fifty {
+    width: 50% !important;
+}
 .post-content img.border {
     border: 1px solid var(--line-color) !important;
 }
-
 .post-content img.shadow {
     box-shadow: 4px 4px 10px var(--image-shadow-color);
 }
-
 .post-content img.white {
     background: #fff;
 }
@@ -1443,6 +1452,11 @@ body.is-menu-visible #wrapper {
 .post-content p a:hover:after, .post-content p a:focus:after, .post-content p a:active:after,
 .post-content li a:hover:after, .post-content li a:focus:after, .post-content li a:active:after {
     width: 100%;
+}
+
+/* disable link hover for images */
+.post-content p a[href*="jpg"]:after, .post-content p a[href*="jpeg"]:after, .post-content p a[href*="png"]:after, .post-content p a[href*="gif"]:after {
+    display: none;
 }
 
 /*** Social Buttons ***/
