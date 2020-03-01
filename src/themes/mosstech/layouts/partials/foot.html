@@ -1,19 +1,25 @@
-  <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+<a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
 
-  <!-- custom js -->
-  <script src="{{"js/skel.min.js" | relURL}}"></script>
-  <script src="{{"js/clipboard.min.js" | relURL}}"></script>
-  <script src="{{"js/highlight.pack.js" | relURL}}"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  <script src="{{"js/featherlight.min.js" | relURL}}"></script>
-  <script src="{{ "js/backToTop.js" | relURL }}"></script>
-  <script src="{{ "js/jqBootstrapValidation.min.js" | relURL }}"></script>
-  <script src="{{ "js/lunr.min.js" | relURL }}"></script>
-  <script src="{{ "js/search.js" | relURL }}"></script>
-  <script src="{{"js/mosstech.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+<!-- custom js -->
+<script src="{{"js/skel.min.js" | relURL}}"></script>
+<script src="{{"js/clipboard.min.js" | relURL}}"></script>
+<script src="{{"js/highlight.pack.js" | relURL}}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="{{"js/featherlight.min.js" | relURL}}"></script>
+<script src="{{ "js/backToTop.js" | relURL }}"></script>
+<script src="{{ "js/jqBootstrapValidation.min.js" | relURL }}"></script>
+<script src="{{ "js/lunr.min.js" | relURL }}"></script>
+<script src="{{ "js/search.js" | relURL }}"></script>
+<script
+  src="{{"js/mosstech.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
 
-  {{ template "_internal/google_analytics.html" . }}
+{{ template "_internal/google_analytics.html" . }}
+
+{{ if .Params.asciinema }}
+<script src="{{ .Site.BaseURL }}js/asciinema-player.js"></script>
+{{ end }}
 
 </div>
 </body>
+
 </html>
