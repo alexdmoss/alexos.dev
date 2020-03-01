@@ -229,7 +229,7 @@ function _local-test() {
     docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
     trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
 
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/ "Recent Posts"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/index.html "Recent Posts"
     _smoke_test ${DOMAIN} http://${local_hostname}:32080/about/ "A little bit of info about me"
     _smoke_test ${DOMAIN} http://${local_hostname}:32080/contact/ "Send Message"
     _smoke_test ${DOMAIN} http://${local_hostname}:32080/posts/ "Previous Page"
