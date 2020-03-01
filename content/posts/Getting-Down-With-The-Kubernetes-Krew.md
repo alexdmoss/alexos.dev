@@ -24,7 +24,7 @@ On this occasion, I'll be talking about [krew](https://github.com/kubernetes-sig
 
 ## An intro to krew
 
-In short, it's a plugin manager for `kubectl`. Think `brew` or `apt`, but for your kubectl commands. Plugins have been a thing in Kubernetes since v1.12, and if you want to know a bit more about how they work then [Ahmet Alp Balkan](https://twitter.com/ahmetb) (creator of krew, as well as indispensible tools like [kubectx & kubens](https://github.com/ahmetb/kubectx/)) covers it really well [here](https://ahmet.im/blog/kubectl-plugins/).
+In short, it's a plugin manager for `kubectl`. Think `brew` or `apt`, but for your kubectl commands. Plugins have been a thing in Kubernetes since v1.12, and if you want to know a bit more about how they work then [Ahmet Alp Balkan](https://twitter.com/ahmetb) (creator of krew, as well as indispensable tools like [kubectx & kubens](https://github.com/ahmetb/kubectx/)) covers it really well [here](https://ahmet.im/blog/kubectl-plugins/).
 
 [Installation instructions](https://github.com/kubernetes-sigs/krew) are straight-forward as you'd expect, and the basic usage is intuitive (I alias `krew='kubectl krew'`):
 

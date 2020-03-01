@@ -228,16 +228,23 @@ function _local-test() {
     _assert_variables_set APP_NAME DOMAIN
 
     docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
-    trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
+    sleep 1
 
     (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
+    sleep 1
     (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
+    sleep 1
     (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/contact/ | grep -q "Send Message") || _fail_message "Contact Page missing send button"
+    sleep 1
     (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
+    sleep 1
     (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
+    sleep 1
     (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
-    # @TODO: no idea why this test keeps failing on CI
-    # (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year") || _fail_message "A Year In Google Cloud Post missing intro sentence"
+    sleep 1
+    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year") || _fail_message "A Year In Google Cloud Post missing intro sentence"
+
+    docker rm -f ${APP_NAME} >/dev/null 2>&1 || true
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
