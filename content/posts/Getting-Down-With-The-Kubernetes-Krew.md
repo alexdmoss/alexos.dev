@@ -1,5 +1,5 @@
 ---
-title: "Getting Down with the Kubernetes Krew"
+title: "Getting Down With The Kubernetes Krew"
 panelTitle: "Getting Down with the Kubernetes Krew"
 date: 2020-02-29T18:00:00-01:00
 author: "@alexdmoss"
