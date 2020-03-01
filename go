@@ -60,11 +60,12 @@ function build() {
 
     _console_msg "Building site ..."
 
-    _assert_variables_set GCP_PROJECT_NAME GCP_REGION NAMESPACE APP_NAME CI_COMMIT_SHA GOOGLE_CREDENTIALS
-
     pushd $(dirname $BASH_SOURCE[0]) > /dev/null
 
+    _assert_variables_set GCP_PROJECT_NAME APP_NAME CI_COMMIT_SHA
+
     if [[ ${CI_SERVER:-} == "yes" ]]; then
+        _assert_variables_set GOOGLE_CREDENTIALS
         echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
         trap "gcloud auth revoke --verbosity=error" EXIT
     fi
@@ -224,7 +225,7 @@ function _local-test() {
 
     _console_msg "Running local docker image tests ..."
 
-    _assert_variables_set APP_NAME
+    _assert_variables_set APP_NAME DOMAIN
 
     docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
     trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
