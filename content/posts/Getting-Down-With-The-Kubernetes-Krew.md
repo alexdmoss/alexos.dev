@@ -24,6 +24,8 @@ On this occasion, I'll be talking about [krew](https://github.com/kubernetes-sig
 
 ## An intro to krew
 
+{{< image src="/images/krew.png" class="shadow border pad fifty lazyload" attr="The krew logo. You ALWAYS need a good logo" attrlink="https://github.com/kubernetes-sigs/krew" >}}
+
 In short, it's a plugin manager for `kubectl`. Think `brew` or `apt`, but for your kubectl commands. Plugins have been a thing in Kubernetes since v1.12, and if you want to know a bit more about how they work then [Ahmet Alp Balkan](https://twitter.com/ahmetb) (creator of krew, as well as indispensable tools like [kubectx & kubens](https://github.com/ahmetb/kubectx/)) covers it really well [here](https://ahmet.im/blog/kubectl-plugins/).
 
 [Installation instructions](https://github.com/kubernetes-sigs/krew) are straight-forward as you'd expect, and the basic usage is intuitive (I alias `krew='kubectl krew'`):
@@ -49,7 +51,7 @@ On with the plugins themselves ...
 
 ## Viewing resources
 
-![Kale](/images/kale.jpg?width=50%)
+{{< image src="/images/kale.jpg" class="shadow border fifty lazyload" alt="Kale? Or Kail?" >}}
 
 First up in this section we have `kubectl tail` (usually `kail`). This is a handy plugin for tailing logs - it's just nice and simple. There are a number of alternatives out there (I know some folks like [Stern](https://github.com/wercker/stern), which I've never got round to trying). The main feature I like is being able to target a deployment/service/ingress (e.g. `kubectl tail --ing=mosstech`) and be able to watch all the logs from the pods behind it, without necessarily needing to know how the resource has been labelled.
 
@@ -57,22 +59,22 @@ First up in this section we have `kubectl tail` (usually `kail`). This is a hand
 
 ```sh
 [~ (⎈ |sandpit-prod:prometheus)]$ kubectl get-all -n=prometheus
-NAME                                                                                        NAMESPACE   AGE
-configmap/prometheus-sandpit-rulefiles-0                                                    prometheus  14d
-endpoints/prometheus-operated                                                               prometheus  20d
-persistentvolumeclaim/prometheus-storage-prometheus-sandpit-0                               prometheus  20d
+NAME                                                                      NAMESPACE   AGE
+configmap/prometheus-sandpit-rulefiles-0                                  prometheus  14d
+endpoints/prometheus-operated                                             prometheus  20d
+persistentvolumeclaim/prometheus-storage-prometheus-sandpit-0             prometheus  20d
 # [...]
-prometheus.monitoring.coreos.com/sandpit                                                    prometheus  20d
-prometheusrule.monitoring.coreos.com/prometheus-k8s-rules                                   prometheus  14d
-servicemonitor.monitoring.coreos.com/prometheus-operator                                    prometheus  16d
-poddisruptionbudget.policy/prometheus                                                       prometheus  20d
+prometheus.monitoring.coreos.com/sandpit                                  prometheus  20d
+prometheusrule.monitoring.coreos.com/prometheus-k8s-rules                 prometheus  14d
+servicemonitor.monitoring.coreos.com/prometheus-operator                  prometheus  16d
+poddisruptionbudget.policy/prometheus                                     prometheus  20d
 ```
 
-{{< figure src="/images/all-the-things.gif?width=300" >}}
+{{< image src="/images/all-the-things.png" class="shadow border fifty lazyload" alt="ALL the things" >}}
 
 Almost the opposite is `kubectl neat` which, as the name sort-of-implies, neatens up verbose output. If you find your mind glazing over the system-injected annotations and such when get you get a pod's details, this one might be for you - it strips the gumpf from `kubectl get` - for example:
 
-![kubectl neat](/images/krew-neat.png?width=100%)
+![kubectl neat](/images/krew-neat.png?width=100%&classes=lazyload)
 
 Lastly for this section, are a couple of plugins that help visualise the relationship between a resource and other things in the cluster. `kubectl pod-dive` is good if you want to know what surrounds a particular pod, e.g.
 
@@ -101,7 +103,7 @@ TERMINATION:
     prometheus error (code 1)
 ```
 
-{{< figure src="/images/dive.png?width=500" >}}
+{{< image src="/images/dive.png" class="shadow border fifty lazyload" alt="Dive! Dive! Dive!" >}}
 
 Somewhat similarly, `kubectl tree` shows the hierarchy for a particular resource - especially useful when working with `CustomResourceDefinition`. For example, here's a view from my failing Prometheus pods (installed using the `prometheus` CoreOS operator):
 
@@ -122,7 +124,7 @@ prometheus    └─Pod/prometheus-sandpit-1                          False  Con
 
 ## Resource usage
 
-{{< figure src="/images/capacity.png?width=500" >}}
+{{< image src="/images/capacity.png" class="shadow border fifty lazyload" alt="Fully loaded" >}}
 
 There are a whole bunch of plugins in this area - I've picked out a couple that I think do a bit more than is easily achieved with some kubectl-foo. Some of these were particularly helpful when trying to [squeeze more out of my tiny 'home' GKE cluster](/2019/09/28/squeezing-gke-system-resources-in-small-clusters/).
 
@@ -153,7 +155,7 @@ And finally, `kubectl view-allocations` is handy for spotting pods without resou
 
 ## Housekeeping
 
-{{< figure src="/images/housekeeping.jpg?width=500" >}}
+{{< image src="/images/housekeeping.jpg" class="shadow border fifty lazyload" alt="Housekeeping's here!" >}}
 
 If you're running a cluster that's been around for a while, there are a few plugins that help you track down old or unused object:
 
@@ -196,6 +198,8 @@ system:controller:persistent-volume-binder            persistent-volume-binder  
 
 In a better policed cluster than my sandpit :grin: you'd expect to see something a bit tighter than this!
 
+{{< image src="/images/who-can.jpg" class="shadow border fifty lazyload" alt="Who can do it? You can do it!" >}}
+
 If you're worried about the hardening of your pods and willing to trust the folks at [kubesec.io](https://kubesec.io), then `kubectl kubesec-scan` is quite interesting. Here's some output from an old deployment I know still has some dodgy stuff in it :stuck_out_tongue_winking_eye:
 
 ```txt
@@ -227,7 +231,7 @@ And finally in this section, a quick one for the lazy / keyboard efficient - `ku
 
 ## Debugging
 
-{{< figure src="/images/debugger.jpg?width=500" >}}
+{{< image src="/images/debugger.jpg" class="shadow border fifty lazyload" alt="One does not simply run the remote debugger" >}}
 
 In the last section, I cover a few plugins that can help with debugging issues.
 
@@ -288,11 +292,10 @@ spy-5092                   1/1     Running   0          5m21s
 
 And, if you've made it this far, I've saved the best till last. Are you brave enough to try ... `kubectl snap`!
 
-![Perfectly Balanced](/images/perfectly-balanced.jpg?width=50%&classes=border)
+{{< image src="/images/perfectly-balanced.jpg" class="shadow border fifty lazyload" alt="Perfectly Balanced" >}}
 
 For Avengers fans hopefully what this is going to do is obvious :grin: (It deletes half of ... everything)
 
 In reality, it is somewhat gentle - see recording below:
 
 {{< asciinema key="snap" cols="80" rows="20" preload="1" >}}
-
