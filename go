@@ -9,6 +9,7 @@ function help() {
   echo -e "    local_build              Builds the site (HTML + docker image) locally only - no push"
   echo -e "    build                    Builds the site (HTML + docker image) and pushes to registry"
   echo -e "    deploy                   Deploys site onto hosts. Assumes pre-requisites are done"
+  echo -e "    smoke                    Runs smoke tests"
   echo -e 
   exit 0
 }
@@ -136,8 +137,6 @@ function deploy() {
 
     popd >/dev/null
 
-    _smoke-test
-
 }
 
 function _build-test() {
@@ -228,23 +227,15 @@ function _local-test() {
     _assert_variables_set APP_NAME DOMAIN
 
     docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
-    sleep 1
+    trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
 
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/index.html | grep -q "Recent Posts") || _fail_message "Home Page did not mention 'Recent Posts'"
-    sleep 1
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/about/ | grep -q "A little bit of info about me") || _fail_message "About Page missing opening sentence"
-    sleep 1
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/contact/ | grep -q "Send Message") || _fail_message "Contact Page missing send button"
-    sleep 1
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/posts/ | grep -q "Previous Page") || _fail_message "Posts Listing missing Previous button"
-    sleep 1
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/tags/ | grep -q "/tags/google") || _fail_message "Tags Listing missing Google"
-    sleep 1
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/categories/ | grep -q "/categories/cloud") || _fail_message "Categories Listing missing Cloud"
-    sleep 1
-    (curl -H "Host: ${DOMAIN}" -s http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ | grep -q "This time last year") || _fail_message "A Year In Google Cloud Post missing intro sentence"
-
-    docker rm -f ${APP_NAME} >/dev/null 2>&1 || true
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/ "Recent Posts"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/about/ "A little bit of info about me"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/contact/ "Send Message"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/posts/ "Previous Page"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/categories/ "/categories/cloud"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/tags/ "/tags/google"
+    _smoke_test ${DOMAIN} http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ "This time last year"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
@@ -255,22 +246,46 @@ function _local-test() {
 
 }
 
-function _smoke-test() {
+function smoke() {
+
+    local error=0
 
     _assert_variables_set DOMAIN
 
     _console_msg "Checking HTTP status code for https://${DOMAIN}/ ..."
+    
+    _smoke_test ${DOMAIN} http://${DOMAIN}/ "Recent Posts"
+    _smoke_test ${DOMAIN} https://${DOMAIN}/about/ "A little bit of info about me"
+    _smoke_test ${DOMAIN} https://${DOMAIN}/contact/ "Send Message"
+    _smoke_test ${DOMAIN} https://${DOMAIN}/posts/ "Previous Page"
+    _smoke_test ${DOMAIN} https://${DOMAIN}/categories/ "/categories/cloud"
+    _smoke_test ${DOMAIN} https://${DOMAIN}/tags/ "/tags/google"
+    _smoke_test ${DOMAIN} https://${DOMAIN}/2019/02/23/a-year-in-google-cloud/ "This time last year"
 
-    # Very basic test that site returns a sensible http-code
-    response_code=$(curl -k -L -o /dev/null -w "%{http_code}" https://${DOMAIN}/)
-
-    if [[ ${response_code:0:1} == "4" ]] || [[ ${response_code:0:1} == "5" ]]; then
-        _console_msg "Test FAILED - HTTP response code was ${response_code}" ERROR
+    if [[ "${error:-}" != "0" ]]; then
+        _console_msg "Tests FAILED - see messages above for for detail" ERROR
         exit 1
-    else 
-        _console_msg "Test PASSED - HTTP response code was ${response_code}"
+    else
+        _console_msg "All local tests passed!"
     fi
 
+}
+
+function _smoke_test() {
+    local domain=$1
+    local url=$2
+    local match=$3
+    output=$(curl -H "Host: ${domain}" -s -k -L -w "\nHTTP-%{http_code}" ${url} || true)
+    if [[ $(echo ${output} | grep -c "HTTP-200") -eq 0 ]]; then
+        _console_msg "Test FAILED - ${url} - non-200 return code" ERROR
+        error=1
+    fi
+    if [[ $(echo ${output} | grep -c "${match}") -eq 0 ]]; then 
+        _console_msg "Test FAILED - ${url} - missing phrase" ERROR
+        error=1
+    else
+        _console_msg "Test PASSED - ${url}" INFO
+    fi
 }
 
 function _run_hugo() {
@@ -299,11 +314,6 @@ function _assert_variables_set() {
   fi
 }
 
-function _fail_message() {
-  _console_msg "$1" ERROR
-  error=1
-}
-
 function _console_msg() {
   local msg=${1}
   local level=${2:-}
@@ -311,9 +321,7 @@ function _console_msg() {
   if [[ -z ${level} ]]; then level=INFO; fi
   if [[ -n ${ts} ]]; then ts=" [$(date +"%Y-%m-%d %H:%M")]"; fi
 
-  echo ""
   if [[ ${level} == "ERROR" ]] || [[ ${level} == "CRIT" ]] || [[ ${level} == "FATAL" ]]; then
-    (echo 2>&1)
     (echo >&2 "-> [${level}]${ts} ${msg}")
   else 
     (echo "-> [${level}]${ts} ${msg}")
@@ -329,7 +337,7 @@ function ctrl_c() {
 
 trap ctrl_c INT
 
-if [[ ${1:-} =~ ^(help|run|local_build|build|deploy|test)$ ]]; then
+if [[ ${1:-} =~ ^(help|run|local_build|build|deploy|test|smoke)$ ]]; then
   COMMAND=${1}
   shift
   $COMMAND "$@"

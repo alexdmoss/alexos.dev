@@ -1,7 +1,7 @@
-
 stages:
-- build
-- deploy
+  - build
+  - deploy
+  - smoke
 
 variables:
   GCP_PROJECT_NAME: moss-work
@@ -19,18 +19,28 @@ build:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
   services:
-  - docker:dind
+    - docker:dind
   only:
-  - master
-  script: 
-  - ./go build
+    - master
+  script:
+    - ./go build
 
 deploy:
   stage: deploy
   image: registry.gitlab.com/mosstech/mw-platform/mw-builder
   dependencies:
-  - build
+    - build
   only:
-  - master
+    - master
   script:
-  - ./go deploy
+    - ./go deploy
+
+smoke:
+  stage: smoke
+  image: registry.gitlab.com/mosstech/mw-platform/mw-builder
+  dependencies:
+    - deploy
+  only:
+    - master
+  script:
+    - ./go smoke
