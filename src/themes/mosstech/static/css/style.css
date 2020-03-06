@@ -43,7 +43,7 @@
 
     --code-bg-color: var(--bg-color);
     --code-color: #D0E1F9;
-    --code-select-color: #373B41;
+    --code-select-color: var(--line-color);
 
     --table-head-bg-color: var(--post-color);
     --table-body-bg-color: var(--bg-color);
@@ -54,39 +54,39 @@
 /*** Fonts ***/
 
 @font-face {
-    font-family: 'Exo 2';
+    font-family: 'Main-Font';
     font-weight: 300;
-    src: url("../fonts/Exo2-Light.ttf") format("truetype");
+    src: url("/fonts/LibreFranklin-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Exo 2 Bold';
+    font-family: 'Bold-Font';
     font-weight: 300;
-    src: url("../fonts/Exo2-SemiBold.ttf") format("truetype");
+    src: url("/fonts/LibreFranklin-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Quicksand';
+    font-family: 'Heading-Font';
     font-style: normal;
     font-weight: 300;
-    src: url("../fonts/Quicksand-Light.ttf") format("truetype");
+    src: url("/fonts/Play-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Roboto Mono';
+    font-family: 'Code-Font';
     font-style: normal;
     font-weight: 300;
-    src: url("../fonts/RobotoMono-Regular.ttf") format("truetype");
+    src: url("/fonts/RobotoMono-Regular.ttf") format("truetype");
 }
 
 @font-face{
     font-family: 'FontAwesome';
-    src: url('../fonts/fontawesome-webfont.eot?v=4.7.0');
-    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-         url('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-         url('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
-         url('../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
-         url('../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    src: url('/fonts/fontawesome-webfont.eot?v=4.7.0');
+    src: url('/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+         url('/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+         url('/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+         url('/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+         url('/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal
 }
@@ -118,7 +118,7 @@ body {
     line-height: 1;
     -webkit-text-size-adjust: none;
     -ms-overflow-style: scrollbar;
-    font-family: 'Exo 2', 'Arial', 'sans-serif';
+    font-family: 'Main-Font', 'Arial', 'sans-serif';
     padding-top: 3.5rem;
     background: var(--main-bg-color);
 }
@@ -184,7 +184,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: 'Quicksand', 'Arial', 'sans-serif';
+    font-family: 'Heading-Font', 'Arial', 'sans-serif';
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
     color: var(--main-font-color);
@@ -203,7 +203,7 @@ em {
 }
 
 strong {
-    font-family: 'Exo 2 Bold', 'Arial', 'sans-serif';
+    font-family: 'Bold-Font', 'Arial', 'sans-serif';
 }
 
 figure {
@@ -225,18 +225,15 @@ blockquote {
     margin-left: 1rem;
     padding-left: 1rem;
     opacity: 0.7;
-    letter-spacing: 0.1rem;
     border-left: 3px solid var(--border-color);
 }
 
 code {
-    font-family: 'Roboto Mono', Courier, sans-serif;
-    font-size: 0.8rem;
+    font-family: 'Code-Font', Courier, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    background: var(--code-bg-color);
     color: var(--code-color);
 }
 
@@ -245,7 +242,7 @@ pre code {
     display: block;
     margin: 0 auto;
     margin-bottom: 1.5rem;
-    width: 95%;
+    width: 100%;
     padding: 0.7rem;
     line-height: 1.5rem;
     background: var(--code-bg-color);
@@ -275,7 +272,7 @@ table {
 
 table > thead {
     background-color: var(--table-head-bg-color);
-    font-family: 'Exo 2 Bold', 'Arial', 'sans-serif';
+    font-family: 'Bold-Font', 'Arial', 'sans-serif';
 }
 
 table > tbody {
@@ -311,7 +308,7 @@ input[type=text], textarea {
     -o-transition: all 0.30s ease-in-out;
     transition: all 0.30s ease-in-out;
     outline: none;
-    font-family: 'Exo 2', 'Arial', 'sans-serif';
+    font-family: 'Main-Font', 'Arial', 'sans-serif';
     font-size: 0.9rem;
     background-color: transparent;
     color: var(--main-font-color);
@@ -324,7 +321,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 input[type="submit"], input[type="reset"], input[type="button"], .button {
-    font-family: 'Exo 2', 'Arial', 'sans-serif';
+    font-family: 'Main-Font', 'Arial', 'sans-serif';
     cursor: pointer;
     display: inline-block;
     font-size: 0.7rem;
@@ -445,11 +442,11 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     float: left;
     text-transform: uppercase;
     font-size: 0.8rem;
-    letter-spacing: 0.2rem;
     margin-left: 1.6rem;
     margin-top: 1.2rem;
     padding-left: 1.2rem;
     line-height: 1.6rem;
+    letter-spacing: 0.1rem;
     height: 1.6rem;
     color: var(--header-link-color);
     border-left: 1px solid var(--header-link-color);
@@ -537,8 +534,8 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     padding: 0;
     float: left;
     width: 10rem;
-    font-family: 'Exo 2', 'Arial', 'sans-serif';
-    font-size: 1rem;
+    font-family: 'Main-Font', 'Arial', 'sans-serif';
+    font-size: 0.9rem;
     line-height: 1.2rem;
     border-right: solid 1px var(--border-color);
     padding-right: 0.5rem;
@@ -554,6 +551,7 @@ input[type="submit"].disabled:after, input[type="submit"]:disabled:after, input[
     margin: 0;
     padding: 0;
     margin-left: 11rem;
+    letter-spacing: 0.05rem;
     font-size: 0.8rem;
     line-height: 1rem;
     margin-bottom: 0.4rem;
@@ -872,7 +870,6 @@ body.is-menu-visible #wrapper {
     margin-bottom: 1.5rem;
     transition: color 0.2s ease, border-bottom-color 0.2s ease;
     text-transform: uppercase;
-    letter-spacing: 0.25rem;
     font-size: 1.2rem;
     line-height: 2;
 }
@@ -902,7 +899,10 @@ body.is-menu-visible #wrapper {
 }
 
 .recent h3 {
-    font-family: 'Exo 2 Bold', 'Arial', 'sans-serif';
+    font-family: 'Bold-Font', 'Arial', 'sans-serif';
+    line-height: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .recent p {
@@ -938,7 +938,7 @@ body.is-menu-visible #wrapper {
     margin-bottom: 1.6rem;
     font-size: 0.9rem;
     line-height: 1.5rem;
-    font-family: 'Exo 2', 'Arial', 'sans-serif';
+    font-family: 'Main-Font', 'Arial', 'sans-serif';
 }
 
 @media screen and (max-width: 980px) {
@@ -1021,20 +1021,20 @@ body.is-menu-visible #wrapper {
     transition: color 0.2s ease, border-bottom-color 0.2s ease;
     text-transform: uppercase;
     margin-bottom: 0;
-    letter-spacing: 0.25rem;
     font-size: 1.5rem;
     line-height: 2;
     margin-top: 0px;
     margin-bottom: 0px;
+    letter-spacing: 0.2rem;
 }
 .home-title p {
     text-transform: uppercase;
     opacity: 0.7;
     margin-bottom: 0;
-    letter-spacing: 0.25rem;
     font-size: 0.7rem;
     margin: 0 1rem 0;
     line-height: 2.5;
+    letter-spacing: 0.1rem;
 }
 
 /*** Post Listing ***/
@@ -1117,7 +1117,6 @@ body.is-menu-visible #wrapper {
     margin-right: 16rem;
     padding-bottom: 0.8rem;
     font-style: italic;
-    letter-spacing: 0.05rem;
     border-bottom: solid 1px var(--border-color);
 }
 @media screen and (max-width: 768px) {
@@ -1152,7 +1151,6 @@ body.is-menu-visible #wrapper {
     display: inline-block;
     font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
     line-height: 1.5rem;
     margin-bottom: 0.3rem;
 }
@@ -1249,9 +1247,9 @@ body.is-menu-visible #wrapper {
     text-transform: uppercase;
     letter-spacing: 0.25rem;
     font-size: 1.5rem;
-    line-height: 2.5;
+    line-height: 2.5rem;
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 0.5rem;
 }
 
 .post-title h1 a {
@@ -1333,13 +1331,13 @@ body.is-menu-visible #wrapper {
 
 
 .post-content p {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     letter-spacing: 0.03rem;
     line-height: 2rem;
 }
 @media screen and (max-width: 768px) {
     .post-content p {
-        font-size: 1rem;
+        font-size: 1.1rem;
         line-height: 1.5rem;
         letter-spacing: 0.01rem;
     }
@@ -1348,7 +1346,6 @@ body.is-menu-visible #wrapper {
 
 .post-content h2, .post-content h3, .post-content h4, .post-content h5 {
     text-transform: none;
-    letter-spacing: 0.1rem;
     margin-top: 2.4rem;
 }
 
@@ -1385,12 +1382,24 @@ body.is-menu-visible #wrapper {
 .post-content img.pad {
     padding: 1rem;
 }
-.post-content img.eighty {
-    width: 80% !important;
+
+
+.post-content img.thirty {
+    width: 30% !important;
 }
 .post-content img.fifty {
     width: 50% !important;
 }
+.post-content img.seventy {
+    width: 70% !important;
+}
+.post-content img.eighty {
+    width: 80% !important;
+}
+.post-content img.fullsize {
+    width: 100% !important;
+}
+
 .post-content img.border {
     border: 1px solid var(--line-color) !important;
 }
@@ -1424,9 +1433,21 @@ body.is-menu-visible #wrapper {
 }
 
 .post-content li {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.03rem;
+    line-height: 2rem;
     margin-bottom: 0.8rem;
 }
+@media screen and (max-width: 768px) {
+    .post-content li {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.01rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+
 
 /* link hover underline animation */
 .post-content p a, .post-content p a:hover, .post-content p a:focus, .post-content p a:active, 
@@ -1819,25 +1840,10 @@ ul.actions.pagination .previous:before {
 }
 pre .copy-to-clipboard {
     position: absolute;
-    right: 2.2rem;
+    right: 0.5rem;
     top: 0.2rem;
     margin: 0;
     padding: 0.25rem;
-}
-@media screen and (max-width: 1400px) {
-    pre .copy-to-clipboard {
-        right: 2rem;
-    }
-}
-@media screen and (max-width: 1200px) {
-    pre .copy-to-clipboard {
-        right: 1.8rem;
-    }
-}
-@media screen and (max-width: 1000px) {
-    pre .copy-to-clipboard {
-        right: 1.6rem;
-    }
 }
 pre .copy-to-clipboard:hover, pre .copy-to-clipboard:focus, pre .copy-to-clipboard:active {
     color: var(--button-hover-color);
@@ -1994,7 +2000,7 @@ h2:active .anchor, h3:active .anchor, h4:active .anchor, h5:active .anchor, h6:a
     z-index: 1000000;
     display: none;
     padding: 5px 8px;
-    font: normal normal 11px/1.5 "Exo 2", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font: normal normal 11px/1.5 "Main-Font", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     color: var(--bg-color);
     text-align: center;
     text-decoration: none;
