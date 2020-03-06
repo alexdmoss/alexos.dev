@@ -24,7 +24,7 @@ On this occasion, I'll be talking about [krew](https://github.com/kubernetes-sig
 
 ## An intro to krew
 
-{{< image src="/images/krew.png" class="shadow border pad fifty lazyload" attr="The krew logo. You ALWAYS need a good logo" attrlink="https://github.com/kubernetes-sigs/krew" >}}
+{{< image src="/images/krew.png" class="shadow border pad thirty lazyload" attr="The krew logo. You ALWAYS need a good logo" attrlink="https://github.com/kubernetes-sigs/krew" >}}
 
 In short, it's a plugin manager for `kubectl`. Think `brew` or `apt`, but for your kubectl commands. Plugins have been a thing in Kubernetes since v1.12, and if you want to know a bit more about how they work then [Ahmet Alp Balkan](https://twitter.com/ahmetb) (creator of krew, as well as indispensable tools like [kubectx & kubens](https://github.com/ahmetb/kubectx/)) covers it really well [here](https://ahmet.im/blog/kubectl-plugins/).
 
@@ -74,7 +74,7 @@ poddisruptionbudget.policy/prometheus                                     promet
 
 Almost the opposite is `kubectl neat` which, as the name sort-of-implies, neatens up verbose output. If you find your mind glazing over the system-injected annotations and such when get you get a pod's details, this one might be for you - it strips the gumpf from `kubectl get` - for example:
 
-![kubectl neat](/images/krew-neat.png?width=100%&classes=lazyload)
+{{< image src="/images/krew-neat.png" class="fullsize lazyload" alt="kubectl neat" >}}
 
 Lastly for this section, are a couple of plugins that help visualise the relationship between a resource and other things in the cluster. `kubectl pod-dive` is good if you want to know what surrounds a particular pod, e.g.
 
@@ -149,7 +149,7 @@ grafana-data-grafana-0                    grafana      grafana-0              10
 
 And finally, `kubectl view-allocations` is handy for spotting pods without resource requests/limits (it's not obvious from the capture below, but it highlights these in red):
 
-{{< asciinema key="view-allocations" cols="150" rows="40" preload="1" >}}
+{{< asciinema key="view-allocations" cols="100" rows="40" preload="1" >}}
 
 ---
 
@@ -163,7 +163,7 @@ If you're running a cluster that's been around for a while, there are a few plug
 - `kubectl prune-unused configmaps --dry-run` is a handy one - it wipes out (... in other words you should definitely run with `--dry-run` first ...) unused `Secret`s or `ConfigMap`s. Great for clusters I use for experimentation - which often leads to trashing things that don't work out
 - `kubectl outdated` is a very neat idea - it finds images that running older versions than what's out there in public - you can see it in action below:
 
-{{< asciinema key="outdated" cols="150" rows="20" preload="1" >}}
+{{< asciinema key="outdated" cols="100" rows="20" preload="1" >}}
 
 Note that as it needs to be able to connect to the registry anonymously, it can't check things that are in my private GCR - but then again, they should have healthy CI/CD pipelines pushing out the latest image automatically. If you pull and re-tag images privately though (e.g. to run them through a vulnerability scanner) then this is a bit less useful to you (or at least, it is without some fiddling).
 
@@ -187,13 +187,11 @@ Related is `kubectl who-can`, which as the name suggests shows which subjects ca
 
 No subjects found with permissions to create services assigned through RoleBindings
 
-CLUSTERROLEBINDING                                    SUBJECT                                       TYPE            SA-NAMESPACE
-cert-manager                                          cert-manager                                  ServiceAccount  kube-system
-cluster-admin                                         system:masters                                Group
-elastic-cluster-admin-binding                         some-sa@some-project.iam.gserviceaccount.com  User
-prometheus-operator                                   prometheus-operator                           ServiceAccount  prometheus
-system:controller:clusterrole-aggregation-controller  clusterrole-aggregation-controller            ServiceAccount  kube-system
-system:controller:persistent-volume-binder            persistent-volume-binder                      ServiceAccount  kube-system
+CLUSTERROLEBINDING                 SUBJECT                           TYPE             SA-NAMESPACE
+cert-manager                       cert-manager                      ServiceAccount   kube-system
+cluster-admin                      system:masters                    Group
+elastic-cluster-admin-binding      some-sa@some-project.iam.[...]    User
+prometheus-operator                prometheus-operator               ServiceAccount   prometheus
 ```
 
 In a better policed cluster than my sandpit :grin: you'd expect to see something a bit tighter than this!
@@ -298,4 +296,4 @@ For Avengers fans hopefully what this is going to do is obvious :grin: (It delet
 
 In reality, it is somewhat gentle - see recording below:
 
-{{< asciinema key="snap" cols="80" rows="20" preload="1" >}}
+{{< asciinema key="snap" cols="100" rows="20" preload="1" >}}
