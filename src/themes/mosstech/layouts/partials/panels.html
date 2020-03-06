@@ -1,7 +1,8 @@
 <section class="panel-section">
   <div class="container">
     <div class="row">
-      {{ range first 6 (where .Pages "Type" "posts") }}
+      {{ range first 6 (where .Site.RegularPages "Type" "in" .Site.Params.mainSections).ByPublishDate.Reverse }}
+
       {{ $.Scratch.Set "title" (.Title | safeHTML) }}
       <div class="panel-container">
           <a href="{{ .Permalink | relLangURL | safeURL }}" class="panel-link draw meet">
