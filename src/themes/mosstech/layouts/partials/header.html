@@ -1,5 +1,6 @@
 <div id="wrapper">
 
+		
 	<header id="header">
 
 		<h1><a href="/">{{ .Site.Title }}</a></h1>
@@ -14,12 +15,15 @@
 
 		<nav class="interact">
 
+
 			<div class="search-menu">
 				<a class="fas fa-search icon" href="#search"></a>
 				<form id="search">
 					<input id="searchbox" type="text" name="q" placeholder="Search for ..." />
 				</form>
 			</div>
+
+			{{ partial "dark-mode.html" }}
 
 			<div class="mobile-menu">
 				<a class="fa fa-bars icon" href="javascript:void(0);" onclick="mobileMenu()"></a>

@@ -1,14 +1,14 @@
-/*** Theme Colours ***/
-
+/*** Theme Colours: default = light, dark mode below :root ***/
 :root {
 
-    --post-color: #1D1E22;
-    --bg-color: #080708;
-    --font-color: #C5C8C6;
-    --shade-color: #1F2833;
-    /* --shade-color: #20232A; */
+    --post-color: #efefef;
+    --bg-color: #f5f5f5;
+    --font-color: #080708;
+    --shade-color: #d9d9d9;
     --line-color: #FF5A09; /* rgba(255, 91, 9) */
     --highlight-color: #00635D;
+    --image-shadow-color: rgba(255, 91, 9, 0.4);
+    --code-color: #1F2833;
 
     --main-bg-color: var(--bg-color);
     --main-font-color: var(--font-color);
@@ -38,11 +38,9 @@
     --link-color: var(--line-color);
     --link-hover-color: var(--highlight-color);
 
-    --image-shadow-color: rgba(255, 91, 9, 0.4);
     --back-to-top-color: var(--font-color);
 
     --code-bg-color: var(--bg-color);
-    --code-color: #D0E1F9;
     --code-select-color: var(--line-color);
 
     --table-head-bg-color: var(--post-color);
@@ -50,6 +48,18 @@
     --table-alt-row-color: var(--shade-color);
     --table-border-color: var(--line-color);
 }
+
+[data-theme="dark"] {
+    --post-color: #1D1E22;
+    --bg-color: #080708;
+    --font-color: #C5C8C6;
+    --shade-color: #1F2833;
+    --line-color: #FF5A09; /* rgba(255, 91, 9) */
+    --highlight-color: #00635D;
+    --image-shadow-color: rgba(255, 91, 9, 0.4);
+    --code-color: #D0E1F9;
+}
+
 
 /*** Fonts ***/
 
@@ -230,8 +240,6 @@ blockquote {
 
 code {
     font-family: 'Code-Font', Courier, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.05rem;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
     color: var(--code-color);
@@ -899,7 +907,8 @@ body.is-menu-visible #wrapper {
 }
 
 .recent h3 {
-    font-family: 'Bold-Font', 'Arial', 'sans-serif';
+    font-family: 'Heading-Font', 'Arial', 'sans-serif';
+    font-size: 1.2rem;
     line-height: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -1331,13 +1340,13 @@ body.is-menu-visible #wrapper {
 
 
 .post-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     letter-spacing: 0.03rem;
     line-height: 2rem;
 }
 @media screen and (max-width: 768px) {
     .post-content p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         line-height: 1.5rem;
         letter-spacing: 0.01rem;
     }
@@ -1518,7 +1527,7 @@ body.is-menu-visible #wrapper {
     position: absolute;
 }
 .social-button:hover, .social-button:focus, .social-button:active {
-    color: var(--link-hover-color);
+    color: var(--line-color);
 }
 
 /*** Contacts Form ***/

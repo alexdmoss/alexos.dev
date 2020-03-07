@@ -140,11 +140,11 @@ gke-sandpit-prod-np-0-947e5a45-84zk   442m (47%)     2389m (254%)   1335Mi (50%)
 Occasionally, info about disk utilisation is useful, and not super-obvious from other sources (like `kubectl get`) ... enter `kubectl df-pv`:
 
 ```sh
-PVC                                       NAMESPACE    POD                    SIZE          USED        AVAILABLE     PERCENTUSED   IUSED   IFREE     PERCENTIUSED
-prometheus-storage-prometheus-sandpit-1   prometheus   prometheus-sandpit-1   21003583488   541843456   20444962816   2.58          3729    1306991   0.28
-grafana-data-grafana-1                    grafana      grafana-1              1023303680    3493888     1003032576    0.34          23      65513     0.04
-prometheus-storage-prometheus-sandpit-0   prometheus   prometheus-sandpit-0   21003583488   533467136   20453339136   2.54          3744    1306976   0.29
-grafana-data-grafana-0                    grafana      grafana-0              1023303680    80232448    926294016     7.84          24      65512     0.04
+PVC                            NAMESPACE    POD                    SIZE          USED        AVAILABLE     PERCENTUSED   IUSED   IFREE     PERCENTIUSED
+prometheus-storage-sandpit-1   prometheus   prometheus-sandpit-1   21003583488   541843456   20444962816   2.58          3729    1306991   0.28
+grafana-data-grafana-1         grafana      grafana-1              1023303680    3493888     1003032576    0.34          23      65513     0.04
+prometheus-storage-sandpit-0   prometheus   prometheus-sandpit-0   21003583488   533467136   20453339136   2.54          3744    1306976   0.29
+grafana-data-grafana-0         grafana      grafana-0              1023303680    80232448    926294016     7.84          24      65512     0.04
 ```
 
 And finally, `kubectl view-allocations` is handy for spotting pods without resource requests/limits (it's not obvious from the capture below, but it highlights these in red):

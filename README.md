@@ -9,11 +9,11 @@ Building a new blog theme using Hugo.
 ### Version 1
 
 - [x] NGINX instrumentation
-- [ ] Fewer social icons
-- [ ] Issue when very wide on desktop, menu on left starts to show
-- [ ] Try a white theme
+- [x] Fewer social icons
+- [x] Issue when very wide on desktop, menu on left starts to show
+- [x] Try a white theme
+- [x] Fancy hover box is over-used!
 - [ ] Link animated underline is too low
-- [ ] Fancy hover box is over-used!
 - [ ] Support for github gists
 - [ ] favicon
 - [ ] Safari: Border bottom showing on post panel (first panel only!)
