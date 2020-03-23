@@ -136,7 +136,7 @@ metadata:
   namespace: kube-system
 spec:
   targetRef:
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
         kind: Deployment
         name: kube-dns
   updatePolicy:
