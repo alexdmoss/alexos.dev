@@ -45,13 +45,10 @@ spec:
       restartPolicy: Always
       affinity:
         podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app
-                    operator: In
-                    values:
-                      - ${APP_NAME}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: ${APP_NAME}
               topologyKey: "kubernetes.io/hostname"
----
-
+            weight: 100
