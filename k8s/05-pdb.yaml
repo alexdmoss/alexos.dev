@@ -1,3 +1,4 @@
+---
 apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
@@ -8,4 +9,3 @@ spec:
   selector:
     matchLabels:
       app: ${APP_NAME}
----
