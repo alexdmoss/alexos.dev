@@ -30,6 +30,11 @@ spec:
             - name: metrics
               containerPort: 9145
           workingDir: /app
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 101
+            runAsGroup: 101
+            allowPrivilegeEscalation: false
           volumeMounts:
             - mountPath: /var/cache/nginx/data
               name: cache-volume
