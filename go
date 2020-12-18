@@ -69,6 +69,12 @@ function build() {
         _assert_variables_set GOOGLE_CREDENTIALS
         echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
         trap "gcloud auth revoke --verbosity=error" EXIT
+
+        wget --no-verbose -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.79.0/hugo_extended_0.79.0_Linux-64bit.tar.gz && \
+        tar zxf hugo.tar.gz && \
+        mv ./hugo /usr/local/bin/ && \
+        rm hugo.tar.gz
+
     fi
     
     mkdir -p "www/"
