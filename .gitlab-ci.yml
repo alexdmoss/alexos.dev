@@ -4,20 +4,20 @@ stages:
   - smoke
 
 variables:
-  GCP_PROJECT_NAME: moss-work
+  GCP_PROJECT_NAME: $MY_GCP_PROJECT
   GCP_REGION: europe-west1-b
-  CLUSTER_NAME: mw-prod
-  GOOGLE_CREDENTIALS: $BUILD_KEY
+  CLUSTER_NAME: $MY_K8S_CLUSTER_NAME
   NAMESPACE: mosstech
   APP_NAME: mosstech
   DOMAIN: mosstech.io
 
 build:
   stage: build
-  image: registry.gitlab.com/mosstech/mw-platform/mw-builder
+  image: mosstech/gcloud-and-docker:318.0.0
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
+    GOOGLE_CREDENTIALS: $GCR_CREDENTIALS
   services:
     - docker:dind
   only:
@@ -27,7 +27,9 @@ build:
 
 deploy:
   stage: deploy
-  image: registry.gitlab.com/mosstech/mw-platform/mw-builder
+  image: mosstech/ci-tools:latest
+  variables:
+    GOOGLE_CREDENTIALS: $K8S_CREDENTIALS
   dependencies:
     - build
   only:
@@ -37,7 +39,7 @@ deploy:
 
 smoke:
   stage: smoke
-  image: registry.gitlab.com/mosstech/mw-platform/mw-builder
+  image: mosstech/ci-tools:latest
   dependencies:
     - deploy
   only:
