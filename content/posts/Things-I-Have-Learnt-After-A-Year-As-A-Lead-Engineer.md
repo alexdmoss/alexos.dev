@@ -3,7 +3,7 @@ title: "Things I Have Learnt After A Year As A Lead Engineer"
 panelTitle: "Things I’ve Learnt After A Year As A Lead Engineer"
 date: 2021-01-03T19:00:00-01:00
 author: "@alexdmoss"
-description: "Some musings about the year just gone - my first as an Engineering Lead - and some of the things I'm going to try differently going forwards"
+description: "Musings about the year just gone and some of the things I'm going to try differently going forwards"
 banner: "/images/resolutions.jpg"
 tags: [ "Leadership", "Engineering", "Reflections", "Engineering Lead", "Tech Lead", "Ways of working" ]
 categories: [ "Leadership", "Engineering", "Reflections", "Ways of working" ]
