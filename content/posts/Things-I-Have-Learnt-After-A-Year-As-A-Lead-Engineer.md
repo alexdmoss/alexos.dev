@@ -1,5 +1,5 @@
 ---
-title: "Things I’ve Learnt After A Year As A Lead Engineer"
+title: "Things I Have Learnt After A Year As A Lead Engineer"
 panelTitle: "Things I’ve Learnt After A Year As A Lead Engineer"
 date: 2021-01-03T19:00:00-01:00
 author: "@alexdmoss"
