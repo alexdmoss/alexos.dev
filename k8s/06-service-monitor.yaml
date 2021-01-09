@@ -18,3 +18,20 @@ spec:
     - port: metrics
       path: /metrics
       interval: 30s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mosstech-istio
+  namespace: ${NAMESPACE}
+  labels:
+    app: ${APP_NAME}
+spec:
+  jobLabel: app
+  selector:
+    matchLabels:
+      app: ${APP_NAME}
+  endpoints:
+  - interval: 30s
+    path: /stats/prometheus
+    port: istio-proxy
