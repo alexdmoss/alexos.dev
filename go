@@ -103,13 +103,15 @@ function build() {
 
     _local-test ${APP_NAME}:latest
 
-    _console_msg "Pushing image to registry ..."
+    if [[ ${CI_SERVER:-} == "yes" ]]; then
+        _console_msg "Pushing image to registry ..."
 
-    docker tag ${APP_NAME}:latest ${IMAGE_NAME}:${CI_COMMIT_SHA}
-    docker tag ${APP_NAME}:latest ${IMAGE_NAME}:latest
+        docker tag ${APP_NAME}:latest ${IMAGE_NAME}:${CI_COMMIT_SHA}
+        docker tag ${APP_NAME}:latest ${IMAGE_NAME}:latest
 
-    docker push ${IMAGE_NAME}:${CI_COMMIT_SHA}
-    docker push ${IMAGE_NAME}:latest
+        docker push ${IMAGE_NAME}:${CI_COMMIT_SHA}
+        docker push ${IMAGE_NAME}:latest
+    fi
 
     popd >/dev/null 
     

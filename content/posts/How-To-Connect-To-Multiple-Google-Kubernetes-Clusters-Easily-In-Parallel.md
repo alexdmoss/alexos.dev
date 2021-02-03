@@ -125,7 +125,7 @@ Using my list of clusters from earlier, I would have `brie.yaml`, `cheddar.yaml`
 
 To make use of this shiny new config, we bring in [kubie](https://blog.sbstp.ca/introducing-kubie/). This tool works in a similar way to `kubectx` + `kubens` - you specify `kubie ctx` to set your current cluster, and `kubie ns` to select a namespace. The difference being, that when you run `kubie ctx` you spawn a new shell within your terminal window, with the context loaded to that.
 
-What that means in practice is you can have a terminal on the left of your screen connect to e.g. `prod` and a terminal on the right of your sreen connected to e.g. `dev`, and both continue to work independently from each other. This is really marvellous.
+What that means in practice is you can have a terminal on the left of your screen connect to e.g. `prod` and a terminal on the right of your screen connected to e.g. `dev`, and both continue to work independently from each other. This is really marvellous.
 
 > I have sufficient muscle memory that I had to `alias kctx='kubie ctx'` and `alias kns='kubie ns'` to save re-learning / more typing
 
