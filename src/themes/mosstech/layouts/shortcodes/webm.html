@@ -1,0 +1,8 @@
+{{- $width := "100%" -}}
+{{- $src := (.Get "src") -}}
+
+<div class="video">
+    <video controls preload="auto" width="{{ or (.Get "width") $width }}" muted class="html-video shadow">
+        <source src="{{ $src }}" type="video/webm" }}>
+    </video>
+</div>

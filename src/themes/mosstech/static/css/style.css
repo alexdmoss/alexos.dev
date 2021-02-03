@@ -1999,7 +1999,14 @@ h2:active .anchor, h3:active .anchor, h4:active .anchor, h5:active .anchor, h6:a
     opacity: .5;
 }
 
-
+.video {
+    width: 100%;
+    text-align: center;
+}
+.html-video {
+    margin-bottom: 2rem;
+    box-shadow: 4px 4px 10px var(--image-shadow-color);
+}
 
 .tooltipped {
     position: absolute;
