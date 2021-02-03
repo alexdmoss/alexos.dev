@@ -1,6 +1,6 @@
 ---
-title: "How to connect to multiple Google Kubernetes clusters easily in parallel"
-panelTitle: "How to connect to multiple Google Kubernetes clusters easily in parallel"
+title: "How to connect to Google Kubernetes clusters in parallel"
+panelTitle: "How to connect to Google Kubernetes clusters in parallel"
 date: 2021-02-02T18:00:00-01:00
 author: "@alexdmoss"
 description: "My approach to connecting to multiple clusters across multiple accounts from my terminal"
