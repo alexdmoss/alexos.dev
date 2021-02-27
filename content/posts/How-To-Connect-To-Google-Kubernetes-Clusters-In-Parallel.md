@@ -16,7 +16,7 @@ In this post I'm going to talk through the approach I use to switch between mult
 Key outcomes for me were:
 
 1. To be able to switch from one cluster to another with only a small number of commands, even if I have to authenticate with different user accounts (as primarily a GCP user, this means different email addresses / GCP projects).
-2. To be connected to different Kubernetes in different windows - for example tailing logs in a Prod & Non-Prod cluster at the same time.
+2. To be connected to different Kubernetes in different windows - for example tailing logs in a Prod & Non-Prod cluster at the same time - and for that connection to persist across multiple `kubectl` commands.
 
 **Spoiler Alert:** I solved this with a bit of fiddling of `~/.kube/config` plus the marvellous [kubie](https://blog.sbstp.ca/introducing-kubie/).
 
@@ -77,7 +77,7 @@ The switching script looks [like this](https://gist.github.com/alexdmoss/8ac9eea
 
 {{< figure src="/images/tracks.jpg?width=800px&classes=shadow" attr="Photo by Radek Grzybowski on Unsplash" attrlink="https://unsplash.com/photos/KVenyQf7gH0" >}}
 
-Here, I keep `~/.kube/config` completely clear and set up new configs under `~/.kube/configs/` whenever I have a new cluster I need to deal with. For the number I have to worry about, this is quite manageable, but it could be automated if you had a frequently-changing enough list to be worthwhile. The steps look like this (this must be done in a brand new shell not using `kubie` - see below!):
+Here, my `~/.kube/config` file does not exist and I set up new configs under `~/.kube/configs/` whenever I have a new cluster I need to deal with. For the number I have to worry about, this is quite manageable, but it could be automated if you had a frequently-changing enough list to be worthwhile. The steps look like this (this must be done in a brand new shell not using `kubie` - see below!):
 
 1. Auth to the new cluster as normal: `gcloud container clusters get-credentials ${cluster} --project=${project} --zone=${zone}`. This adds an entry to your blank `~/.kube/config`.
 2. Copy a template config file (see below) into `~/.kube/configs/` with a unique name.
@@ -125,7 +125,7 @@ Using my list of clusters from earlier, I would have `brie.yaml`, `cheddar.yaml`
 
 To make use of this shiny new config, we bring in [kubie](https://blog.sbstp.ca/introducing-kubie/). This tool works in a similar way to `kubectx` + `kubens` - you specify `kubie ctx` to set your current cluster, and `kubie ns` to select a namespace. The difference being, that when you run `kubie ctx` you spawn a new shell within your terminal window, with the context loaded to that.
 
-What that means in practice is you can have a terminal on the left of your screen connect to e.g. `prod` and a terminal on the right of your screen connected to e.g. `dev`, and both continue to work independently from each other. This is really marvellous.
+What that means in practice is you can have a terminal on e.g. the left of your screen connected to `prod` and a terminal on the right of your screen connected to `dev`, and both continue to work independently from each other. This is really marvellous.
 
 > I have sufficient muscle memory that I had to `alias kctx='kubie ctx'` and `alias kns='kubie ns'` to save re-learning / more typing
 
