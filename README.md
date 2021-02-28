@@ -7,8 +7,9 @@ My personal blog site.
 ## To Do
 
 - [x] Convert to alexos.dev
-  - [ ] Contacts Form API Key
-  - [ ] Email address
+  - [x] Contacts Form API Key
+  - [x] Email address
+- [x] Redirect old site to new
 - [ ] kustomize
 - [ ] Simplify and clean up theme - too busy
 - [ ] Mirror the repo to github

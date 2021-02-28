@@ -2,10 +2,9 @@
 apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
-  name: ${APP_NAME}-pdb
-  namespace: ${NAMESPACE}
+  name: alexos
 spec:
   minAvailable: 1
   selector:
     matchLabels:
-      app: ${APP_NAME}
+      app: alexos

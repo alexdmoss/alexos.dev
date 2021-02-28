@@ -2,10 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ${APP_NAME}
-  namespace: ${NAMESPACE}
-  labels:
-    app: ${APP_NAME}
+  name: alexos
 spec:
   replicas: 2
   strategy:
@@ -13,17 +10,11 @@ spec:
     rollingUpdate:
       maxSurge: "50%"
       maxUnavailable: "50%"
-  selector:
-    matchLabels:
-      app: ${APP_NAME}
   template:
-    metadata:
-      labels:
-        app: ${APP_NAME}
     spec:
       containers:
-        - name: ${APP_NAME}
-          image: ${IMAGE_NAME}:${CI_COMMIT_SHA}
+        - name: alexos
+          image: alexos:SET_BY_CI
           ports:
             - name: web
               containerPort: 32080
@@ -55,6 +46,6 @@ spec:
           - podAffinityTerm:
               labelSelector:
                 matchLabels:
-                  app: ${APP_NAME}
+                  app: alexos
               topologyKey: "kubernetes.io/hostname"
             weight: 100

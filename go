@@ -25,7 +25,7 @@ function local_build() {
 
     _console_msg "Building site locally ..."
 
-    _assert_variables_set GCP_PROJECT_NAME APP_NAME DOMAIN
+    _assert_variables_set GCP_PROJECT_NAME IMAGE_NAME DOMAIN
 
     mkdir -p "www/"
 
@@ -43,14 +43,12 @@ function local_build() {
 
     _console_msg "Baking docker image ..."
 
-    IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
+    docker build --tag ${IMAGE_NAME}:latest .
 
-    docker build --tag ${APP_NAME}:latest .
-
-    _local-test ${APP_NAME}:latest
+    _local-test ${IMAGE_NAME}:latest
 
     _console_msg "Built locally:
-          - run with:  docker run -p 32080:32080 ${APP_NAME}:latest
+          - run with:  docker run -p 32080:32080 ${IMAGE_NAME}:latest
           - test with: curl -H \"Host: ${DOMAIN}\" -s http://localhost:32080/" INFO true
 
     popd >/dev/null 
@@ -63,7 +61,7 @@ function build() {
 
     pushd $(dirname $BASH_SOURCE[0]) > /dev/null
 
-    _assert_variables_set GCP_PROJECT_NAME APP_NAME CI_COMMIT_SHA
+    _assert_variables_set GCP_PROJECT_NAME IMAGE_NAME CI_COMMIT_SHA
 
     if [[ ${CI_SERVER:-} == "yes" ]]; then
 
@@ -95,19 +93,16 @@ function build() {
 
     _console_msg "Baking docker image ..."
 
-    IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
-
     gcloud auth configure-docker --quiet
     docker pull ${IMAGE_NAME}:latest || true
-    docker build --cache-from ${IMAGE_NAME}:latest --tag ${APP_NAME}:latest .
+    docker build --cache-from ${IMAGE_NAME}:latest --tag ${IMAGE_NAME}:latest .
 
-    _local-test ${APP_NAME}:latest
+    _local-test ${IMAGE_NAME}:latest
 
     if [[ ${CI_SERVER:-} == "yes" ]]; then
         _console_msg "Pushing image to registry ..."
 
-        docker tag ${APP_NAME}:latest ${IMAGE_NAME}:${CI_COMMIT_SHA}
-        docker tag ${APP_NAME}:latest ${IMAGE_NAME}:latest
+        docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:${CI_COMMIT_SHA}
 
         docker push ${IMAGE_NAME}:${CI_COMMIT_SHA}
         docker push ${IMAGE_NAME}:latest
@@ -121,11 +116,9 @@ function build() {
 
 function deploy() {
 
-    _assert_variables_set GCP_PROJECT_NAME GCP_REGION CLUSTER_NAME APP_NAME DOMAIN NAMESPACE CI_COMMIT_SHA
+    _assert_variables_set GCP_PROJECT_NAME GCP_REGION CLUSTER_NAME IMAGE_NAME DOMAIN NAMESPACE CI_COMMIT_SHA
 
     _console_msg "Deploying app ..." INFO true
-
-    export IMAGE_NAME=eu.gcr.io/${GCP_PROJECT_NAME}/${APP_NAME}
 
     pushd "k8s/" >/dev/null
 
@@ -141,7 +134,8 @@ function deploy() {
 
     fi
 
-    cat *.yaml | envsubst | kubectl apply -n ${NAMESPACE} -f -
+    kustomize edit set image alexos=${IMAGE_NAME}:${CI_COMMIT_SHA}
+    kustomize build . | kubectl apply -f -
 
     _console_msg "Deployment complete" INFO true
 
@@ -234,10 +228,10 @@ function _local-test() {
 
     _console_msg "Running local docker image tests ..."
 
-    _assert_variables_set APP_NAME DOMAIN
+    _assert_variables_set DOMAIN
 
-    docker run -d --name ${APP_NAME} -p 32080:32080 ${image}
-    trap "docker rm -f ${APP_NAME} >/dev/null 2>&1 || true" EXIT
+    docker run -d --name ${IMAGE_NAME} -p 32080:32080 ${image}
+    trap "docker rm -f ${IMAGE_NAME} >/dev/null 2>&1 || true" EXIT
 
     # wow really, does it actually need this? /sigh
     sleep 2

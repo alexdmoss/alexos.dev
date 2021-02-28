@@ -8,8 +8,8 @@ variables:
   GCP_REGION: europe-west1-b
   CLUSTER_NAME: $MY_K8S_CLUSTER_NAME
   NAMESPACE: alexos
-  APP_NAME: alexos
   DOMAIN: alexos.dev
+  IMAGE_NAME: eu.gcr.io/${MY_GCP_PROJECT}/alexos
 
 build:
   stage: build
