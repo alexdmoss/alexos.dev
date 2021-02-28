@@ -7,9 +7,9 @@ variables:
   GCP_PROJECT_NAME: $MY_GCP_PROJECT
   GCP_REGION: europe-west1-b
   CLUSTER_NAME: $MY_K8S_CLUSTER_NAME
-  NAMESPACE: mosstech
-  APP_NAME: mosstech
-  DOMAIN: mosstech.io
+  NAMESPACE: alexos
+  APP_NAME: alexos
+  DOMAIN: alexos.dev
 
 build:
   stage: build

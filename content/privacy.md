@@ -34,17 +34,17 @@ You'll therefore see that there are a couple of Google Analytics cookies in use 
 
 Last updated: May 27, 2019
 
-Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the mosstech.io website (the "Service") ("me", "I", "my").
+Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the alexos.dev website (the "Service") ("me", "I", "my").
 
 Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
 
-By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. The Terms and Conditions agreement for mosstech.io has been created with the help of [TermsFeed](https://www.termsfeed.com/).
+By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. The Terms and Conditions agreement for alexos.dev has been created with the help of [TermsFeed](https://www.termsfeed.com/).
 
 ### Links To Other Web Sites
 
-Our Service may contain links to third-party web sites or services that are not owned or controlled by mosstech.io.
+Our Service may contain links to third-party web sites or services that are not owned or controlled by alexos.dev.
 
-mosstech.io has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that mosstech.io shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+alexos.dev has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that alexos.dev shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
 
 I strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.
 
@@ -66,9 +66,9 @@ By continuing to access or use the Service after those revisions become effectiv
 
 Last updated: May 27, 2019
 
-mosstech.io ("I", "me", "my") uses cookies on the mosstech.io website (the "Service"). By using the Service, you consent to the use of cookies.
+alexos.dev ("I", "me", "my") uses cookies on the alexos.dev website (the "Service"). By using the Service, you consent to the use of cookies.
 
-This Cookies Policy explains what cookies are, how I use cookies, how third-parties I may partner with may use cookies on the Service, your choices regarding cookies and further information about cookies. This Cookies Policy for mosstech.io has been created with the help of [TermsFeed](https://www.termsfeed.com/).
+This Cookies Policy explains what cookies are, how I use cookies, how third-parties I may partner with may use cookies on the Service, your choices regarding cookies and further information about cookies. This Cookies Policy for alexos.dev has been created with the help of [TermsFeed](https://www.termsfeed.com/).
 
 ### What are cookies
 
@@ -76,7 +76,7 @@ Cookies are small pieces of text sent by your web browser by a website you visit
 
 Cookies can be "persistent" or "session" cookies. Persistent cookies remain on your personal computer or mobile device when you go offline, while session cookies are deleted as soon as you close your web browser.
 
-### How mosstech.io uses cookies
+### How alexos.dev uses cookies
 
 When you use and access the Service, I may place a number of cookies files in your web browser.
 
@@ -94,15 +94,15 @@ Please note, however, that if you delete cookies or refuse to accept them, you m
 
 Effective date: May 27, 2019
 
-mosstech.io ("I", "me", "my") operates the mosstech.io website (hereinafter referred to as the "Service").
+alexos.dev ("I", "me", "my") operates the alexos.dev website (hereinafter referred to as the "Service").
 
-This page informs you of my policies regarding the collection, use, and disclosure of personal data when you use the Service and the choices you have associated with that data. The Privacy Policy for mosstech.io has been created with the help of [TermsFeed](https://www.termsfeed.com/).
+This page informs you of my policies regarding the collection, use, and disclosure of personal data when you use the Service and the choices you have associated with that data. The Privacy Policy for alexos.dev has been created with the help of [TermsFeed](https://www.termsfeed.com/).
 
 I use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, the terms used in this Privacy Policy have the same meanings as in the Terms and Conditions above.
 
 ### Definitions
 
-- **Service** is the mosstech.io website operated by mosstech.io
+- **Service** is the alexos.dev website operated by alexos.dev
 - **Personal Data** means data about a living individual who can be identified from that data.
 - **Usage Data** is data collected automatically either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).
 - **Cookies** are small files stored on your device (computer or mobile device).
@@ -137,7 +137,7 @@ Examples of Cookies I use:
 
 ### Use of Data
 
-mosstech.io uses the collected data for various purposes:
+alexos.dev uses the collected data for various purposes:
 
 - To provide and maintain the Service
 - To allow you to participate in interactive features of the Service when you choose to do so
@@ -151,16 +151,16 @@ Your information, including Personal Data, may be transferred to - and maintaine
 
 Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.
 
-mosstech.io will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.
+alexos.dev will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.
 
 ### Disclosure Of Data
 
 #### Legal Requirements
 
-In the highly unlikely event that it is required, mosstech.io may disclose your Personal Data in the good faith belief that such action is necessary to:
+In the highly unlikely event that it is required, alexos.dev may disclose your Personal Data in the good faith belief that such action is necessary to:
 
 - To comply with a legal obligation
-- To protect and defend the rights or property of mosstech.io
+- To protect and defend the rights or property of alexos.dev
 - To prevent or investigate possible wrongdoing in connection with the Service
 - To protect the personal safety of users of the Service or the public
 - To protect against legal liability

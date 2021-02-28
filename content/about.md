@@ -5,7 +5,6 @@ author: "@alexdmoss"
 description: "A little bit of info about me, and this website"
 tags:
 - About
-- mosstech
 - Introduction
 ---
 

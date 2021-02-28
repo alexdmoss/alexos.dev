@@ -22,7 +22,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: mosstech-istio
+  name: ${APP_NAME}-istio
   namespace: ${NAMESPACE}
   labels:
     app: ${APP_NAME}

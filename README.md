@@ -1,10 +1,21 @@
-# mosstech.io
+# alexos.dev
 
-Building a new blog theme using Hugo.
+My personal blog site.
 
 ---
 
 ## To Do
+
+- [ ] Convert to alexos.dev
+  - [ ] Contacts Form API Key
+  - [ ] Email address
+- [ ] kustomize
+- [ ] Simplify and clean up theme - too busy
+- [ ] Mirror the repo to github
+- [ ] Broken link finder
+- [ ] Journey tests
+- [ ] Solution that involves no Google Analytics
+- [ ] Write blog post about how the site works
 
 ### Version 1
 
