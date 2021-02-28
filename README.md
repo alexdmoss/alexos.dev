@@ -6,7 +6,7 @@ My personal blog site.
 
 ## To Do
 
-- [ ] Convert to alexos.dev
+- [x] Convert to alexos.dev
   - [ ] Contacts Form API Key
   - [ ] Email address
 - [ ] kustomize
