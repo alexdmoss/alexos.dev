@@ -230,8 +230,8 @@ function _local-test() {
 
     _assert_variables_set DOMAIN
 
-    docker run -d --name ${IMAGE_NAME} -p 32080:32080 ${image}
-    trap "docker rm -f ${IMAGE_NAME} >/dev/null 2>&1 || true" EXIT
+    docker run -d --name alexos -p 32080:32080 ${image}
+    trap "docker rm -f alexos >/dev/null 2>&1 || true" EXIT
 
     # wow really, does it actually need this? /sigh
     sleep 2
