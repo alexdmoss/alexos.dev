@@ -12,6 +12,14 @@ spec:
     - secretName: alexos-tls
       hosts:
         - alexos.dev
+        - www.alexos.dev
+        - mosstech.io
+        - www.mosstech.io
+        - alexos.io
+        - www.alexos.io
+        - www.alexmoss.co.uk
+        - www.mosses.info
+        - www.alexos.info
   rules:
     - host: alexos.dev
       http:
