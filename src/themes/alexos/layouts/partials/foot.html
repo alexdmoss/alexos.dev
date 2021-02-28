@@ -1,0 +1,27 @@
+<a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+
+<!-- custom js -->
+<script src="{{"js/lazysizes.min.js" | relURL}}" async=""></script>
+<script src="{{"js/skel.min.js" | relURL}}" async=""></script>
+<script src="{{"js/clipboard.min.js" | relURL}}" async=""></script>
+<script src="{{"js/highlight.pack.js" | relURL}}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="{{"js/featherlight.min.js" | relURL}}" async=""></script>
+<script src="{{ "js/backToTop.js" | relURL }}" async=""></script>
+<script src="{{ "js/jqBootstrapValidation.min.js" | relURL }}" async=""></script>
+<script src="{{ "js/lunr.min.js" | relURL }}" async=""></script>
+<script src="{{ "js/search.js" | relURL }}" async=""></script>
+<script src="{{"js/sites.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"
+  async=""></script>
+<script src="{{"js/dark-mode.js" | relURL}}" async=""></script>
+
+{{ template "_internal/google_analytics.html" . }}
+
+{{ if .Params.asciinema }}
+<script src="{{"js/asciinema-player.js" | relURL}}" async=""></script>
+{{ end }}
+
+</div>
+</body>
+
+</html>

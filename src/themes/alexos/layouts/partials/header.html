@@ -1,0 +1,47 @@
+<div id="wrapper">
+
+		
+	<header id="header">
+
+		<h1><a href="/">{{ .Site.Title }}</a></h1>
+		
+		<nav class="links" id="header-menu">
+			{{ $currentPage := . }}
+			{{ range .Site.Menus.main }}
+				<a href="{{ .URL | relLangURL | safeURL }}" title="{{ .Title | safeHTML }}">{{ .Pre | safeHTML }} {{ .Name | safeHTML }}</a>
+			{{ end }}
+
+		</nav>
+
+		<nav class="interact">
+
+
+			<div class="search-menu">
+				<a class="fas fa-search icon" href="#search"></a>
+				<form id="search">
+					<input id="searchbox" type="text" name="q" placeholder="Search for ..." />
+				</form>
+			</div>
+
+			{{ partial "dark-mode.html" }}
+
+			<div class="mobile-menu">
+				<a class="fa fa-bars icon" href="javascript:void(0);" onclick="mobileMenu()"></a>
+			</div>
+				
+			{{ if $.Scratch.Get "shareNav" }}
+			<div id="share-nav" class="share-menu" style="display: none;">
+				<a class="fas fa-share-alt icon" href="#share-menu"></a>
+			</div>
+
+			{{ partial "share-menu.html" . }}
+
+			{{ end }}
+
+		</nav>
+
+	</header>
+
+	<div id="search-results">
+		<ul id="results"></ul>
+	</div>

@@ -1,0 +1,18 @@
+name = "alexos"
+license = "MIT"
+licenselink = "https://github.com/alexdmoss/alexos.dev/blob/master/LICENSE"
+description = ""
+homepage = "https://alexos.dev"
+tags = []
+features = []
+min_version = "0.41"
+
+[author]
+  name = ""
+  homepage = ""
+
+# If porting an existing theme
+[original]
+  name = ""
+  homepage = ""
+  repo = ""

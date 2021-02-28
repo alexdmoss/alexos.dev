@@ -1,0 +1,43 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div class="main" id="body-inner">
+    
+    <article class="post-summary">
+        
+        <header class="main-header">
+            <div class="post-title narrow-title">
+                <h1><i class="fas fa-tag link-icon"></i> {{ .Title }}</h1>
+            </div>
+        </header>
+
+        <section class="post-listing">
+
+            <ul>
+            {{ range .Data.Pages }}
+                <li>
+                    {{ $.Scratch.Set "summary" ((delimit (findRE "<p.*?>(.|\n)*?</p>" .Content 1) "") | truncate 500 | replaceRE "&amp;" "&" | replaceRE "<p>" "" | replaceRE "</p>" "" | replaceRE "<a .*?>" "" | replaceRE "</a>" "" | safeHTML) }}
+                    <div class="listing-container">
+                        <a href="{{ .RelPermalink | relLangURL | safeURL }}" class="listing-box draw meet">
+                            {{ with .Param "banner" }}
+                            <img class="listing-image" src="{{ . | safeURL }}" />
+                            {{ else }}
+                            <img class="listing-image" src="/images/question-mark.png" />
+                            {{ end }}
+                            <h3 class="listing-title">{{ safeHTML .Title }}</h3>
+                            <p class="listing-description">{{ safeHTML .Description | truncate 175 }}</p>
+                            <p class="listing-summary">{{ $.Scratch.Get "summary" }}</p>
+                        </a>
+                    </div>
+                </li>
+            {{ end }}
+            </ul>
+
+        </section>
+        
+    </article>
+            
+</div>
+
+{{ partial "sidebar.html" . }}
+{{ partial "foot.html" . }}

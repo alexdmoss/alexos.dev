@@ -1,0 +1,48 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div class="main" id="body-inner">
+
+    {{ if .Site.Params.categoriesByCount }}
+        {{ $.Scratch.Set "tags" .Data.Terms.ByCount }}
+    {{ else }}
+        {{ $.Scratch.Set "tags" .Data.Terms.Alphabetical }}
+    {{ end }}
+
+    <article class="post-summary">
+        
+        <header class="main-header">
+            <div class="post-title narrow-title">
+                <h1>{{ .Data.Plural }}</h1>
+            </div>
+        </header>
+
+        <section class="tag-listing">
+
+            {{ $data := .Data }}
+            <ul>
+
+                {{ range $key, $value := $.Scratch.Get "tags" }}
+                <li>
+                {{ if ne $value.Name "" }}
+                    <i class="fas fa-tag link-icon"></i> 
+                    <a href="{{ printf "/%s/%s" $data.Plural $value.Name | urlize | relLangURL }}/" class="tag-link">
+                        {{ $value.Name }}
+                    </a>
+                    - {{ $value.Count }}
+                {{ else }}
+                    Uncategorised - {{ $value.Count }}
+                {{ end }}
+                </li>
+                {{ end }}
+        
+            </ul>
+
+        </section>
+        
+    </article>
+                
+    </div>
+
+{{ partial "sidebar.html" . }}
+{{ partial "foot.html" . }}
