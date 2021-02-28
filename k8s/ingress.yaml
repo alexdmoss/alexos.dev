@@ -19,7 +19,6 @@ spec:
         - www.alexos.io
         - www.alexmoss.co.uk
         - www.mosses.info
-        - www.alexos.info
   rules:
     - host: alexos.dev
       http:
@@ -74,13 +73,6 @@ spec:
               serviceName: alexos
               servicePort: 32080
     - host: www.mosses.info
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: alexos
-              servicePort: 32080
-    - host: www.alexos.info
       http:
         paths:
           - path: /
