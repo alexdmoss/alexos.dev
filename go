@@ -134,6 +134,7 @@ function deploy() {
 
     fi
 
+    kubectl apply -f namespace.yaml
     kustomize edit set image alexos=${IMAGE_NAME}:${CI_COMMIT_SHA}
     kustomize build . | kubectl apply -f -
 
