@@ -10,13 +10,46 @@ My personal blog site.
   - [x] Contacts Form API Key
   - [x] Email address
 - [x] Redirect old site to new
-- [ ] kustomize
+- [x] kustomize
 - [ ] Simplify and clean up theme - too busy
 - [ ] Mirror the repo to github
 - [ ] Broken link finder
 - [ ] Journey tests
 - [ ] Solution that involves no Google Analytics
 - [ ] Write blog post about how the site works
+
+Drop categories completely
+
+On a post:
+- drop caps from tagline
+- restyle buttons at bottom
+- push footer to bottom
+- darken menu bar
+- move share options to menu bar
+- github link
+
+On home page:
+- logo
+- large hero banner - maybe from that slide template?
+- menu bar only on scroll
+- drop left menu
+- restyle posts list to allow a lot more space
+
+Search:
+- needs way more padding
+
+Tags:
+- to tag cloud
+
+Dark mode:
+- keeps redrawing on click
+
+Contact:
+- successful send should pop
+
+About:
+- remove recent posts but keep photo
+- check content still relevant
 
 ### Version 1
 
