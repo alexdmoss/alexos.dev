@@ -54,7 +54,19 @@ For this, I tried out WeaveWorks Scope. My original thoughts were to look to [Ne
 
 On the plus side, it did what I was after. I could use its UI to interrogate what was running on a node, and show the interconnectedness of workloads on the cluster. But it needs an awful lot of permission to work successfully - certainly in a work context rather than for a hobbyist cluster.
 
-/// screenshots and showcase its powers more
+Here's a couple of examples:
+
+{{< figure src="/images/weave-controllers.png?width=800px&classes=shadow" attr="weave-scope - controllers view" >}}
+
+The above shows the default landing page in Scope - a controller-centric view that immediately gives you an overview of what's connected together. Note all the GKE bits n bobs it's picking up, as well as outward connectivity to GCP services. Very cool - but also a clue as to scaling challenges to come - this is a tiny two node cluster with only 58 pods at the time this screenshots was taken.
+
+That said, you can drill into more specific views - as these couple of screenshots show for a Deployment and a Node:
+
+{{< figure src="/images/weave-deployment.png?width=800px&classes=shadow" attr="weave-scope - a deployment" >}}
+
+{{< figure src="/images/weave-nodes.png?width=800px&classes=shadow" attr="weave-scope - a node" >}}
+
+There's a rich amount of information here, as well as namespace filters along the bottom and a decent search facility. Nothing quite replicates the "pods on nodes at a glance" that I like about kube-ops-view above - but you do really get a sense of the connectivity / number of resource objects on your cluster with Scope.
 
 My interest was peeked enough to spend a little time seeing whether I could reduce this down. The [repo](https://github.com/alexdmoss/weave-scope) elaborates on this more detail - I had some success, but unsurprisingly, it needed a fair bit of privilege to be able to get at the data it needed:
 
