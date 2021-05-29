@@ -4,36 +4,31 @@ stages:
   - smoke
 
 variables:
-  GCP_PROJECT_NAME: $MY_GCP_PROJECT
-  GCP_REGION: europe-west1-b
-  CLUSTER_NAME: $MY_K8S_CLUSTER_NAME
-  NAMESPACE: alexos
   DOMAIN: alexos.dev
-  IMAGE_NAME: eu.gcr.io/${MY_GCP_PROJECT}/alexos
+  IMAGE_NAME: eu.gcr.io/${GCP_PROJECT_ID}/alexos
+
 
 build:
   stage: build
-  image: mosstech/gcloud-and-docker:318.0.0
+  image: mosstech/gcloud-and-docker:324.0.0
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
-    GOOGLE_CREDENTIALS: $GCR_CREDENTIALS
   services:
     - docker:dind
-  only:
-    - master
+  before_script:
+  - echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
+  - gcloud auth configure-docker --quiet
   script:
     - ./go build
-
+    
 deploy:
   stage: deploy
   image: mosstech/ci-tools:latest
-  variables:
-    GOOGLE_CREDENTIALS: $K8S_CREDENTIALS
-  dependencies:
-    - build
-  only:
-    - master
+  before_script:
+  - echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
+  - region=$(gcloud container clusters list --project=${GCP_PROJECT_ID} --filter "NAME=${CLUSTER_NAME}" --format "value(zone)")
+  - gcloud container clusters get-credentials ${CLUSTER_NAME} --project=${GCP_PROJECT_ID} --region=${region}
   script:
     - ./go deploy
 

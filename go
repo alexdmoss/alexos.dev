@@ -15,7 +15,7 @@ function help() {
 }
 
 function run() {
-    pushd $(dirname $BASH_SOURCE[0]) >/dev/null
+    pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
     _run_hugo server -p 1314 -wDs src/
     popd >/dev/null
 }
@@ -25,7 +25,7 @@ function local_build() {
 
     _console_msg "Building site locally ..."
 
-    _assert_variables_set GCP_PROJECT_NAME IMAGE_NAME DOMAIN
+    _assert_variables_set IMAGE_NAME DOMAIN
 
     mkdir -p "www/"
 
@@ -39,17 +39,17 @@ function local_build() {
 
     _build-test
 
-    pushd $(dirname $BASH_SOURCE[0]) >/dev/null
+    pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 
     _console_msg "Baking docker image ..."
 
-    docker build --tag ${IMAGE_NAME}:latest .
+    docker build --tag "${IMAGE_NAME}":latest .
 
-    _local-test ${IMAGE_NAME}:latest
+    _local-test "${IMAGE_NAME}":latest
 
     _console_msg "Built locally:
           - run with:  docker run -p 32080:32080 ${IMAGE_NAME}:latest
-          - test with: curl -H \"Host: ${DOMAIN}\" -s http://localhost:32080/" INFO true
+          - test with: curl -H \"Host: ${DOMAIN:-}\" -s http://localhost:32080/" INFO true
 
     popd >/dev/null 
 
@@ -59,22 +59,16 @@ function build() {
 
     _console_msg "Building site ..."
 
-    pushd $(dirname $BASH_SOURCE[0]) > /dev/null
+    pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 
-    _assert_variables_set GCP_PROJECT_NAME IMAGE_NAME CI_COMMIT_SHA
+    _assert_variables_set IMAGE_NAME CI_COMMIT_SHA
 
     if [[ ${CI_SERVER:-} == "yes" ]]; then
-
-        _assert_variables_set GOOGLE_CREDENTIALS
-        echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-        trap "gcloud auth revoke --verbosity=error" EXIT
-
         _console_msg "Installing Hugo in CI image ..."
         wget --no-verbose -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.79.0/hugo_extended_0.79.0_Linux-64bit.tar.gz && \
         tar zxf hugo.tar.gz && \
         mv ./hugo /usr/local/bin/ && \
         rm hugo.tar.gz
-
     fi
     
     mkdir -p "www/"
@@ -89,24 +83,21 @@ function build() {
 
     _build-test
 
-    pushd $(dirname $BASH_SOURCE[0]) >/dev/null
+    pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 
     _console_msg "Baking docker image ..."
 
-    gcloud auth configure-docker --quiet
-    docker pull ${IMAGE_NAME}:latest || true
-    docker build --cache-from ${IMAGE_NAME}:latest --tag ${IMAGE_NAME}:latest .
+    docker pull "${IMAGE_NAME}":latest || true
+    docker build --cache-from "${IMAGE_NAME}":latest --tag "${IMAGE_NAME}":latest .
 
-    _local-test ${IMAGE_NAME}:latest
+    _local-test "${IMAGE_NAME}":latest
 
-    if [[ ${CI_SERVER:-} == "yes" ]]; then
-        _console_msg "Pushing image to registry ..."
+    _console_msg "Pushing image to registry ..."
 
-        docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:${CI_COMMIT_SHA}
+    docker tag "${IMAGE_NAME}":latest "${IMAGE_NAME}":"${CI_COMMIT_SHA}"
 
-        docker push ${IMAGE_NAME}:${CI_COMMIT_SHA}
-        docker push ${IMAGE_NAME}:latest
-    fi
+    docker push "${IMAGE_NAME}":"${CI_COMMIT_SHA}"
+    docker push "${IMAGE_NAME}":latest
 
     popd >/dev/null 
     
@@ -116,27 +107,16 @@ function build() {
 
 function deploy() {
 
-    _assert_variables_set GCP_PROJECT_NAME GCP_REGION CLUSTER_NAME IMAGE_NAME DOMAIN NAMESPACE CI_COMMIT_SHA
+    _assert_variables_set IMAGE_NAME DOMAIN CI_COMMIT_SHA
 
     _console_msg "Deploying app ..." INFO true
 
     pushd "k8s/" >/dev/null
 
-    if [[ ${CI_SERVER:-} == "yes" ]]; then
-
-        echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-        trap "gcloud auth revoke --verbosity=error" EXIT
-
-        gcloud config set project ${GCP_PROJECT_NAME}
-        gcloud config set compute/region ${GCP_REGION}
-        gcloud config set container/cluster ${CLUSTER_NAME}
-        gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${GCP_REGION} --project ${GCP_PROJECT_NAME}
-
-    fi
-
     kubectl apply -f namespace.yaml
-    kustomize edit set image alexos=${IMAGE_NAME}:${CI_COMMIT_SHA}
+    kustomize edit set image alexos="${IMAGE_NAME}":"${CI_COMMIT_SHA}"
     kustomize build . | kubectl apply -f -
+    kubectl rollout status deploy/alexos -n=alexos --timeout=60s
 
     _console_msg "Deployment complete" INFO true
 
@@ -155,26 +135,26 @@ function _build-test() {
     for md_file in ${markdown_files}; do
     
         html_file="index.html"
-        html_path=$(dirname ${md_file} | sed 's#^content#www#')
+        html_path=$(dirname "${md_file}" | sed 's#^content#www#')
 
-        if [[ $(basename ${md_file}) == "_index.md" ]]; then
+        if [[ $(basename "${md_file}") == "_index.md" ]]; then
             html_file="index.html"
-        elif [[ $(echo ${md_file} | grep -c '/posts/') -gt 0 ]]; then
-            if [[ $(grep -c 'draft: true' ${md_file}) -gt 0 ]]; then
+        elif [[ $(echo "${md_file}" | grep -c '/posts/') -gt 0 ]]; then
+            if [[ $(grep -c 'draft: true' "${md_file}") -gt 0 ]]; then
                 _console_msg "${md_file} in draft - SKIPPING"
             else
                 # permalinks mean we need to extract the date to know its destination
-                publish_date=$(grep 'date: ' ${md_file})
-                publish_year=$(echo ${publish_date} | awk -F- '{print $1}' | awk -F': ' '{print $2}')
-                publish_month=$(echo ${publish_date} | awk -F- '{print $2}')
-                publish_day=$(echo ${publish_date} | awk -F- '{print $3}' | awk -FT '{print $1}')
-                html_file=${publish_year}/${publish_month}/${publish_day}/$(basename ${md_file} | sed 's#\.md$#/index.html#')
+                publish_date=$(grep 'date: ' "${md_file}")
+                publish_year=$(echo "${publish_date}" | awk -F- '{print $1}' | awk -F': ' '{print $2}')
+                publish_month=$(echo "${publish_date}" | awk -F- '{print $2}')
+                publish_day=$(echo "${publish_date}" | awk -F- '{print $3}' | awk -FT '{print $1}')
+                html_file=${publish_year}/${publish_month}/${publish_day}/$(basename "${md_file}" | sed 's#\.md$#/index.html#')
             fi
         else
-            html_file=$(basename ${md_file} | sed 's#\.md$#/index.html#')
+            html_file=$(basename "${md_file}" | sed 's#\.md$#/index.html#')
         fi
 
-        test_file=$(echo ${html_path}/${html_file} | sed 's#/posts##' | awk '{print tolower($0)}')
+        test_file=$(echo "${html_path}"/"${html_file}" | sed 's#/posts##' | awk '{print tolower($0)}')
         if [[ ! -f "${test_file}" ]]; then
             error=1
             _console_msg "Expected HTML file was missing. Markdown: ${md_file} should be assembled into: ${test_file}"
@@ -231,19 +211,19 @@ function _local-test() {
 
     _assert_variables_set DOMAIN
 
-    docker run -d --name alexos -p 32080:32080 ${image}
+    docker run -d --name alexos -p 32080:32080 "${image}"
     trap "docker rm -f alexos >/dev/null 2>&1 || true" EXIT
 
     # wow really, does it actually need this? /sigh
     sleep 2
 
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/ "Recent Posts"
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/about/ "A little bit of info about me"
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/contact/ "Send Message"
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/posts/ "Previous Page"
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/categories/ "/categories/cloud"
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/tags/ "/tags/google"
-    _smoke_test ${DOMAIN} http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ "This time last year"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/ "Recent Posts"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/about/ "A little bit of info about me"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/contact/ "Send Message"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/posts/ "Previous Page"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/categories/ "/categories/cloud"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/tags/ "/tags/google"
+    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ "This time last year"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
@@ -262,13 +242,13 @@ function smoke() {
 
     _console_msg "Checking HTTP status code for https://${DOMAIN}/ ..."
     
-    _smoke_test ${DOMAIN} http://${DOMAIN}/ "Recent Posts"
-    _smoke_test ${DOMAIN} https://${DOMAIN}/about/ "A little bit of info about me"
-    _smoke_test ${DOMAIN} https://${DOMAIN}/contact/ "Send Message"
-    _smoke_test ${DOMAIN} https://${DOMAIN}/posts/ "Previous Page"
-    _smoke_test ${DOMAIN} https://${DOMAIN}/categories/ "/categories/cloud"
-    _smoke_test ${DOMAIN} https://${DOMAIN}/tags/ "/tags/google"
-    _smoke_test ${DOMAIN} https://${DOMAIN}/2019/02/23/a-year-in-google-cloud/ "This time last year"
+    _smoke_test "${DOMAIN}" http://"${DOMAIN}"/ "Recent Posts"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/about/ "A little bit of info about me"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/contact/ "Send Message"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/posts/ "Previous Page"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/categories/ "/categories/cloud"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/tags/ "/tags/google"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/2019/02/23/a-year-in-google-cloud/ "This time last year"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
@@ -283,12 +263,12 @@ function _smoke_test() {
     local domain=$1
     local url=$2
     local match=$3
-    output=$(curl -H "Host: ${domain}" -s -k -L -w "\nHTTP-%{http_code}" ${url} || true)
-    if [[ $(echo ${output} | grep -c "HTTP-200") -eq 0 ]]; then
+    output=$(curl -H "Host: ${domain}" -s -k -L -w "\nHTTP-%{http_code}" "${url}" || true)
+    if [[ $(echo "${output}" | grep -c "HTTP-200") -eq 0 ]]; then
         _console_msg "Test FAILED - ${url} - non-200 return code" ERROR
         error=1
     fi
-    if [[ $(echo ${output} | grep -c "${match}") -eq 0 ]]; then 
+    if [[ $(echo "${output}" | grep -c "${match}") -eq 0 ]]; then 
         _console_msg "Test FAILED - ${url} - missing phrase" ERROR
         error=1
     else
@@ -337,8 +317,8 @@ function _console_msg() {
 }
 
 function ctrl_c() {
-    if [ ! -z ${PID:-} ]; then
-        kill ${PID}
+    if [ ! -z "${PID:-}" ]; then
+        kill "${PID}"
     fi
     exit 1
 }
