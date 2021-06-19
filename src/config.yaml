@@ -6,7 +6,7 @@ contentDir: "../content"
 languageCode: "en-gb"
 paginate: 10
 enableEmoji: true 
-googleAnalytics: "UA-119518989-2"
+googleAnalytics: "G-D8M8XCG5W"
 
 permalinks:
   posts: /:year/:month/:day/:title/
