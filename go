@@ -9,6 +9,7 @@ function help() {
   echo -e "    local_build              Builds the site (HTML + docker image) locally only - no push"
   echo -e "    build                    Builds the site (HTML + docker image) and pushes to registry"
   echo -e "    deploy                   Deploys site onto hosts. Assumes pre-requisites are done"
+  echo -e "    test                     Runs all the tests"
   echo -e "    smoke                    Runs smoke tests"
   echo -e 
   exit 0
@@ -124,6 +125,66 @@ function deploy() {
 
 }
 
+function test() {
+
+    pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
+
+    _assert_variables_set IMAGE_NAME
+
+    if [[ ${CI_SERVER:-} == "yes" ]]; then
+        _console_msg "Installing Hugo in CI image ..."
+        wget --no-verbose -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.79.0/hugo_extended_0.79.0_Linux-64bit.tar.gz && \
+        tar zxf hugo.tar.gz && \
+        mv ./hugo /usr/local/bin/ && \
+        rm hugo.tar.gz
+    fi
+    
+
+    _console_msg "Running build tests (will fail if you've not built locally beforehand) ..."
+
+    _build-test
+
+    _console_msg "Running local docker tests (assumes you've built IMAGE_NAME:latest ..."
+
+    _local-test "${IMAGE_NAME}":latest
+
+    _console_msg "Running smoke tests against running site ..."
+
+    smoke
+
+    popd >/dev/null 
+    
+    _console_msg "Tests complete" INFO true 
+
+
+}
+
+function smoke() {
+
+    local error=0
+
+    _assert_variables_set DOMAIN
+
+    _console_msg "Checking HTTP status code for https://${DOMAIN}/ ..."
+    
+    _smoke_test "${DOMAIN}" http://"${DOMAIN}"/ "Recent Posts"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/about/ "A little bit of info about me"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/contact/ "Send Message"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/posts/ "Previous Page"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/categories/ "/categories/cloud"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/tags/ "/tags/google"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/2019/02/23/a-year-in-google-cloud/ "This time last year"
+
+    if [[ "${error:-}" != "0" ]]; then
+        _console_msg "Tests FAILED - see messages above for for detail" ERROR
+        exit 1
+    else
+        _console_msg "All local tests passed!"
+    fi
+
+}
+
+
 function _build-test() {
 
     local error=0
@@ -224,31 +285,6 @@ function _local-test() {
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/categories/ "/categories/cloud"
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/tags/ "/tags/google"
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ "This time last year"
-
-    if [[ "${error:-}" != "0" ]]; then
-        _console_msg "Tests FAILED - see messages above for for detail" ERROR
-        exit 1
-    else
-        _console_msg "All local tests passed!"
-    fi
-
-}
-
-function smoke() {
-
-    local error=0
-
-    _assert_variables_set DOMAIN
-
-    _console_msg "Checking HTTP status code for https://${DOMAIN}/ ..."
-    
-    _smoke_test "${DOMAIN}" http://"${DOMAIN}"/ "Recent Posts"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/about/ "A little bit of info about me"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/contact/ "Send Message"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/posts/ "Previous Page"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/categories/ "/categories/cloud"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/tags/ "/tags/google"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/2019/02/23/a-year-in-google-cloud/ "This time last year"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
