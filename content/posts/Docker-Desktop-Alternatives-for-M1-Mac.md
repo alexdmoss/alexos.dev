@@ -11,9 +11,9 @@ categories: [ "Docker", "Mac" ]
 
 {{< figure src="/images/containers.jpg?width=1000px&classes=shadow" attr="Photo by Ian Taylor on Unsplash" attrlink="https://unsplash.com/photos/jOqJbvo1P9g" >}}
 
-In this blog post I'm going to talk through my recent experiences as I attempted to ditch Docker Desktop - the licensing changes that come into effect at the end of January being the primary motivator (I work for a company large enough to be hit by this).
+In this blog post I'm going to talk through my recent experiences as I attempted to ditch Docker Desktop - the licensing changes that come into effect at the end of January being the primary motivator.
 
-> Without going into any detail about it, lets just say I'm not a fan of taking something that you've made freely available previously and deciding that you now want to charge for it!
+> Without going into any detail about it, let's just say I'm not a fan of taking something that you've made freely available previously and deciding that you now want to charge for it!
 
 {{< figure src="/images/docker-money.png?width=400px&classes=shadow" attr="From this 'Is Docker in Trouble?' Blog Post" attrlink="https://start.jcolemorrison.com/is-docker-in-trouble/" >}}
 
@@ -100,7 +100,7 @@ However, I also needed an option that worked with Apple Silicon. My first attemp
 
 {{< figure src="/images/podman.jpg?width=600px&classes=shadow" attr="Loved this image - found it here ..." attrlink="https://ios.dz/installation-podman-centos-8/" >}}
 
-After realising that hyperkit **didn't work on M1**, this was the next option I tried. I'd heard good things. It mostly worked fine but, as mentioned earlier, for me the crucial issue was the lack of ability to mount volumes from the host OS. I use this option a lot.
+After realising that hyperkit didn't work on M1, this was the next option I tried. I'd heard good things. It mostly worked fine but, as mentioned earlier, for me the crucial issue was the **lack of ability to mount volumes from the host OS**. I use this option a lot.
 
 That said, if that's not important to you or they fix it subsequently, I've included the steps below. these were cobbled together from the Podman installation guide itself plus this excellent [blog post](https://marcusnoble.co.uk/2021-09-01-migrating-from-docker-to-podman/) - although I didn't need most of the complexity involved here, as I'm guessing it has been fixed since.
 
@@ -223,21 +223,27 @@ All that's left is to add the `limactl start default` to your startup script and
 
 In my opinion, the advantages of this option are:
 
-- it works on Apple Silicon! :tada:
-- it handles volume mounts seamlessly
-- it distances you from docker itself and any further licensing fun and games down the line
-- for me, it's closer to my Production container stack
+- It works on Apple Silicon! :tada:
+- It handles volume mounts seamlessly
+- It distances you from docker itself and any further licensing fun and games down the line
+- For me, it's closer to my Production container stack
 
 The downsides:
 
-- it's not actually docker - so there's a risk of hitting compatibility issues in comparison to e.g. how things are behaving in CI, perhaps
-- it's a little bit of a faff to get working with a private container registry in particular
-- it _seems_ to take a bit longer to startup than Minikube / Docker Desktop. This is pretty anecdotal though, and not particularly impactful to me day-to-day
+- It's not actually docker - so there's a risk of hitting compatibility issues in comparison to e.g. how things are behaving in CI, perhaps
+- It's a little bit of a faff to get working with a private container registry in particular
+- It _seems_ to take a bit longer to startup than Minikube / Docker Desktop. This is pretty anecdotal though, and not particularly impactful to me day-to-day
 
 ---
+
+## Summary
 
 So there you have it - `lima` + `nerdctl` was my preferred option for replacing Docker Desktop on any MacOS machine. Hopefully you found this run through of the steps useful for your particular setup. As always with these things - and indeed in my own experience following the existing advice out there - it may not work flawlessly on your kit.
 
 {{< figure src="/images/works-on-my-machine.jpg?width=400px&classes=shadow" attr="Well it worked on my machine" >}}
 
 If you find any issues, do let me know via the [Contact](/contact) page - I'd be interested to keep this post up to date with any additional advice over time too!
+
+---
+
+This post was also published to [my Medium account here](https://alex-moss.medium.com/docker-desktop-alternatives-for-m1-mac-918a2dcda10).
