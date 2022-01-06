@@ -38,10 +38,10 @@ There's also a brief nod at the start to Windows + WSL, which I use very occasio
 
 {{< figure src="/images/wsl-funny.jpg?width=400px&classes=shadow" attr="(Image Source)" attrlink="https://www.reddit.com/r/linuxmemes/comments/niur6p/wsl_meme/" >}}
 
-**A brief aside** - I occasionally use Windows 10 with WSL v2 installed too :scream: _(sidebar: it actually works pretty well to be honest!)_. I won't break down the detailed steps to set this up - although if you'd like to me to, get in touch via the [Contact](/contact) option and I'd be happy to. It boils down to:
+**A brief aside** - I occasionally use Windows 10 with WSL v2 installed too :scream: _(sidebar: it actually works pretty well to be honest!)_. I was pretty confident that this worked without Docker Desktop. This turned out to be 100% true - and you can manage perfectly fine without it as long as you're running WSL version 2. I won't break down the detailed steps to set this up - although if you'd like to me to, get in touch via the [Contact](/contact) option and I'd be happy to. It boils down to:
 
 1. Ensure you are using WSL version 2
-2. Install docker as you normally would in your Linux distro (I use Ubuntu, and had no problems)
+2. Install docker as you normally would in your Linux distro (I use Ubuntu, and had no problems). See [this gist](https://gist.github.com/alexdmoss/14fd33bb91beb2283d6a8ed0a8df64a3) for how I've done it
 3. You need to start the docker daemon by hand (e.g. `sudo dockerd > /tmp/dockerd.log 2>&1 &`), as WSL has its own startup routines (that Docker Desktop was handling for us)
 
 Okay, enough of that Windows nonsense - onto the MacOS stuff now ...

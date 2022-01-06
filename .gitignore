@@ -10,3 +10,5 @@
 
 **/public/**
 **/www/**
+
+src/.hugo_build.lock
