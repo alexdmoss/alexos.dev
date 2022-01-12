@@ -219,6 +219,8 @@ ls -1 /proc/sys/fs/binfmt_misc/qemu*        # this is just to check it worked - 
 lima nerdctl run -v $(pwd):/build --rm -it eu.gcr.io/my-private-gcr-project/alex-ubuntu:latest
 ```
 
+> **A small note:** If you need that local directory to be writable by the container, you need to edit the file `~/.lima/default/lima.yaml` on your host. There's a `mounts:` section where you can choose to make your home directory and everything in it writable (dodgy if you run untrusted containers!), or add a block to a separate mount path, similar to the one already there for /tmp (the option I took!).
+
 All that's left is to add the `limactl start default` to your startup script and alias `lima nerdctl` to something - you can even alias this to `docker` if you wish (although I personally prefer to be more explicit - I chose to alias it to `nerd` :metal:).
 
 In my opinion, the advantages of this option are:
