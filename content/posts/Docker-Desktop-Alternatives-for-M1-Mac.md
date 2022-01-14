@@ -17,7 +17,7 @@ In this blog post I'm going to talk through my recent experiences as I attempted
 
 {{< figure src="/images/docker-money.png?width=400px&classes=shadow" attr="From this 'Is Docker in Trouble?' Blog Post" attrlink="https://start.jcolemorrison.com/is-docker-in-trouble/" >}}
 
-This article will mostly focus on MacOS, although there is a brief note about Windows/WSL included for completeness too. I tried out three options for Mac - landing on one as my preference as it covered both the need to run on the newer Apple Silicon and allow mounting of volumes on the host OS, which is something I do fairly frequently (mostly to shorten the feedback loop when testing changes that run on an image intended to run in CI).
+This article will mostly focus on MacOS, although there is a brief note about Windows/WSL included for completeness too. I tried out ~~three~~ four options for Mac - landing on one as my preference as it covered both the need to run on the newer Apple Silicon and allow mounting of volumes on the host OS, which is something I do fairly frequently (mostly to shorten the feedback loop when testing changes that run on an image intended to run in CI).
 
 **Disclaimer:** Most of the steps detailed below were found through following other fantastic blog posts I found out there :clap:. These are of course noted wherever I've used them, with a few tweaks of my own I've made on top of these excellent guides. Hopefully having these options together in one blog post is somewhat helpful in choosing between them too!
 
@@ -25,10 +25,9 @@ This article will mostly focus on MacOS, although there is a brief note about Wi
 
 ## TL:DR
 
-1. A combination of `lima` and `nerdctl` ticked all the boxes for me - in particular working on my M1 Mac Mini and supporting host volume mounts - but had the most setup required. This is the setup I use on my my main daily driver work machine. This is not "true" docker, but I haven't so far found any usage that it didn't handle in my day-to-day activities - I'll update this post of course if I do! :smile:
-2. `minikube` in combination with the docker CLI (which isn't subject to the licensing changes) is a viable alternative and simpler to setup and retains the full compatibility with the docker API, **but** does not currently appear to work on Apple Silicon. This is a good option if you care about a local Kubernetes development environment, too.
+**Updated 14/01/2022:** Rancher Desktop ([rancherdesktop.io](https://rancherdesktop.io/)) provide a package that has a similar feel to Docker Desktop - download and install it, let the wizard do its thing and you're up and running within a few minutes. This has recently added Apple Silicon support and gets my vote as it provides both this + the `docker` CLI + volume host mounting all in one easy to install package. Local Kubernetes support is also a minor plus for me.
 
-I'll also cover my experiences using `podman`, which works fine on both architectures but doesn't support host volume mounts, which was an issue for me.
+If for whatever reason this does not work for you, then I've left the other options I've tried out previously below, as well as a little more detailed instructions and some of the thought process that went into this also.
 
 There's also a brief nod at the start to Windows + WSL, which I use very occasionally. This is easy to setup without Docker Desktop.
 
@@ -44,6 +43,8 @@ There's also a brief nod at the start to Windows + WSL, which I use very occasio
 2. Install docker as you normally would in your Linux distro (I use Ubuntu, and had no problems). See [this gist](https://gist.github.com/alexdmoss/14fd33bb91beb2283d6a8ed0a8df64a3) for how I've done it
 3. You need to start the docker daemon by hand (e.g. `sudo dockerd > /tmp/dockerd.log 2>&1 &`), as WSL has its own startup routines (that Docker Desktop was handling for us)
 
+Note that Rancher Desktop also works perfectly fine on Windows 10 too it seems - it takes care of the WSL installation for you behind the scenes if you don't want to roll your sleeves up and get into that sort of thing.
+
 Okay, enough of that Windows nonsense - onto the MacOS stuff now ...
 
 ---
@@ -52,7 +53,7 @@ Okay, enough of that Windows nonsense - onto the MacOS stuff now ...
 
 {{< figure src="/images/cube.jpg?width=600px&classes=shadow" attr="Photo by Rostislav Uzunov on Pixabay" attrlink="https://pixabay.com/illustrations/blue-crystal-cube-deep-futuristic-5457731/" >}}
 
-This is the most "drop-in" replacement in the list, but **does not work on M1 Macs**. I use this on my older Macbook, as it's simpler than the other options and fully docker compliant, if there is such a thing.
+I started here. This is the most "drop-in" replacement in the list, but **does not work on M1 Macs**. I used this on my older Macbook for a little while before replacing it with Rancher Desktop. It's fully docker compliant, if there is such a thing.
 
 The instructions that follow are heavily based on [this excellent blog post](https://itnext.io/goodbye-docker-desktop-hello-minikube-3649f2a1c469), which has some additional advice, especially if you want to get more out of the local Kubernetes cluster:
 
@@ -146,7 +147,7 @@ I therefore backed away at this point as I had another option to try ... Enter `
 
 {{< figure src="/images/nerdy.png?width=600px&classes=shadow" attr="N-Er-Dy" attrlink="https://www.pinterest.co.uk/pin/594897432010361218/" >}}
 
-This option thankfully **ticked all the boxes** for me, although with more setup needed than the minikube option. I'm comfortable with that though. I like this because it: a) distances me from Docker Inc. changes to licensing in the future (and a little bit on principle, not gonna lie!), and b) puts me closer to the OCI runtime of our Production Kubernetes clusters (they're GKE, which just run containerd by default now).
+This option **ticked all the boxes for me** and I ran with it for a little while without issue, although with more setup needed than the minikube option. I'm comfortable with that though. I like this because it: a) distances me from Docker Inc. changes to licensing in the future (and a little bit on principle, not gonna lie!), and b) puts me closer to the OCI runtime of our Production Kubernetes clusters (they're GKE, which just run containerd by default now).
 
 I followed the great guide [in this blog post](https://medium.com/nttlabs/containerd-and-lima-39e0b64d2a59), which basically boils down to:
 
@@ -238,9 +239,36 @@ The downsides:
 
 ---
 
+## **Recommended Option** - Rancher Desktop
+
+{{< figure src="/images/rancher.jpg?width=800px&classes=shadow" attr="Photo by Kendall Ruth on Unsplash" attrlink="https://unsplash.com/photos/8CTz62aHidw" >}}
+
+**Updated 14/01/2022:** So we're done right? Lima + nerdctl does the trick? As mentioned back at the top - whilst that was my preferred option for a while, I've recently discovered Rancher Desktop, and it's latest version (0.7+) introduced Apple Silicon support.
+This is the option I'm running with now on both my MacOS machines.
+
+Why this option over the rest?
+
+- Its installation process is very simple. _I love a good bit of command line fiddling, but if it's not necessary and the software keeps itself patched, then it doesn't have to be._
+- It works with all my device types - M1 Mac, Intel Mac, Windows 10.
+- It's fully compatible with the `docker` CLI. This is good news for existing build scripts (e.g. if you need to run these or your tests locally, and they depend on being able to call docker directly - pretty common, and avoids surprises if you aliased `nerdctl`).
+- Volume mounts to the host OS work without any special configuration or adjustments to scripts / compose files.
+- It has a local Kubernetes environment, for the odd occasion I find that handy to have.
+
+The installation process is extremely simple with only a few choices to make (it does most of it behind the scenes - and makes use of lima to do it on Mac). You will be prompted to elevate your access a few times, which is understandable given what you're setting up here.
+
+I opted to use the recommended stable Kubernetes release and the `dockerd/moby` engine - but I really like that it offered me the choice of `containerd (nerdctl)` in case that becomes handy in the future (and I understand from the docs that they can coexist too).
+
+I did hit a couple of small issues that were local to my device, and probably a result of my various experiments on this topic! Here's a couple of quick bits of **troubleshooting advice** if you need it:
+
+- As a fairly new product, its user experience when things don't work is not stellar. Logs can be found on Mac here: `~/Library/Logs/rancher-desktop/` and provided me with the clues I needed.
+- It is particular about permissions. For example, the `/opt` directory on my Mac was not owned by `root` - the logs above clued me in to this need, as I was just faced with an `Error Starting Kubernetes - limactl exited with code 1` error through the UI.
+- You must run it from the `/Applications` on your Mac. Copy it over if you didn't pick the .dmg install option.
+- You must use versions >0.7.0 for it to work on Apple Silicon.
+- _Aside: On Windows it needs to reboot a few times. Just roll with it_ 😏
+
 ## Summary
 
-So there you have it - `lima` + `nerdctl` was my preferred option for replacing Docker Desktop on any MacOS machine. Hopefully you found this run through of the steps useful for your particular setup. As always with these things - and indeed in my own experience following the existing advice out there - it may not work flawlessly on your kit.
+So there you have it - **Rancher Desktop** ([rancherdesktop.io](https://rancherdesktop.io/)) was my preferred option for replacing Docker Desktop on any MacOS machine. Hopefully you found this run through of the steps useful for your particular setup. As always with these things - and indeed in my own experience following the existing advice out there - it may not work flawlessly on your kit.
 
 {{< figure src="/images/works-on-my-machine.jpg?width=400px&classes=shadow" attr="Well it worked on my machine" >}}
 
