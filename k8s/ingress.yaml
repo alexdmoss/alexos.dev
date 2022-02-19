@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: alexos
@@ -24,58 +24,79 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: www.alexos.dev
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
-    # Entries below here pick up other domains that I direct to this blog
-    # They are rewritten to the host above by some nginx config
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: mosstech.io
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: www.mosstech.io
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
-
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: alexos.io
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: www.alexos.io
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: www.alexmoss.co.uk
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
+              service:
+                name: alexos
+                port:
+                  name: http
     - host: www.mosses.info
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: alexos
-              servicePort: 32080
+              service:
+                name: alexos
+                port:
+                  name: http
