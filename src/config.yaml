@@ -5,8 +5,7 @@ publishDir: "../www"
 contentDir: "../content"
 languageCode: "en-gb"
 paginate: 10
-enableEmoji: true 
-googleAnalytics: "G-D8M8XCG5W"
+enableEmoji: true
 
 permalinks:
   posts: /:year/:month/:day/:title/
