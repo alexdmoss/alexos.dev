@@ -3,12 +3,8 @@
 
 <div class="main" id="body-inner">
 
-    {{ if .Site.Params.categoriesByCount }}
-        {{ $.Scratch.Set "tags" .Data.Terms.ByCount }}
-    {{ else }}
-        {{ $.Scratch.Set "tags" .Data.Terms.Alphabetical }}
-    {{ end }}
-
+    {{ $.Scratch.Set "tags" .Data.Terms.ByCount }}
+    
     <article class="post-summary">
         
         <header class="main-header">

@@ -5,7 +5,6 @@ draft: true
 author: "{{ .Site.Params.Author }}"
 description: ""
 tags: ""
-categories: ""
 banner: ""
 ---
 

@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "A post about my team’s first venture into running a Chaos Day — a series of chaos experiments against our platform"
 banner: "/images/chaos-banner.jpg"
 tags: [ "Chaos", "Operability", "SRE" ]
-categories: [ "Chaos", "Operability", "SRE", "Kubernetes", "Team" ]
 ---
 
 This blog post is about my team's first ever Chaos Day - where we ran a series of experiments designed to test how our platform performed when we tried to disrupt it, or the workloads that run on it.

@@ -7,7 +7,6 @@ draft: true
 description: "Migrating a Kotlin JVM-based containerised application from a Google Kubernetes Engine cluster to Google Cloud Run"
 banner: "/images/???.jpg"
 tags: [ "GKE", "GCP", "Cloud Run", "Kubernetes", "Kotlin", "Berglas", "JIB" ]
-categories: [ "GCP", "Kubernetes", "Serverless" ]
 ---
 
 {{< figure src="/images/squeeze-1.jpg?width=600px&classes=shadow" attr="Photo by ??? on Unsplash" attrlink="https://unsplash.com/photos/???" >}}

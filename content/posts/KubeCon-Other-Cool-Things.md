@@ -5,7 +5,6 @@ author: "@alexdmoss"
 description: "Some of the other tool things I learnt at KubeCon that don't fit neatly into other posts!"
 banner: "/images/kube-donuts.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
-categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
 aliases:
 - /2019/05/23/kubecon-2019-other-cool-things/
 ---

@@ -13,7 +13,6 @@ permalinks:
 params:
   author: "@alexdmoss"
   description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
-  categoriesByCount: true
 
 menu:
   main:
@@ -37,11 +36,6 @@ menu:
       title: "Blog posts by tag"
       url: "/tags/"
       weight: 4
-    - name: "Categories"
-      pre: "<i class='fas fa-box-open'></i>"
-      title: "Blog posts by category"
-      url: "/categories/"
-      weight: 5
 
 outputs:
   home:

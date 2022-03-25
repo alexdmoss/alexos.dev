@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "Some handy kubectl plugins found through the kubernetes plugin manager krew"
 banner: "/images/boat-crew.jpg"
 tags: [ "Kubernetes", "krew" ]
-categories: [ "Kubernetes", "Tips" ]
 asciinema: true
 ---
 
@@ -40,12 +39,13 @@ In short, it's a plugin manager for `kubectl`. Think `brew` or `apt`, but for yo
 
 On with the plugins themselves ...
 
+- [An intro to krew](#an-intro-to-krew)
 - [Viewing resources](#viewing-resources)
 - [Resource usage](#resource-usage)
 - [Housekeeping](#housekeeping)
 - [Security](#security)
 - [Debugging](#debugging)
-- [And finally ...](#and-finally)
+- [And finally ...](#and-finally-)
 
 ---
 

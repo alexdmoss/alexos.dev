@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "My approach to connecting to multiple clusters across multiple accounts from my terminal"
 banner: "/images/kube.jpg"
 tags: [ "GKE", "Kubernetes", "Shell", "kubectl", "GCP" ]
-categories: [ "GKE", "Kubernetes", "Tips n Tricks" ]
 ---
 
 {{< figure src="/images/kube.jpg?width=800px&classes=shadow" attr="Photo by Alvaro Reyes on Unsplash" attrlink="https://unsplash.com/photos/4eTnTQle0Ks" >}}

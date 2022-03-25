@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "Thoughts and scribbles after attending a whole bunch of talks at KubeCon EU 2021"
 banner: "/images/conference-chairs.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
-categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
 ---
 
 I've just finished binging on a whole host of talks from KubeCon EU 2021, and thought I'd scribble down some of my immediate thoughts - from the talks I "went" to, as well as more generally about virtual conferencing these days. Which is a bit of a change of pace, let's be honest.

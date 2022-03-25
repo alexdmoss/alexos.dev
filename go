@@ -171,7 +171,6 @@ function smoke() {
     _smoke_test "${DOMAIN}" https://"${DOMAIN}"/about/ "A little bit of info about me"
     _smoke_test "${DOMAIN}" https://"${DOMAIN}"/contact/ "Send Message"
     _smoke_test "${DOMAIN}" https://"${DOMAIN}"/posts/ "Previous Page"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/categories/ "/categories/cloud"
     _smoke_test "${DOMAIN}" https://"${DOMAIN}"/tags/ "/tags/google"
     _smoke_test "${DOMAIN}" https://"${DOMAIN}"/2019/02/23/a-year-in-google-cloud/ "This time last year"
 
@@ -227,10 +226,6 @@ function _build-test() {
         error=1
         _console_msg "Tags index is missing"
     fi
-    if [[ ! -f "www/categories/index.html" ]]; then
-        error=1
-        _console_msg "Categories index is missing"
-    fi
     if [[ ! -f "www/index.json" ]]; then
         error=1
         _console_msg "index.json (for Search) is missing"
@@ -282,7 +277,6 @@ function _local-test() {
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/about/ "A little bit of info about me"
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/contact/ "Send Message"
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/posts/ "Previous Page"
-    _smoke_test "${DOMAIN}" http://${local_hostname}:32080/categories/ "/categories/cloud"
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/tags/ "/tags/google"
     _smoke_test "${DOMAIN}" http://${local_hostname}:32080/2019/02/23/a-year-in-google-cloud/ "This time last year"
 

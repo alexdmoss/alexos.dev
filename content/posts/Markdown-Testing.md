@@ -7,8 +7,6 @@ draft: true
 banner: ""
 tags:
 - Markdown
-categories:
-- Testing
 ---
 
 ## Heading 2

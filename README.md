@@ -6,19 +6,12 @@ My personal blog site.
 
 ## To Do
 
-- [x] Convert to alexos.dev
-  - [x] Contacts Form API Key
-  - [x] Email address
-- [x] Redirect old site to new
-- [x] kustomize
 - [ ] Simplify and clean up theme - too busy
 - [ ] Mirror the repo to github
 - [ ] Broken link finder
 - [ ] Journey tests
 - [ ] Solution that involves no Google Analytics
 - [ ] Write blog post about how the site works
-
-Drop categories completely
 
 On a post:
 - drop caps from tagline
@@ -53,28 +46,9 @@ About:
 
 ### Version 1
 
-- [x] NGINX instrumentation
-- [x] Fewer social icons
-- [x] Issue when very wide on desktop, menu on left starts to show
-- [x] Try a white theme
-- [x] Fancy hover box is over-used!
 - [ ] Link animated underline is too low
 - [ ] Support for github gists
-- [ ] favicon
 - [ ] Safari: Border bottom showing on post panel (first panel only!)
-
-### Testing
-
-- [ ] Social share links
-- [ ] Contacts Form
-- [x] Safari
-- [x] Firefox
-- [ ] Edge
-- [ ] IE?
-- [ ] Android Mobile
-- [ ] iOS Mobile
-- [x] Analytics
-- [ ] RSS / Atom
 
 ### Version 2
 
@@ -97,10 +71,9 @@ About:
 - [ ] Harden nginx build
 - [ ] Move to Github so there's some proper stuff there
 - [ ] Not sure about placement of social links on blog post - make a bit more subtle?
-- [ ] Print the tags/categories somewhere on posts
+- [ ] Print the tags somewhere on posts
 - [ ] How about some tests?
 - [ ] Reclick on share button hides it
-- [x] Experiment with fonts
 - [ ] Hover effects equivalent for thumbs?
 - [ ] Auto-minify css/js
 - [ ] Accessibility testing

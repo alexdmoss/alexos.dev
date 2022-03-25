@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "Musings about the year just gone and some of the things I'm going to try differently going forwards"
 banner: "/images/resolutions.jpg"
 tags: [ "Leadership", "Engineering", "Reflections", "Engineering Lead", "Tech Lead", "Ways of working" ]
-categories: [ "Leadership", "Engineering", "Reflections", "Ways of working" ]
 ---
 
 It's probably natural to get a bit contemplative as one year rolls into another. In this post I'm going to spend a little time writing about some of the things I've learnt after a year moving into a "Senior Engineer" position, and then onto some of the things I hope to change going forwards, based on what I've learnt.

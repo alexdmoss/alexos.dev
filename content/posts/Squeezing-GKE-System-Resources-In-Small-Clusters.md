@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "Trying to create as much usable Compute in a tiny GKE cluster as possible, by squeezing its system resources"
 banner: "/images/squeeze-1.jpg"
 tags: [ "GKE", "Kubernetes", "GCP", "VPA", "Autoscaling", "Cost" ]
-categories: [ "GKE", "Kubernetes", "Cost" ]
 ---
 
 {{< figure src="/images/squeeze-1.jpg?width=600px&classes=shadow" attr="Photo by Davide Ragusa on Unsplash" attrlink="https://unsplash.com/photos/cDwZ40Lj9eo" >}}

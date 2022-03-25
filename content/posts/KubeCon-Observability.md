@@ -5,7 +5,6 @@ author: "@alexdmoss"
 description: "Because without observability, well, you really just can't see what's going on"
 banner: "/images/monitoring.jpg"
 tags: [ "KubeCon", "CNCF", "Prometheus", "Grafana", "Cortex", "Loki", "M3", "Logs", "Metrics" ]
-categories: [ "Conference", "Kubernetes", "CNCF", "Telemetry", "Observability", "Kubecon" ]
 aliases:
 - /2019/05/23/kubecon-2019-observability/
 ---

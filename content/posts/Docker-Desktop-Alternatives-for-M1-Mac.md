@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "A few options, including my preference, for replacing Docker Desktop on newer M1 Macs running Apple Silicon"
 banner: "/images/containers.jpg"
 tags: [ "Docker", "Docker Desktop", "Minikube", "Podman", "Lima", "nerdctl", "containerd", "CLI", "Guide", "Mac", "M1", "Apple Silicon", "WSL" ]
-categories: [ "Docker", "Mac" ]
 ---
 
 {{< figure src="/images/containers.jpg?width=1000px&classes=shadow" attr="Photo by Ian Taylor on Unsplash" attrlink="https://unsplash.com/photos/jOqJbvo1P9g" >}}

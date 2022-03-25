@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "KubeCon 2019, Barcelona - my reflections on the conference as a whole"
 banner: "/images/barcelona-main.jpg"
 tags: [ "KubeCon", "CNCF", "opinion", "reflections" ]
-categories: [ "Conference", "Kubernetes", "CNCF", "Kubecon" ]
 aliases:
 - /2019/05/21/kubecon-2019-day-1-reflections/
 - /2019/05/22/kubecon-2019-day-2-reflections/

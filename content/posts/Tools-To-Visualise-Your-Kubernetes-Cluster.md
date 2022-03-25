@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "My experience running a couple of open source tools to help visualise workloads deployed on Kubernetes"
 banner: "/images/visualize.jpg"
 tags: [ "Kubernetes", "Weave", "Scope", "Ops View", "kube-ops-view", "Graph", "Observability", "Visualization" ]
-categories: [ "Kubernetes", "Observability" ]
 ---
 
 {{< figure src="/images/visualize.jpg?width=800px&classes=shadow" attr="Photo by fabio on Unsplash" attrlink="https://unsplash.com/photos/oyXis2kALVg" >}}

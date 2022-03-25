@@ -6,7 +6,6 @@ author: "@alexdmoss"
 description: "A guide to creating an easy-to-use, developer-friendly runbook site to help improve operability"
 banner: "/images/runbook-doggo.jpg"
 tags: [ "Operability", "Runbooks", "DevOps", "Guide" ]
-categories: [ "Operability" ]
 ---
 
 {{< figure src="/images/runbook-doggo.jpg?width=600px&classes=shadow" attr="Photo by Cookie the Pom on Unsplash" attrlink="https://unsplash.com/photos/gySMaocSdqs" >}}
