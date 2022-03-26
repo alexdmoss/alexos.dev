@@ -48,7 +48,7 @@ The static content satisfies my desire for the pages load really fast (unless yo
 
 The use of markdown satisfies my desire to ensure it's easy to update. The vast majority of engineers are going to be familiar with markdown - and even if they're not its an extremely simple syntax to pick up / copy from someone else. Text files are easily stored in git, which fits nicely with an engineer's normal workflow, too.
 
-> A tangential perk of git is that it's also common and/or easy for those people on call to have a local copy of the runbooks cloned on their machine. This can (usually) be pulled even if something bad does happen to the runbook hosting when it's needed. Although as noted above this shouldn't happen. *Cough* shouldn't *cough*.
+> A tangential perk of git is that it's also common and/or easy for those people on call to have a local copy of the runbooks cloned on their machine. This can (usually) be pulled even if something bad does happen to the runbook hosting when it's needed. Although as noted above this shouldn't happen. _Cough_ shouldn't _cough_.
 
 What Hugo brings to the mix is the templating of these markdown files into something that's easy to use through the theme you create for it. For [runbooks.alexos.dev](https://runbooks.alexos.dev) I've customised the [Hugo Learn Theme](https://themes.gohugo.io/themes/hugo-theme-learn/), which is itself based on [Netlify's Grav Learn Theme](http://learn.getgrav.org/). It's worked well at work and I don't recall hearing any complaints in the three or so years we've been running with it. It's also been fairly easy to extend with new functionality when the odd request has come in.
 

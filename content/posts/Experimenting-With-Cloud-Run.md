@@ -42,7 +42,7 @@ Our Google Container Registry also lives in a different project so we need to ha
 
 ## Deploying The Service For The First Time
 
-So far, so good - we can just deploy it now right? 
+So far, so good - we can just deploy it now right?
 
 ```sh
 gcloud run deploy my-awesome-tool \
@@ -64,7 +64,6 @@ Some immediate observations:
 - the URL is pretty nasty. It'd be nice to fix that
 - The service doesn't work, as it actually needs some environment variables set
 - We know that this tool can take a while to do its thing. Should we add some protections for the amount of resources it can consume?
-
 
 ---
 

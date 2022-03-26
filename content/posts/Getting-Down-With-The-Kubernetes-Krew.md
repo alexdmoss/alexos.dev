@@ -55,7 +55,7 @@ On with the plugins themselves ...
 
 First up in this section we have `kubectl tail` (usually `kail`). This is a handy plugin for tailing logs - it's just nice and simple. There are a number of alternatives out there (I know some folks like [Stern](https://github.com/wercker/stern), which I've never got round to trying). The main feature I like is being able to target a deployment/service/ingress (e.g. `kubectl tail --ing=mosstech`) and be able to watch all the logs from the pods behind it, without necessarily needing to know how the resource has been labelled.
 
-`kubectl get-all` [does exactly what it says on the tin](https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin). They are not kidding - this *really* gets everything, as the plugin info page says. I've found this to be increasingly useful with our uptake of `CustomResourceDefinition` - i.e. where you may not be able to remember every type of object that exists in a namespace any more (usually because I want to delete stuff ...). This plugin helps a lot with that:
+`kubectl get-all` [does exactly what it says on the tin](https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin). They are not kidding - this _really_ gets everything, as the plugin info page says. I've found this to be increasingly useful with our uptake of `CustomResourceDefinition` - i.e. where you may not be able to remember every type of object that exists in a namespace any more (usually because I want to delete stuff ...). This plugin helps a lot with that:
 
 ```sh
 [~ (⎈ |sandpit-prod:prometheus)]$ kubectl get-all -n=prometheus

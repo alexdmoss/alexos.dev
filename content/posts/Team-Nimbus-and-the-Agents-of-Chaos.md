@@ -12,7 +12,6 @@ This blog post is about my team's first ever Chaos Day - where we ran a series o
 
 > This entry was originally [posted on Medium](https://medium.com/john-lewis-software-engineering/team-nimbus-and-the-agents-of-chaos-ab257e41fe36) under my employer's publication.
 
-
 It was January 2020, and we had just gone through another Peak trading period - significant for a larger retailer. The Digital Platform had performed extremely well. There were no incidents, no last-minute panic scaling, and no fall-backs enabled — even though the number of services and overall complexity of the platform was significantly higher than this time last year. Not perhaps the backdrop to make a compelling case for running a series of complex operational test scenarios then? Well, we are not the sort to be resting on our laurels ...
 
 {{< figure src="/images/chaos-banner.jpg?width=800px&classes=shadow" attr="Photo by Federico Beccari on Unsplash" attrlink="https://unsplash.com/photos/ahi73ZN5P0Y" >}}
@@ -53,11 +52,8 @@ Running the Chaos Day itself compromised six steps:
 3. With your team assembled, it is time to **capture the experiments**. We followed guidance on how to structure these, which can be summarised as:
 
 > *a. What is your test actually doing?*
-
 > *b. What are you expecting to see in the system as a result?*
-
 > *c. What are you expecting in terms of a response?*
-
 > *d. How will you roll back if needed?*
 
 We threw these on a Trello board to make orchestration easier on the day itself. Each agent ended up with two experiments to run, plus a backup experiment to use if needed.
