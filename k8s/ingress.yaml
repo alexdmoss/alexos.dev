@@ -16,8 +16,6 @@ spec:
         - www.alexos.dev
         - mosstech.io
         - www.mosstech.io
-        - alexos.io
-        - www.alexos.io
         - www.alexmoss.co.uk
         - www.mosses.info
   rules:
@@ -52,26 +50,6 @@ spec:
                 port:
                   name: http
     - host: www.mosstech.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: alexos
-                port:
-                  name: http
-    - host: alexos.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: alexos
-                port:
-                  name: http
-    - host: www.alexos.io
       http:
         paths:
           - path: /
