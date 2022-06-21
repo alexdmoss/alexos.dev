@@ -159,7 +159,7 @@ spec:
 
 As you can see, I'm not very sensitive about the freshness of the data here - snapshotting hourly is fine by me, but you should tweak according to your needs of course.
 
-Restores rely on you setting up the Velero client (althuogh you could wrap this up in a CI script also if you needed to, of course). To test it, you then end up with something like this:
+Restores rely on you setting up the Velero client (although you could wrap this up in a CI script also if you needed to, of course). To test it, you then end up with something like this:
 
 ```bash
 velero client config set namespace=velero
