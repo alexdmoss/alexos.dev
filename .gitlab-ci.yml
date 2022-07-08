@@ -12,13 +12,11 @@ build:
   stage: build
   only:
   - master
-  image: mosstech/gcloud-and-docker:324.0.0
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
+  image: mosstech/gcloud-and-docker:390.0.0
   services:
-    - docker:dind
+  - docker:dind
   before_script:
+  - sleep 5   # docker startup
   - echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
   - gcloud auth configure-docker --quiet
   script:
