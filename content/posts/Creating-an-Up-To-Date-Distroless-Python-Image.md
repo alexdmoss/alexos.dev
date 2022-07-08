@@ -1,12 +1,11 @@
 ---
 title: "Creating an up-to-date Distroless Python Image"
 panelTitle: "Creating an up-to-date Distroless Python Image"
-date: 2022-06-26T13:21:00-01:00
+date: 2022-07-08T13:21:00-01:00
 author: "@alexdmoss"
 description: "How I created a Distroless Container Image for Python, without relying on the out-dated Google version"
 banner: "/images/distroless.jpg"
 tags: [ "Python", "Distroless", "Containers", "Security", "Docker", "Poetry", "Pipenv", "Flask", "Gunicorn", "Fast API", "Pandas" ]
-draft: true
 ---
 
 {{< figure src="/images/distroless.jpg?width=1000px&classes=shadow" attr="Photo by Prateek Katyal on Unsplash" attrlink="https://unsplash.com/photos/MGRv3qZfyTs" >}}
