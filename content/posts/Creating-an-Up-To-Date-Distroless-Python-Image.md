@@ -48,7 +48,7 @@ gcr.io/distroless/python3:latest (debian 11.3)
 Total: 10 (HIGH: 7, CRITICAL: 3)
 ```
 
-You might think then that perhaps with Python specifically it'd be better to use Alpine. Indeed that's something I've done a fair few times myself. But in practice, whilst this does help in many ways with the security challenge, this starts to become problematic for other reasons. My understanding here is that this all stems from Alpine's use of `musl` rather than `glibc` as its standard C library. The most noticable impact is creating **horrendous** build times when certain (common) packages are involved, as there are no pip wheels available (and sometimes out-right failing to build at all).
+You might think then that perhaps with Python specifically it'd be better to use Alpine. Indeed that's something I've done a fair few times myself. But in practice, whilst this does help in many ways with the security challenge, this starts to become problematic for other reasons. My understanding here is that this all stems from Alpine's use of `musl` rather than `glibc` as its standard C library. The most noticeable impact is creating **horrendous** build times when certain (common) packages are involved, as there are no pip wheels available (and sometimes out-right failing to build at all).
 
 > Personally, as someone who does a lot of work with Google Cloud, gRPC (`grpcio`) is a particular victim of this. If memory serves it's true for `pandas` too
 
@@ -121,8 +121,8 @@ This build process if I'm sure far less deterministic than the Bazel approach if
 
 Want to use the images?
 
-- [mosstech/python-distroless](https://hub.docker.com/r/mosstech/python-distroless/tags) - e.g. `docker pull mosstech/python-distroless:3.9-debian11`
-- [mosstech/python-builder](https://hub.docker.com/r/mosstech/python-builder/tags) - e.g. `docker pull mosstech/python-builder:3.10-debian11`
+- [al3xos/python-distroless](https://hub.docker.com/r/al3xos/python-distroless/tags) - e.g. `docker pull al3xos/python-distroless:3.9-debian11`
+- [al3xos/python-builder](https://hub.docker.com/r/al3xos/python-builder/tags) - e.g. `docker pull al3xos/python-builder:3.10-debian11`
 
 ---
 
