@@ -275,10 +275,9 @@ The downsides:
 
 {{< figure src="/images/rancher.jpg?width=800px&classes=shadow" attr="Photo by Kendall Ruth on Unsplash" attrlink="https://unsplash.com/photos/8CTz62aHidw" >}}
 
-**Updated 14/01/2022:** So we're done right? Lima + nerdctl does the trick? As mentioned back at the top - whilst that was my preferred option for a while, I've recently discovered Rancher Desktop, and it's latest version (0.7+) introduced Apple Silicon support.
-This is the option I'm running with now on both my MacOS machines.
+**Updated 14/01/2022:** So we're done right? Lima + nerdctl does the trick? As mentioned back at the top - whilst that was my preferred option for a while, I ended up discovering Rancher Desktop, and from version 0.7 it introduced Apple Silicon support. This was the option I ran with for a decent period of time, until discovering colima and switching to that as described near the top of the article.
 
-Why this option over the rest?
+Why was this option chosen over the rest?
 
 - Its installation process is very simple. _I love a good bit of command line fiddling, but if it's not necessary and the software keeps itself patched, then it doesn't have to be._
 - It works with all my device types - M1 Mac, Intel Mac, Windows 10.
@@ -300,7 +299,9 @@ I did hit a couple of small issues that were local to my device, and probably a 
 
 ## Summary
 
-So there you have it - **Rancher Desktop** ([rancherdesktop.io](https://rancherdesktop.io/)) was my preferred option for replacing Docker Desktop on any MacOS machine. Hopefully you found this run through of the steps useful for your particular setup. As always with these things - and indeed in my own experience following the existing advice out there - it may not work flawlessly on your kit.
+I hope you found this article useful — I’ve presented a range of options to show my thought process, and am recommending colima ([https://github.com/abiosoft/colima](https://github.com/abiosoft/colima)) as the pick, with Rancher Desktop ([rancherdesktop.io](https://rancherdesktop.io/)) as a viable alternative.
+
+Hopefully you found this run through of the steps useful for your particular setup. As always with these things - and indeed in my own experience following the existing advice out there - it may not work flawlessly on your kit.
 
 {{< figure src="/images/works-on-my-machine.jpg?width=400px&classes=shadow" attr="Well it worked on my machine" >}}
 
