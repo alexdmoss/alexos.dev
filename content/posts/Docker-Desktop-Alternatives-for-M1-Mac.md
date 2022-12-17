@@ -5,7 +5,7 @@ date: 2022-01-02T19:21:00-01:00
 author: "@alexdmoss"
 description: "A few options, including my preference, for replacing Docker Desktop on newer M1 Macs running Apple Silicon"
 banner: "/images/containers.jpg"
-tags: [ "Docker", "Docker Desktop", "Minikube", "Podman", "Lima", "nerdctl", "containerd", "CLI", "Guide", "Mac", "M1", "Apple Silicon", "WSL" ]
+tags: [ "Docker", "Docker Desktop", "Minikube", "Podman", "Lima", "nerdctl", "containerd", "CLI", "Guide", "Mac", "M1", "Apple Silicon", "WSL", "colima" ]
 ---
 
 {{< figure src="/images/containers.jpg?width=1000px&classes=shadow" attr="Photo by Ian Taylor on Unsplash" attrlink="https://unsplash.com/photos/jOqJbvo1P9g" >}}
@@ -24,17 +24,50 @@ This article will mostly focus on MacOS, although there is a brief note about Wi
 
 ## TL:DR
 
-**Updated 14/01/2022:** Rancher Desktop ([rancherdesktop.io](https://rancherdesktop.io/)) provide a package that has a similar feel to Docker Desktop - download and install it, let the wizard do its thing and you're up and running within a few minutes. This has recently added Apple Silicon support and gets my vote as it provides both this + the `docker` CLI + volume host mounting all in one easy to install package. Local Kubernetes support is also a minor plus for me.
+**Updated 17/12/2022:** Several months back I made the switch from [Rancher Desktop](https://rancherdesktop.io/) to [colima](https://github.com/abiosoft/colima) and haven't looked back. It feels more streamlined and performant with some additional useful configuration options, as well as just less noisy. I'm now updating this post to reflect that **colima is now my recommendation** - although Rancher Desktop remains a perfectly viable choice (particularly if you prefer a bit of GUI action to configure things!).
 
-If for whatever reason this does not work for you, then I've left the other options I've tried out previously below, as well as a little more detailed instructions and some of the thought process that went into this also.
+The remainder of the article is as it was - charting the various options I tried, but with an elaboration on colima and its benefits below, as the most recent option I've switched to.
 
-There's also a brief nod at the start to Windows + WSL, which I use very occasionally. This is easy to setup without Docker Desktop.
+There's also a brief nod to **Windows + WSL**, which I use very occasionally. This is easy to setup without Docker Desktop.
+
+---
+
+## **Recommended Option** - Colima
+
+{{< figure src="/images/docker-star-wars.jpg?width=400px&classes=shadow" attr="" attrlink="https://www.meme-arsenal.com/en/create/meme/3859040" >}}
+
+The installation is incredibly straight-forward:
+
+```bash
+brew install colima
+```
+
+Yep, that's it. If you don’t have the docker CLI installed, then note that you will also need `brew install docker`, as you'd expect.
+
+Following installation, you then issue `colima start` when you want to start the daemon, and after that completes, you should find that `docker` CLI commands work as normal. The first time you do this is a little slower due to downloading the image and configuring it, but following that only takes a few seconds on my machine. You can of course use `colima stop` to shut it down to save resources on your machine if desired between docker sessions.
+
+Here are some further tips I've found to get more out of the setup:
+
+- Anecdotally, I've found that compatibility is better when using the colima VM with ubuntu as a base image, rather than alpine (the default). YMMV. To use this instead, you pass the additional argument: `colima start -p true`. You may wish to alias this in your zsh/bash profile to save typing if you use this as your default.
+- Colima uses a different mountpoint for the docker socket than docker’s default. This can confuse some tools (such as the image vulnerability scanner trivy, which I rather like). You can correct this behaviour by exporting the DOCKER_HOST variable as follows: `export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock` (replace `default` with `true` if following the option in the point above).
+- If you use Test Containers, there is one final step, similar to the one above - also issuing: `export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock`. See [this article](https://www.rockyourcode.com/testcontainers-with-colima/) for more detail.
+
+> As a result, my personal `.zsh_profile` contains the following: `alias docky="export DOCKER_HOST=unix:///Users/alex/.colima/true/docker.sock && colima -p true"` to combine the two options above. I then just `docky start` and `docky stop` as needed to bring up the daemon and use my various docker-related tools
+
+Note that if you need a local Kubernetes environment, then Colima does support that also, by passing the `colima start --kubernetes` argument to the startup command.
+
+Finally, as well as the same advantages described for Rancher Desktop later in this post, Colima does have one additional benefit, if you need it - it is capable of running its underlying VM on an x86 base image:
+
+- This can be helpful for certain bits of software that have not issued images that run on Apple Silicon (i.e. don’t work, even with the `--platform=linux/amd64` argument passed to docker).
+- To take advantage of this option, you pass the following argument: `colima start --arch x86_64`. This can be combined with the other switches above.
+- You should **not** use this option in general as your default, as it is approx 3x slower to build images (due to the emulation required), but is handy when you need to run legacy third party images on M1. This was actually the thing that made me make the switch from Rancher, but it was slick enough that I just kept it as my default.
+- See their source on Github for additional configuration options as needed: [https://github.com/abiosoft/colima](https://github.com/abiosoft/colima).
 
 ---
 
 ## Docker with WSL
 
-{{< figure src="/images/wsl-funny.jpg?width=400px&classes=shadow" attr="(Image Source)" attrlink="https://www.reddit.com/r/linuxmemes/comments/niur6p/wsl_meme/" >}}
+{{< figure src="/images/wsl-funny.jpg?width=400px&classes=shadow" attr="" attrlink="https://www.reddit.com/r/linuxmemes/comments/niur6p/wsl_meme/" >}}
 
 **A brief aside** - I occasionally use Windows 10 with WSL v2 installed too :scream: _(sidebar: it actually works pretty well to be honest!)_. I was pretty confident that this worked without Docker Desktop. This turned out to be 100% true - and you can manage perfectly fine without it as long as you're running WSL version 2. I won't break down the detailed steps to set this up - although if you'd like to me to, get in touch via the [Contact](/contact) option and I'd be happy to. It boils down to:
 
@@ -238,7 +271,7 @@ The downsides:
 
 ---
 
-## **Recommended Option** - Rancher Desktop
+## **Alternate Option** - Rancher Desktop
 
 {{< figure src="/images/rancher.jpg?width=800px&classes=shadow" attr="Photo by Kendall Ruth on Unsplash" attrlink="https://unsplash.com/photos/8CTz62aHidw" >}}
 
