@@ -11,4 +11,4 @@ resources:
   - ingress.yaml
   - pdb.yaml
   - service.yaml
-  - service-monitor.yaml
+  # - service-monitor.yaml    # Prometheus removed for now
