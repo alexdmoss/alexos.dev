@@ -34,8 +34,7 @@ spec:
               cpu: 10m
               memory: 50Mi
             limits:
-              cpu: 100m
-              memory: 250Mi
+              memory: 50Mi
       volumes:
         - name: cache-volume
           emptyDir: {}
