@@ -32,10 +32,10 @@ spec:
           # autopilot minimums
           resources:
             requests:
-              cpu: 250Mi
+              cpu: 250m
               memory: 512Mi
             limits:
-              cpu: 250Mi
+              cpu: 250m
               memory: 512Mi
       volumes:
         - name: cache-volume
