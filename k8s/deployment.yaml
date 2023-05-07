@@ -29,22 +29,18 @@ spec:
           volumeMounts:
             - mountPath: /var/cache/nginx/data
               name: cache-volume
+          # autopilot minimums
           resources:
             requests:
-              cpu: 10m
-              memory: 50Mi
+              cpu: 250Mi
+              memory: 512Mi
             limits:
-              memory: 50Mi
+              cpu: 250Mi
+              memory: 512Mi
       volumes:
         - name: cache-volume
           emptyDir: {}
       restartPolicy: Always
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app: alexos
-              topologyKey: "kubernetes.io/hostname"
-            weight: 100
+      nodeSelector:
+        cloud.google.com/gke-spot: "true"
+      terminationGracePeriodSeconds: 25
