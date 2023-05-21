@@ -40,7 +40,7 @@
 
     --back-to-top-color: var(--font-color);
 
-    --code-bg-color: var(--bg-color);
+    --code-bg-color: #e3e7ee;
     --code-select-color: var(--line-color);
 
     --table-head-bg-color: var(--post-color);
@@ -58,6 +58,7 @@
     --highlight-color: #00635D;
     --image-shadow-color: rgba(255, 91, 9, 0.4);
     --code-color: #D0E1F9;
+    --code-bg-color: #080708;
 }
 
 
@@ -259,18 +260,18 @@ pre code {
 
 code::selection,
 code span::selection {
-  background: var(--code-select-color);
+    background: var(--code-select-color);
 }
 
 code::-moz-selection,
 code span::-moz-selection {
-  background: var(--code-select-color);
+    background: var(--code-select-color);
 }
 
 /*** Table ***/
 
 table {
-    width: 90%;
+    width: 100%;
     margin: 1rem auto;
     padding: 0;
     border-spacing: 0;
@@ -289,14 +290,12 @@ table > tbody {
 
 table > thead > tr > th {
     color: var(--main-font-color);
-    border-bottom: 1px solid var(--table-border-color);
     line-height: 1.5rem;
     padding: 0.7rem;
 }
 
 table > tbody > tr > td {
     color: var(--main-font-color);
-    border-bottom: 1px solid var(--table-border-color);
     line-height: 1.5rem;
     padding: 0.7rem;
 }
