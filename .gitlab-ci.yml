@@ -17,7 +17,7 @@ build:
     - ./go build
   artifacts:
     paths:
-      - build/
+      - www/
     when: on_success
     expire_in: "1 day"
 
