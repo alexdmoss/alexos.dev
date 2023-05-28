@@ -1,5 +1,6 @@
 stages:
   - build
+  - publish
   - deploy
   - smoke
 
@@ -7,24 +8,31 @@ variables:
   DOMAIN: alexos.dev
   IMAGE_NAME: eu.gcr.io/${GCP_PROJECT_ID}/alexos
 
-
 build:
   stage: build
   only:
   - master
   image: mosstech/gcloud-and-docker:424.0.0
-  services:
-  - docker:dind
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-  before_script:
-  - until docker info >/dev/null; do sleep 1; echo "Waiting for docker startup"; done
-  - echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-  - gcloud auth configure-docker --quiet
   script:
     - ./go build
-    
+  artifacts:
+    paths:
+      - build/
+    when: on_success
+    expire_in: "1 day"
+
+publish:
+  stage: publish
+  only:
+  - master
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  before_script:
+    - mkdir -p /kaniko/.docker
+  script:
+    - /kaniko/executor --context "${CI_PROJECT_DIR}" --dockerfile "${CI_PROJECT_DIR}/Dockerfile" --destination "${IMAGE_NAME}:${CI_COMMIT_SHA}"
+
 deploy:
   stage: deploy
   only:

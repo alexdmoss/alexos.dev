@@ -83,24 +83,6 @@ function build() {
     popd >/dev/null
 
     _build-test
-
-    pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
-
-    _console_msg "Baking docker image ..."
-
-    docker pull "${IMAGE_NAME}":latest || true
-    docker build --cache-from "${IMAGE_NAME}":latest --tag "${IMAGE_NAME}":latest .
-
-    _local-test "${IMAGE_NAME}":latest
-
-    _console_msg "Pushing image to registry ..."
-
-    docker tag "${IMAGE_NAME}":latest "${IMAGE_NAME}":"${CI_COMMIT_SHA}"
-
-    docker push "${IMAGE_NAME}":"${CI_COMMIT_SHA}"
-    docker push "${IMAGE_NAME}":latest
-
-    popd >/dev/null 
     
     _console_msg "Build complete" INFO true 
 
