@@ -35,3 +35,23 @@ spec:
                 name: alexos
                 port:
                   name: http
+    - host: alexmoss.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: alexos
+                port:
+                  name: http
+    - host: www.alexmoss.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: alexos
+                port:
+                  name: http
