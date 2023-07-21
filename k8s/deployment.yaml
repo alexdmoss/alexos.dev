@@ -28,9 +28,10 @@ spec:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
           volumeMounts:
-            - mountPath: /var/cache/nginx/data
+            - mountPath: /var/cache/nginx
               name: cache-volume
-          # autopilot minimums
+            - mountPath: /var/run/nginx
+              name: pid-volume
           resources:
             requests:
               cpu: 50m
@@ -40,6 +41,8 @@ spec:
               memory: 100Mi
       volumes:
         - name: cache-volume
+          emptyDir: {}
+        - name: pid-volume
           emptyDir: {}
       restartPolicy: Always
       nodeSelector:
