@@ -27,6 +27,9 @@ spec:
             runAsGroup: 101
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+              - ALL
           volumeMounts:
             - mountPath: /var/cache/nginx
               name: cache-volume
