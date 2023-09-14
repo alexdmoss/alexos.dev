@@ -4,6 +4,8 @@
 *.tfstate
 *.tfstate.backup
 
+.vscode/
+
 *.iml
 *.DS_Store
 *.swp
