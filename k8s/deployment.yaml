@@ -11,6 +11,9 @@ spec:
       maxSurge: "50%"
       maxUnavailable: "50%"
   template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     spec:
       containers:
         - name: alexos
