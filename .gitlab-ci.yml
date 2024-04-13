@@ -6,7 +6,7 @@ stages:
 
 variables:
   DOMAIN: alexos.dev
-  IMAGE_NAME: eu.gcr.io/${GCP_PROJECT_ID}/alexos
+  IMAGE_NAME: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
 
 build:
   stage: build
