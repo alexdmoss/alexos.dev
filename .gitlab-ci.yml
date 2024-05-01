@@ -42,7 +42,7 @@ deploy:
   stage: deploy
   only:
   - master
-  image: mosstech/ci-tools:latest
+  image: al3xos/ci-tools:latest
   before_script:
   - echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
   - region=$(gcloud container clusters list --project=${GCP_PROJECT_ID} --filter "NAME=${CLUSTER_NAME}" --format "value(zone)")
@@ -54,7 +54,7 @@ smoke:
   stage: smoke
   only:
     - master
-  image: mosstech/ci-tools:latest
+  image: al3xos/ci-tools:latest
   dependencies:
     - deploy
   script:
