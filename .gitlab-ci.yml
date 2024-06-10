@@ -5,8 +5,12 @@ stages:
   - smoke
 
 variables:
-  DOMAIN: alexos.dev
   IMAGE_NAME: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
+  APP_NAME: alexos-dev
+  REGION: europe-west1
+  DOMAIN: alexos.dev
+  PORT: "32080"
+  GOOGLE_CREDENTIALS: ${APP_CI_CREDENTIALS}
 
 build:
   stage: build
@@ -34,21 +38,17 @@ publish:
   - mkdir -p /kaniko/.docker
   - echo "${GOOGLE_CREDENTIALS}" > ${CI_PROJECT_DIR}/kaniko.json
   script:
-    - /kaniko/executor --context "${CI_PROJECT_DIR}" --dockerfile "${CI_PROJECT_DIR}/Dockerfile" --destination "${IMAGE_NAME}:${CI_COMMIT_SHA}"
+    - ./scripts/build.sh
   after_script:
-  - rm -f ${CI_PROJECT_DIR}/kaniko.json
+  - rm -f ${CI_PROJECT_DIR}/kaniko.json 
 
 deploy:
   stage: deploy
   only:
   - master
   image: al3xos/ci-tools:latest
-  before_script:
-  - echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file -
-  - region=$(gcloud container clusters list --project=${GCP_PROJECT_ID} --filter "NAME=${CLUSTER_NAME}" --format "value(zone)")
-  - gcloud container clusters get-credentials ${CLUSTER_NAME} --project=${GCP_PROJECT_ID} --region=${region}
   script:
-    - ./go deploy
+    - ./scripts/deploy.sh
 
 smoke:
   stage: smoke
