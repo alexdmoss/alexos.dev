@@ -11,6 +11,6 @@ terraform apply -auto-approve -var gcp_project_id="${GCP_PROJECT_ID}" \
   -var image_tag="${IMAGE_TAG}" \
   -var region="${REGION}" \
   -var domain="${DOMAIN}" \
-  - var port="${PORT}"
+  -var port="${PORT}"
 
 popd >/dev/null
