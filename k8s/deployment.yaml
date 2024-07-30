@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alexos
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: "50%"
+      maxUnavailable: "50%"
+  template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+    spec:
+      containers:
+        - name: alexos
+          image: alexos:SET_BY_CI
+          ports:
+            - name: web
+              containerPort: 32080
+            - name: metrics
+              containerPort: 9145
+          workingDir: /app
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 101
+            runAsGroup: 101
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+              - ALL
+          volumeMounts:
+            - mountPath: /var/cache/nginx
+              name: cache-volume
+            - mountPath: /var/run/nginx
+              name: pid-volume
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
+        - name: pid-volume
+          emptyDir: {}
+      restartPolicy: Always
+      nodeSelector:
+        cloud.google.com/gke-spot: "true"
+      terminationGracePeriodSeconds: 25

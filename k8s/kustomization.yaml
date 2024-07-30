@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: alexos
+
+commonLabels:
+  app: alexos
+
+resources:
+  - deployment.yaml
+  - ingress.yaml
+  - pdb.yaml
+  - service.yaml
+  # - service-monitor.yaml    # Prometheus removed for now
