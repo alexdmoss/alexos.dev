@@ -7,6 +7,7 @@ stages:
 variables:
   DOMAIN: alexos.dev
   IMAGE_NAME: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
+  GOOGLE_CREDENTIALS: "${APP_CI_CREDENTIALS}"
 
 build:
   stage: build
