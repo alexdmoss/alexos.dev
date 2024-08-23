@@ -7,12 +7,12 @@ function smoke() {
 
     _console_msg "Checking HTTP status codes for https://${DOMAIN}/ ..."
     
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/ "Recent Posts"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/about/ "A little bit of info about me"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/contact/ "Send Message"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/posts/ "Previous Page"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/tags/ "/tags/google"
-    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/2019/02/23/a-year-in-google-cloud/ "This time last year"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/ "Recent Posts" "Recent"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/about/ "A little bit of info about me" "About"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/contact/ "Send Message" "Contact"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/posts/ "Previous Page" "Posts"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/tags/ "/tags/google" "Tags"
+    _smoke_test "${DOMAIN}" https://"${DOMAIN}"/2019/02/23/a-year-in-google-cloud/ "This time last year" "GCP-Blog"
 
     if [[ "${error:-}" != "0" ]]; then
         _console_msg "Tests FAILED - see messages above for for detail" ERROR
