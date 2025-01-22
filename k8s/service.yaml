@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: alexos
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 32080
       name: http
@@ -14,20 +14,9 @@ kind: Service
 metadata:
   name: alexos-metrics
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: alexos
   ports:
     - port: 9145
       name: metrics
----
-apiVersion: v1
-kind: Service 
-metadata:     
-  name: alexos-istio
-spec:
-  type: NodePort
-  ports:
-  - name: istio-proxy
-    port: 15020
-    protocol: TCP
