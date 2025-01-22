@@ -18,9 +18,6 @@ jQuery(document).ready(function (e) {
                         'API-Key': 'XDPM4D.5OA2M2v0s8MumHbqHXABqEpuWFpOfHuq'
                     },
                     data: $form.serialize(),
-                    headers: {
-                        "Access-Control-Allow-Origin":"*"
-                    },
                     beforeSend: function (xhr, opts) {
                         if ($('#_email', $form).val()) {
                             xhr.abort()
