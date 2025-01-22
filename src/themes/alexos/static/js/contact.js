@@ -1,5 +1,6 @@
 jQuery(document).ready(function (e) {
     /* Contacts Form */
+    
     $(function () {
         $('#contacts').find('input,select,textarea').jqBootstrapValidation({
             preventSubmit: true,
@@ -17,9 +18,9 @@ jQuery(document).ready(function (e) {
                         'API-Key': 'XDPM4D.5OA2M2v0s8MumHbqHXABqEpuWFpOfHuq'
                     },
                     data: $form.serialize(),
-                    dataType: 'json', 
-                    contentType: 'application/x-www-form-urlencoded', 
-                    xhrFields: { withCredentials: true }, 
+                    headers: {
+                        "Access-Control-Allow-Origin":"*"
+                    },
                     beforeSend: function (xhr, opts) {
                         if ($('#_email', $form).val()) {
                             xhr.abort()
