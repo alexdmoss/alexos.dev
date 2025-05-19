@@ -15,6 +15,11 @@ include:
       job-needs: ["render"]
       image-name: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
       dockerfile: Dockerfile
+  - component: gitlab.com/alexos-dev/gitlab-ci-components/security-scan@~latest
+    inputs:
+      job-stage: scan
+      job-needs: ["kaniko-build-app"]
+      image-names: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
   - component: gitlab.com/alexos-dev/gitlab-ci-components/deploy-k8s@~latest
     inputs:
       job-stage: deploy
