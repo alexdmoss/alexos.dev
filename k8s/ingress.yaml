@@ -16,4 +16,4 @@ spec:
   rules:
   - backendRefs:
     - name: alexos
-      port: 32080
+      port: 8080

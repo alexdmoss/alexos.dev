@@ -20,7 +20,7 @@ spec:
           image: alexos:SET_BY_CI
           ports:
             - name: web
-              containerPort: 32080
+              containerPort: 8080
             - name: metrics
               containerPort: 9145
           workingDir: /app
