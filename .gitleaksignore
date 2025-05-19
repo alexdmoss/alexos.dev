@@ -1,0 +1,7 @@
+# api-key for public API needed by client-side app. Additional protections implemented
+src/themes/alexos/static/js/contact.js:generic-api-key:17
+4db8feb32a98f997b7a319bbbe1f21ea50493f60:src/themes/mosstech/static/js/contact.js:generic-api-key:17
+c7a963a28ccda6dcf5d0583fca4e328aee9975e9:src/themes/alexos/static/js/contact.js:generic-api-key:17
+bba0b5f1d849499c86a83a41d9ae2e3cea7a71be:src/themes/alexos/static/js/contact.js:generic-api-key:17
+718db303c11d122257a9613a3566d9d28bf2e43c:src/config.yaml:generic-api-key:18
+7dec6727b30aea7f1345cc5600d1bb2eddfdad5d:src/themes/mosstech/static/js/contact.js:generic-api-key:16
