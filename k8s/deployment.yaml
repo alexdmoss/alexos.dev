@@ -44,6 +44,21 @@ spec:
               memory: 20Mi
             limits:
               memory: 100Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 1
+          imagePullPolicy: Always
       volumes:
         - name: cache-volume
           emptyDir: {}
