@@ -19,7 +19,7 @@ spec:
         - name: alexos
           image: alexos:SET_BY_CI
           ports:
-            - name: web
+            - name: http
               containerPort: 8080
             - name: metrics
               containerPort: 9145
