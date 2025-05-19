@@ -1,6 +1,7 @@
 stages:
   - render
   - build
+  - scan
   - deploy
   - smoke
 
