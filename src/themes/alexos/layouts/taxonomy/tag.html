@@ -20,9 +20,9 @@
                     <div class="listing-container">
                         <a href="{{ .RelPermalink | relLangURL | safeURL }}" class="listing-box draw meet">
                             {{ with .Param "banner" }}
-                            <img class="listing-image" src="{{ . | safeURL }}" />
+                            <img class="listing-image" src="{{ . | safeURL }}" alt="Banner" />
                             {{ else }}
-                            <img class="listing-image" src="/images/question-mark.png" />
+                            <img class="listing-image" src="/images/question-mark.png" alt="Absent!" />
                             {{ end }}
                             <h3 class="listing-title">{{ safeHTML .Title }}</h3>
                             <p class="listing-description">{{ safeHTML .Description | truncate 175 }}</p>

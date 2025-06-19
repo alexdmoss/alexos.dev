@@ -8,7 +8,7 @@ jQuery(document).ready(function (e) {
             },
             submitSuccess: function ($form, e) {
                 e.preventDefault()
-                var submitButton = $('input[type=submit]', $form)
+                let submitButton = $('input[type=submit]', $form)
                 // if you're copying this code, the API below still won't work even though you have the URL + API Key ;)
                 $.ajax({
                     type: 'POST',

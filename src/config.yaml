@@ -4,8 +4,10 @@ theme: "alexos"
 publishDir: "../www"
 contentDir: "../content"
 languageCode: "en-gb"
-paginate: 10
 enableEmoji: true
+
+pagination:
+  pagerSize: 10
 
 permalinks:
   posts: /:year/:month/:day/:title/
@@ -13,6 +15,8 @@ permalinks:
 params:
   author: "@alexdmoss"
   description: "My blog about interesting technology - and in particular Cloud Platforms & Services, and my experiences with them"
+  social:
+    twitter: "https://twitter.com/alexdmoss"
 
 menu:
   main:
@@ -42,3 +46,8 @@ outputs:
   - "HTML"
   - "RSS"
   - "JSON"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

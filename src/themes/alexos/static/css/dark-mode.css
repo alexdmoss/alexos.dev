@@ -11,11 +11,10 @@
 }
 
 .theme-switch-wrapper input[type=checkbox] + label:before {
-    font-family: FontAwesome;
+    font-family: 'FontAwesome', sans-serif;
     display: inline-block;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    font-family: FontAwesome;
     font-size: 1.3rem;
     font-style: normal;
     font-variant: normal;
