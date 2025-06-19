@@ -1,9 +1,9 @@
 // Get Parameters from some url
-var getUrlParameter = function getUrlParameter(sPageURL) {
-	var url = sPageURL.split('?');
-	var obj = {};
+let getUrlParameter = function getUrlParameter(sPageURL) {
+	let url = sPageURL.split('?');
+	let obj = {};
 	if (url.length == 2) {
-		var sURLVariables = url[1].split('&'),
+		let sURLVariables = url[1].split('&'),
 			sParameterName,
 			i;
 		for (i = 0; i < sURLVariables.length; i++) {
@@ -17,7 +17,7 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 };
 
 function mobileMenu() {
-	var x = document.getElementById("header-menu");
+	let x = document.getElementById("header-menu");
 	if (x.className === "links") {
 		x.className += " responsive";
 	} else {
@@ -26,10 +26,10 @@ function mobileMenu() {
 }
 
 // Execute actions on images generated from Markdown pages
-var images = $("div#body-inner img").not(".inline");
+let images = $("div#body-inner img").not(".inline");
 // Wrap image inside a featherlight (to get a full size view in a popup)
 images.wrap(function () {
-	var image = $(this);
+	let image = $(this);
 	if (!image.parent("a").length) {
 		return "<a href='" + image[0].src + "' data-featherlight='image'></a>";
 	}
@@ -37,12 +37,12 @@ images.wrap(function () {
 
 // Change styles, depending on parameters set to the image
 images.each(function (index) {
-	var image = $(this)
-	var o = getUrlParameter(image[0].src);
+	let image = $(this)
+	let o = getUrlParameter(image[0].src);
 	if (typeof o !== "undefined") {
-		var h = o["height"];
-		var w = o["width"];
-		var c = o["classes"];
+		let h = o["height"];
+		let w = o["width"];
+		let c = o["classes"];
 		image.css("width", function () {
 			if (typeof w !== "undefined") {
 				return w;
@@ -58,9 +58,9 @@ images.each(function (index) {
 			}
 		});
 		if (typeof c !== "undefined") {
-			var classes = c.split(',');
-			for (i = 0; i < classes.length; i++) {
-				image.addClass(classes[i]);
+			let classes = c.split(',');
+			for (const cls of classes) {
+				image.addClass(cls);
 			}
 		}
 	}
@@ -68,21 +68,21 @@ images.each(function (index) {
 
 
 // clipboard
-var clipInit = false;
+let clipInit = false;
 $('code').each(function () {
-	var code = $(this),
+	let code = $(this),
 		text = code.text();
 
 	if (text.length > 24) {
 		if (!clipInit) {
-			var text, clip = new Clipboard('.copy-to-clipboard', {
+			let text, clip = new Clipboard('.copy-to-clipboard', {
 				text: function (trigger) {
 					text = $(trigger).prev('code').text();
 					return text.replace(/^\$\s/gm, '');
 				}
 			});
 
-			var inPre;
+			let inPre;
 			clip.on('success', function (e) {
 				e.clearSelection();
 				inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
@@ -119,12 +119,12 @@ $('code').each(function () {
 
 	$(function () {
 
-		var $body = $('body');
+		let $body = $('body');
 
 		// Search (header).
-		var $search = $('#search');
-		var $search_input = $search.find('input');
-		var $search_results = $('#search-results');
+		let $search = $('#search');
+		let $search_input = $search.find('input');
+		let $search_results = $('#search-results');
 
 		$body.on('click', '[href="#search"]', function (event) {
 			event.preventDefault();
@@ -150,7 +150,7 @@ $('code').each(function () {
 			});
 
 		// Share Menu (header).
-		var $share = $('#share');
+		let $share = $('#share');
 		$body
 			.on('click', '[href="#share-menu"]', function (event) {
 				event.preventDefault();
@@ -179,11 +179,11 @@ jQuery(document).ready(function () {
 
 	// anchor links for headings
 
-	var text, clip = new Clipboard('.anchor');
+	let text, clip = new Clipboard('.anchor');
 	$("h2[id],h3[id],h4[id],h5[id],h6[id]").append(function (index, html) {
-		var element = $(this);
-		var url = encodeURI(document.location.origin + document.location.pathname);
-		var link = url + "#" + element[0].id;
+		let element = $(this);
+		let url = encodeURI(document.location.origin + document.location.pathname);
+		let link = url + "#" + element[0].id;
 		return " <span class='anchor' data-clipboard-text='" + link + "'>" +
 			"<i class='fas fa-link fa-lg'></i>" +
 			"</span>"
@@ -204,9 +204,9 @@ jQuery(document).ready(function () {
     * Courtesy of https://stackoverflow.com/a/13067009/28106
     **/
 	(function (document, history, location) {
-		var HISTORY_SUPPORT = !!(history && history.pushState);
+		let HISTORY_SUPPORT = !!history?.pushState;
 
-		var anchorScrolls = {
+		let anchorScrolls = {
 			ANCHOR_REGEX: /^#[^ ]+$/,
 			OFFSET_HEIGHT_PX: 80,
 
@@ -224,7 +224,7 @@ jQuery(document).ready(function () {
 
 			// If the provided href is an anchor which resolves to an element on the page, scroll to it
 			scrollIfAnchor: function (href, pushToHistory) {
-				var match, anchorOffset;
+				let match, anchorOffset;
 
 				if (!this.ANCHOR_REGEX.test(href)) {
 					return false;
@@ -252,7 +252,7 @@ jQuery(document).ready(function () {
 			},
 			// If the click event's target was an anchor, fix the scroll position.
 			delegateAnchors: function (e) {
-				var elem = e.target;
+				let elem = e.target;
 
 				if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
 					e.preventDefault();

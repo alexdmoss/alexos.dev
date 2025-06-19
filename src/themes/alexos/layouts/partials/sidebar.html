@@ -2,13 +2,15 @@
 
     <section id="intro">
 
-        <a class="logo" href="/about/"><img src="/images/logo.jpg" alt="A photo of Me!" /></a>
+        <a class="logo" href="/about/"><img src="/images/logo.jpg" alt="Me!" /></a>
 
         <h2>{{ .Site.Params.description | safeHTML }}</h2>
 
         <div class="social">
 
-            <a class="social-icon" href="{{ .Site.RSSLink }}" type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"><i class="fas fa-rss"></i></a>
+            {{ with .OutputFormats.Get "RSS" -}}
+            <a class="social-icon" href="{{ .Permalink }}" type="application/rss+xml" title="{{ $.Site.Title }} RSS Feed"><i class="fas fa-rss"></i></a>
+            {{ end -}}
             <a class="social-icon" href="https://github.com/alexdmoss"><i class="fab fa-github"></i></a>
             <a class="social-icon" href="https://twitter.com/alexdmoss"><i class="fab fa-twitter"></i></a>
             <a class="social-icon" href="https://www.linkedin.com/in/alexdmoss/"><i class="fab fa-linkedin"></i></a>

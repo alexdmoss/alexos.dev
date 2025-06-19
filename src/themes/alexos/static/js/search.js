@@ -1,4 +1,4 @@
-var lunrIndex,
+let lunrIndex,
     $results,
     documents;
 
@@ -24,12 +24,14 @@ function initLunr() {
                 documents.forEach(function (doc) {
                     try {
                         this.add(doc)
-                    } catch (e) { }
+                    } catch (e) {
+                        console.error('Error adding document to index:', e, doc);
+                    }
                 }, this)
             })
         })
         .fail(function (jqxhr, textStatus, error) {
-            var err = textStatus + ", " + error;
+            let err = textStatus + ", " + error;
             console.error("Error getting Lunr index file:", err);
         });
 }
@@ -56,7 +58,7 @@ function renderResults(results) {
 
     // show first ten results
     results.slice(0, 10).forEach(function (result) {
-        var $result = $("<li>");
+        let $result = $("<li>");
 
         if (result.uri.indexOf('/tags/') !== -1) {
             result.class = 'result-tag';
@@ -85,12 +87,12 @@ function initUI() {
         $results.empty();
 
         // trigger search when at least two chars provided.
-        var query = $(this).val();
+        let query = $(this).val();
         if (query.length < 2) {
             return;
         }
 
-        var results = search(query);
+        let results = search(query);
 
         renderResults(results);
     });

@@ -13,11 +13,7 @@
     <meta name="description" content="{{ .Site.Params.description }}" />
     <meta itemprop="name" content="{{ .Site.Title }}">
     <meta itemprop="description" content="{{ .Site.Params.description }}">
-
-    {{ if .Site.RSSLink -}}
-    <link href="{{ .Site.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-    {{ end -}}
-
+    
     {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
     <link href="{{"css/style.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/hybrid.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -37,7 +33,7 @@
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
 
-    {{ with .OutputFormats.Get "rss" -}}
+    {{ with .OutputFormats.Get "RSS" -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
 
@@ -47,15 +43,6 @@
     {{ end }}
 
     <script src="{{"js/jquery-3.2.1.min.js" | relURL}}"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2LE5BVYF"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-PM2LE5BVYF');
-    </script>
 
     <script defer data-domain="alexos.dev" data-api="/api/event" src="/js/visits.js"></script>
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>

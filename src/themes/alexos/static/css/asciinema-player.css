@@ -148,15 +148,13 @@
   letter-spacing: normal;
   overflow: hidden;
   height: 1.3333333333em;
+  display: block;
+  width: 200%;
 }
 .asciinema-terminal .line span {
   padding: 0;
   display: inline-block;
   height: 1.3333333333em;
-}
-.asciinema-terminal .line {
-  display: block;
-  width: 200%;
 }
 .asciinema-terminal .bright {
   font-weight: bold;
@@ -323,7 +321,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 .asciinema-player .start-prompt {
-  z-index: 10;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -336,8 +333,6 @@
 }
 .asciinema-player .start-prompt .play-button {
   font-size: 0px;
-}
-.asciinema-player .start-prompt .play-button {
   position: absolute;
   left: 0;
   top: 0;

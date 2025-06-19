@@ -42,8 +42,10 @@ spec:
             requests:
               cpu: 10m
               memory: 20Mi
+              ephemeral-storage: 50Mi
             limits:
               memory: 100Mi
+              ephemeral-storage: 50Mi
           readinessProbe:
             httpGet:
               path: /health
@@ -69,3 +71,4 @@ spec:
         cloud.google.com/gke-spot: "true"
       terminationGracePeriodSeconds: 25
       serviceAccountName: alexos
+      automountServiceAccountToken: false
