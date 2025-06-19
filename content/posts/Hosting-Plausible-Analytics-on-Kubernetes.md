@@ -184,7 +184,9 @@ I've tested this a couple of times in practice without issue, although could do 
 
 Now then, decision time. Whether you do this or not is a bit of a moral choice. By disguising the Plausible tracking javascript like this, you are being a bit disingenuous with your users - although keep in mind that [their code is respectful](https://plausible.io/privacy-focused-web-analytics). Despite their approach, some browsers / browser extensions are sensitive enough to block the Plausible tracker, assuming it is just as naughty as the Google one. This technique helps you avoid that for more accurate analytics capture, if you're ok with that.
 
-In my case, the majority of my sites are served via NGINX, so the [guidance here](https://plausible.io/docs/proxy/guides/nginx) covers what I need. You can see one of my [examples of this customisation here](https://gitlab.com/alexos-dev/moss-work/-/blob/master/config/default.conf).
+In my case, the majority of my sites are served via NGINX, so the [guidance here](https://plausible.io/docs/proxy/guides/nginx) covers what I need. You can see one of my [examples of this customisation here](https://gitlab.com/alexos-public/alexos.dev/-/blob/main/config/default.conf?ref_type=heads#L68).
+
+> I've also recently started using Caddy for some website hosting. [Here is an example](https://gitlab.com/alexos-public/alexmoss-co-uk/-/blob/main/Caddyfile?ref_type=heads#L41) of how I've done it using that web server too.
 
 Stripping this down:
 
