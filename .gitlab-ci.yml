@@ -41,21 +41,6 @@ render:
     when: on_success
     expire_in: "1 day"
 
-sonarcloud-check:
-  stage: scan
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script:
-    - sonar-scanner
-  only:
-    - main
-  allow_failure: true
-
 smoke:
   stage: smoke
   image: al3xos/ci-tools:latest
