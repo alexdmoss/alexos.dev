@@ -6,7 +6,6 @@ stages:
   - smoke
 
 variables:
-  GOOGLE_CREDENTIALS: "${APP_CI_CREDENTIALS}"
   DOMAIN: alexos.dev
 
 include:
