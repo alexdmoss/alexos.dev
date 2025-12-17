@@ -1,33 +1,13 @@
 stages:
   - render
-  - build
+  - release
   - scan
-  - deploy
   - smoke
 
 variables:
+  IMAGE_NAME: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
+  NAMESPACE: alexos
   DOMAIN: alexos.dev
-
-include:
-  - component: gitlab.com/alexos-dev/gitlab-ci-components/buildkit@~latest
-    inputs:
-      job-stage: build
-      job-needs: ["render"]
-      image-name: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
-      dockerfile: Dockerfile
-  - component: gitlab.com/alexos-dev/gitlab-ci-components/security-scan@~latest
-    inputs:
-      job-stage: scan
-      job-needs: ["buildkit-build-app"]
-      image-names: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
-  - component: gitlab.com/alexos-dev/gitlab-ci-components/deploy-k8s@~latest
-    inputs:
-      job-stage: deploy
-      job-needs: ["buildkit-build-app"]
-      app-name: alexos
-      namespace: alexos
-      image-name: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
-      manifest-dir: k8s
 
 render:
   stage: render
@@ -39,6 +19,26 @@ render:
       - www/
     when: on_success
     expire_in: "1 day"
+
+test-build-deploy:
+  stage: release
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  image: al3xos/ci-tools:latest
+  needs:
+  - render
+  script:
+    - alexos-cli build --image-name=$IMAGE_NAME --gcr-login
+    - alexos-cli deploy kubernetes --image-name=$IMAGE_NAME --namespace=$NAMESPACE
+
+include:
+  - component: gitlab.com/alexos-dev/gitlab-ci-components/security-scan@~latest
+    rules:
+      - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    inputs:
+      job-stage: scan
+      job-needs: ["test-build-deploy"]
+      image-names: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
 
 smoke:
   stage: smoke
