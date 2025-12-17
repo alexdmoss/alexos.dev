@@ -44,6 +44,6 @@ smoke:
   stage: smoke
   image: al3xos/ci-tools:latest
   needs:
-    - deploy-k8s-app
+    - test-build-deploy
   script:
     - ./scripts/smoke.sh
