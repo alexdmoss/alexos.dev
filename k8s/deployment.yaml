@@ -30,6 +30,8 @@ spec:
             runAsGroup: 101
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
+            seccompProfile:
+              type: RuntimeDefault
             capabilities:
               drop:
               - ALL
@@ -72,3 +74,13 @@ spec:
       terminationGracePeriodSeconds: 25
       serviceAccountName: alexos
       automountServiceAccountToken: false
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: alexos
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: alexos

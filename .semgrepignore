@@ -1,0 +1,22 @@
+# Static files - third-party libraries, not application code
+src/themes/alexos/static/js/vendors/
+
+# Configuration and data files
+*.yaml
+*.yml
+*.json
+*.toml
+*.ini
+*.conf
+*.md
+*.txt
+
+# Kubernetes and deployment configs
+k8s/
+
+# Git
+.git/
+
+# IDE
+.vscode/
+.idea/

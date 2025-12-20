@@ -1,0 +1,3 @@
+exclude-queries:
+# legitimate mount of in-memory storage for writable nginx volumes
+- b7652612-de4e-4466-a0bf-1cd81f0c6063
