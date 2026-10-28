@@ -1,8 +1,17 @@
+workflow:
+  rules:
+    # Avoid duplicate pipelines: the branch pipeline already runs the jobs,
+    # so don't also create a merge request pipeline.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 stages:
   - render
+  - validate
   - release
-  - scan
   - smoke
+  - scan
 
 variables:
   IMAGE_NAME: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
@@ -20,21 +29,45 @@ render:
     when: on_success
     expire_in: "1 day"
 
-test-build-deploy:
+# Builds the serving image from the rendered output without pushing it, so
+# base image digest bumps are checked before merge.
+validate:
+  stage: validate
+  needs:
+    - render
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+  image: al3xos/ci-tools:latest
+  script:
+    - alexos-cli build --image-name=$IMAGE_NAME --backend=buildkit --disable-push
+
+build-deploy:
   stage: release
+  needs:
+    - render
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   image: al3xos/ci-tools:latest
-  needs:
-  - render
   script:
     - alexos-cli build --image-name=$IMAGE_NAME --gcr-login
     - alexos-cli deploy kubernetes --image-name=$IMAGE_NAME --namespace=$NAMESPACE
 
+smoke-test:
+  stage: smoke
+  needs:
+    - build-deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  image: al3xos/ci-tools:latest
+  script:
+    - ./scripts/smoke-test.sh
+
+# Deliberately non-blocking. The vulnerability parts will be wound down over
+# time; secret and code scanning stay.
 security-scan:
   stage: scan
   needs:
-    - test-build-deploy
+    - build-deploy
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   image: al3xos/ci-tools:latest
@@ -50,13 +83,3 @@ security-scan:
       - "*-report.json"
     access: developer
     expire_in: "1 day"
-
-smoke:
-  stage: smoke
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  image: al3xos/ci-tools:latest
-  needs:
-    - test-build-deploy
-  script:
-    - ./scripts/smoke.sh
