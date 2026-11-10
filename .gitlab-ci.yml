@@ -11,7 +11,6 @@ stages:
   - validate
   - release
   - smoke
-  - scan
 
 variables:
   IMAGE_NAME: europe-docker.pkg.dev/${GCP_PROJECT_ID}/alexos/alexos
@@ -49,6 +48,8 @@ build-deploy:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   image: al3xos/ci-tools:latest
   script:
+    - alexos-cli scan code
+    - alexos-cli scan secrets
     - alexos-cli build --image-name=$IMAGE_NAME --gcr-login
     - alexos-cli deploy kubernetes --image-name=$IMAGE_NAME --namespace=$NAMESPACE
 
@@ -61,25 +62,3 @@ smoke-test:
   image: al3xos/ci-tools:latest
   script:
     - ./scripts/smoke-test.sh
-
-# Deliberately non-blocking. The vulnerability parts will be wound down over
-# time; secret and code scanning stay.
-security-scan:
-  stage: scan
-  needs:
-    - build-deploy
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  image: al3xos/ci-tools:latest
-  script:
-    - alexos-cli scan code
-    - alexos-cli scan secrets
-    - alexos-cli scan container --image-name=$IMAGE_NAME
-    - alexos-cli scan iac
-  allow_failure: true
-  artifacts:
-    when: on_failure
-    paths:
-      - "*-report.json"
-    access: developer
-    expire_in: "1 day"
